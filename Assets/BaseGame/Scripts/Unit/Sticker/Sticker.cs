@@ -16,9 +16,12 @@ public partial class Sticker : MonoBehaviour
     public ScratchCardManager scratchManager;
     public bool isDone;
     
+    [SerializeReference] public IRequireDoneSticker requireDoneSticker;
+    public bool IsOnDoneState => stateMachine.CurrentState == StickerDoneState;
+
     private void Start()
     {
-        progress = scratchManager.Progress.currentProgress;
+        progress = scratchManager.Progress.reactiveCurrentProgress;
         progress.Subscribe(ChangeProgressCheck).AddTo(this);
         
         stateMachine.RequestTransition(StickerWaitState);
@@ -42,8 +45,10 @@ public partial class Sticker : MonoBehaviour
         }
     }
 
-    private void OnDoneProgress()
+    protected internal void OnDoneProgress()
     {
+        if (!CheckDoneRequire())
+            return;
         stateMachine.RequestTransition(StickerDoneState);
     }
 
@@ -52,5 +57,21 @@ public partial class Sticker : MonoBehaviour
         progress.Value = 0;
         scratchManager.gameObject.SetActive(false);
         isDone = false;
+        stickerGraphic.ResetGraphic();
+    }
+
+    protected void StickerMoveToTarget()
+    {
+        GamePlayManager.Instance.RegisterStickerDone(this);
+    }
+
+    public void DisAbleIcon()
+    {
+        stickerGraphic.DisAbleIcon();
+    }
+
+    private bool CheckDoneRequire()
+    {
+        return requireDoneSticker.CheckDoneSticker();
     }
 }

@@ -15,7 +15,9 @@ public class GamePlayManager : Singleton<GamePlayManager>
     public float radiusCheck = 1f;
     public LayerMask whatIsCardLayer;
     private Dictionary<Collider2D, Card> cardCollection = new();
-
+    bool isFollowing;
+    public Level level;
+    
     public void SetCurrentCard(Card card)
     {
         eraser.SetCurrentCard(card);
@@ -32,9 +34,7 @@ public class GamePlayManager : Singleton<GamePlayManager>
             cam = Camera.main;
         this.UpdateAsObservable().Subscribe(_ => { UpdateFunction(); }).AddTo(this);
     }
-
-    bool isFollowing;
-
+    
     private void UpdateFunction()
     {
         if (Input.GetMouseButtonDown(0))
@@ -105,5 +105,10 @@ public class GamePlayManager : Singleton<GamePlayManager>
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(eraser.transform.position, radiusCheck);
+    }
+
+    public void RegisterStickerDone(Sticker sticker)
+    {
+        level.RegisterStickerDone(sticker);
     }
 }

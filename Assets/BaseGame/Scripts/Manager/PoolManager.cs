@@ -8,6 +8,7 @@ public class PoolManager : Singleton<PoolManager>
     void Start()
     {
         poolEraserEffect.SpawnOnInit();
+        poolStickerMoveEffect.SpawnOnInit();
     }
 
     #region Eraser effect
@@ -25,6 +26,24 @@ public class PoolManager : Singleton<PoolManager>
     public void DespawnEraserEffect(ParticleSystem obj)
     {
         poolEraserEffect.Despawn(obj);
+    }
+
+    #endregion
+    #region Sticker Move Effect
+
+    public HPool<StickerDone> poolStickerMoveEffect;
+    
+    public StickerDone SpawnStickerDone(Transform parent)
+    {
+        var obj = poolStickerMoveEffect.Spawn();
+        if (obj == null) return null;
+        obj.transform.position = parent.position;
+        return obj;
+    }
+    
+    public void DespawnStickerMove(StickerDone obj)
+    {
+        poolStickerMoveEffect.Despawn(obj);
     }
 
     #endregion

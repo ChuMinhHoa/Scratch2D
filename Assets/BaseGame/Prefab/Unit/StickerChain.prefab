@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &932460883346201200
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7247220360202997356, guid: 75070715be8c620488251867e5658fff, type: 3}
+      propertyPath: m_Name
+      value: StickerChain
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944457422440374339, guid: 75070715be8c620488251867e5658fff, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.297
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944457422440374339, guid: 75070715be8c620488251867e5658fff, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.045
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944457422440374339, guid: 75070715be8c620488251867e5658fff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944457422440374339, guid: 75070715be8c620488251867e5658fff, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944457422440374339, guid: 75070715be8c620488251867e5658fff, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944457422440374339, guid: 75070715be8c620488251867e5658fff, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944457422440374339, guid: 75070715be8c620488251867e5658fff, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944457422440374339, guid: 75070715be8c620488251867e5658fff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944457422440374339, guid: 75070715be8c620488251867e5658fff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944457422440374339, guid: 75070715be8c620488251867e5658fff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3137116920476431085, guid: 75070715be8c620488251867e5658fff, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7247220360202997356, guid: 75070715be8c620488251867e5658fff, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3166571747646068317}
+  m_SourcePrefab: {fileID: 100100000, guid: 75070715be8c620488251867e5658fff, type: 3}
+--- !u!114 &6874451826641785693 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6023056218909100333, guid: 75070715be8c620488251867e5658fff, type: 3}
+  m_PrefabInstance: {fileID: 932460883346201200}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1091e69478f334e5c995b30d9b122da3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7135280161767274652 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8067459564566192876, guid: 75070715be8c620488251867e5658fff, type: 3}
+  m_PrefabInstance: {fileID: 932460883346201200}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7522006154615772188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eab4d024b0124b24fb7a16d6cfd6a0ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StickerGraphic
+--- !u!1 &7522006154615772188 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7247220360202997356, guid: 75070715be8c620488251867e5658fff, type: 3}
+  m_PrefabInstance: {fileID: 932460883346201200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-3166571747646068317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7522006154615772188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d903917cbf04a043a4c5b98dfc3a0d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StickerChain
+  stickerID: 0
+  stickerGraphic: {fileID: 7135280161767274652}
+  progress:
+    value: 0
+    EditorValue: 0
+  progressDone: 0.7
+  scratchManager: {fileID: 6874451826641785693}
+  isDone: 0
+  requireDoneSticker:
+    rid: 5272259989212234147
+  stickerChain: {fileID: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: 5272259989212234147
+      type: {class: ChainRequireDoneSticker, ns: , asm: Assembly-CSharp}
+      data:
+        sticker: {fileID: -3166571747646068317}

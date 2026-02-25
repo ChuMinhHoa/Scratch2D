@@ -5,7 +5,7 @@ public class ObjHaveSticker : MonoBehaviour
 {
     public StickerPos[] trsStickerPos;
 
-    public bool IsSameSticker(int id, out Transform stickerPos)
+    public bool IsSameSticker(int id, out StickerPos stickerPos)
     {
         for (var i = 0; i < trsStickerPos.Length; i++)
         {
@@ -13,7 +13,7 @@ public class ObjHaveSticker : MonoBehaviour
 
             if (trsStickerPos[i].IsHaveSticker()) continue;
             
-            stickerPos = trsStickerPos[i].trsStickerPos;
+            stickerPos = trsStickerPos[i];
             return true;
         }
         stickerPos = null;
@@ -26,9 +26,9 @@ public class StickerPos
 {
     public int id;
     public Transform trsStickerPos;
-    public Sticker sticker;
+    public StickerDone sticker;
     
-    public void RegisterSticker(Sticker stickerRegister)
+    public void RegisterSticker(StickerDone stickerRegister)
     {
         sticker = stickerRegister;
     }

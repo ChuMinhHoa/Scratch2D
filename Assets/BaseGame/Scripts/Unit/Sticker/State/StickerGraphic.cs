@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using LitMotion;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -14,18 +15,24 @@ public class StickerGraphic : MonoBehaviour
     }
 
     [Button]
-    public void OnDoneMode()
+    public async UniTask OnDoneMode()
     {
         objGlow.SetActive(true);
-        LMotion.Create(0f, 1f, 0.5f).WithOnComplete(() =>
+        _ = unitAnimation.PlayScaleAnimation();
+        await LMotion.Create(0f, 1f, 0.5f).WithOnComplete(() =>
         {
             objGlow.SetActive(false);
         }).RunWithoutBinding().AddTo(this);
-        _ = unitAnimation.PlayScaleAnimation();
     }
 
-    public void MoveSticker(Transform targetPos)
+    public void DisAbleIcon()
     {
-        unitAnimation.PlayMoveAnim(targetPos.position);
+        sprIcon.gameObject.SetActive(false);
+    }
+    
+    public void ResetGraphic()
+    {
+        sprIcon.gameObject.SetActive(true);
+        objGlow.SetActive(false);
     }
 }

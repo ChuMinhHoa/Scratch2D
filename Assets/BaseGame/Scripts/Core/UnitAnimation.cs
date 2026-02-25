@@ -1,7 +1,9 @@
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using Sirenix.OdinInspector;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class UnitAnimation : MonoBehaviour
 {
@@ -38,9 +40,13 @@ public class UnitAnimation : MonoBehaviour
     public AnimationCurve curveMoveZ;
     public float timeMove = 1f;
     private MotionHandle motionHandleMove;
+    
+    public float2 magnitudeX;
+    public float2 magnitudeY;
+    public float2 magnitudeZ;
 
     [Button]
-    public void PlayMoveAnim(Vector3 targetPos)
+    public async UniTask PlayMoveAnim(Vector3 targetPos)
     {
         var currentX = transform.position.x;
         var currentY = transform.position.y;
@@ -49,6 +55,10 @@ public class UnitAnimation : MonoBehaviour
         var targetX = targetPos.x;
         var targetY = targetPos.y;
         var targetZ = targetPos.z;
+        
+        var mx = Random.Range(magnitudeX.x, magnitudeX.y);
+        var my = Random.Range(magnitudeY.x, magnitudeY.y);
+        var mz = Random.Range(magnitudeZ.x, magnitudeZ.y);
       
         var currentPos = transform.position;
         Debug.Log(currentPos);
@@ -56,7 +66,7 @@ public class UnitAnimation : MonoBehaviour
         LMotion.Create(0f, 1f, timeMove).Bind(t =>
         {
             var x = Mathf.Lerp(currentX, targetX, t);
-            var evaluateX = curveMoveX.Evaluate(t);
+            var evaluateX = curveMoveX.Evaluate(t) * mx;
             currentPos.x = x + evaluateX;
             transform.position = currentPos;
         }).AddTo(this);
@@ -64,15 +74,15 @@ public class UnitAnimation : MonoBehaviour
         LMotion.Create(0f, 1f, timeMove).Bind(t =>
         {
             var y = Mathf.Lerp(currentY, targetY, t);
-            var evaluateY = curveMoveY.Evaluate(t);
+            var evaluateY = curveMoveY.Evaluate(t) * my;
             currentPos.y = y + evaluateY;
             transform.position = currentPos;
         }).AddTo(this);
       
-        LMotion.Create(0f, 1f, timeMove).Bind(t =>
+        await LMotion.Create(0f, 1f, timeMove).Bind(t =>
         {
             var z = Mathf.Lerp(currentZ, targetZ, t);
-            var evaluateZ = curveMoveZ.Evaluate(t);
+            var evaluateZ = curveMoveZ.Evaluate(t) * mz;
             currentPos.z = z + evaluateZ;
             transform.position = currentPos;
         }).AddTo(this);

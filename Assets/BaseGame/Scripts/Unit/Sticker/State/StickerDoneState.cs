@@ -40,11 +40,11 @@ public partial class Sticker : StickerDoneState.IHandler
     private StickerDoneState StickerDoneStateCache { get; set; }
     public StickerDoneState StickerDoneState => StickerDoneStateCache ??= new StickerDoneState(this);
 
-    public UniTask OnEnterDoneState()
+    public virtual async UniTask OnEnterDoneState()
     {
         Debug.Log("Done state");
-        stickerGraphic.OnDoneMode();
-        return UniTask.CompletedTask;
+        await stickerGraphic.OnDoneMode();
+        StickerMoveToTarget();
     }
 
     public UniTask OnUpdateDoneState()

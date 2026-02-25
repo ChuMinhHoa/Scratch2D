@@ -18,7 +18,8 @@ namespace ScratchCardAsset
         private RenderTargetIdentifier rti;
         private CommandBuffer commandBuffer;
         private Mesh mesh;
-        public Reactive<float> currentProgress = new(0);
+        public float currentProgress;
+        public Reactive<float> reactiveCurrentProgress = new(0);
         private bool isCompleted;
 
         #region MonoBehaviour Methods
@@ -91,7 +92,8 @@ namespace ScratchCardAsset
                 progressTexture.Apply();
                 RenderTexture.active = prevRenderTextureT;
                 var red = progressTexture.GetPixel(0, 0).r;
-                currentProgress.Value = red;
+                currentProgress = red;
+                reactiveCurrentProgress.Value = red;
                 actionCallbackChangeProgress?.Invoke(currentProgress);
 
                 if (OnProgress != null)
