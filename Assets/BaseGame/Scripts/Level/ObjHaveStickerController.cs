@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using LitMotion;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 [Serializable]
@@ -38,9 +40,9 @@ public class ObjHaveStickerController : SpaceForSticker
         currentObjHaveSticker.Value = objHaveSticker;
     }
  
-    public void CallNextObjSticker()
+    public async UniTask CallNextObjSticker()
     {
-        Debug.Log("Call next ObjHaveSticker");
+        await UniTask.WaitForSeconds(0.5f);
         _ = currentObjHaveSticker.Value?.Move(posOut);
         if (indexCurrentObjHaveSticker < objHaveStickers.Count)
         {
@@ -65,10 +67,5 @@ public class ObjHaveStickerController : SpaceForSticker
     public override void ResetController()
     {
         indexCurrentObjHaveSticker = 0;
-    }
-
-    public bool CheckToCallNextSticker()
-    {
-        return currentObjHaveSticker.Value.IsCompleteSticker();
     }
 }

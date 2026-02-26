@@ -38,6 +38,7 @@ public class PoolManager : Singleton<PoolManager>
         var obj = poolStickerMoveEffect.Spawn();
         if (!obj) return null;
         obj.transform.position = parent.position;
+        obj.transform.localScale = Vector3.one;
         return obj;
     }
     
@@ -64,7 +65,7 @@ public class PoolManager : Singleton<PoolManager>
 
     #endregion
 
-    #region ObjHaveSticker
+    #region Card
     public HPool<Card> poolCard;
     
     public Card SpawnCard(Vector3 position)
@@ -153,7 +154,7 @@ public class HPool<T> where T : Component
             return e;
         }
 
-        if (parents == null)
+        if (!parents)
             return null;
         var obj = Object.Instantiate(prefab, parents);
         //activePool.Add(obj);
@@ -162,7 +163,7 @@ public class HPool<T> where T : Component
     
     public void Despawn(T obj)
     {
-        if (obj == null) return;
+        if (!obj) return;
         //if (!activePool.Contains(obj)) return;
         //activePool.Remove(obj);
         if (obj.transform.parent != parents)

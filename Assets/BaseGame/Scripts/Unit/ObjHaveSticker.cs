@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ObjHaveSticker : MonoBehaviour
 {
@@ -29,7 +30,6 @@ public class ObjHaveSticker : MonoBehaviour
 
     public void InitData(ObjHaveStickerData data)
     {
-        Debug.Log("Load ObjHaveSticker Data");
         sprIcon.sprite = SpriteGlobalConfig.Instance.GetIconObjectHaveSticker(data.objID);
         for (var i = 0; i < data.stickerIds.Length; i++)
         {
@@ -47,11 +47,17 @@ public class ObjHaveSticker : MonoBehaviour
         }
     }
 
-    public void ResetObjHaveSticker()
+    private void ResetObjHaveSticker()
     {
         for (var i = 0; i < sprStickerIcon.Count; i++)
         {
             PoolManager.Instance.DeSpawnPosSticker(sprStickerIcon[i]);
+        }
+
+        for (var i = 0; i < trsStickerPos.Count; i++)
+        {
+            trsStickerPos[i].stickerDone.ResetStickerDone();
+            PoolManager.Instance.DespawnStickerMove(trsStickerPos[i].stickerDone);
         }
         
         trsStickerPos.Clear();
@@ -62,7 +68,7 @@ public class ObjHaveSticker : MonoBehaviour
     {
         for(var i = 0; i < trsStickerPos.Count; i++)
         {
-            if (!trsStickerPos[i].IsHaveSticker())
+            if (!trsStickerPos[i].IsMoveDone())
                 return false;
         }
         return true;
@@ -81,15 +87,28 @@ public class StickerPos
 {
     public int id;
     public Transform trsStickerPos;
-    public StickerDone sticker;
+    public StickerDone stickerDone;
+    public bool moveDone;
     
     public void RegisterSticker(StickerDone stickerRegister)
     {
-        sticker = stickerRegister;
+        stickerDone = stickerRegister;
     }
 
     public bool IsHaveSticker()
     {
-        return sticker != null;
+        return stickerDone != null;
+    }
+
+    public void MoveDone()
+    {
+        moveDone = true;
+    }
+
+    public bool IsMoveDone() => moveDone;
+    public void ResetStickerPos()
+    {
+        stickerDone = null;
+        moveDone = false;
     }
 }

@@ -19,13 +19,7 @@ public class Level : MonoBehaviour
     {
         GamePlayManager.Instance.level = this;
         fSpaceController.SetOSController(oSController.currentObjHaveSticker);
-        GlobalEventManager.CheckToCallNextSticker = CheckToCallNextSticker;
-    }
-
-    private void CheckToCallNextSticker()
-    {
-        if(oSController.CheckToCallNextSticker())
-            CallNextObjSticker();
+        GlobalEventManager.CheckToCallNextSticker = () => _ = CallNextObjSticker();
     }
 
     [Button]
@@ -38,12 +32,13 @@ public class Level : MonoBehaviour
         LevelData = DataSerializer.Deserialize<LevelData>(levelDataTextAsset.text);
         oSController.LoadData(LevelData.objHaveStickers.AsSpan());
         layerController.LoadData(LevelData.layerCards.AsSpan());
-        CallNextObjSticker();
+        _ = CallNextObjSticker();
     }
 
-    private void CallNextObjSticker()
+    [Button]
+    private async UniTask CallNextObjSticker()
     {
-        oSController.CallNextObjSticker();
+        await oSController.CallNextObjSticker();
         if (oSController.currentObjHaveSticker.Value)
         {
             CheckAllStickerOnFreeSpace();

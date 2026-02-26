@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class LevelGenerateText : MonoBehaviour
 {
+    public Level level;
     public int levelIndex;
     public LevelData levelData;
     [field: SerializeField] public TextAsset LevelDataTextAsset { get; private set; }

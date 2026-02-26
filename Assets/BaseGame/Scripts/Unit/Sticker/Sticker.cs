@@ -16,7 +16,7 @@ public partial class Sticker : MonoBehaviour
     public Reactive<float> progress = new(0);
     public float progressDone; 
     
-    public bool isDone;
+    public Reactive<bool> isDone;
     
     [SerializeReference] public IRequireDoneSticker requireDoneSticker;
     public bool IsOnDoneState => stateMachine.CurrentState == StickerDoneState;
@@ -36,7 +36,7 @@ public partial class Sticker : MonoBehaviour
             return;
         if (progressChange >= progressDone)
         {
-            isDone = true;
+            isDone.Value = true;
             OnDoneProgress();
             stickerGraphic.FillAllScratch();
         }
@@ -52,7 +52,7 @@ public partial class Sticker : MonoBehaviour
     public void ResetSticker()
     {
         progress.Value = 0;
-        isDone = false;
+        isDone.Value = false;
         stickerGraphic.ResetGraphic();
     }
 

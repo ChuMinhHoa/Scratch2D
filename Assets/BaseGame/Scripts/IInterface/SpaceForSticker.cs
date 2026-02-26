@@ -45,8 +45,8 @@ public class SpaceForSticker : ISpaceForSticker
       stickerPos.RegisterSticker(stickerDone);
       await UniTask.WaitForSeconds(1f);// wait anim Remove
       await stickerDone.PlayMoveAnim(stickerPos.trsStickerPos);
+      stickerPos.MoveDone();
       var isLastSticker = currentObjHaveSticker.Value.IsCompleteSticker();
-      Debug.Log($"is last sticker? : {isLastSticker}");
       if (isLastSticker)
       {
          GlobalEventManager.CheckToCallNextSticker?.Invoke();
@@ -67,11 +67,19 @@ public class SpaceForSticker : ISpaceForSticker
       if (moveToFreSpace)
       {
          await e.PlayMoveAnimToFreeSpace(stickerPos.trsStickerPos);
+         stickerPos.MoveDone();
       }
       else
       {
          await e.PlayMoveAnim(stickerPos.trsStickerPos);
+         stickerPos.MoveDone();
+         var isLastSticker = currentObjHaveSticker.Value.IsCompleteSticker();
+         if (isLastSticker)
+         {
+            GlobalEventManager.CheckToCallNextSticker?.Invoke();
+         }
       }
+
    }
 
    public virtual void ResetController()

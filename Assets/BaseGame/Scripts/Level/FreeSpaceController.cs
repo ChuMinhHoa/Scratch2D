@@ -25,9 +25,9 @@ public class FreeSpaceController : SpaceForSticker
         {
             if (!spaceStickers[i].stickerPos.IsHaveSticker())
                 continue;
-            if (RegisterStickerDoneToObject(spaceStickers[i].stickerPos.sticker))
+            if (RegisterStickerDoneToObject(spaceStickers[i].stickerPos.stickerDone))
             {
-                spaceStickers[i].stickerPos.RegisterSticker(null);
+                spaceStickers[i].stickerPos.ResetStickerPos();
             }
         }
     }
