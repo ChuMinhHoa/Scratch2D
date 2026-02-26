@@ -117,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 2935564265781446427}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -209,7 +209,7 @@ Transform:
   m_GameObject: {fileID: 3708475496136982499}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.2}
+  m_LocalPosition: {x: 0, y: 0, z: -0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -319,14 +319,14 @@ Transform:
   m_GameObject: {fileID: 7247220360202997356}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0027, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6467082429076738385}
   - {fileID: 2361896252829997850}
-  - {fileID: 8594718926432154234}
   - {fileID: 6023056218919084501}
+  - {fileID: 8594718926432154234}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3137116920476431085
@@ -341,13 +341,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6a66a631a14314c9a612acd041ba2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sticker
-  stickerID: 0
+  stickerType: 0
+  stickerData:
+    stickerID: 0
+    stickerType: 0
   stickerGraphic: {fileID: 8067459564566192876}
   progress:
     value: 0
     EditorValue: 0
-  progressDone: 0.7
-  scratchManager: {fileID: 6023056218909100333}
+  progressDone: 0.9
   isDone: 0
   requireDoneSticker:
     rid: 5272259989212234148
@@ -370,10 +372,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab4d024b0124b24fb7a16d6cfd6a0ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StickerGraphic
-  sprIcon: {fileID: 828502245805875980}
   stickerId: 0
+  sprIcon: {fileID: 828502245805875980}
+  sprBg: {fileID: 1877877154114863188}
+  sprGlow: {fileID: 2313513507217535105}
   unitAnimation: {fileID: 8890121142107612431}
   objGlow: {fileID: 3708475496136982499}
+  scratchManager: {fileID: 6023056218909100333}
 --- !u!114 &8890121142107612431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -641,6 +646,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11486244, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: spriteIcon
+      value: 
+      objectReference: {fileID: 6023056218931804003}
+    - target: {fileID: 11486244, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
       propertyPath: EraseTexture
       value: 
       objectReference: {fileID: 2800000, guid: eef5a9056291fba45ad50d97817d14ae, type: 3}
@@ -695,5 +704,10 @@ MonoBehaviour:
 --- !u!4 &6023056218919084501 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 437468, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+  m_PrefabInstance: {fileID: 6023056218919505161}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &6023056218931804003 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 21281386, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
   m_PrefabInstance: {fileID: 6023056218919505161}
   m_PrefabAsset: {fileID: 0}

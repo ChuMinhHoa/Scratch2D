@@ -61,7 +61,6 @@ public class UnitAnimation : MonoBehaviour
         var mz = Random.Range(magnitudeZ.x, magnitudeZ.y);
       
         var currentPos = transform.position;
-        Debug.Log(currentPos);
 
         LMotion.Create(0f, 1f, timeMove).Bind(t =>
         {

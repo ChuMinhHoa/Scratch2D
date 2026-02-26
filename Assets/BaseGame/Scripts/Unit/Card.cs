@@ -1,12 +1,30 @@
 using System;
+using System.Collections.Generic;
+using R3;
 using ScratchCardAsset;
-using UnityEngine;
-using UniRx.Triggers;
 using UniRx;
+using UnityEngine;
 
 public class Card : MonoBehaviour
 {
+    public int layerIndex;
     public ScratchCardManager scratchCardManager;
+    public Transform[] stickerPoints;
+
+    public List<Sticker> stickers;
+    public GameObject objLock;
+    private Reactive<int> currentLayer = new(0);
+    private void Start()
+    {
+        currentLayer = GamePlayManager.Instance.level.layerController.layerActive;
+        currentLayer.Subscribe(OnChangeLayer).AddTo(this);
+    }
+
+    private void OnChangeLayer(int layer)
+    {
+        var isSameLayer = layerIndex == layer;
+        objLock.SetActive(!isSameLayer);
+    }
 
     public void SetActionCallbackChangeProgress(Action<float> callback)
     {
@@ -17,24 +35,16 @@ public class Card : MonoBehaviour
     {
         scratchCardManager.RemoveActionCallBackChangeProgress(callback);
     }
-    
-    private void OnMouseEnter()
-    {
-        // if (UnityEngine.EventSystems.EventSystem.current != null &&
-        //     UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
-        // {
-        //     Debug.Log("Click is blocked by UI.");
-        //     return;
-        // }
-        //
-        // if (GamePlayManager.Instance.IsCurrentCard(this))
-        //     return;
-        // GamePlayManager.Instance.SetCurrentCard(this);
-    }
 
-    private void OnMouseExit()
+    public void LoadData(CardData cardData, int layer)
     {
-        // if (GamePlayManager.Instance.IsCurrentCard(this))
-        //     GamePlayManager.Instance.SetCurrentCard(null);
+        layerIndex = layer;
+        for (var i = 0; i < cardData.stickers.Length; i++)
+        {
+            var sticker = PoolManager.Instance.SpawnSticker(stickerPoints[i]);
+            sticker.transform.localPosition = Vector3.zero;
+            sticker.InitData(cardData.stickers[i]);
+            stickers.Add(sticker);
+        }
     }
 }

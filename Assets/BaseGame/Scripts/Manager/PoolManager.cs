@@ -18,7 +18,7 @@ public class PoolManager : Singleton<PoolManager>
     public ParticleSystem SpawnEraserEffect(Transform parent)
     {
         var obj = poolEraserEffect.Spawn();
-        if (obj == null) return null;
+        if (!obj) return null;
         obj.transform.position = parent.position;
         return obj;
     }
@@ -36,7 +36,7 @@ public class PoolManager : Singleton<PoolManager>
     public StickerDone SpawnStickerDone(Transform parent)
     {
         var obj = poolStickerMoveEffect.Spawn();
-        if (obj == null) return null;
+        if (!obj) return null;
         obj.transform.position = parent.position;
         return obj;
     }
@@ -47,6 +47,79 @@ public class PoolManager : Singleton<PoolManager>
     }
 
     #endregion
+
+    #region ObjHaveSticker
+    
+    public HPool<ObjHaveSticker> poolObjHaveSticker;
+    public ObjHaveSticker SpawnObjHaveSticker()
+    {
+        var obj = poolObjHaveSticker.Spawn();
+        return !obj ? null : obj;
+    }
+    
+    public void DespawnObjHaveSticker(ObjHaveSticker obj)
+    {
+        poolObjHaveSticker.Despawn(obj);
+    }
+
+    #endregion
+
+    #region ObjHaveSticker
+    public HPool<Card> poolCard;
+    
+    public Card SpawnCard(Vector3 position)
+    {
+        var obj = poolCard.Spawn();
+        if (!obj) return null;
+        obj.transform.position = position;
+        return obj;
+    }
+    
+    public void DespawnCard(Card obj)
+    {
+        poolCard.Despawn(obj);
+    }
+    #endregion
+
+    #region Sticker
+
+    public HPool<Sticker> poolSticker;
+    
+    public Sticker SpawnSticker(Transform parents)
+    {
+        var obj = poolSticker.Spawn();
+        if (!obj) return null;
+        obj.transform.SetParent(parents);
+        return obj;
+    }
+    
+    public void DespawnSticker(Sticker obj)
+    {
+        poolSticker.Despawn(obj);
+    }
+
+    #endregion
+    
+    
+    #region PosSticker
+
+    public HPool<SpriteRenderer> poolStickerPos;
+    
+    public SpriteRenderer SpawnPosSticker(Transform parents)
+    {
+        var obj = poolStickerPos.Spawn();
+        if (!obj) return null;
+        obj.transform.SetParent(parents);
+        return obj;
+    }
+    
+    public void DeSpawnPosSticker(SpriteRenderer obj)
+    {
+        poolStickerPos.Despawn(obj);
+    }
+
+    #endregion
+  
 }
 
 [System.Serializable]

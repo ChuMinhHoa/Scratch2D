@@ -7,13 +7,15 @@ using UnityEngine;
 
 public partial class Sticker : MonoBehaviour
 {
+    public StickerType stickerType;
+    public StickerData stickerData;
     private StateMachine stateMachine = new();
     
     public StickerGraphic stickerGraphic;
     
     public Reactive<float> progress = new(0);
     public float progressDone; 
-    public ScratchCardManager scratchManager;
+    
     public bool isDone;
     
     [SerializeReference] public IRequireDoneSticker requireDoneSticker;
@@ -21,16 +23,11 @@ public partial class Sticker : MonoBehaviour
 
     private void Start()
     {
-        progress = scratchManager.Progress.reactiveCurrentProgress;
+        progress = stickerGraphic.scratchManager.Progress.reactiveCurrentProgress;
         progress.Subscribe(ChangeProgressCheck).AddTo(this);
         
         stateMachine.RequestTransition(StickerWaitState);
         stateMachine.Run();
-    }
-
-    public void InitSticker()
-    {
-        stateMachine.RequestTransition(StickerInitState);
     }
 
     private void ChangeProgressCheck(float progressChange)
@@ -41,7 +38,7 @@ public partial class Sticker : MonoBehaviour
         {
             isDone = true;
             OnDoneProgress();
-            scratchManager.gameObject.SetActive(false);
+            stickerGraphic.FillAllScratch();
         }
     }
 
@@ -55,7 +52,6 @@ public partial class Sticker : MonoBehaviour
     public void ResetSticker()
     {
         progress.Value = 0;
-        scratchManager.gameObject.SetActive(false);
         isDone = false;
         stickerGraphic.ResetGraphic();
     }
@@ -73,5 +69,12 @@ public partial class Sticker : MonoBehaviour
     private bool CheckDoneRequire()
     {
         return requireDoneSticker.CheckDoneSticker();
+    }
+
+    public void InitData(StickerData data)
+    {
+        stickerData = data;
+        stateMachine.RequestTransition(StickerInitState);
+        stickerGraphic.InitData(data.stickerID);
     }
 }

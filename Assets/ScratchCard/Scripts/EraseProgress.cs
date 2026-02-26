@@ -151,5 +151,11 @@ namespace ScratchCardAsset
         {
             actionCallbackChangeProgress -= actionCallBack;
         }
+
+        public void ResetScratch()
+        {
+            currentProgress = 0;
+            reactiveCurrentProgress.Value = 0;
+        }
     }
 }

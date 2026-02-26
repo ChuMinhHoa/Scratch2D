@@ -156,6 +156,11 @@ namespace ScratchCardAsset
 		{
 			Card.ResetRenderTexture();
 		}
+		
+		public void FillScratchCard()
+		{
+			Card.FillInstantly();
+		}
 
 		public void SetActionCallBackChangeProgress(Action<float> actionCallBack)
 		{
@@ -165,6 +170,13 @@ namespace ScratchCardAsset
 		public void RemoveActionCallBackChangeProgress(Action<float> actionCallBack)
 		{
 			Progress.RemoveActionChangeProgressCallBack(actionCallBack);
+		}
+
+		public SpriteRenderer spriteIcon;
+		
+		public void ChangeSprite(Sprite sprite)
+		{
+			spriteIcon.sprite = sprite;
 		}
 	}
 }

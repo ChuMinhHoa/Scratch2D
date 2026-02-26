@@ -14,9 +14,9 @@ public class StickerDone : MonoBehaviour
    public void InitStickerMove(int id)
    {
        stickerId = id;
-       
-       // sprIcon.Sprite =
-       // stickerGlow.Sprite =
+       var sprite = SpriteGlobalConfig.Instance.GetStickerIcon(id);
+       sprIcon.sprite = sprite;
+       stickerGlow.sprite = sprite;
    }
    
    public async UniTask PlayMoveAnim(Transform targetPos)
@@ -30,6 +30,7 @@ public class StickerDone : MonoBehaviour
        stickerDoneAnim.Play("StickerAdd");
        await UniTask.WaitForSeconds(0.5f);
        stickerGlow.gameObject.SetActive(true);
+       transform.SetParent(targetPos);
    }
 
    public async UniTask PlayMoveAnimToFreeSpace(Transform targetPos)

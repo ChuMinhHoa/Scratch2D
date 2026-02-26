@@ -41,11 +41,10 @@ public partial class Sticker : StickerInitState.IHandler
     private StickerInitState StickerInitStateCache { get; set; }
     public StickerInitState StickerInitState => StickerInitStateCache ??= new StickerInitState(this);
 
-    public int stickerID;
     
     public UniTask OnEnterInitState()
     {
-        stickerGraphic.InitData(stickerID);
+        stickerGraphic.InitData(stickerData.stickerID);
         return UniTask.CompletedTask;
     }
 

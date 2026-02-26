@@ -7,6 +7,29 @@ using Sirenix.Utilities;
 public class SpriteGlobalConfig : GlobalConfig<SpriteGlobalConfig>
 {
     public SpriteConfig<int>[] iconSpriteConfigs;
+
+    public Sprite GetStickerIcon(int id)
+    {
+        for (var i = 0; i < iconSpriteConfigs.Length; i++)
+        {
+            if(iconSpriteConfigs[i].tType == id)
+                return iconSpriteConfigs[i].sprite;
+        }
+
+        return null;
+    }
+
+    public SpriteConfig<int>[] iconObjHaveStickerConfigs;
+    public Sprite GetIconObjectHaveSticker(int dataObjID)
+    {
+        for (var i = 0; i < iconObjHaveStickerConfigs.Length; i++)
+        {
+            if(iconObjHaveStickerConfigs[i].tType == dataObjID)
+                return iconObjHaveStickerConfigs[i].sprite;
+        }
+
+        return null;
+    }
 }
 
 [System.Serializable]
