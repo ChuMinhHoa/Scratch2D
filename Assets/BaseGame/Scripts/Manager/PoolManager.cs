@@ -91,6 +91,7 @@ public class PoolManager : Singleton<PoolManager>
         var obj = poolSticker.Spawn();
         if (!obj) return null;
         obj.transform.SetParent(parents);
+        obj.transform.localScale = Vector3.one;
         return obj;
     }
     
@@ -164,7 +165,7 @@ public class HPool<T> where T : Component
     public void Despawn(T obj)
     {
         if (!obj) return;
-        //if (!activePool.Contains(obj)) return;
+        if (deActivePool.Contains(obj)) return;
         //activePool.Remove(obj);
         if (obj.transform.parent != parents)
             obj.transform.SetParent(parents);

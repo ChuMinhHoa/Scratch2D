@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using ScratchCardAsset.Tools;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -156,6 +157,13 @@ namespace ScratchCardAsset
         {
             currentProgress = 0;
             reactiveCurrentProgress.Value = 0;
+            Card.ResetScratch();
+        }
+
+        public async UniTask WaitForProgressUpdate()
+        {
+            await UniTask.WaitForFixedUpdate();
+            UpdateProgress();
         }
     }
 }

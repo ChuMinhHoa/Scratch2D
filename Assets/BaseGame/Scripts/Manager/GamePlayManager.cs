@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using LitMotion;
 using TW.Utility.DesignPattern;
 using UniRx;
 using UniRx.Triggers;
@@ -8,7 +9,6 @@ using UnityEngine;
 
 public class GamePlayManager : Singleton<GamePlayManager>
 {
-    
     [SerializeField] private Camera cam;
     public Eraser eraser;
 
@@ -17,7 +17,7 @@ public class GamePlayManager : Singleton<GamePlayManager>
     private Dictionary<Collider2D, Card> cardCollection = new();
     bool isFollowing;
     public Level level;
-    
+
     public void SetCurrentCard(Card card)
     {
         eraser.SetCurrentCard(card);
@@ -34,7 +34,7 @@ public class GamePlayManager : Singleton<GamePlayManager>
             cam = Camera.main;
         this.UpdateAsObservable().Subscribe(_ => { UpdateFunction(); }).AddTo(this);
     }
-    
+
     private void UpdateFunction()
     {
         if (Input.GetMouseButtonDown(0))
@@ -50,7 +50,7 @@ public class GamePlayManager : Singleton<GamePlayManager>
         }
 
         if (!isFollowing) return;
-        
+
         if (Input.GetMouseButton(0))
         {
             CheckOverLayerCard();
@@ -60,21 +60,22 @@ public class GamePlayManager : Singleton<GamePlayManager>
         mouseScreenPos.z = Mathf.Abs(cam.transform.position.z - transform.position.z);
         var targetPos = cam.ScreenToWorldPoint(mouseScreenPos);
         targetPos.z = transform.position.z;
-        
+
         eraser.Move(targetPos);
-        
     }
 
     private void CheckOverLayerCard()
     {
         var mouseScreenPos = Input.mousePosition;
-        
+
         var worldPos = cam.ScreenToWorldPoint(mouseScreenPos);
         var hit = new Collider2D[5];
-        if(Physics2D.OverlapCircleNonAlloc(worldPos, radiusCheck, hit, whatIsCardLayer)>0)
+        if (Physics2D.OverlapCircleNonAlloc(worldPos, radiusCheck, hit, whatIsCardLayer) > 0)
         {
             var card = GetCardFromDictionary(hit[0]);
             if (IsCurrentCard(card))
+                return;
+            if (!card.CheckIsSameLayer())
                 return;
             SetCurrentCard(card);
         }
@@ -82,15 +83,15 @@ public class GamePlayManager : Singleton<GamePlayManager>
         {
             SetCurrentCard(null);
         }
-        
-        
+
+
         // if (Physics.Raycast(ray, out var hit))
         // {
         //     var card = hit.collider.GetComponent<Card>();
         //     SetCurrentCard(card);
         // }
     }
-    
+
     private Card GetCardFromDictionary(Collider2D col)
     {
         if (cardCollection.TryGetValue(col, out var dictionary))
@@ -110,5 +111,15 @@ public class GamePlayManager : Singleton<GamePlayManager>
     public void RegisterStickerDone(Sticker sticker)
     {
         level.RegisterStickerDone(sticker);
+    }
+
+    public void RemoveCurrentCard(Card card)
+    {
+        eraser.RemoveCurrentCard(card);
+    }
+
+    public void NextLayer()
+    {
+        level.NextLayer();
     }
 }

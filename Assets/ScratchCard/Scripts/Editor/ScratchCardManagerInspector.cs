@@ -352,10 +352,11 @@ namespace ScratchCardAsset.Editor
 								scratchCard.ClearInstantly();
 								if (progress.objectReferenceValue != null)
 								{
-									if (eraseProgress != null)
+									if (eraseProgress)
 									{
 										eraseProgress.ResetProgress();
-										eraseProgress.UpdateProgress();
+										_ = eraseProgress.WaitForProgressUpdate();
+										
 									}
 								}
 							}

@@ -54,4 +54,13 @@ public class Eraser : MonoBehaviour
     {
         transform.position = targetPos;
     }
+    
+    public void RemoveCurrentCard(Card card)
+    {
+        if (currentCard == card)
+        {
+            currentCard.RemoveActionCallbackChangeProgress(OnChangeProgress);
+            currentCard = null;
+        }
+    }
 }

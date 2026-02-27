@@ -161,5 +161,17 @@ namespace ScratchCardAsset.Core
 				}
 			}
 		}
+
+		public void ResetScratch()
+		{
+			for (var i = 0; i < MaxTouchCount; i++)
+			{
+				isScratching[i] = false;
+				isStartPosition[i] = true;
+				eraseStartPositions[i] = Vector2.zero;
+				eraseEndPositions[i] = Vector2.zero;
+			}
+			erasePosition = Vector2.zero;
+		}
 	}
 }

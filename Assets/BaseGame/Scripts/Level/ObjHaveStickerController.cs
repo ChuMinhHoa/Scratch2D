@@ -14,6 +14,8 @@ public class ObjHaveStickerController : SpaceForSticker
     public Transform posFirstSpawn;
     public Transform posOut;
     public Vector3 offSet;
+    public Vector3 scaleOnWaiting;
+    public bool loadDone;
     
     public void LoadData(Span<ObjHaveStickerData> objSticker)
     {
@@ -21,10 +23,14 @@ public class ObjHaveStickerController : SpaceForSticker
         {
             var ot = PoolManager.Instance.SpawnObjHaveSticker();
             ot.InitData(objSticker[i]);
+            ot.transform.localScale = scaleOnWaiting;
             // ot.transform.position = posParents.position + offSet * i;
             ot.transform.position = posFirstSpawn.position;
+            ot.AnimFirstSpawn(i);
             objHaveStickers.Add(ot);
         }
+
+        loadDone = true;
     }
 
     public override bool RegisterSticker(Sticker sticker)
@@ -43,17 +49,16 @@ public class ObjHaveStickerController : SpaceForSticker
     public async UniTask CallNextObjSticker()
     {
         await UniTask.WaitForSeconds(0.5f);
-        _ = currentObjHaveSticker.Value?.Move(posOut);
+        if (currentObjHaveSticker.Value)
+            await currentObjHaveSticker.Value.MoveOut(posOut);
         if (indexCurrentObjHaveSticker < objHaveStickers.Count)
         {
             for (var i = 0; i < objHaveStickers.Count; i++)
             {
                 if (i < indexCurrentObjHaveSticker) continue;
-                var currentPos = objHaveStickers[i].transform.position;
                 var target = posParents.position + offSet * (i - indexCurrentObjHaveSticker);
-                var index = i;
-                LMotion.Create(currentPos, target, 0.25f).WithDelay(0.15f * i).Bind(x => objHaveStickers[index].transform.position = x)
-                    .AddTo(objHaveStickers[i]);
+                var isCurrent = i == indexCurrentObjHaveSticker;
+                objHaveStickers[i].MoveToTarget(target, isCurrent);
             }
             SetCurrentObjHaveSticker(objHaveStickers[indexCurrentObjHaveSticker]);
             indexCurrentObjHaveSticker++;
@@ -61,11 +66,14 @@ public class ObjHaveStickerController : SpaceForSticker
         else
         {
             Debug.Log("End game!");
+            ResetController();
         }
     }
 
     public override void ResetController()
     {
+        currentObjHaveSticker.Value = null;
+        objHaveStickers.Clear();
         indexCurrentObjHaveSticker = 0;
     }
 }

@@ -32,6 +32,7 @@ public class Level : MonoBehaviour
         LevelData = DataSerializer.Deserialize<LevelData>(levelDataTextAsset.text);
         oSController.LoadData(LevelData.objHaveStickers.AsSpan());
         layerController.LoadData(LevelData.layerCards.AsSpan());
+        //await UniTask.WaitUntil(() => oSController.loadDone && layerController.loadDone);
         _ = CallNextObjSticker();
     }
 
@@ -47,7 +48,10 @@ public class Level : MonoBehaviour
 
     public void RegisterStickerDone(Sticker sticker)
     {
-        if(RegisterStickerToObj(sticker)) return;
+        if (RegisterStickerToObj(sticker))
+        {
+            return;
+        }
         if (RegisterStickerToFreeSpace(sticker)) return;
         //CheckGameOver();
     }
@@ -62,12 +66,21 @@ public class Level : MonoBehaviour
         return fSpaceController.RegisterSticker(sticker);
     }
 
-    private void CheckGameOver()
-    {
-    }
-
     private void CheckAllStickerOnFreeSpace()
     {
         fSpaceController.CheckAllStickerOnFreeSpace();
+    }
+
+    public void NextLayer()
+    {
+        layerController.NextLayer();
+    }
+    
+    public void ResetLevel()
+    {
+        oSController.ResetController();
+        fSpaceController.ResetController();
+        layerController.ResetController();
+        LoadData();
     }
 }

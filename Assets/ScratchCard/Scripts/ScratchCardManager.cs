@@ -1,4 +1,5 @@
 ﻿using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,7 +35,7 @@ namespace ScratchCardAsset
 
 		private Material eraserMaterial;
 
-		void Awake()
+		public void Awake()
 		{
 			if (Card == null)
 			{
@@ -50,13 +51,13 @@ namespace ScratchCardAsset
 			Material scratchSurfaceMaterial = null;
 			if (Card.ScratchSurface == null)
 			{
-				scratchSurfaceMaterial = new Material(MaskShader) {mainTexture = ScratchSurfaceSprite.texture};
+				scratchSurfaceMaterial = new Material(MaskShader) { mainTexture = ScratchSurfaceSprite.texture };
 				Card.ScratchSurface = scratchSurfaceMaterial;
 			}
 
 			if (Card.Eraser == null)
 			{
-				eraserMaterial = new Material(BrushShader) {mainTexture = EraseTexture};
+				eraserMaterial = new Material(BrushShader) { mainTexture = EraseTexture };
 				Card.Eraser = eraserMaterial;
 			}
 
@@ -154,9 +155,9 @@ namespace ScratchCardAsset
 
 		public void ResetScratchCard()
 		{
-			Card.ResetRenderTexture();
+			Card.ClearInstantly();
 		}
-		
+
 		public void FillScratchCard()
 		{
 			Card.FillInstantly();
@@ -166,17 +167,22 @@ namespace ScratchCardAsset
 		{
 			Progress.SetActionChangeProgressCallBack(actionCallBack);
 		}
-		
+
 		public void RemoveActionCallBackChangeProgress(Action<float> actionCallBack)
 		{
 			Progress.RemoveActionChangeProgressCallBack(actionCallBack);
 		}
 
 		public SpriteRenderer spriteIcon;
-		
+
 		public void ChangeSprite(Sprite sprite)
 		{
 			spriteIcon.sprite = sprite;
+		}
+
+		public void EnableInput(bool enable)
+		{
+			Card.InputEnabled = enable;
 		}
 	}
 }

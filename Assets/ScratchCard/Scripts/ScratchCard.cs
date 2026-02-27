@@ -358,5 +358,11 @@ namespace ScratchCardAsset
 		}
 
 		#endregion
+
+		public void ResetScratch()
+		{
+			cardInput.ResetScratch();
+			ClearInstantly();
+		}
 	}
 }

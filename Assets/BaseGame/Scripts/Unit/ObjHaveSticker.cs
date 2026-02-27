@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class ObjHaveSticker : MonoBehaviour
 {
@@ -12,6 +11,9 @@ public class ObjHaveSticker : MonoBehaviour
     public SpriteRenderer sprIcon;
     public Transform posParents;
     public List<SpriteRenderer> sprStickerIcon;
+    
+    public UnitAnimation unitAnim;
+    public AnimationCurve curveScaleToCurrentObj;
     
     public bool IsSameSticker(int id, out StickerPos stickerPos)
     {
@@ -56,11 +58,13 @@ public class ObjHaveSticker : MonoBehaviour
 
         for (var i = 0; i < trsStickerPos.Count; i++)
         {
+            if (!trsStickerPos[i].stickerDone)continue;
             trsStickerPos[i].stickerDone.ResetStickerDone();
             PoolManager.Instance.DespawnStickerMove(trsStickerPos[i].stickerDone);
         }
         
         trsStickerPos.Clear();
+        sprStickerIcon.Clear();
         PoolManager.Instance.DespawnObjHaveSticker(this);
     }
 
@@ -74,11 +78,26 @@ public class ObjHaveSticker : MonoBehaviour
         return true;
     }
 
-    public async UniTask Move(Transform posOut)
+    public async UniTask MoveOut(Transform posOut)
     {
         var currentPos = transform.position;
+        await unitAnim.PlayScaleAnimation();
         await LMotion.Create(currentPos, posOut.position, 0.25f).Bind(x => transform.position = x).AddTo(this);
         ResetObjHaveSticker();
+    }
+
+    public void MoveToTarget(Vector3 target, bool isCurrent)
+    {
+        _ = unitAnim.PlayMoveAnim(target);
+        if (isCurrent)
+        {
+            var currentScale = transform.localScale;
+            LMotion.Create(currentScale, Vector3.one, 0.25f).WithEase(curveScaleToCurrentObj).Bind(x => transform.localScale = x).AddTo(this);
+        }
+    }
+
+    public void AnimFirstSpawn(int indexObjSpawn)
+    {
     }
 }
 
