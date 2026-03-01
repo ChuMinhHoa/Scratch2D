@@ -30,7 +30,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3283178575669723310}
-  - {fileID: 6524570970241146717}
   m_Father: {fileID: 3811211421870402198}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &664377655630795629
@@ -114,12 +113,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 94325a2856a7bd844a82bef281dfdefd, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Sprite: {fileID: 21300000, guid: 2940d1f485ce0f84193c4a48b3251c71, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 2.1, y: 1.1}
+  m_Size: {x: 1.1, y: 1.1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -205,7 +204,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: e54b32082e21bd64995a0c2f59d4665e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 63eaa88591815a2419f40b09cfeaa970, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -227,8 +226,9 @@ GameObject:
   - component: {fileID: 5202336293042605576}
   - component: {fileID: 664414986749008322}
   - component: {fileID: 6862799922234005706}
+  - component: {fileID: 4303878332484992536}
   m_Layer: 6
-  m_Name: Card
+  m_Name: Card 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -307,7 +307,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 2.1, y: 1.1}
+  m_Size: {x: 1.1, y: 1.1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -324,13 +324,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 606f60f15328dcb4e84223483dd1560a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Card
+  cardType: 0
   layerIndex: 0
   scratchCardManager: {fileID: 4125417609309763564}
   stickerPoints:
   - {fileID: 3283178575669723310}
-  - {fileID: 6524570970241146717}
   stickers: []
-  objLock: {fileID: 664377655630795629}
   totalStickerScratchDone: 0
   curveFirstSpawn:
     serializedVersion: 2
@@ -357,6 +356,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   objFakeScratch: {fileID: 3163211058860002563}
+  cardGraphic: {fileID: 4303878332484992536}
 --- !u!61 &6862799922234005706
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -396,13 +396,31 @@ BoxCollider2D:
     border: {x: 0.19, y: 0.19, z: 0.19, w: 0.19}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.4, y: 0.4}
-    newSize: {x: 2.1, y: 1.1}
+    newSize: {x: 1.1, y: 1.1}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.1, y: 1.1}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4303878332484992536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3319799914231244128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5707ca3a3ecd694d95084da73e135ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardGraphic
+  objLock: {fileID: 664377655630795629}
+  sprAnim:
+  - {fileID: 996963301119101435}
+  colorStartOpen: {r: 1, g: 1, b: 1, a: 1}
+  colorEndOpen: {r: 1, g: 1, b: 1, a: 0}
+  timeOpen: 0.15
 --- !u!1 &5661513890363386659
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,38 +446,7 @@ Transform:
   m_GameObject: {fileID: 5661513890363386659}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8763248078217150871}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7869092659786468067
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6524570970241146717}
-  m_Layer: 6
-  m_Name: Point  (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6524570970241146717
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7869092659786468067}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -555,7 +542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 469998, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 469998, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -596,7 +583,7 @@ PrefabInstance:
     - target: {fileID: 11486244, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
       propertyPath: ScratchSurfaceSprite
       value: 
-      objectReference: {fileID: 21300000, guid: e54b32082e21bd64995a0c2f59d4665e, type: 3}
+      objectReference: {fileID: 21300000, guid: 63eaa88591815a2419f40b09cfeaa970, type: 3}
     - target: {fileID: 11486244, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
       propertyPath: ScratchSurfaceSpriteHasAlpha
       value: 1
@@ -604,7 +591,7 @@ PrefabInstance:
     - target: {fileID: 21281386, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: e54b32082e21bd64995a0c2f59d4665e, type: 3}
+      objectReference: {fileID: 21300000, guid: 63eaa88591815a2419f40b09cfeaa970, type: 3}
     - target: {fileID: 21281386, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1

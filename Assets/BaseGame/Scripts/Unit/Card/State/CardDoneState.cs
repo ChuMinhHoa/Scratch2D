@@ -1,7 +1,9 @@
 using System.Threading;
 using BaseGame.Scripts.Unit.Card.State;
 using Cysharp.Threading.Tasks;
+using LitMotion;
 using TW.Utility.DesignPattern.UniTaskState;
+using UnityEngine;
 
 namespace BaseGame.Scripts.Unit.Card.State
 {
@@ -42,18 +44,30 @@ public partial class Card : CardDoneState.IHandler
 {
     private CardDoneState CardDoneStateCache { get; set; }
     public CardDoneState CardDoneState => CardDoneStateCache ??= new CardDoneState(this);
-    public UniTask OnEnterDoneState()
+    public async UniTask OnEnterDoneState()
     {
-        throw new System.NotImplementedException();
+        await AnimCardDone();
     }
 
     public UniTask OnUpdateDoneState()
     {
-        throw new System.NotImplementedException();
+        return UniTask.CompletedTask;
     }
 
     public UniTask OnExitDoneState()
     {
-        throw new System.NotImplementedException();
+        return UniTask.CompletedTask;
+    }
+    
+    
+    private async UniTask AnimCardDone()
+    {
+        await UniTask.WaitForSeconds(1f);
+        await cardGraphic.AnimCardDone(() =>
+        {
+            scratchCardManager.EnableInput(false);
+        });
+        ResetCard();
+        GamePlayManager.Instance.NextLayer();
     }
 }

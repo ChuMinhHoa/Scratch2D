@@ -1,18 +1,18 @@
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 [Serializable]
 public class FreeSpaceController : SpaceForSticker
 {
     public SpaceSticker[] spaceStickers;
-
-    public void SetOSController(Reactive<ObjHaveSticker> oSc) => currentObjHaveSticker = oSc;
-
+    
     public override bool RegisterSticker(Sticker sticker)
     {
         for (var i = 0; i < spaceStickers.Length; i++)
         {
             if (!spaceStickers[i].IsFreeSpace(out var stickerPos)) continue;
-            _ = SpawnStickerDone(stickerPos, sticker, true);
+            _ = SpawnStickerDone(stickerPos, sticker, null);
             return true;
         }
 
@@ -23,11 +23,11 @@ public class FreeSpaceController : SpaceForSticker
     {
         for (var i = 0; i < spaceStickers.Length; i++)
         {
-            if (!spaceStickers[i].stickerPos.IsHaveSticker())
+            if (!spaceStickers[i].stickerPos.IsHaveObj())
                 continue;
-            if (RegisterStickerDoneToObject(spaceStickers[i].stickerPos.stickerDone))
+            if(GamePlayManager.Instance.level.oSController.RegisterStickerDoneFromFreeSpace(spaceStickers[i].stickerPos.obj))
             {
-                spaceStickers[i].stickerPos.ResetStickerPos();
+                spaceStickers[i].stickerPos.ResetPos();
             }
         }
     }

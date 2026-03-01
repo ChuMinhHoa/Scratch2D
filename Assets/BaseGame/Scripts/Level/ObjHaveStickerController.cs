@@ -8,26 +8,26 @@ using UnityEngine;
 [Serializable]
 public class ObjHaveStickerController : SpaceForSticker
 {
-    public List<ObjHaveSticker> objHaveStickers = new();
-    private int indexCurrentObjHaveSticker;
+    [ShowInInspector]
+    [field: SerializeField]
+    public Queue<FolderHaveSticker> objHaveStickers { get; set; } = new();
+
     public Transform posParents;
     public Transform posFirstSpawn;
     public Transform posOut;
     public Vector3 offSet;
-    public Vector3 scaleOnWaiting;
     public bool loadDone;
-    
+
+    [field: SerializeField] private SlotFolder[] SlotFolders { get; set; }
+
     public void LoadData(Span<ObjHaveStickerData> objSticker)
     {
         for (var i = 0; i < objSticker.Length; i++)
         {
             var ot = PoolManager.Instance.SpawnObjHaveSticker();
-            ot.InitData(objSticker[i]);
-            ot.transform.localScale = scaleOnWaiting;
-            // ot.transform.position = posParents.position + offSet * i;
-            ot.transform.position = posFirstSpawn.position;
-            ot.AnimFirstSpawn(i);
-            objHaveStickers.Add(ot);
+            ot.LoadData(objSticker[i]);
+            ot.transform.localPosition = Vector3.zero;
+            objHaveStickers.Enqueue(ot);
         }
 
         loadDone = true;
@@ -35,36 +35,53 @@ public class ObjHaveStickerController : SpaceForSticker
 
     public override bool RegisterSticker(Sticker sticker)
     {
-        if (currentObjHaveSticker.Value == null) return false;
-        if (!currentObjHaveSticker.Value.IsSameSticker(sticker.stickerData.stickerID, out var stickerPos)) return false;
-        _ = SpawnStickerDone(stickerPos, sticker);
-        return true;
+        for (var i = 0; i < SlotFolders.Length; i++)
+        {
+            if (!SlotFolders[i].IsHaveObject()) continue;
+            var folder = SlotFolders[i].folderPos.obj;
+            if (!folder.IsSameSticker(sticker.stickerData.stickerID, out var stickerPos)) continue;
+            _ = SpawnStickerDone(stickerPos, sticker, folder);
+            return true;
+        }
+
+        return false;
     }
 
-    public void SetCurrentObjHaveSticker(ObjHaveSticker objHaveSticker)
+    public bool RegisterStickerDoneFromFreeSpace(StickerDone stickerDone)
     {
-        currentObjHaveSticker.Value = objHaveSticker;
+        for (var i = 0; i < SlotFolders.Length; i++)
+        {
+            if (!SlotFolders[i].IsHaveObject()) continue;
+            var folder = SlotFolders[i].folderPos.obj;
+            if (!folder.IsSameSticker(stickerDone.stickerId, out var stickerPos)) continue;
+            _ = MoveStickerDoneToObj(folder, stickerPos, stickerDone);
+            return true;
+        }
+
+        return false;
     }
- 
+
     public async UniTask CallNextObjSticker()
     {
         await UniTask.WaitForSeconds(0.5f);
-        if (currentObjHaveSticker.Value)
-            await currentObjHaveSticker.Value.MoveOut(posOut);
-        if (indexCurrentObjHaveSticker < objHaveStickers.Count)
+        if (objHaveStickers.Count > 0)
         {
-            for (var i = 0; i < objHaveStickers.Count; i++)
+            for (var i = 0; i < SlotFolders.Length; i++)
             {
-                if (i < indexCurrentObjHaveSticker) continue;
-                var target = posParents.position + offSet * (i - indexCurrentObjHaveSticker);
-                var isCurrent = i == indexCurrentObjHaveSticker;
-                objHaveStickers[i].MoveToTarget(target, isCurrent);
+                if (objHaveStickers.Count == 0)
+                    break;
+                if (SlotFolders[i].IsHaveObject()) continue;
+                var folder = objHaveStickers.Dequeue();
+                _ = folder.MoveToTarget(SlotFolders[i].folderPos.trsPos.position);
+                SlotFolders[i].SetFolder(folder);
             }
-            SetCurrentObjHaveSticker(objHaveStickers[indexCurrentObjHaveSticker]);
-            indexCurrentObjHaveSticker++;
         }
         else
         {
+            for (var i = 0; i < SlotFolders.Length; i++)
+            {
+                if (SlotFolders[i].IsHaveObject()) return;
+            }
             Debug.Log("End game!");
             ResetController();
         }
@@ -72,8 +89,16 @@ public class ObjHaveStickerController : SpaceForSticker
 
     public override void ResetController()
     {
-        currentObjHaveSticker.Value = null;
         objHaveStickers.Clear();
-        indexCurrentObjHaveSticker = 0;
+    }
+
+    public void MoveFolderOut(FolderHaveSticker folder)
+    {
+        _ = folder.MoveOut(posOut);
+        for (var i = 0; i < SlotFolders.Length; i++)
+        {
+            if (SlotFolders[i].folderPos.obj != folder) continue;
+            SlotFolders[i].folderPos.ResetPos();
+        }
     }
 }

@@ -29,6 +29,7 @@ public class PoolManager : Singleton<PoolManager>
     }
 
     #endregion
+    
     #region Sticker Move Effect
 
     public HPool<StickerDone> poolStickerMoveEffect;
@@ -49,37 +50,66 @@ public class PoolManager : Singleton<PoolManager>
 
     #endregion
 
-    #region ObjHaveSticker
+    #region FolderHaveSticker
     
-    public HPool<ObjHaveSticker> poolObjHaveSticker;
-    public ObjHaveSticker SpawnObjHaveSticker()
+    public HPool<FolderHaveSticker> poolObjHaveSticker;
+    public FolderHaveSticker SpawnObjHaveSticker()
     {
         var obj = poolObjHaveSticker.Spawn();
         return !obj ? null : obj;
     }
     
-    public void DespawnObjHaveSticker(ObjHaveSticker obj)
+    public void DespawnObjHaveSticker(FolderHaveSticker folder)
     {
-        poolObjHaveSticker.Despawn(obj);
+        poolObjHaveSticker.Despawn(folder);
     }
 
     #endregion
 
     #region Card
-    public HPool<Card> poolCard;
-    
-    public Card SpawnCard(Vector3 position)
+    public HPool<Card>[] poolCardData;
+
+    public Card SpawnCard(CardType cardType, Vector3 position)
     {
-        var obj = poolCard.Spawn();
-        if (!obj) return null;
-        obj.transform.position = position;
-        return obj;
+        for (var i = 0; i < poolCardData.Length; i++)
+        {
+            if (poolCardData[i].prefab.cardType == cardType)
+            {
+                var e = poolCardData[i].Spawn();
+                e.transform.position = position;
+                return e;
+            }
+        }
+
+        return null;
     }
     
     public void DespawnCard(Card obj)
     {
-        poolCard.Despawn(obj);
+        for (int i = 0; i < poolCardData.Length; i++)
+        {
+            if (poolCardData[i].prefab.cardType == obj.cardType)
+            {
+                poolCardData[i].Despawn(obj);
+                return;
+            }
+        }
     }
+
+    // public HPool<Card> poolCard;
+    //
+    // public Card SpawnCard(Vector3 position)
+    // {
+    //     var obj = poolCard.Spawn();
+    //     if (!obj) return null;
+    //     obj.transform.position = position;
+    //     return obj;
+    // }
+    //
+    // public void DespawnCard(Card obj)
+    // {
+    //     poolCard.Despawn(obj);
+    // }
     #endregion
 
     #region Sticker
@@ -98,26 +128,6 @@ public class PoolManager : Singleton<PoolManager>
     public void DespawnSticker(Sticker obj)
     {
         poolSticker.Despawn(obj);
-    }
-
-    #endregion
-    
-    
-    #region PosSticker
-
-    public HPool<SpriteRenderer> poolStickerPos;
-    
-    public SpriteRenderer SpawnPosSticker(Transform parents)
-    {
-        var obj = poolStickerPos.Spawn();
-        if (!obj) return null;
-        obj.transform.SetParent(parents);
-        return obj;
-    }
-    
-    public void DeSpawnPosSticker(SpriteRenderer obj)
-    {
-        poolStickerPos.Despawn(obj);
     }
 
     #endregion

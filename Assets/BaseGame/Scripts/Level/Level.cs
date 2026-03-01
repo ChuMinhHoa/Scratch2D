@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using CoreData;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
@@ -14,11 +13,11 @@ public class Level : MonoBehaviour
     public ObjHaveStickerController oSController;
     public FreeSpaceController fSpaceController;
     public LayerController layerController;
+    public LevelSlotFolderController slotFolderController;
     
     private void Start()
     {
         GamePlayManager.Instance.level = this;
-        fSpaceController.SetOSController(oSController.currentObjHaveSticker);
         GlobalEventManager.CheckToCallNextSticker = () => _ = CallNextObjSticker();
     }
 
@@ -30,20 +29,18 @@ public class Level : MonoBehaviour
         var assetPath = assetsPath + fileName;
         var levelDataTextAsset = AssetDatabase.LoadAssetAtPath<TextAsset>(assetPath);
         LevelData = DataSerializer.Deserialize<LevelData>(levelDataTextAsset.text);
-        oSController.LoadData(LevelData.objHaveStickers.AsSpan());
+        oSController.LoadData(LevelData.objHaveStickers);
         layerController.LoadData(LevelData.layerCards.AsSpan());
         //await UniTask.WaitUntil(() => oSController.loadDone && layerController.loadDone);
         _ = CallNextObjSticker();
     }
+    
 
     [Button]
     private async UniTask CallNextObjSticker()
     {
         await oSController.CallNextObjSticker();
-        if (oSController.currentObjHaveSticker.Value)
-        {
-            CheckAllStickerOnFreeSpace();
-        }
+        CheckAllStickerOnFreeSpace();
     }
 
     public void RegisterStickerDone(Sticker sticker)
@@ -82,5 +79,10 @@ public class Level : MonoBehaviour
         fSpaceController.ResetController();
         layerController.ResetController();
         LoadData();
+    }
+
+    public void MoveFolderOut(FolderHaveSticker folder)
+    {
+       oSController.MoveFolderOut(folder);
     }
 }

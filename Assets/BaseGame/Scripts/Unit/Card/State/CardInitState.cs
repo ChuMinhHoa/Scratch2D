@@ -1,6 +1,8 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using R3;
 using TW.Utility.DesignPattern.UniTaskState;
+using UnityEngine;
 
 public class CardInitState : IState
 {
@@ -37,18 +39,45 @@ public partial class Card : CardInitState.IHandler
 {
     private CardInitState CardInitStateCache { get; set; }
     public CardInitState CardInitState => CardInitStateCache ??= new CardInitState(this);
+    
+    private CardData data;
+    
     public UniTask OnEnterInitState()
     {
-        throw new System.NotImplementedException();
+        LoadData();
+        return UniTask.CompletedTask;
     }
 
     public UniTask OnUpdateInitState()
     {
-        throw new System.NotImplementedException();
+        return UniTask.CompletedTask;
     }
 
     public UniTask OnExitInitState()
     {
-        throw new System.NotImplementedException();
+        return UniTask.CompletedTask;
+    }
+    
+    public void InitData(CardData cardData, int layer)
+    {
+        data = cardData;
+        layerIndex = layer;
+        stateMachine.RequestTransition(CardInitState);
+    }
+
+    private void LoadData()
+    {
+        var pos = transform.position;
+        pos.z = layerIndex;
+        transform.position = pos;
+        for (var i = 0; i < data.stickers.Length; i++)
+        {
+            var sticker = PoolManager.Instance.SpawnSticker(stickerPoints[i]);
+            sticker.transform.localPosition = Vector3.zero;
+            sticker.InitData(data.stickers[i]);
+            stickers.Add(sticker);
+            stickerSubscriptions.Add(sticker.isDone.Skip(1).Subscribe(ChangeStickerScratchDone));
+        }
+        stateMachine.RequestTransition(CardWaitState);
     }
 }

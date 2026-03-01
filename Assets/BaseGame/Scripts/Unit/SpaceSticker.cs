@@ -7,17 +7,12 @@ public class SpaceSticker : MonoBehaviour
     
     public bool IsFreeSpace(out StickerPos stickerTrs)
     {
-        if (!stickerPos.IsHaveSticker())
+        if (!stickerPos.IsHaveObj())
         {
             stickerTrs = stickerPos;
             return true;
         }
         stickerTrs = null;
         return false;
-    }
-    
-    public void RegisterSticker(StickerDone sticker)
-    {
-        stickerPos.RegisterSticker(sticker);
     }
 }

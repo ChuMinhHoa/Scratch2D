@@ -24,8 +24,8 @@ public class LayerController
     {
         for (var i = 0; i < data.Length; i++)
         {
-            var card = PoolManager.Instance.SpawnCard(data[i].position);
-            card.LoadData(data[i], layerIndex);
+            var card = PoolManager.Instance.SpawnCard(data[i].cardType, data[i].position);
+            card.InitData(data[i], layerIndex);
             card.AnimFirstSpawn(i);
             cards.Add(card);
         }

@@ -15,9 +15,6 @@ public class ObjHaveStickerData
 {
     public int objID;
     public int[] stickerIds;
-    public float3[] stickerPositions;
-    public float3[] stickerScales;
-    public float3[] stickerRotations;
 }
 
 [Serializable]
@@ -30,7 +27,6 @@ public class LayerCardData
 [Serializable]
 public class CardData
 {
-    public int cardID;
     public CardType cardType;
     public StickerData[] stickers;
     public float3 position;

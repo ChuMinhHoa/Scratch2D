@@ -8,16 +8,18 @@ using Sirenix.OdinInspector;
 using TW.Utility.DesignPattern.UniTaskState;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Serialization;
 using CompositeDisposable = R3.CompositeDisposable;
 
 public partial class Card : MonoBehaviour
 {
+    public CardType cardType;
     public int layerIndex;
     public ScratchCardManager scratchCardManager;
     public Transform[] stickerPoints;
 
     public List<Sticker> stickers;
-    public GameObject objLock;
+ 
     private Reactive<int> currentLayer = new(0);
     public int totalStickerScratchDone = 0;
     public AnimationCurve curveFirstSpawn;
@@ -27,6 +29,7 @@ public partial class Card : MonoBehaviour
     private bool isSameLayer;
     
     public StateMachine stateMachine = new();
+    public CardGraphic cardGraphic;
 
     private void Start()
     {
@@ -47,7 +50,7 @@ public partial class Card : MonoBehaviour
     private async UniTask WaitToEnableInput()
     {
         await UniTask.WaitForSeconds(1f);
-        objLock.SetActive(!isSameLayer);
+        await cardGraphic.SetActiveObjLook(!isSameLayer);
         for (var i = 0; i < stickers.Count; i++)
         {
             stickers[i].EnableScratch(isSameLayer);
@@ -65,45 +68,16 @@ public partial class Card : MonoBehaviour
         scratchCardManager.RemoveActionCallBackChangeProgress(callback);
     }
 
-    public void LoadData(CardData cardData, int layer)
-    {
-        layerIndex = layer;
-        var pos = transform.position;
-        pos.z = layer;
-        transform.position = pos;
-        for (var i = 0; i < cardData.stickers.Length; i++)
-        {
-            var sticker = PoolManager.Instance.SpawnSticker(stickerPoints[i]);
-            sticker.transform.localPosition = Vector3.zero;
-            sticker.InitData(cardData.stickers[i]);
-            stickers.Add(sticker);
-            stickerSubscriptions.Add(sticker.isDone.Skip(1).Subscribe(ChangeStickerScratchDone));
-        }
-       
-    }
-
     private void ChangeStickerScratchDone(bool isDone)
     {
         if (!isDone) return;
         totalStickerScratchDone++;
         if (totalStickerScratchDone >= stickers.Count)
         {
-            _ = AnimCardDone();
+            stateMachine.RequestTransition(CardDoneState);
         }
     }
-
-    private async UniTask AnimCardDone()
-    {
-        Debug.Log("anim done");
-        await UniTask.WaitForSeconds(2f);
-        scratchCardManager.EnableInput(false);
-        await LMotion.Create(1f, 0f, 0.25f).WithOnComplete(() => {  })
-            .Bind(x => transform.localScale = Vector3.one * x)
-            .AddTo(this);
-        ResetCard();
-        GamePlayManager.Instance.NextLayer();
-    }
-
+    
     private void ResetCard()
     {
         transform.localScale = Vector3.one;
@@ -126,7 +100,7 @@ public partial class Card : MonoBehaviour
         LMotion.Create(0f, 1f, 0.25f).WithOnComplete(() =>
             {
                 isSameLayer = layerIndex == 0;
-                objLock.SetActive(!isSameLayer);
+                _ = cardGraphic.SetActiveObjLook(!isSameLayer);
                 scratchCardManager.gameObject.SetActive(true);
                 objFakeScratch.gameObject.SetActive(false);
                 for (var i = 0; i < stickers.Count; i++)
