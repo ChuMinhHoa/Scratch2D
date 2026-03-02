@@ -140,9 +140,9 @@ public class GamePlayManager : Singleton<GamePlayManager>
         Gizmos.DrawWireSphere(eraser.transform.position, radiusCheck);
     }
 
-    public async UniTask RegisterStickerDone(Sticker sticker)
+    public void RegisterStickerDone(Sticker sticker)
     {
-        await level.RegisterStickerDone(sticker);
+        level.RegisterStickerDone(sticker);
     }
 
     public void RemoveCurrentCard(Card card)
@@ -153,5 +153,10 @@ public class GamePlayManager : Singleton<GamePlayManager>
     public void NextLayer()
     {
         level.NextLayer();
+    }
+
+    public async UniTask PlayGame()
+    {
+        await level.LoadData();
     }
 }

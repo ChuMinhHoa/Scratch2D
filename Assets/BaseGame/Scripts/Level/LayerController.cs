@@ -40,6 +40,7 @@ public class LayerController
     {
         Debug.Log("reset layer controller");
         layerActive.Value = 0;
+        loadDone = false;
     }
 
     public void NextLayer()

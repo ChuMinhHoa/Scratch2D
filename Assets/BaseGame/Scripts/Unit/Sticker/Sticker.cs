@@ -17,7 +17,8 @@ public partial class Sticker : MonoBehaviour
     public Reactive<float> progress = new(0);
     public float progressDone; 
     
-    public Reactive<bool> isDone;
+    [field: SerializeField]
+    public Reactive<bool> isDone { get; set; }
     
     [SerializeReference] public IRequireDoneSticker requireDoneSticker;
     public bool IsOnDoneState => stateMachine.CurrentState == StickerDoneState;
@@ -57,9 +58,9 @@ public partial class Sticker : MonoBehaviour
         stickerGraphic.ResetGraphic();
     }
 
-    protected async UniTask StickerMoveToTarget()
+    protected void StickerMoveToTarget()
     {
-        await GamePlayManager.Instance.RegisterStickerDone(this);
+        GamePlayManager.Instance.RegisterStickerDone(this);
     }
 
     public void DisAbleIcon()

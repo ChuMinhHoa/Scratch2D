@@ -42,9 +42,9 @@ public partial class Sticker : StickerDoneState.IHandler
 
     public virtual async UniTask OnEnterDoneState()
     {
-        await stickerGraphic.OnDoneMode();
-        await StickerMoveToTarget();
         isDone.Value = true;
+        await stickerGraphic.OnDoneMode();
+        StickerMoveToTarget();
     }
 
     public UniTask OnUpdateDoneState()

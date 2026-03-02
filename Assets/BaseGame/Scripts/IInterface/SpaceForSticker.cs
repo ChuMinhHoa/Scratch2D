@@ -73,6 +73,11 @@ public class SpaceForSticker : ISpaceForSticker
         }
     }
 
+    public virtual async UniTask SpawnStickerDoneNotMove(Sticker sticker)
+    {
+        await UniTask.CompletedTask;
+    }
+
     public virtual void ResetController()
     {
         

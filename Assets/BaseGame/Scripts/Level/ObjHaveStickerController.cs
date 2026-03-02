@@ -14,11 +14,12 @@ public class ObjHaveStickerController : SpaceForSticker
     public Transform posFirstSpawn;
     public Transform posOut;
     public bool loadDone;
-
+    public bool isEndGame;
     [field: SerializeField] private SlotFolder[] SlotFolders { get; set; }
 
     public void LoadData(Span<ObjHaveStickerData> objSticker)
     {
+        isEndGame = false;
         for (var i = 0; i < objSticker.Length; i++)
         {
             var ot = PoolManager.Instance.SpawnObjHaveSticker();
@@ -28,6 +29,7 @@ public class ObjHaveStickerController : SpaceForSticker
         }
 
         loadDone = true;
+        _ = CallNextObjSticker(true);
     }
 
     public override bool RegisterSticker(Sticker sticker)
@@ -58,7 +60,7 @@ public class ObjHaveStickerController : SpaceForSticker
         return false;
     }
 
-    public async UniTask CallNextObjSticker(bool callFromLoad)
+    public async UniTask CallNextObjSticker(bool callFromLoad = false)
     {
         if (!callFromLoad) await UniTask.WaitForSeconds(2.5f);
         if (objHaveStickers.Count > 0)
@@ -70,16 +72,20 @@ public class ObjHaveStickerController : SpaceForSticker
                 if (!SlotFolders[i].IsAbleFolder()) continue;
                 var folder = objHaveStickers.Dequeue();
                 SlotFolders[i].SetFolder(folder);
-                await folder.MoveToTarget(SlotFolders[i].folderPos.trsPos.position);
+                _ = folder.MoveToTarget(SlotFolders[i].folderPos.trsPos.position);
                 SlotFolders[i].folderPos.MoveDone();
             }
         }
         else
         {
+            if (isEndGame) return;
             for (var i = 0; i < SlotFolders.Length; i++)
             {
                 if (SlotFolders[i].IsHaveObject()) return;
             }
+
+            isEndGame = true;
+
             Debug.Log("End game!");
             GamePlayManager.Instance.level.ResetLevel();
         }
@@ -88,6 +94,7 @@ public class ObjHaveStickerController : SpaceForSticker
     public override void ResetController()
     {
         objHaveStickers.Clear();
+        loadDone = false;
     }
 
     public void MoveFolderOut(FolderHaveSticker folder)
@@ -115,7 +122,7 @@ public class ObjHaveStickerController : SpaceForSticker
             folder = SlotFolders[i].folderPos;
             return true;
         }
-        
+
         folder = null;
         return false;
     }
