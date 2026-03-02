@@ -1,8 +1,34 @@
+using System;
+using TW.Utility.DesignPattern.UniTaskState;
 using UnityEngine;
 
-public class SlotFolder : MonoBehaviour
+public partial class SlotFolder : MonoBehaviour
 {
+    public SlotFolderType slotFolderType;
     public FolderPos folderPos;
+    public StateMachine stateMachine;
+    public SlotFolderGraphic slotFolderGraphic;
+    public ButtonGameObject btnWatchAds;
+    public ButtonGameObject btnBuy;
+    
+    private void Start()
+    {
+        stateMachine.RequestTransition(SlotFolderInitState);
+        stateMachine.Run();
+        
+        btnWatchAds.AddListeners(CallWatchAds);
+        btnBuy.AddListeners(CallBuy);
+    }
+
+    private void CallBuy()
+    {
+        ChangeFolderType(SlotFolderType.Normal);
+    }
+
+    private void CallWatchAds()
+    {
+        ChangeFolderType(SlotFolderType.Normal);
+    }
 
     public bool IsHaveObject()
     {
@@ -13,4 +39,24 @@ public class SlotFolder : MonoBehaviour
     {
         folderPos.RegisterObj(folder);
     }
+
+    private void ChangeFolderType(SlotFolderType folderType)
+    {
+        slotFolderType = folderType;
+        stateMachine.RequestTransition(SlotFolderInitState);
+        stateMachine.Run();
+    }
+
+    public bool IsAbleFolder()
+    {
+        return slotFolderType == SlotFolderType.Normal && !IsHaveObject();
+    }
 }
+
+public enum SlotFolderType
+{
+    Normal,
+    Coin,
+    Ads,
+}
+

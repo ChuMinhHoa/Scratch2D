@@ -15,6 +15,7 @@ public class GamePlayManager : Singleton<GamePlayManager>
     public float radiusCheck = 1f;
     public LayerMask whatIsCardLayer;
     private Dictionary<Collider2D, Card> cardCollection = new();
+    private Dictionary<Collider2D, ButtonGameObject> buttonGameObjects = new();
     bool isFollowing;
     public Level level;
 
@@ -37,21 +38,22 @@ public class GamePlayManager : Singleton<GamePlayManager>
 
     private void UpdateFunction()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
             isFollowing = true;
             eraser.SetActiveGraphic(true);
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) /*|| Input.GetTouch(0).phase == TouchPhase.Ended*/)
         {
             isFollowing = false;
             eraser.SetActiveGraphic(false);
+            CheckOverButtonGameObject();
         }
 
         if (!isFollowing) return;
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) /*|| Input.GetTouch(0).phase == TouchPhase.Moved*/)
         {
             CheckOverLayerCard();
         }
@@ -62,6 +64,36 @@ public class GamePlayManager : Singleton<GamePlayManager>
         targetPos.z = transform.position.z;
 
         eraser.Move(targetPos);
+    }
+
+    private void CheckOverButtonGameObject()
+    {
+        var mouseScreenPos = Input.mousePosition;
+
+        var worldPos = cam.ScreenToWorldPoint(mouseScreenPos);
+        var hit = new Collider2D[5];
+        if (Physics2D.OverlapCircleNonAlloc(worldPos, radiusCheck, hit) > 0)
+        {
+            var btn = GetButtonGameObjectFromDictionary(hit[0]);
+            if (btn != null)
+            {
+                btn.OnClick();
+            }
+        }
+        else
+        {
+            SetCurrentCard(null);
+        }
+    }
+
+    private ButtonGameObject GetButtonGameObjectFromDictionary(Collider2D col)
+    {
+        if (buttonGameObjects.TryGetValue(col, out var dictionary))
+            return dictionary;
+        var btnGameObj = col.GetComponent<ButtonGameObject>();
+        if (btnGameObj != null)
+            buttonGameObjects.Add(col, btnGameObj);
+        return btnGameObj;
     }
 
     private void CheckOverLayerCard()
@@ -108,9 +140,9 @@ public class GamePlayManager : Singleton<GamePlayManager>
         Gizmos.DrawWireSphere(eraser.transform.position, radiusCheck);
     }
 
-    public void RegisterStickerDone(Sticker sticker)
+    public async UniTask RegisterStickerDone(Sticker sticker)
     {
-        level.RegisterStickerDone(sticker);
+        await level.RegisterStickerDone(sticker);
     }
 
     public void RemoveCurrentCard(Card card)

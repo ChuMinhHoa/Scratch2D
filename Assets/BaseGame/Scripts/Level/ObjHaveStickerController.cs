@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using LitMotion;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -12,10 +11,8 @@ public class ObjHaveStickerController : SpaceForSticker
     [field: SerializeField]
     public Queue<FolderHaveSticker> objHaveStickers { get; set; } = new();
 
-    public Transform posParents;
     public Transform posFirstSpawn;
     public Transform posOut;
-    public Vector3 offSet;
     public bool loadDone;
 
     [field: SerializeField] private SlotFolder[] SlotFolders { get; set; }
@@ -61,19 +58,20 @@ public class ObjHaveStickerController : SpaceForSticker
         return false;
     }
 
-    public async UniTask CallNextObjSticker()
+    public async UniTask CallNextObjSticker(bool callFromLoad)
     {
-        await UniTask.WaitForSeconds(0.5f);
+        if (!callFromLoad) await UniTask.WaitForSeconds(2.5f);
         if (objHaveStickers.Count > 0)
         {
             for (var i = 0; i < SlotFolders.Length; i++)
             {
                 if (objHaveStickers.Count == 0)
                     break;
-                if (SlotFolders[i].IsHaveObject()) continue;
+                if (!SlotFolders[i].IsAbleFolder()) continue;
                 var folder = objHaveStickers.Dequeue();
-                _ = folder.MoveToTarget(SlotFolders[i].folderPos.trsPos.position);
                 SlotFolders[i].SetFolder(folder);
+                await folder.MoveToTarget(SlotFolders[i].folderPos.trsPos.position);
+                SlotFolders[i].folderPos.MoveDone();
             }
         }
         else
@@ -83,7 +81,7 @@ public class ObjHaveStickerController : SpaceForSticker
                 if (SlotFolders[i].IsHaveObject()) return;
             }
             Debug.Log("End game!");
-            ResetController();
+            GamePlayManager.Instance.level.ResetLevel();
         }
     }
 
@@ -100,5 +98,25 @@ public class ObjHaveStickerController : SpaceForSticker
             if (SlotFolders[i].folderPos.obj != folder) continue;
             SlotFolders[i].folderPos.ResetPos();
         }
+    }
+
+    public bool IsHaveFolderOnMove(out FolderPos folder)
+    {
+        if (objHaveStickers.Count == 0)
+        {
+            folder = null;
+            return false;
+        }
+
+        for (var i = 0; i < SlotFolders.Length; i++)
+        {
+            if (SlotFolders[i].folderPos.obj == null) continue;
+            if (SlotFolders[i].folderPos.IsMoveDone()) continue;
+            folder = SlotFolders[i].folderPos;
+            return true;
+        }
+        
+        folder = null;
+        return false;
     }
 }

@@ -14,7 +14,6 @@ public partial class FolderHaveSticker : MonoBehaviour
     public SpriteRenderer[] sprStickerIcons;
     
     public UnitAnimation unitAnim;
-    //public AnimationCurve curveScaleToCurrentObj;
     public FHSGraphic fhsGraphic;
     public StateMachine stateMachine;
     public bool readyToMove;
@@ -26,6 +25,11 @@ public partial class FolderHaveSticker : MonoBehaviour
 
     public bool IsSameSticker(int id, out StickerPos stickerPos)
     {
+        // if (!readyToMove)
+        // {
+        //     stickerPos = null;
+        //     return false;
+        // }
         for (var i = 0; i < trsStickerPos.Length; i++)
         {
             if (trsStickerPos[i].id != id) continue;
@@ -39,16 +43,15 @@ public partial class FolderHaveSticker : MonoBehaviour
         return false;
     }
 
-    
-
-    private void ResetObjHaveSticker()
+    private void ResetFolderSticker()
     {
-
+        readyToMove = false;
         for (var i = 0; i < trsStickerPos.Length; i++)
         {
             if (!trsStickerPos[i].obj)continue;
             trsStickerPos[i].obj.ResetStickerDone();
             PoolManager.Instance.DespawnStickerMove(trsStickerPos[i].obj);
+            trsStickerPos[i].ResetPos();
         }
         PoolManager.Instance.DespawnObjHaveSticker(this);
     }
@@ -67,14 +70,17 @@ public partial class FolderHaveSticker : MonoBehaviour
     {
         var currentPos = transform.position;
         await unitAnim.PlayScaleAnimation();
+        await fhsGraphic.OnClose();
         await LMotion.Create(currentPos, posOut.position, 0.25f).Bind(x => transform.position = x).AddTo(this);
-        ResetObjHaveSticker();
+        ResetFolderSticker();
     }
 
     public async UniTask MoveToTarget(Vector3 target)
     {
         await unitAnim.PlayMoveAnim(target);
-        fhsGraphic.OnOpen();
+        await fhsGraphic.OnOpen();
+        readyToMove = true;
+        GamePlayManager.Instance.level.CheckAllStickerOnFreeSpace();
     }
 }
 

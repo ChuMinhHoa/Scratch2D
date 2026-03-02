@@ -93,6 +93,7 @@ public partial class Card : MonoBehaviour
         stickerSubscriptions.Clear();
         PoolManager.Instance.DespawnCard(this);
         GamePlayManager.Instance.RemoveCurrentCard(this);
+        cardGraphic.ResetCard();
     }
 
     public void AnimFirstSpawn(int index)

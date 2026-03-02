@@ -12,6 +12,6 @@ public class StickerChain : Sticker
         if (!stickerChain.IsOnDoneState)
             stickerChain.OnDoneProgress();
         await stickerGraphic.OnDoneMode();
-        StickerMoveToTarget();
+        await StickerMoveToTarget();
     }
 }

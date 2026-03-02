@@ -41,4 +41,13 @@ public class CardGraphic : MonoBehaviour
             .Bind(x => transform.localScale = Vector3.one * x)
             .AddTo(this);
     }
+
+    public void ResetCard()
+    {
+        _ = SetActiveObjLook(true);
+        for (var i = 0; i < sprAnim.Count; i++)
+        {
+            sprAnim[i].color = colorStartOpen;
+        }
+    }
 }

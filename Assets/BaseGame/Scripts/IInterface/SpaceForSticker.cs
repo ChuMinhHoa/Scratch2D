@@ -47,6 +47,7 @@ public class SpaceForSticker : ISpaceForSticker
         var position = sticker.transform.position;
         position.z = -1;
         var e = PoolManager.Instance.SpawnStickerDone(stickerPos.trsPos);
+        e.transform.eulerAngles = Vector3.zero;
         e.InitStickerMove(sticker.stickerData.stickerID);
         stickerPos.RegisterObj(e);
         e.transform.position = position;
@@ -60,6 +61,7 @@ public class SpaceForSticker : ISpaceForSticker
         }
         else
         {
+            await UniTask.WaitUntil(() => folder.readyToMove);
             await e.PlayMoveAnim(stickerPos.trsPos);
             stickerPos.MoveDone();
             var isLastSticker = folder.IsCompleteSticker();

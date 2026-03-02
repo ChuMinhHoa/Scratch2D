@@ -59,7 +59,6 @@ public partial class Card : CardDoneState.IHandler
         return UniTask.CompletedTask;
     }
     
-    
     private async UniTask AnimCardDone()
     {
         await UniTask.WaitForSeconds(1f);
@@ -69,5 +68,6 @@ public partial class Card : CardDoneState.IHandler
         });
         ResetCard();
         GamePlayManager.Instance.NextLayer();
+        GamePlayManager.Instance.level.layerController.RemoveCard(this);
     }
 }

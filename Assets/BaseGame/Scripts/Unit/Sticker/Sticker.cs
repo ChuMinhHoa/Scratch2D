@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using R3;
 using ScratchCardAsset;
 using TW.Utility.DesignPattern.UniTaskState;
@@ -36,7 +37,7 @@ public partial class Sticker : MonoBehaviour
             return;
         if (progressChange >= progressDone)
         {
-            isDone.Value = true;
+            
             OnDoneProgress();
             stickerGraphic.FillAllScratch();
         }
@@ -56,9 +57,9 @@ public partial class Sticker : MonoBehaviour
         stickerGraphic.ResetGraphic();
     }
 
-    protected void StickerMoveToTarget()
+    protected async UniTask StickerMoveToTarget()
     {
-        GamePlayManager.Instance.RegisterStickerDone(this);
+        await GamePlayManager.Instance.RegisterStickerDone(this);
     }
 
     public void DisAbleIcon()

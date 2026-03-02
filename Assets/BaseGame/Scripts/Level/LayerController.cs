@@ -30,9 +30,15 @@ public class LayerController
             cards.Add(card);
         }
     }
+    
+    public void RemoveCard(Card card)
+    {
+        cards.Remove(card);
+    }
 
     public void ResetController()
     {
+        Debug.Log("reset layer controller");
         layerActive.Value = 0;
     }
 

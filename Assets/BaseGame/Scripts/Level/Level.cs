@@ -13,7 +13,6 @@ public class Level : MonoBehaviour
     public ObjHaveStickerController oSController;
     public FreeSpaceController fSpaceController;
     public LayerController layerController;
-    public LevelSlotFolderController slotFolderController;
     
     private void Start()
     {
@@ -32,25 +31,34 @@ public class Level : MonoBehaviour
         oSController.LoadData(LevelData.objHaveStickers);
         layerController.LoadData(LevelData.layerCards.AsSpan());
         //await UniTask.WaitUntil(() => oSController.loadDone && layerController.loadDone);
-        _ = CallNextObjSticker();
+        _ = CallNextObjSticker(true);
     }
     
 
     [Button]
-    private async UniTask CallNextObjSticker()
+    private async UniTask CallNextObjSticker(bool callFromLoad = false)
     {
-        await oSController.CallNextObjSticker();
-        CheckAllStickerOnFreeSpace();
+        await oSController.CallNextObjSticker(callFromLoad);
+        
     }
 
-    public void RegisterStickerDone(Sticker sticker)
+    public async UniTask RegisterStickerDone(Sticker sticker)
     {
+        if (IsHaveFolderOnMove(out var folderPos))
+        {
+            await UniTask.WaitUntil(() => folderPos.moveDone);
+        }
         if (RegisterStickerToObj(sticker))
         {
             return;
         }
         if (RegisterStickerToFreeSpace(sticker)) return;
         //CheckGameOver();
+    }
+
+    private bool IsHaveFolderOnMove(out FolderPos folder)
+    {
+        return oSController.IsHaveFolderOnMove(out folder);
     }
 
     private bool RegisterStickerToObj(Sticker sticker)
@@ -63,7 +71,7 @@ public class Level : MonoBehaviour
         return fSpaceController.RegisterSticker(sticker);
     }
 
-    private void CheckAllStickerOnFreeSpace()
+    public void CheckAllStickerOnFreeSpace()
     {
         fSpaceController.CheckAllStickerOnFreeSpace();
     }
@@ -73,12 +81,14 @@ public class Level : MonoBehaviour
         layerController.NextLayer();
     }
     
+    [Button]
     public void ResetLevel()
     {
+        Debug.Log("Reset Level");
         oSController.ResetController();
         fSpaceController.ResetController();
         layerController.ResetController();
-        LoadData();
+        //LoadData();
     }
 
     public void MoveFolderOut(FolderHaveSticker folder)
