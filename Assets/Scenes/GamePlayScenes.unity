@@ -839,6 +839,7 @@ MonoBehaviour:
     - layerIndex: 0
       cards:
       - cardType: 100
+        cardState: 0
         stickers:
         - stickerID: 0
           stickerType: 0
@@ -848,7 +849,12 @@ MonoBehaviour:
           x: 1
           y: -1
           z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
       - cardType: 100
+        cardState: 0
         stickers:
         - stickerID: 1
           stickerType: 0
@@ -858,7 +864,12 @@ MonoBehaviour:
           x: 0
           y: 0.2
           z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
       - cardType: 100
+        cardState: 0
         stickers:
         - stickerID: 2
           stickerType: 0
@@ -867,10 +878,15 @@ MonoBehaviour:
         position:
           x: -1
           y: 1.4
+          z: 0
+        rotation:
+          x: 0
+          y: 0
           z: 0
     - layerIndex: 1
       cards:
       - cardType: 100
+        cardState: 0
         stickers:
         - stickerID: 2
           stickerType: 0
@@ -880,7 +896,12 @@ MonoBehaviour:
           x: 1
           y: -1
           z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
       - cardType: 100
+        cardState: 0
         stickers:
         - stickerID: 1
           stickerType: 0
@@ -890,7 +911,12 @@ MonoBehaviour:
           x: 0
           y: 0.2
           z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
       - cardType: 0
+        cardState: 0
         stickers:
         - stickerID: 2
           stickerType: 0
@@ -898,13 +924,22 @@ MonoBehaviour:
           x: -1
           y: 1.4
           z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
       - cardType: 0
+        cardState: 0
         stickers:
         - stickerID: 2
           stickerType: 0
         position:
           x: 0
           y: -1.5
+          z: 0
+        rotation:
+          x: 0
+          y: 0
           z: 0
   oSController:
     posFirstSpawn: {fileID: 1438113697}
@@ -1165,6 +1200,7 @@ MonoBehaviour:
     - layerIndex: 0
       cards:
       - cardType: 100
+        cardState: 0
         stickers:
         - stickerID: 0
           stickerType: 0
@@ -1174,7 +1210,12 @@ MonoBehaviour:
           x: 1
           y: -1
           z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
       - cardType: 100
+        cardState: 0
         stickers:
         - stickerID: 1
           stickerType: 0
@@ -1184,7 +1225,12 @@ MonoBehaviour:
           x: 0
           y: 0.2
           z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
       - cardType: 100
+        cardState: 0
         stickers:
         - stickerID: 2
           stickerType: 0
@@ -1193,10 +1239,15 @@ MonoBehaviour:
         position:
           x: -1
           y: 1.4
+          z: 0
+        rotation:
+          x: 0
+          y: 0
           z: 0
     - layerIndex: 1
       cards:
       - cardType: 100
+        cardState: 0
         stickers:
         - stickerID: 2
           stickerType: 0
@@ -1206,7 +1257,12 @@ MonoBehaviour:
           x: 1
           y: -1
           z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
       - cardType: 100
+        cardState: 0
         stickers:
         - stickerID: 1
           stickerType: 0
@@ -1216,7 +1272,12 @@ MonoBehaviour:
           x: 0
           y: 0.2
           z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
       - cardType: 0
+        cardState: 0
         stickers:
         - stickerID: 2
           stickerType: 0
@@ -1224,13 +1285,22 @@ MonoBehaviour:
           x: -1
           y: 1.4
           z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
       - cardType: 0
+        cardState: 0
         stickers:
         - stickerID: 2
           stickerType: 0
         position:
           x: 0
           y: -1.5
+          z: 0
+        rotation:
+          x: 0
+          y: 0
           z: 0
   <LevelDataTextAsset>k__BackingField: {fileID: 4900000, guid: e5cbb80f5682369469aaa2f792098b27, type: 3}
 --- !u!114 &1125280225
@@ -1267,32 +1337,261 @@ MonoBehaviour:
     - objID: 0
       stickerIds: 
       stickerId: 3
+    - objID: 0
+      stickerIds: 
+      stickerId: -1
+    - objID: 0
+      stickerIds: 
+      stickerId: -1
+    - objID: 0
+      stickerIds: 
+      stickerId: -1
     layerCards:
     - layerIndex: 0
       cards:
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: -1
+          stickerType: 0
+        - stickerID: 2
+          stickerType: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: -1
+          stickerType: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
       - cardType: 100
+        cardState: 0
         stickers:
-        - stickerID: 3
-          stickerType: 0
-        - stickerID: 1
+        - stickerID: 2
+          stickerType: 1
+        - stickerID: 2
+          stickerType: 1
+        - stickerID: -1
           stickerType: 0
         position:
           x: 0
           y: 0
           z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
       - cardType: 0
+        cardState: 0
         stickers:
-        - stickerID: 1
+        - stickerID: -1
           stickerType: 0
         position:
           x: 0
           y: 0
           z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
       - cardType: 0
+        cardState: 0
         stickers:
-        - stickerID: 1
+        - stickerID: -1
+          stickerType: 0
+        - stickerID: -1
           stickerType: 0
         position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 0
+          stickerType: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: -1
+          stickerType: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: -1
+          stickerType: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+    - layerIndex: 0
+      cards:
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: -1
+          stickerType: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: -1
+          stickerType: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: -1
+          stickerType: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: -1
+          stickerType: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: -1
+          stickerType: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: -1
+          stickerType: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: -1
+          stickerType: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: -1
+          stickerType: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: -1
+          stickerType: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+    - layerIndex: 0
+      cards:
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: -1
+          stickerType: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
           x: 0
           y: 0
           z: 0

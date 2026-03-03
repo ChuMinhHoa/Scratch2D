@@ -37,8 +37,10 @@ public class LayerCardData
 public class CardData
 {
     public CardType cardType;
+    public CardState cardState;
     public StickerData[] stickers;
     public float3 position;
+    public float3 rotation;
 }
 
 [Serializable]
@@ -50,7 +52,8 @@ public class StickerData
 
 public enum StickerType
 {
-    Normal
+    Normal,
+    Chain
 }
 
 public enum CardType
@@ -65,4 +68,12 @@ public enum CardType
     Card8 = 700,
     Card9 = 800,
     Card10 = 900
+}
+
+public enum CardState
+{
+    Normal,
+    Lock,
+    Freeze,
+    Key
 }
