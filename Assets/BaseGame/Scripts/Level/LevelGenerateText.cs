@@ -59,5 +59,15 @@ public class LevelGenerateText : MonoBehaviour
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
     }
+    
+    [Button("Open Level Editor")]
+    private void OpenEditor()
+    {
+        #if UNITY_EDITOR
+        LevelEditorWindow window = (LevelEditorWindow) EditorWindow.GetWindow( typeof(LevelEditorWindow), false, "Level Design Editor");
+        LevelDesignGlobalConfig.Instance.CurrentLevel = level;
+        window.Show();        
+#endif
+    }
 
 }

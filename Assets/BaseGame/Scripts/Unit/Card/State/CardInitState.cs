@@ -63,13 +63,14 @@ public partial class Card : CardInitState.IHandler
         data = cardData;
         layerIndex = layer;
         stateMachine.RequestTransition(CardInitState);
+        var pos = transform.position;
+        pos.z = layerIndex;
+        transform.position = pos;
     }
 
     private void LoadData()
     {
-        var pos = transform.position;
-        pos.z = layerIndex;
-        transform.position = pos;
+       
         for (var i = 0; i < data.stickers.Length; i++)
         {
             var sticker = PoolManager.Instance.SpawnSticker(stickerPoints[i]);

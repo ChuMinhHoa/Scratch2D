@@ -18,6 +18,17 @@ public class SpriteGlobalConfig : GlobalConfig<SpriteGlobalConfig>
 
         return null;
     }
+    
+    public int GetSpriteID(Sprite sprite)
+    {
+        for (var i = 0; i < iconSpriteConfigs.Length; i++)
+        {
+            if(iconSpriteConfigs[i].sprite == sprite)
+                return iconSpriteConfigs[i].tType;
+        }
+
+        return -1;
+    }
 
     public SpriteConfig<int>[] iconObjHaveStickerConfigs;
     public Sprite GetIconObjectHaveSticker(int dataObjID)

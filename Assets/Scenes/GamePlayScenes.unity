@@ -778,7 +778,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &870909172
 Transform:
   m_ObjectHideFlags: 0
@@ -825,12 +825,16 @@ MonoBehaviour:
     objHaveStickers:
     - objID: 0
       stickerIds: 000000000000000001000000
+      stickerId: 0
     - objID: 0
       stickerIds: 010000000200000002000000
+      stickerId: 0
     - objID: 0
       stickerIds: 010000000200000002000000
+      stickerId: 0
     - objID: 0
       stickerIds: 010000000200000002000000
+      stickerId: 0
     layerCards:
     - layerIndex: 0
       cards:
@@ -1147,12 +1151,16 @@ MonoBehaviour:
     objHaveStickers:
     - objID: 0
       stickerIds: 000000000000000001000000
+      stickerId: 0
     - objID: 0
       stickerIds: 010000000200000002000000
+      stickerId: 0
     - objID: 0
       stickerIds: 010000000200000002000000
+      stickerId: 0
     - objID: 0
       stickerIds: 010000000200000002000000
+      stickerId: 0
     layerCards:
     - layerIndex: 0
       cards:
@@ -1232,7 +1240,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125280222}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4e20cee43ef1a94f8c1d51da5d9136a, type: 3}
   m_Name: 
@@ -1240,12 +1248,58 @@ MonoBehaviour:
   levelIndex: 0
   LevelData:
     level: 0
-    objHaveStickers: []
-    layerCards: []
+    objHaveStickers:
+    - objID: -1
+      stickerIds: 000000000000000001000000
+      stickerId: 0
+    - objID: -1
+      stickerIds: 010000000200000002000000
+      stickerId: 3
+    - objID: -1
+      stickerIds: 010000000200000002000000
+      stickerId: 3
+    - objID: -1
+      stickerIds: 010000000200000002000000
+      stickerId: 1
+    - objID: -1
+      stickerIds: 
+      stickerId: 3
+    - objID: 0
+      stickerIds: 
+      stickerId: 3
+    layerCards:
+    - layerIndex: 0
+      cards:
+      - cardType: 100
+        stickers:
+        - stickerID: 3
+          stickerType: 0
+        - stickerID: 1
+          stickerType: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+      - cardType: 0
+        stickers:
+        - stickerID: 1
+          stickerType: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+      - cardType: 0
+        stickers:
+        - stickerID: 1
+          stickerType: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
   oSController:
     posFirstSpawn: {fileID: 0}
     posOut: {fileID: 0}
-    loadDone: 0
+    loadDone: 1
     isEndGame: 0
     <SlotFolders>k__BackingField: []
   fSpaceController:
@@ -1257,7 +1311,7 @@ MonoBehaviour:
     <layerActive>k__BackingField:
       value: 0
       EditorValue: 0
-    loadDone: 0
+    loadDone: 1
 --- !u!4 &1214731164 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 841702862512134950, guid: db420098106ea5f4797dff58561cc14d, type: 3}

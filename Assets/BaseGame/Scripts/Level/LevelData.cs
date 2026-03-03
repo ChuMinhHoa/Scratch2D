@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 
 [Serializable]
@@ -8,6 +9,13 @@ public class LevelData
     public int level;
     public ObjHaveStickerData[] objHaveStickers;
     public LayerCardData[] layerCards;
+
+    public bool IsValid(out IGrouping<int, int>[] errors)
+    {
+        errors = new IGrouping<int, int>[] { };
+        return true;
+    }
+
 }
 
 [Serializable]
@@ -15,6 +23,7 @@ public class ObjHaveStickerData
 {
     public int objID;
     public int[] stickerIds;
+    public int stickerId;
 }
 
 [Serializable]
