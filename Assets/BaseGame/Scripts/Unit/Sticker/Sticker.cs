@@ -10,7 +10,7 @@ public partial class Sticker : MonoBehaviour
 {
     public StickerType stickerType;
     public StickerData stickerData;
-    private StateMachine stateMachine = new();
+    private readonly StateMachine stateMachine = new();
     
     public StickerGraphic stickerGraphic;
     
@@ -88,5 +88,10 @@ public partial class Sticker : MonoBehaviour
     public void ScratchActive()
     {
         stickerGraphic.ScratchActive();
+    }
+
+    public void ForceScratchDone()
+    {
+        stateMachine.RequestTransition(StickerDoneState);
     }
 }

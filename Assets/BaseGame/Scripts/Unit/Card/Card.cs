@@ -21,7 +21,6 @@ public partial class Card : MonoBehaviour
     public List<Sticker> stickers;
  
     private Reactive<int> currentLayer = new(0);
-    public int totalStickerScratchDone = 0;
     public AnimationCurve curveFirstSpawn;
     public GameObject objFakeScratch;
 
@@ -71,8 +70,11 @@ public partial class Card : MonoBehaviour
     private void ChangeStickerScratchDone(bool isDone)
     {
         if (!isDone) return;
-        totalStickerScratchDone++;
-        if (totalStickerScratchDone >= stickers.Count)
+        for (var i = stickers.Count - 1; i >=0; i--)
+        {
+            if(stickers[i].isDone) stickers.Remove(stickers[i]);
+        }
+        if (stickers.Count == 0)
         {
             stateMachine.RequestTransition(CardDoneState);
         }
@@ -89,7 +91,6 @@ public partial class Card : MonoBehaviour
 
         stickers.Clear();
         scratchCardManager.Progress.ResetScratch();
-        totalStickerScratchDone = 0;
         stickerSubscriptions.Clear();
         PoolManager.Instance.DespawnCard(this);
         GamePlayManager.Instance.RemoveCurrentCard(this);
@@ -118,6 +119,20 @@ public partial class Card : MonoBehaviour
     {
         return layerIndex == currentLayer.Value;
     }
-    
-    public bool IsDone() => totalStickerScratchDone >= stickers.Count;
+
+    public bool IsDone() => stickers.Count == 0;
+
+    public bool IsHaveSticker(int stickerId, out Sticker sticker)
+    {
+        for (var i = 0; i < stickers.Count; i++)
+        {
+            if (stickers[i].stickerData.stickerID == stickerId)
+            {
+                sticker = stickers[i];
+                return true;
+            }
+        }
+        sticker = null;
+        return false;
+    }
 }

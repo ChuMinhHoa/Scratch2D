@@ -172,7 +172,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 7680eafa6dce6a64b8b7a11100a09c18, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 77fce73c0a09075479c8736ed044e7ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -264,7 +264,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 7680eafa6dce6a64b8b7a11100a09c18, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 77fce73c0a09075479c8736ed044e7ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -346,12 +346,13 @@ MonoBehaviour:
   stickerData:
     stickerID: 0
     stickerType: 0
+    stickerIndexChain: 0
   stickerGraphic: {fileID: 8067459564566192876}
   progress:
     value: 0
     EditorValue: 0
   progressDone: 0.9
-  isDone:
+  <isDone>k__BackingField:
     value: 0
     EditorValue: 0
   requireDoneSticker:
@@ -658,7 +659,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 7680eafa6dce6a64b8b7a11100a09c18, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 77fce73c0a09075479c8736ed044e7ea, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -767,7 +768,7 @@ PrefabInstance:
     - target: {fileID: 11486244, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
       propertyPath: ScratchSurfaceSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 7680eafa6dce6a64b8b7a11100a09c18, type: 3}
+      objectReference: {fileID: 21300000, guid: 77fce73c0a09075479c8736ed044e7ea, type: 3}
     - target: {fileID: 11486244, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
       propertyPath: ScratchSurfaceSpriteHasAlpha
       value: 1
@@ -775,7 +776,7 @@ PrefabInstance:
     - target: {fileID: 21281386, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 7680eafa6dce6a64b8b7a11100a09c18, type: 3}
+      objectReference: {fileID: 21300000, guid: 77fce73c0a09075479c8736ed044e7ea, type: 3}
     - target: {fileID: 21281386, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
       propertyPath: m_Color.b
       value: 0

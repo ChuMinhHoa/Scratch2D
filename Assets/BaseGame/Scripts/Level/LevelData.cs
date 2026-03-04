@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Sirenix.OdinInspector;
 using Unity.Mathematics;
 
 [Serializable]
@@ -22,7 +23,6 @@ public class LevelData
 public class ObjHaveStickerData
 {
     public int objID;
-    public int[] stickerIds;
     public int stickerId;
 }
 
@@ -48,6 +48,8 @@ public class StickerData
 {
     public int stickerID;
     public StickerType stickerType;
+    [ShowIf("@stickerType == StickerType.Chain")]
+    public int stickerIndexChain;
 }
 
 public enum StickerType

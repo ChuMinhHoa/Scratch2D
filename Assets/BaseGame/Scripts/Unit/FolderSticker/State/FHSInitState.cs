@@ -59,9 +59,9 @@ public partial class FolderHaveSticker : FHSInitState.IHandler
 
     private void InitData()
     {
-        for (var i = 0; i < data.stickerIds.Length; i++)
+        for (var i = 0; i < trsStickerPos.Length; i++)
         {
-            trsStickerPos[i].id = data.stickerIds[i];
+            trsStickerPos[i].id = data.stickerId;
             var spriteIcon = SpriteGlobalConfig.Instance.GetStickerIcon(trsStickerPos[i].id);
             if (spriteIcon)
             {

@@ -18,6 +18,13 @@ public class Level : MonoBehaviour
     {
         GamePlayManager.Instance.level = this;
         GlobalEventManager.CheckToCallNextSticker = () => CallNextObjSticker();
+
+        GlobalEventManager.OnRemoveSticker = OnRemoveSticker;
+    }
+
+    private void OnRemoveSticker(int stickerId, int countRemove)
+    {
+        layerController.OnRemoveSticker(stickerId, countRemove);
     }
 
     [Button]
@@ -33,7 +40,16 @@ public class Level : MonoBehaviour
         await UniTask.WaitUntil(() => oSController.loadDone && layerController.loadDone);
         CallNextObjSticker(true);
     }
-    
+
+    public void LoadOnlyData()
+    {
+        var assetsPath = "Assets/BaseGame/TextAssets/LevelData/";
+        var fileName = $"Level_{levelIndex}.txt";
+        var assetPath = assetsPath + fileName;
+        var levelDataTextAsset = AssetDatabase.LoadAssetAtPath<TextAsset>(assetPath);
+        LevelData = DataSerializer.Deserialize<LevelData>(levelDataTextAsset.text);
+    }
+
 
     [Button]
     private void CallNextObjSticker(bool callFromLoad = false)

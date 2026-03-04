@@ -70,7 +70,6 @@ public partial class Card : CardInitState.IHandler
 
     private void LoadData()
     {
-       
         for (var i = 0; i < data.stickers.Length; i++)
         {
             var sticker = PoolManager.Instance.SpawnSticker(stickerPoints[i]);

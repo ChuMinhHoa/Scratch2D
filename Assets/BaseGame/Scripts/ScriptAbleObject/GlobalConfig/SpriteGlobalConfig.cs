@@ -18,7 +18,13 @@ public class SpriteGlobalConfig : GlobalConfig<SpriteGlobalConfig>
 
         return null;
     }
-    
+
+    public int GetRandomStickerId()
+    {
+        var randomIndex = Random.Range(0, iconSpriteConfigs.Length);
+        return iconSpriteConfigs[randomIndex].tType;
+    }
+
     public int GetSpriteID(Sprite sprite)
     {
         for (var i = 0; i < iconSpriteConfigs.Length; i++)

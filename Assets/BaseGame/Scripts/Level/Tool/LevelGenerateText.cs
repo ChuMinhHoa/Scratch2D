@@ -8,28 +8,57 @@ public class LevelGenerateText : MonoBehaviour
 {
     public Level level;
     public int levelIndex;
-    public LevelData levelData;
+    public LevelData levelData => level.LevelData;
+    
+    string assetsPath = "Assets/BaseGame/TextAssets/LevelData/";
+    string directoryPath = Application.dataPath + "/BaseGame/TextAssets/LevelData/";
     [field: SerializeField] public TextAsset LevelDataTextAsset { get; private set; }
+
+    [Button]
+    private void LoadLevelDataText()
+    {
+        var fileName = $"Level_{levelIndex}.txt";
+        var assetPath = assetsPath + fileName;
+        var fullPath = directoryPath + fileName;
+        if (!File.Exists(assetPath))
+        {
+            Debug.Log(fileName);
+            var newLevelData = new LevelData();
+            var encryptJson = DataSerializer.Serialize(newLevelData);
+            CreateTextAsset(encryptJson);
+        }
+        else LevelDataTextAsset = AssetDatabase.LoadAssetAtPath<TextAsset>(assetPath);
+
+        level.levelIndex = levelIndex;
+        level.LoadOnlyData();
+    }
 
     [Button("Save level data",ButtonSizes.Large)]
     private void SaveData()
     {
         SaveLevelData();
     }
-
+  
     private void SaveLevelData()
     {
         var encryptJson = DataSerializer.Serialize(levelData);
-        var assetsPath = "Assets/BaseGame/TextAssets/LevelData/";
-        var directoryPath = Application.dataPath + "/BaseGame/TextAssets/LevelData/";
+       
         if (!Directory.Exists(directoryPath))
         {
             Directory.CreateDirectory(directoryPath);
         }
-        
+
+        OnValidateTextAsset(encryptJson);
+            
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+    }
+
+    private void OnValidateTextAsset(string encryptJson)
+    {
         var fileName = $"Level_{levelIndex}.txt";
-        var fullPath = directoryPath + fileName;
         var assetPath = assetsPath + fileName;
+        var fullPath = directoryPath + fileName;
         
         LevelDataTextAsset = AssetDatabase.LoadAssetAtPath<TextAsset>(assetPath);
         if (LevelDataTextAsset != null)
@@ -60,6 +89,21 @@ public class LevelGenerateText : MonoBehaviour
         AssetDatabase.Refresh();
     }
     
+    private void CreateTextAsset(string encryptJson)
+    {
+        var fileName = $"Level_{levelIndex}.txt";
+        var assetPath = assetsPath + fileName;
+        var fullPath = directoryPath + fileName;
+        
+        File.WriteAllText(fullPath, encryptJson);
+            
+        AssetDatabase.ImportAsset(assetPath);
+            
+        LevelDataTextAsset = AssetDatabase.LoadAssetAtPath<TextAsset>(assetPath);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+    }
+
     [Button("Open Level Editor")]
     private void OpenEditor()
     {

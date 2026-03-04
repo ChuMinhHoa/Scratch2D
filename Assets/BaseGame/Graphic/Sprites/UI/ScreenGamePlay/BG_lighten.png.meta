@@ -1,0 +1,728 @@
+fileFormatVersion: 2
+guid: 122c42adda5155641bcaa73a0ca36308
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5331727037186905776
+    second: BG_lighten_0
+  - first:
+      213: -2532879030239936767
+    second: BG_lighten_1
+  - first:
+      213: -8931911168329677519
+    second: BG_lighten_2
+  - first:
+      213: -7256654757467868419
+    second: BG_lighten_3
+  - first:
+      213: -3162537683804292438
+    second: BG_lighten_4
+  - first:
+      213: -3774188583648655986
+    second: BG_lighten_5
+  - first:
+      213: -1293263607659584351
+    second: BG_lighten_6
+  - first:
+      213: -6122010927923635422
+    second: BG_lighten_7
+  - first:
+      213: 1238083038331343193
+    second: BG_lighten_8
+  - first:
+      213: -1383066103080311601
+    second: BG_lighten_9
+  - first:
+      213: -8064256064683738028
+    second: BG_lighten_10
+  - first:
+      213: 2823639867480612963
+    second: BG_lighten_11
+  - first:
+      213: 7346944656483329874
+    second: BG_lighten_12
+  - first:
+      213: -3527785394119174473
+    second: BG_lighten_13
+  - first:
+      213: -8363157361202186381
+    second: BG_lighten_14
+  - first:
+      213: -2704612137193245318
+    second: BG_lighten_15
+  - first:
+      213: -573451622033079952
+    second: BG_lighten_16
+  - first:
+      213: -8880726724425824536
+    second: BG_lighten_17
+  - first:
+      213: -6958506550438035762
+    second: BG_lighten_18
+  - first:
+      213: 345774954231624053
+    second: BG_lighten_19
+  - first:
+      213: -6688748840338620315
+    second: BG_lighten_20
+  - first:
+      213: -1344559323222193754
+    second: BG_lighten_21
+  - first:
+      213: 6135410442893307953
+    second: BG_lighten_22
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BG_lighten_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1604
+        height: 2457
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 059e0252286e106b0800000000000000
+      internalID: -5331727037186905776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_1
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 2426
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10f338711f769dcd0800000000000000
+      internalID: -2532879030239936767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_2
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 2422
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1358d5e9d1a7b0480800000000000000
+      internalID: -8931911168329677519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_3
+      rect:
+        serializedVersion: 2
+        x: 1583
+        y: 1282
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df2ba7b02fe2b4b90800000000000000
+      internalID: -7256654757467868419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_4
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 1289
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaafe008bb86c14d0800000000000000
+      internalID: -3162537683804292438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_5
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1276
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e85894cca736f9bc0800000000000000
+      internalID: -3774188583648655986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_6
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 1224
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a4a280d9976d0ee0800000000000000
+      internalID: -1293263607659584351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_7
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 1214
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22b5d023f7f3a0ba0800000000000000
+      internalID: -6122010927923635422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_8
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 1206
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9511d26b6fd8e2110800000000000000
+      internalID: 1238083038331343193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_9
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 1201
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc4a30105bc5ecce0800000000000000
+      internalID: -1383066103080311601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_10
+      rect:
+        serializedVersion: 2
+        x: 1589
+        y: 1197
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45c7cbed5d1061090800000000000000
+      internalID: -8064256064683738028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_11
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 1132
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36020dacf759f2720800000000000000
+      internalID: 2823639867480612963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_12
+      rect:
+        serializedVersion: 2
+        x: 1582
+        y: 1128
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 257a4224d3795f560800000000000000
+      internalID: 7346944656483329874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_13
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 20
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b617b300e9ca0fc0800000000000000
+      internalID: -3527785394119174473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_14
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 15
+        width: 11
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 377b9dc90b810fb80800000000000000
+      internalID: -8363157361202186381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_15
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 15
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a75f2634799477ad0800000000000000
+      internalID: -2704612137193245318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_16
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 11
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 071c8dcb9c0ba08f0800000000000000
+      internalID: -573451622033079952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_17
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 10
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e6c743a81251c480800000000000000
+      internalID: -8880726724425824536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_18
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 14
+        width: 19
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ece79edf82b6e6f90800000000000000
+      internalID: -6958506550438035762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_19
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 22
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 571f3372d707cc400800000000000000
+      internalID: 345774954231624053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_20
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 19
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5608fc34e5acc23a0800000000000000
+      internalID: -6688748840338620315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_21
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 15
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a9c6e75b6a275de0800000000000000
+      internalID: -1344559323222193754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_lighten_22
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 15
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 130b0ef7a4b552550800000000000000
+      internalID: 6135410442893307953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      BG_lighten_0: -5331727037186905776
+      BG_lighten_1: -2532879030239936767
+      BG_lighten_10: -8064256064683738028
+      BG_lighten_11: 2823639867480612963
+      BG_lighten_12: 7346944656483329874
+      BG_lighten_13: -3527785394119174473
+      BG_lighten_14: -8363157361202186381
+      BG_lighten_15: -2704612137193245318
+      BG_lighten_16: -573451622033079952
+      BG_lighten_17: -8880726724425824536
+      BG_lighten_18: -6958506550438035762
+      BG_lighten_19: 345774954231624053
+      BG_lighten_2: -8931911168329677519
+      BG_lighten_20: -6688748840338620315
+      BG_lighten_21: -1344559323222193754
+      BG_lighten_22: 6135410442893307953
+      BG_lighten_3: -7256654757467868419
+      BG_lighten_4: -3162537683804292438
+      BG_lighten_5: -3774188583648655986
+      BG_lighten_6: -1293263607659584351
+      BG_lighten_7: -6122010927923635422
+      BG_lighten_8: 1238083038331343193
+      BG_lighten_9: -1383066103080311601
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
