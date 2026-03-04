@@ -1,6 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Sirenix.Utilities;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "SpriteGlobalConfig", menuName = "GlobalConfigs/SpriteGlobalConfig")]
 [GlobalConfig("Assets/Resources/GlobalConfig/")]
@@ -43,6 +44,32 @@ public class SpriteGlobalConfig : GlobalConfig<SpriteGlobalConfig>
         {
             if(iconObjHaveStickerConfigs[i].tType == dataObjID)
                 return iconObjHaveStickerConfigs[i].sprite;
+        }
+
+        return null;
+    }
+
+    public SpriteConfig<int>[] iconStickerBgConfigs;
+    
+    public Sprite GetStickerBg(int id)
+    {
+        for (var i = 0; i < iconStickerBgConfigs.Length; i++)
+        {
+            if(iconStickerBgConfigs[i].tType == id)
+                return iconStickerBgConfigs[i].sprite;
+        }
+
+        return null;
+    }
+
+    
+    public SpriteConfig<int>[] iconStickerShadowConfigs;
+    public Sprite GetStickerShaDow(int id)
+    {
+        for (var i = 0; i < iconStickerShadowConfigs.Length; i++)
+        {
+            if(iconStickerShadowConfigs[i].tType == id)
+                return iconStickerShadowConfigs[i].sprite;
         }
 
         return null;

@@ -10,6 +10,7 @@ public class StickerGraphic : MonoBehaviour
     public SpriteRenderer sprIcon;
     public SpriteRenderer sprBg;
     public SpriteRenderer sprGlow;
+    public SpriteRenderer sprShadow;
     public UnitAnimation unitAnimation;
     public GameObject objGlow;
     public ScratchCardManager scratchManager;
@@ -20,11 +21,16 @@ public class StickerGraphic : MonoBehaviour
     public void InitData(int id)
     {
         stickerId = id;
+        
         var spriteIcon = SpriteGlobalConfig.Instance.GetStickerIcon(id);
+        var spriteBg = SpriteGlobalConfig.Instance.GetStickerBg(id);
+        var spriteShadow = SpriteGlobalConfig.Instance.GetStickerShaDow(id);
+        
         sprIcon.sprite = spriteIcon;
-        sprBg.sprite = spriteIcon;
+        sprBg.sprite = spriteBg;
         sprGlow.sprite = spriteIcon;
-        objScratchFake.sprite = spriteIcon;
+        objScratchFake.sprite = spriteBg;
+        sprShadow.sprite = spriteShadow;
     }
 
     [Button]
@@ -62,8 +68,8 @@ public class StickerGraphic : MonoBehaviour
     public void ScratchActive()
     {
         scratchManager.gameObject.SetActive(true);
-        var spriteIcon = SpriteGlobalConfig.Instance.GetStickerIcon(stickerId);
-        scratchManager.ChangeSprite(spriteIcon);
+        var spriteScratch = SpriteGlobalConfig.Instance.GetStickerBg(stickerId);
+        scratchManager.ChangeSprite(spriteScratch);
         objScratchFake.gameObject.SetActive(false);
     }
 

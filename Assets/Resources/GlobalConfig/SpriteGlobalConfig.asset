@@ -14,13 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpriteGlobalConfig
   iconSpriteConfigs:
   - tType: 0
-    sprite: {fileID: 21300000, guid: 7680eafa6dce6a64b8b7a11100a09c18, type: 3}
+    sprite: {fileID: 21300000, guid: 1edba9158f30d0f4aaac2eefba0302a5, type: 3}
   - tType: 1
-    sprite: {fileID: 21300000, guid: e3cc599beb8e3f5409a4077ba4f1af82, type: 3}
+    sprite: {fileID: 21300000, guid: 77515db770b26e44da85f290b374eb2f, type: 3}
   - tType: 2
-    sprite: {fileID: 21300000, guid: be8023c782f8df440a25c5efc3e478f3, type: 3}
+    sprite: {fileID: 21300000, guid: 730f834db08e1f84ea68ea31d1723bc1, type: 3}
   - tType: 3
-    sprite: {fileID: 21300000, guid: 73315bc3016227c48b5f814fa0d3dfb7, type: 3}
+    sprite: {fileID: 21300000, guid: 189b78b36924a9e48ac0388e9b5aea0f, type: 3}
   iconObjHaveStickerConfigs:
   - tType: 0
-    sprite: {fileID: 21300000, guid: 5fac6eafedeccda4ba3ee6821cf7d908, type: 3}
+    sprite: {fileID: 0}
+  iconStickerBgConfigs:
+  - tType: 0
+    sprite: {fileID: 21300000, guid: be3730dbf9ff7734fa74d4817b78167e, type: 3}
+  - tType: 1
+    sprite: {fileID: 21300000, guid: 5a7d0be626e398343bdb3f6dc90aa562, type: 3}
+  - tType: 2
+    sprite: {fileID: 21300000, guid: 8241e95e5ee82d741beb8e6df64d6802, type: 3}
+  - tType: 3
+    sprite: {fileID: 21300000, guid: 9967443bf48a34b478c90e2e260f45a4, type: 3}
+  iconStickerShadowConfigs:
+  - tType: 0
+    sprite: {fileID: 21300000, guid: d4af7afaa6408e34c99e838bf313eef2, type: 3}
+  - tType: 1
+    sprite: {fileID: 21300000, guid: 25480afd97b20cd4688e9f95cd2d18d4, type: 3}
+  - tType: 2
+    sprite: {fileID: 21300000, guid: 5671cadc2b307ff46a506ba0b5f84ecc, type: 3}
+  - tType: 3
+    sprite: {fileID: 21300000, guid: d4a1b4d5033951e4b9dc769a49e6eff0, type: 3}

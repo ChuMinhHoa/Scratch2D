@@ -193,10 +193,16 @@ public static class LevelDesignHelper
     {
         Event evt = Event.current;
 
+        if (!rect.Contains(evt.mousePosition))
+        {
+            return;
+        }
+
         switch (evt.type)
         {
-            case EventType.MouseDown:
-                if (rect.Contains(evt.mousePosition) && evt.button == 0)
+            case EventType.MouseDrag:
+                // Chỉ bắt đầu drag khi kéo chuột, không phải click
+                if (evt.button == 0 && !isDragging)
                 {
                     dragSourceLayerIndex = layerIndex;
                     dragSourceCardIndex = cardIndex;
@@ -211,7 +217,7 @@ public static class LevelDesignHelper
                 break;
 
             case EventType.DragUpdated:
-                if (rect.Contains(evt.mousePosition) && isDragging)
+                if (isDragging)
                 {
                     DragAndDrop.visualMode = DragAndDropVisualMode.Move;
                     evt.Use();
@@ -220,7 +226,7 @@ public static class LevelDesignHelper
                 break;
 
             case EventType.DragPerform:
-                if (rect.Contains(evt.mousePosition) && isDragging)
+                if (isDragging)
                 {
                     DragAndDrop.AcceptDrag();
 

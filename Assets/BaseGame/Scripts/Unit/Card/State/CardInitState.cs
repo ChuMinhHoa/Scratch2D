@@ -72,6 +72,7 @@ public partial class Card : CardInitState.IHandler
     {
         for (var i = 0; i < data.stickers.Length; i++)
         {
+            Debug.Log($"Card Type: {cardType}");
             var sticker = PoolManager.Instance.SpawnSticker(stickerPoints[i]);
             sticker.transform.localPosition = Vector3.zero;
             sticker.InitData(data.stickers[i]);

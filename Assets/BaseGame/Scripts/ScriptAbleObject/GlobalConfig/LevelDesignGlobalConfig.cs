@@ -151,6 +151,7 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
             currentX += cardWidth + 5;
             cardIndex++;
         }
+       
     }
 
     private void DrawCard(Rect rect, int cardIndex)
@@ -160,7 +161,6 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
         SirenixEditorGUI.DrawSolidRect(rect, Color.gray2);
         SirenixEditorGUI.DrawBorders(rect, 1);
         LevelDesignHelper.HandleCardDragAndDrop(rect, currentLayerIndex, cardIndex, LevelData);
-        
         var rect1 = new Rect(rect.x + 5, rect.y + 5, rect.width - 10, LevelDesignHelper.defaultHeightButtonHeader);
         if (GUI.Button(rect1.AlignRight(40).AlignLeft(20).SetSize(20), "+"))
         {
@@ -243,6 +243,7 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
         LevelData.layerCards[currentLayerIndex].cards[cardIndex].rotation = rot;
 
         EditorGUIUtility.labelWidth = labelW;
+        
     }
 
     private void DrawSticker(Rect rect, int stickerIndex)
