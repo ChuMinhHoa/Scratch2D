@@ -59,14 +59,13 @@ public partial class FolderHaveSticker : FHSInitState.IHandler
 
     private void InitData()
     {
+        var rMax = SpriteGlobalConfig.Instance.iconObjHaveStickerConfigs.Length;
+        objId = Random.Range(0, rMax);
+        
+        fhsGraphic.InitData(data.stickerId, objId);
         for (var i = 0; i < trsStickerPos.Length; i++)
         {
             trsStickerPos[i].id = data.stickerId;
-            var spriteIcon = SpriteGlobalConfig.Instance.GetStickerIcon(trsStickerPos[i].id);
-            if (spriteIcon)
-            {
-                sprStickerIcons[i].sprite = spriteIcon;
-            }
         }
     }
 

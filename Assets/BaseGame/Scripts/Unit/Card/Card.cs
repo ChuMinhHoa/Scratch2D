@@ -19,6 +19,7 @@ public partial class Card : MonoBehaviour
     public Transform[] stickerPoints;
 
     public List<Sticker> stickers;
+    public int countSticker;
  
     private Reactive<int> currentLayer = new(0);
     public AnimationCurve curveFirstSpawn;
@@ -70,11 +71,18 @@ public partial class Card : MonoBehaviour
     private void ChangeStickerScratchDone(bool isDone)
     {
         if (!isDone) return;
-        for (var i = stickers.Count - 1; i >=0; i--)
-        {
-            if(stickers[i].isDone) stickers.Remove(stickers[i]);
-        }
-        if (stickers.Count == 0)
+        // for (var i = stickers.Count - 1; i >=0; i--)
+        // {
+        //     if (stickers[i].isDone)
+        //     {
+        //         
+        //         stickers[i].ResetSticker();
+        //         PoolManager.Instance.DespawnSticker(stickers[i]);
+        //         stickers.Remove(stickers[i]);
+        //     }
+        // }
+        countSticker--;
+        if (countSticker == 0)
         {
             stateMachine.RequestTransition(CardDoneState);
         }
@@ -82,6 +90,7 @@ public partial class Card : MonoBehaviour
     
     private void ResetCard()
     {
+        Debug.Log("Reset Card");
         transform.localScale = Vector3.one;
         for (var i = 0; i < stickers.Count; i++)
         {
@@ -97,6 +106,7 @@ public partial class Card : MonoBehaviour
         cardGraphic.ResetCard();
     }
 
+    [Button]
     public void AnimFirstSpawn(int index)
     {
         LMotion.Create(0f, 1f, 0.25f).WithOnComplete(() =>
@@ -120,19 +130,21 @@ public partial class Card : MonoBehaviour
         return layerIndex == currentLayer.Value;
     }
 
-    public bool IsDone() => stickers.Count == 0;
+    public bool IsDone() => countSticker == 0;
 
-    public bool IsHaveSticker(int stickerId, out Sticker sticker)
+    public int IsHaveSticker(int stickerId, int countRemain)
     {
+        var count = 0;
         for (var i = 0; i < stickers.Count; i++)
         {
-            if (stickers[i].stickerData.stickerID == stickerId)
+            if (stickers[i].stickerData.stickerID == stickerId && !stickers[i].isDone)
             {
-                sticker = stickers[i];
-                return true;
+                stickers[i].ForceScratchDone();
+                count++;
+                if (count == countRemain)
+                    return 0;
             }
         }
-        sticker = null;
-        return false;
+        return countRemain - count;
     }
 }

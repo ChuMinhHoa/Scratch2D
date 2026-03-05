@@ -81,7 +81,7 @@ namespace Core.UI.Screens
             private async UniTask PlayGame()
             {
                 await GamePlayManager.Instance.PlayGame();
-                await UIManager.Instance.CloseScreenAsync();
+                await UIManager.Instance.OpenScreenAsync<ScreenGamePlay>(stackChange: true);
             }
         }
     }

@@ -10,7 +10,6 @@ public class StickerGraphic : MonoBehaviour
     public SpriteRenderer sprIcon;
     public SpriteRenderer sprBg;
     public SpriteRenderer sprGlow;
-    public SpriteRenderer sprShadow;
     public UnitAnimation unitAnimation;
     public GameObject objGlow;
     public ScratchCardManager scratchManager;
@@ -24,13 +23,13 @@ public class StickerGraphic : MonoBehaviour
         
         var spriteIcon = SpriteGlobalConfig.Instance.GetStickerIcon(id);
         var spriteBg = SpriteGlobalConfig.Instance.GetStickerBg(id);
-        var spriteShadow = SpriteGlobalConfig.Instance.GetStickerShaDow(id);
         
         sprIcon.sprite = spriteIcon;
         sprBg.sprite = spriteBg;
         sprGlow.sprite = spriteIcon;
         objScratchFake.sprite = spriteBg;
-        sprShadow.sprite = spriteShadow;
+        
+        sprIcon.gameObject.SetActive(true);
     }
 
     [Button]
@@ -38,10 +37,14 @@ public class StickerGraphic : MonoBehaviour
     {
         objGlow.SetActive(true);
         _ = unitAnimation.PlayScaleAnimation();
+        var pos = transform.position;
+        pos.z -= 0.02f;
+        transform.position = pos;
         await LMotion.Create(0f, 1f, 0.5f).WithOnComplete(() =>
         {
             objGlow.SetActive(false);
         }).RunWithoutBinding().AddTo(this);
+       
     }
 
     public void DisAbleIcon()

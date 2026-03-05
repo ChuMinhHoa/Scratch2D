@@ -71,7 +71,7 @@ public class FreeSpaceController : SpaceForSticker
         e.transform.position = position;
         sticker.DisAbleIcon();
         e.PlayAnimRemove();
-        await UniTask.WaitForSeconds(3f);
+        await UniTask.WaitForSeconds(2f);
         CheckGameOver();
     }
 }

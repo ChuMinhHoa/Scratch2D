@@ -61,15 +61,14 @@ public class LayerController
 
     public void OnRemoveSticker(int stickerId, int countRemove)
     {
-        var count = 0;
+        var count = countRemove;
         for (var i = 0; i < cards.Count; i++)
         {
-            if (!cards[i].IsHaveSticker(stickerId, out var sticker)) continue;
-            
-            sticker.ForceScratchDone();
-            count++;
-            if (count == countRemove)
-                return;
+            count = cards[i].IsHaveSticker(stickerId, count);
+
+            if (count == 0)
+                break;
+
         }
     }
 }

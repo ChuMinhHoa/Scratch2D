@@ -11,8 +11,8 @@ public class BoosterMagnet : BoosterBase
     
     public override void UseBooster()
     {
+        base.UseBooster();
         Debug.Log("Use Booster Magnet");
-        
     }
 
     public override void ActiveBooster(bool active)

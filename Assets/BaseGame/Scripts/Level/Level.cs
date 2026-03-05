@@ -13,6 +13,8 @@ public class Level : MonoBehaviour
     public ObjHaveStickerController oSController;
     public FreeSpaceController fSpaceController;
     public LayerController layerController;
+
+    public GameObject objOnUsingBooster;
     
     private void Start()
     {
@@ -20,6 +22,19 @@ public class Level : MonoBehaviour
         GlobalEventManager.CheckToCallNextSticker = () => CallNextObjSticker();
 
         GlobalEventManager.OnRemoveSticker = OnRemoveSticker;
+
+        GlobalEventManager.OnBoosterUsing += OnUsingBooster;
+        GlobalEventManager.OnBoosterDone += OnBoosterDone;
+    }
+
+    private void OnBoosterDone()
+    {
+        objOnUsingBooster.gameObject.SetActive(false);
+    }
+
+    private void OnUsingBooster(BoosterType arg1, IBooster arg2)
+    {
+        objOnUsingBooster.gameObject.SetActive(true);
     }
 
     private void OnRemoveSticker(int stickerId, int countRemove)

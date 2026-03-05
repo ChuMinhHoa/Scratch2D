@@ -255,6 +255,7 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
         color = isChain ? Color.yellow : color;
         SirenixEditorGUI.DrawSolidRect(rect, color);
         SirenixEditorGUI.DrawBorders(rect, 1);
+        LevelDesignHelper.HandleStickerDragAndDrop(rect, currentLayerIndex, currentCardIndex, stickerIndex, LevelData);
         var currentY = rect.y;
         currentY += 5;
         var rect1 = new Rect(rect.x + 5, currentY, rect.width - 10, LevelDesignHelper.defaultHeightButtonHeader);

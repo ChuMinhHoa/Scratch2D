@@ -62,7 +62,7 @@ public class ObjHaveStickerController : SpaceForSticker
 
     public async UniTask CallNextObjSticker(bool callFromLoad = false)
     {
-        if (!callFromLoad) await UniTask.WaitForSeconds(2.5f);
+        if (!callFromLoad) await UniTask.WaitForSeconds(0.5f);
         if (objHaveStickers.Count > 0)
         {
             for (var i = 0; i < SlotFolders.Length; i++)

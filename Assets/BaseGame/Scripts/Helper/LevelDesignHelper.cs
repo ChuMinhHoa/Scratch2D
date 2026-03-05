@@ -187,7 +187,7 @@ public static class LevelDesignHelper
 
     private static int dragSourceLayerIndex = -1;
     private static int dragSourceCardIndex = -1;
-    private static bool isDragging = false;
+    //private static bool isDragging = false;
 
     public static void HandleCardDragAndDrop(Rect rect, int layerIndex, int cardIndex, LevelData levelData)
     {
@@ -198,15 +198,19 @@ public static class LevelDesignHelper
             return;
         }
 
+        // Chỉ cho phép drag card từ vùng header (25px đầu tiên)
+        Rect headerRect = new Rect(rect.x, rect.y, rect.width, defaultHeightButtonHeader);
+        bool isInHeaderArea = headerRect.Contains(evt.mousePosition);
+
         switch (evt.type)
         {
             case EventType.MouseDrag:
-                // Chỉ bắt đầu drag khi kéo chuột, không phải click
-                if (evt.button == 0 && !isDragging)
+                // Chỉ bắt đầu drag card nếu đang trong vùng header
+                if (evt.button == 0 && !isDraggingCard && !isDraggingSticker && isInHeaderArea)
                 {
                     dragSourceLayerIndex = layerIndex;
                     dragSourceCardIndex = cardIndex;
-                    isDragging = true;
+                    isDraggingCard = true;
 
                     DragAndDrop.PrepareStartDrag();
                     DragAndDrop.SetGenericData("CardDrag", true);
@@ -217,7 +221,7 @@ public static class LevelDesignHelper
                 break;
 
             case EventType.DragUpdated:
-                if (isDragging)
+                if (isDraggingCard && DragAndDrop.GetGenericData("CardDrag") != null)
                 {
                     DragAndDrop.visualMode = DragAndDropVisualMode.Move;
                     evt.Use();
@@ -226,7 +230,7 @@ public static class LevelDesignHelper
                 break;
 
             case EventType.DragPerform:
-                if (isDragging)
+                if (isDraggingCard && DragAndDrop.GetGenericData("CardDrag") != null)
                 {
                     DragAndDrop.AcceptDrag();
 
@@ -250,12 +254,16 @@ public static class LevelDesignHelper
                 break;
 
             case EventType.DragExited:
-                ResetDragState();
+                if (isDraggingCard)
+                {
+                    ResetDragState();
+                }
+
                 break;
         }
 
         // Highlight drop target
-        if (isDragging && rect.Contains(evt.mousePosition) &&
+        if (isDraggingCard && rect.Contains(evt.mousePosition) &&
             (dragSourceLayerIndex != layerIndex || dragSourceCardIndex != cardIndex))
         {
             SirenixEditorGUI.DrawSolidRect(rect, new Color(0.2f, 0.8f, 0.2f, 0.3f));
@@ -265,12 +273,12 @@ public static class LevelDesignHelper
     public static void HandleLayerDrop(Rect rect, int layerIndex, LevelData levelData)
     {
         Event evt = Event.current;
-        if (evt.type == EventType.DragUpdated && rect.Contains(evt.mousePosition) && isDragging)
+        if (evt.type == EventType.DragUpdated && rect.Contains(evt.mousePosition) && isDraggingCard)
         {
             DragAndDrop.visualMode = DragAndDropVisualMode.Move;
             evt.Use();
         }
-        else if (evt.type == EventType.DragPerform && rect.Contains(evt.mousePosition) && isDragging)
+        else if (evt.type == EventType.DragPerform && rect.Contains(evt.mousePosition) && isDraggingCard)
         {
             DragAndDrop.AcceptDrag();
             if (dragSourceLayerIndex != layerIndex)
@@ -290,10 +298,116 @@ public static class LevelDesignHelper
         }
     }
 
-    private static void ResetDragState()
+
+    private static int dragSourceStickerIndex = -1;
+    private static bool isDraggingCard = false;
+    private static bool isDraggingSticker = false;
+
+    public static void HandleStickerDragAndDrop(Rect rect, int layerIndex, int cardIndex, int stickerIndex,
+        LevelData levelData)
     {
-        isDragging = false;
+        Event evt = Event.current;
+
+        // Bỏ qua vùng sprite field (60x60 ở góc trái)
+        Rect spriteFieldRect = new Rect(rect.x + 5, rect.y + 5, 60, 60);
+        bool isInSpriteField = spriteFieldRect.Contains(evt.mousePosition);
+
+        if (!rect.Contains(evt.mousePosition))
+        {
+            return;
+        }
+
+        switch (evt.type)
+        {
+            case EventType.MouseDrag:
+                // Không bắt đầu drag sticker nếu đang trong vùng sprite field
+                if (evt.button == 0 && !isDraggingSticker && !isDraggingCard && !isInSpriteField)
+                {
+                    dragSourceLayerIndex = layerIndex;
+                    dragSourceCardIndex = cardIndex;
+                    dragSourceStickerIndex = stickerIndex;
+                    isDraggingSticker = true;
+
+                    DragAndDrop.PrepareStartDrag();
+                    DragAndDrop.SetGenericData("StickerDrag", true);
+                    DragAndDrop.StartDrag("Dragging Sticker");
+                    evt.Use();
+                }
+
+                break;
+
+            case EventType.DragUpdated:
+                // Chỉ xử lý nếu đang drag sticker của chúng ta
+                if (isDraggingSticker && DragAndDrop.GetGenericData("StickerDrag") != null)
+                {
+                    DragAndDrop.visualMode = DragAndDropVisualMode.Move;
+                    evt.Use();
+                }
+
+                break;
+
+            case EventType.DragPerform:
+                if (isDraggingSticker && DragAndDrop.GetGenericData("StickerDrag") != null)
+                {
+                    DragAndDrop.AcceptDrag();
+
+                    bool isSameCard = dragSourceLayerIndex == layerIndex && dragSourceCardIndex == cardIndex;
+                    bool isSameSticker = isSameCard && dragSourceStickerIndex == stickerIndex;
+
+                    if (!isSameSticker)
+                    {
+                        var sourceStickers = levelData.layerCards[dragSourceLayerIndex].cards[dragSourceCardIndex]
+                            .stickers.ToList();
+                        var movedSticker = sourceStickers[dragSourceStickerIndex];
+                        sourceStickers.RemoveAt(dragSourceStickerIndex);
+                        levelData.layerCards[dragSourceLayerIndex].cards[dragSourceCardIndex].stickers =
+                            sourceStickers.ToArray();
+
+                        var targetStickers = levelData.layerCards[layerIndex].cards[cardIndex].stickers.ToList();
+                        int insertIndex = Mathf.Clamp(stickerIndex, 0, targetStickers.Count);
+                        targetStickers.Insert(insertIndex, movedSticker);
+                        levelData.layerCards[layerIndex].cards[cardIndex].stickers = targetStickers.ToArray();
+                    }
+
+                    ResetStickerDragState();
+                    evt.Use();
+                }
+
+                break;
+
+            case EventType.DragExited:
+                // Chỉ reset nếu đang drag sticker của chúng ta
+                if (isDraggingSticker)
+                {
+                    ResetStickerDragState();
+                }
+
+                break;
+        }
+
+        // Highlight drop target
+        if (isDraggingSticker && rect.Contains(evt.mousePosition) &&
+            !(dragSourceLayerIndex == layerIndex && dragSourceCardIndex == cardIndex &&
+              dragSourceStickerIndex == stickerIndex))
+        {
+            SirenixEditorGUI.DrawSolidRect(rect, new Color(0.2f, 0.5f, 0.9f, 0.3f));
+        }
+    }
+
+    private static void ResetStickerDragState()
+    {
+        isDraggingSticker = false;
         dragSourceLayerIndex = -1;
         dragSourceCardIndex = -1;
+        dragSourceStickerIndex = -1;
+    }
+
+    private static void ResetDragState()
+    {
+        isDraggingCard = false;
+        isDraggingSticker = false;
+        dragSourceLayerIndex = -1;
+        dragSourceCardIndex = -1;
+        dragSourceStickerIndex = -1;
     }
 }

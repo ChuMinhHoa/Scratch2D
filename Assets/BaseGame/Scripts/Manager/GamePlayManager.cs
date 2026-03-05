@@ -49,6 +49,7 @@ public class GamePlayManager : Singleton<GamePlayManager>
             isFollowing = false;
             eraser.SetActiveGraphic(false);
             CheckOverButtonGameObject();
+            CheckOverSelectAbleOnBooster();
         }
 
         if (!isFollowing) return;
@@ -64,6 +65,19 @@ public class GamePlayManager : Singleton<GamePlayManager>
         targetPos.z = transform.position.z;
 
         eraser.Move(targetPos);
+    }
+
+    private void CheckOverSelectAbleOnBooster()
+    {
+        if (!BoosterManager.Instance.onUsingBooster)
+            return;
+        var mouseScreenPos = Input.mousePosition;
+        var worldPos = cam.ScreenToWorldPoint(mouseScreenPos);
+        var r = Physics2D.OverlapCircle(worldPos, radiusCheck, 7);
+        if (r)
+        {
+           BoosterManager.Instance.ChooseObjOnBooster(r);
+        }
     }
 
     private void CheckOverButtonGameObject()
@@ -115,13 +129,6 @@ public class GamePlayManager : Singleton<GamePlayManager>
         {
             SetCurrentCard(null);
         }
-
-
-        // if (Physics.Raycast(ray, out var hit))
-        // {
-        //     var card = hit.collider.GetComponent<Card>();
-        //     SetCurrentCard(card);
-        // }
     }
 
     private Card GetCardFromDictionary(Collider2D col)

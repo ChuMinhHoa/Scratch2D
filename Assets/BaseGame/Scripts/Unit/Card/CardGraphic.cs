@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using LitMotion;
+using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 
 public class CardGraphic : MonoBehaviour
@@ -13,6 +15,7 @@ public class CardGraphic : MonoBehaviour
     public Color colorEndOpen;
     public float timeOpen = 0.25f;
 
+    [Button]
     private async UniTask OnAnimOpen()
     {
         await LMotion.Create(colorStartOpen, colorEndOpen, timeOpen).Bind(x =>

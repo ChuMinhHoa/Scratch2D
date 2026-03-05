@@ -10,9 +10,6 @@ public partial class FolderHaveSticker : MonoBehaviour
 {
     public int objId;
     public StickerPos[] trsStickerPos;
-    public SpriteRenderer sprIcon;
-    public SpriteRenderer[] sprStickerIcons;
-    
     public UnitAnimation unitAnim;
     public FHSGraphic fhsGraphic;
     public StateMachine stateMachine;
@@ -25,11 +22,6 @@ public partial class FolderHaveSticker : MonoBehaviour
 
     public bool IsSameSticker(int id, out StickerPos stickerPos)
     {
-        // if (!readyToMove)
-        // {
-        //     stickerPos = null;
-        //     return false;
-        // }
         for (var i = 0; i < trsStickerPos.Length; i++)
         {
             if (trsStickerPos[i].id != id) continue;
@@ -70,7 +62,6 @@ public partial class FolderHaveSticker : MonoBehaviour
     {
         var currentPos = transform.position;
         await unitAnim.PlayScaleAnimation();
-        await fhsGraphic.OnClose();
         await LMotion.Create(currentPos, posOut.position, 0.25f).Bind(x => transform.position = x).AddTo(this);
         ResetFolderSticker();
     }
@@ -78,7 +69,6 @@ public partial class FolderHaveSticker : MonoBehaviour
     public async UniTask MoveToTarget(Vector3 target)
     {
         await unitAnim.PlayMoveAnim(target);
-        await fhsGraphic.OnOpen();
         readyToMove = true;
         GamePlayManager.Instance.level.CheckAllStickerOnFreeSpace();
     }

@@ -42,7 +42,6 @@ public partial class FolderHaveSticker : FHSWaitState.IHandler
 
     public UniTask OnEnterWaitState()
     {
-        fhsGraphic.OnIdle();
         return UniTask.CompletedTask;
     }
 

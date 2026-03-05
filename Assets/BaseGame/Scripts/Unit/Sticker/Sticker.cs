@@ -56,6 +56,9 @@ public partial class Sticker : MonoBehaviour
         progress.Value = 0;
         isDone.Value = false;
         stickerGraphic.ResetGraphic();
+        var pos = transform.position;
+        pos.z = 0;
+        transform.position = pos;
     }
 
     protected void StickerMoveToTarget()
@@ -93,5 +96,6 @@ public partial class Sticker : MonoBehaviour
     public void ForceScratchDone()
     {
         stateMachine.RequestTransition(StickerDoneState);
+        stickerGraphic.FillAllScratch();
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class LevelGenerateFunction : MonoBehaviour
     public LevelGenerateText levelGenerateText;
     public LevelData LevelData => levelGenerateText.levelData;
     public int totalSticker = 10;
+
     [Button("Add Obj Have Sticker", ButtonSizes.Gigantic)]
     private void AddObjHaveSticker()
     {
@@ -15,12 +17,12 @@ public class LevelGenerateFunction : MonoBehaviour
         {
             var newObjHaveSticker = DefaultDataCreator.CreateDefaultObjHaveStickerData();
             newObjHaveSticker.stickerId = SpriteGlobalConfig.Instance.GetRandomStickerId();
-            listObjHaveSticker.Add(newObjHaveSticker); 
+            listObjHaveSticker.Add(newObjHaveSticker);
         }
-        
+
         levelGenerateText.levelData.objHaveStickers = listObjHaveSticker.ToArray();
     }
-    
+
     [Button("Remove Obj Have Sticker", ButtonSizes.Gigantic)]
     private void RemoveObjHaveSticker()
     {
@@ -28,9 +30,10 @@ public class LevelGenerateFunction : MonoBehaviour
         if (listObjHaveSticker.Count >= 0) listObjHaveSticker.Remove(listObjHaveSticker[^1]);
         levelGenerateText.levelData.objHaveStickers = listObjHaveSticker.ToArray();
     }
-    
+
     public int totalCardAdd = 10;
     public int layerIndex = 0;
+
     [Button("Add Card", ButtonSizes.Gigantic)]
     private void AddCard()
     {
@@ -38,13 +41,14 @@ public class LevelGenerateFunction : MonoBehaviour
         {
             AddLayer();
         }
+
         var listCard = LevelData.layerCards[layerIndex].cards.ToList();
         for (var i = 0; i < totalCardAdd; i++)
         {
             var newCard = DefaultDataCreator.CreateDefaultCardData();
-            listCard.Add(newCard); 
+            listCard.Add(newCard);
         }
-        
+
         LevelData.layerCards[layerIndex].cards = listCard.ToArray();
     }
 
@@ -59,11 +63,53 @@ public class LevelGenerateFunction : MonoBehaviour
     [Button("Try Add Card", ButtonSizes.Gigantic)]
     private void TryAddCard()
     {
-        var totalSticker = LevelData.objHaveStickers.Length * 3;
-        
+        var objHaveSticker = LevelData.objHaveStickers;
+        var layerData = LevelData.layerCards.ToList();
+        for (var i = 0; i < objHaveSticker.Length; i++)
+        {
+            var randomCardForSticker = Random.Range(0, 3000);
+            var randomLayer = Random.Range(0, layerData.Count);
+            if (randomCardForSticker < 1000)
+            {
+                AddCard(CardType.Card3, randomLayer, 1, objHaveSticker[i].stickerId);
+            }
+            else if (randomCardForSticker < 2000)
+            {
+                AddCard(CardType.Card2, randomLayer, 1, objHaveSticker[i].stickerId);
+                AddCard(CardType.Card1, randomLayer, 1, objHaveSticker[i].stickerId);
+            }
+            else
+            {
+                AddCard(CardType.Card1, randomLayer, 3, objHaveSticker[i].stickerId);
+            }
+        }
     }
-    
-    
+
+    private void AddCard(CardType cardType, int randomLayer, int count, int stickerId)
+    {
+        var layerData = LevelData.layerCards.ToList();
+
+        for (var i = 0; i < count; i++)
+        {
+            var cards = layerData[randomLayer].cards.ToList();
+            var newCard = DefaultDataCreator.CreateDefaultCardData();
+            newCard.cardType = cardType;
+            var stickers = new List<StickerData>();
+            for (var j = 0; j < LevelDesignHelper.GetTotalStickerOnCard(cardType); j++)
+            {
+                var newSticker = DefaultDataCreator.CreateDefaultStickerData();
+                newSticker.stickerID = stickerId;
+                stickers.Add(newSticker);
+            }
+
+            newCard.stickers = stickers.ToArray();
+            cards.Add(newCard);
+            layerData[randomLayer].cards = cards.ToArray();
+        }
+
+        LevelData.layerCards = layerData.ToArray();
+    }
+
 
     [Button]
     private void CheckLevel()
@@ -92,6 +138,7 @@ public class LevelGenerateFunction : MonoBehaviour
                 return false;
             }
         }
+
         return true;
     }
 }

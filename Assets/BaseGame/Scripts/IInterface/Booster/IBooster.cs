@@ -1,4 +1,5 @@
 using System;
+using Core.UI.Activities;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +28,7 @@ public class BoosterBase : IBooster
 
     public virtual void UseBooster()
     {
+        _ = UIManager.Instance.OpenActivityAsync<ActivityUsingBooster>();
         GlobalEventManager.OnBoosterUsing?.Invoke(boosterType, this);
     }
 
