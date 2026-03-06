@@ -130,3 +130,10 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 0c0182ddfa003f0479c0e8a44e26fa71, type: 3}
   - tType: 16
     sprite: {fileID: 21300000, guid: ee1607e2146640a42888678ae5081a84, type: 3}
+  iconScratchCardConfigs:
+  - tType: 0
+    sprite: {fileID: 21300000, guid: a1c7e2a6aeb99b44db379f4892430c83, type: 3}
+  - tType: 100
+    sprite: {fileID: 21300000, guid: 849f146d9b4407044899016b19cf4d08, type: 3}
+  - tType: 200
+    sprite: {fileID: 21300000, guid: 8f5330d1caaef084795702074822f55b, type: 3}

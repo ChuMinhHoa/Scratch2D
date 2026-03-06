@@ -62,9 +62,11 @@ public partial class Card : CardDoneState.IHandler
     private async UniTask AnimCardDone()
     {
         await UniTask.WaitForSeconds(1f);
+        
         await cardGraphic.AnimCardDone(() =>
         {
-            scratchCardManager.EnableInput(false);
+            scratchObject.AnimClose();
+            scratchObject.EnableInput(false);
         });
         ResetCard();
         GamePlayManager.Instance.NextLayer();

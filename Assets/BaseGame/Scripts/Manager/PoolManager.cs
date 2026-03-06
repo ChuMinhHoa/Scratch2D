@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ScratchCardAsset;
 using TW.Utility.DesignPattern;
 using UnityEngine;
 
@@ -131,7 +132,25 @@ public class PoolManager : Singleton<PoolManager>
     }
 
     #endregion
-  
+    #region Scratch Card
+
+    public HPool<ScratchObject> poolScratchCard;
+    
+    public ScratchObject SpawnScratchManager()
+    {
+        var obj = poolScratchCard.Spawn();
+        if (!obj) return null;
+        //obj.transform.SetParent(parents);
+        obj.transform.localScale = Vector3.one;
+        return obj;
+    }
+    
+    public void DespawnScratch(ScratchObject obj)
+    {
+        poolScratchCard.Despawn(obj);
+    }
+
+    #endregion
 }
 
 [System.Serializable]
@@ -149,6 +168,16 @@ public class HPool<T> where T : Component
         {
             var obj = Object.Instantiate(prefab, parents);
             obj.gameObject.SetActive(false);
+            deActivePool.Add(obj);
+        }
+    }
+    
+    public void SpawnOnInit(int am)
+    {
+        for (var i = 0; i < am; i++)
+        {
+            var obj = Object.Instantiate(prefab, parents);
+            obj.gameObject.SetActive(true);
             deActivePool.Add(obj);
         }
     }

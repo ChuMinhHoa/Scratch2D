@@ -66,6 +66,7 @@ public partial class Card : CardInitState.IHandler
         var pos = transform.position;
         pos.z = layerIndex;
         transform.position = pos;
+        transform.eulerAngles = data.rotation;
         countSticker = cardData.stickers.Length;
     }
 

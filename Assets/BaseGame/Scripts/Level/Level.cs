@@ -128,4 +128,9 @@ public class Level : MonoBehaviour
     {
         Debug.Log("game over");
     }
+
+    public bool IsHaveStickerWait()
+    {
+        return fSpaceController.IsHaveStickerWait();
+    }
 }

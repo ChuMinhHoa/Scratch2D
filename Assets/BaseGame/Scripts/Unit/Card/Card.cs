@@ -15,7 +15,6 @@ public partial class Card : MonoBehaviour
 {
     public CardType cardType;
     public int layerIndex;
-    public ScratchCardManager scratchCardManager;
     public Transform[] stickerPoints;
 
     public List<Sticker> stickers;
@@ -31,6 +30,8 @@ public partial class Card : MonoBehaviour
     public StateMachine stateMachine = new();
     public CardGraphic cardGraphic;
 
+    public ScratchObject scratchObject;
+
     private void Start()
     {
         currentLayer = GamePlayManager.Instance.level.layerController.layerActive;
@@ -38,11 +39,23 @@ public partial class Card : MonoBehaviour
         
         stateMachine.RequestTransition(CardWaitState);
         stateMachine.Run();
+        GlobalEventManager.OnLayerIndexChange += OnCheckChangeLayer;
+    }
+
+    private void OnDestroy()
+    {
+        GlobalEventManager.OnLayerIndexChange -= OnCheckChangeLayer;
+    }
+
+    private void OnCheckChangeLayer()
+    {
+        OnChangeLayer(currentLayer.Value);
     }
 
     private void OnChangeLayer(int layer)
     {
         if (IsDone()) return;
+        if(GamePlayManager.Instance.level.IsHaveStickerWait()) return;
         isSameLayer = layerIndex == layer;
         _ = WaitToEnableInput();
     }
@@ -55,32 +68,22 @@ public partial class Card : MonoBehaviour
         {
             stickers[i].EnableScratch(isSameLayer);
         }
-        scratchCardManager.EnableInput(isSameLayer);
+        scratchObject.EnableInput(isSameLayer);
     }
 
     public void SetActionCallbackChangeProgress(Action<float> callback)
     {
-        scratchCardManager.SetActionCallBackChangeProgress(callback);
+        scratchObject.SetActionCallBackChangeProgress(callback);
     }
 
     public void RemoveActionCallbackChangeProgress(Action<float> callback)
     {
-        scratchCardManager.RemoveActionCallBackChangeProgress(callback);
+        scratchObject.RemoveActionCallBackChangeProgress(callback);
     }
 
     private void ChangeStickerScratchDone(bool isDone)
     {
         if (!isDone) return;
-        // for (var i = stickers.Count - 1; i >=0; i--)
-        // {
-        //     if (stickers[i].isDone)
-        //     {
-        //         
-        //         stickers[i].ResetSticker();
-        //         PoolManager.Instance.DespawnSticker(stickers[i]);
-        //         stickers.Remove(stickers[i]);
-        //     }
-        // }
         countSticker--;
         if (countSticker == 0)
         {
@@ -99,11 +102,14 @@ public partial class Card : MonoBehaviour
         }
 
         stickers.Clear();
-        scratchCardManager.Progress.ResetScratch();
+        
+        //scratchObject.ResetScratch();
+        Destroy(scratchObject.gameObject);
         stickerSubscriptions.Clear();
         PoolManager.Instance.DespawnCard(this);
         GamePlayManager.Instance.RemoveCurrentCard(this);
         cardGraphic.ResetCard();
+        objFakeScratch.SetActive(true);
     }
 
     [Button]
@@ -113,16 +119,25 @@ public partial class Card : MonoBehaviour
             {
                 isSameLayer = layerIndex == 0;
                 _ = cardGraphic.SetActiveObjLook(!isSameLayer);
-                scratchCardManager.gameObject.SetActive(true);
-                objFakeScratch.gameObject.SetActive(false);
+               
                 for (var i = 0; i < stickers.Count; i++)
                 {
                     stickers[i].ScratchActive();
                     stickers[i].EnableScratch(isSameLayer);
                 }
-                scratchCardManager.EnableInput(isSameLayer);
+
+                _ = SpawnScratchObject();
+                
             }).WithDelay(0.15f * index).WithEase(curveFirstSpawn).Bind(x => transform.localScale = Vector3.one * x)
             .AddTo(this);
+    }
+
+    private async UniTask SpawnScratchObject()
+    {
+        scratchObject = PoolManager.Instance.SpawnScratchManager();
+        scratchObject.EnableInput(isSameLayer);
+        await scratchObject.InitData(layerIndex, data);
+        objFakeScratch.SetActive(false);
     }
 
     public bool CheckIsSameLayer()

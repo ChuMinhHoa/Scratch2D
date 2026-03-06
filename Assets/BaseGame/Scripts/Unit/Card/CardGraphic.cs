@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using LitMotion;
+using ScratchCardAsset;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -14,6 +15,18 @@ public class CardGraphic : MonoBehaviour
     public Color colorStartOpen;
     public Color colorEndOpen;
     public float timeOpen = 0.25f;
+    
+    public ScratchCardManager scratchCardManager;
+    public Transform[] trsNeedRot;
+
+    public void InitData(Vector3 rot)
+    {
+        //scratchCardManager.gameObject.SetActive(true);
+        for (int i = 0; i < trsNeedRot.Length; i++)
+        {
+            trsNeedRot[i].eulerAngles = rot;
+        }
+    }
 
     [Button]
     private async UniTask OnAnimOpen()

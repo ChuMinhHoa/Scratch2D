@@ -1,0 +1,180 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2489944649381979802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5288263494733043727}
+  - component: {fileID: 1773806409748897527}
+  m_Layer: 0
+  m_Name: ScratchObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5288263494733043727
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2489944649381979802}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5561493493744720715}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1773806409748897527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2489944649381979802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 161996aab0aa0154089fe96a8538dce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScratchObject
+  scratchCardManager: {fileID: 5561493493754704819}
+  trsNeedRot: {fileID: 5561493493744753785}
+--- !u!1001 &5561493493744564119
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5288263494733043727}
+    m_Modifications:
+    - target: {fileID: 137284, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: m_Name
+      value: ScratchCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 137284, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437468, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437468, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437468, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 437468, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 437468, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437468, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437468, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437468, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437468, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437468, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11474202, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: BrushScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11474202, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: BrushScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11474202, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: InputEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486244, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: spriteIcon
+      value: 
+      objectReference: {fileID: 5561493493723876861}
+    - target: {fileID: 11486244, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: EraseTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: eef5a9056291fba45ad50d97817d14ae, type: 3}
+    - target: {fileID: 11486244, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: InputEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486244, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: EraseTextureScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486244, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: EraseTextureScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486244, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: ScratchSurfaceSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a1c7e2a6aeb99b44db379f4892430c83, type: 3}
+    - target: {fileID: 11486244, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: ScratchSurfaceSpriteHasAlpha
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 21281386, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a1c7e2a6aeb99b44db379f4892430c83, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+--- !u!212 &5561493493723876861 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 21281386, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+  m_PrefabInstance: {fileID: 5561493493744564119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5561493493744720715 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 437468, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+  m_PrefabInstance: {fileID: 5561493493744564119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5561493493744753785 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 469998, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+  m_PrefabInstance: {fileID: 5561493493744564119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5561493493754704819 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 11486244, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+  m_PrefabInstance: {fileID: 5561493493744564119}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1091e69478f334e5c995b30d9b122da3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

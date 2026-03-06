@@ -9,7 +9,7 @@ public class FreeSpaceController : SpaceForSticker
 {
     public SpaceSticker[] spaceStickers;
     [ShowInInspector] public List<StickerDone> stickerCantMoveAnyWhere = new();
-    
+
     public override bool RegisterSticker(Sticker sticker)
     {
         for (var i = 0; i < spaceStickers.Length; i++)
@@ -21,29 +21,53 @@ public class FreeSpaceController : SpaceForSticker
 
         return false;
     }
-    
+
     public void CheckAllStickerOnFreeSpace()
     {
         for (var i = 0; i < spaceStickers.Length; i++)
         {
             if (!spaceStickers[i].stickerPos.IsHaveObj())
                 continue;
-            if(GamePlayManager.Instance.level.oSController.RegisterStickerDoneFromFreeSpace(spaceStickers[i].stickerPos.obj))
+            if (GamePlayManager.Instance.level.oSController.RegisterStickerDoneFromFreeSpace(spaceStickers[i].stickerPos
+                    .obj))
             {
                 spaceStickers[i].stickerPos.ResetPos();
             }
         }
 
-        for (var i = stickerCantMoveAnyWhere.Count - 1; i >= 0; i--) 
+        for (var i = stickerCantMoveAnyWhere.Count - 1; i >= 0; i--)
         {
-            if(GamePlayManager.Instance.level.oSController.RegisterStickerDoneFromFreeSpace(stickerCantMoveAnyWhere[i]))
+            if (GamePlayManager.Instance.level.oSController
+                .RegisterStickerDoneFromFreeSpace(stickerCantMoveAnyWhere[i]))
             {
                 stickerCantMoveAnyWhere.Remove(stickerCantMoveAnyWhere[i]);
+            }
+            else
+            {
+                MoveToFreeSpace(stickerCantMoveAnyWhere[i]);
             }
         }
 
         CheckGameOver();
     }
+
+    private void MoveToFreeSpace(StickerDone stickerDone)
+    {
+        var flag = false;
+        for (var i = 0; i < spaceStickers.Length; i++)
+        {
+            if (!spaceStickers[i].IsFreeSpace(out var stickerPos)) continue;
+            stickerPos.RegisterObj(stickerDone);
+            _ = stickerDone.PlayMoveAnimToFreeSpace(stickerPos);
+            flag = true;
+            break;
+        }
+
+        if (!flag) return;
+        Debug.Log("now you can move to next layer!");
+        GlobalEventManager.OnLayerIndexChange?.Invoke();
+    }
+
 
     private void CheckGameOver()
     {
@@ -52,6 +76,7 @@ public class FreeSpaceController : SpaceForSticker
             if (!spaceStickers[i].stickerPos.IsHaveObj())
                 return;
         }
+
         if (stickerCantMoveAnyWhere.Count == 0)
             return;
         GamePlayManager.Instance.level.GameOver();
@@ -63,15 +88,20 @@ public class FreeSpaceController : SpaceForSticker
         var position = sticker.transform.position;
         position.z = -1;
         var e = PoolManager.Instance.SpawnStickerDone(sticker.transform);
-        
+
         stickerCantMoveAnyWhere.Add(e);
-        
+
         e.transform.eulerAngles = Vector3.zero;
         e.InitStickerMove(sticker.stickerData.stickerID);
         e.transform.position = position;
         sticker.DisAbleIcon();
         e.PlayAnimRemove();
-        await UniTask.WaitForSeconds(2f);
-        CheckGameOver();
+        //await UniTask.WaitForSeconds(2f);
+        //CheckGameOver();
+    }
+
+    public bool IsHaveStickerWait()
+    {
+        return stickerCantMoveAnyWhere.Count > 0;
     }
 }

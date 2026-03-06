@@ -33,11 +33,12 @@ public class StickerDone : MonoBehaviour
        transform.SetParent(targetPos);
    }
 
-   public async UniTask PlayMoveAnimToFreeSpace(Transform targetPos)
+   public async UniTask PlayMoveAnimToFreeSpace(StickerPos stickerPos)
    {
        stickerDoneAnim.enabled = false;
        LMotion.Create(sprIcon.transform.localPosition, Vector3.zero, .25f).Bind(x => sprIcon.transform.localPosition = x);
-       await unitAnim.PlayMoveAnim(targetPos.position);
+       await unitAnim.PlayMoveAnim(stickerPos.trsPos.position);
+       stickerPos.MoveDone();
    }
 
    public void PlayAnimRemove()

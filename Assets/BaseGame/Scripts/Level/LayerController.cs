@@ -20,7 +20,7 @@ public class LayerController
         loadDone = true;
     }
 
-    private void LoadCardInLayer(int layerIndex, Span<CardData> data)
+    private void LoadCardInLayer(int layerIndex, CardData[] data)
     {
         for (var i = 0; i < data.Length; i++)
         {

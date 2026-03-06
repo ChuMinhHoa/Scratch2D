@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &462224
 Transform:
   m_ObjectHideFlags: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 0}
-  RenderType: 0
+  RenderType: 1
   ScratchSurfaceSprite: {fileID: 21300000, guid: 571dbb2cbefac464195f151b4deca922, type: 3}
   ScratchSurfaceSpriteHasAlpha: 0
   MaskProgressCutOffValue: 0.33
@@ -227,6 +227,7 @@ MonoBehaviour:
   BrushShader: {fileID: 4800000, guid: efcd8dda2a6b7f9429d89ff2b5d7ebbe, type: 3}
   MaskProgressShader: {fileID: 4800000, guid: 416d7cfe5d2da4988959de9a6c288abc, type: 3}
   MaskProgressCutOffShader: {fileID: 4800000, guid: 77521b41b2fb846cdb39d5d9d0b5ad12, type: 3}
+  spriteIcon: {fileID: 0}
 --- !u!1 &178426
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &469998
 Transform:
   m_ObjectHideFlags: 0

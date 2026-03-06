@@ -56,8 +56,7 @@ public class SpaceForSticker : ISpaceForSticker
         await UniTask.WaitForSeconds(1f); // wait anim Remove
         if (!folder)
         {
-            await e.PlayMoveAnimToFreeSpace(stickerPos.trsPos);
-            stickerPos.MoveDone();
+            await e.PlayMoveAnimToFreeSpace(stickerPos);
         }
         else
         {

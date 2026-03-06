@@ -178,6 +178,7 @@ namespace ScratchCardAsset
 		public void ChangeSprite(Sprite sprite)
 		{
 			spriteIcon.sprite = sprite;
+			ScratchSurfaceSprite = sprite;
 		}
 
 		public void EnableInput(bool enable)

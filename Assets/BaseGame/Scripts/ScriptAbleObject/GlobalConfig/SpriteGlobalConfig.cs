@@ -142,6 +142,18 @@ public class SpriteGlobalConfig : GlobalConfig<SpriteGlobalConfig>
         UnityEditor.EditorUtility.SetDirty(this);
     }
     #endif
+    
+    public SpriteConfig<CardType>[] iconScratchCardConfigs;
+    public Sprite GetScratchCardSprite(CardType dataCardType)
+    {
+        for (var i = 0; i < iconScratchCardConfigs.Length; i++)
+        {
+            if(iconScratchCardConfigs[i].tType == dataCardType)
+                return iconScratchCardConfigs[i].sprite;
+        }
+
+        return null;
+    }
 }
 
 [System.Serializable]

@@ -240,7 +240,7 @@ namespace ScratchCardAsset
 			var scratchPosition = Vector2.zero;
 			if (MainCamera.orthographic || isCanvasOverlay)
 			{
-				var clickPosition = isCanvasOverlay ? (Vector3) position : MainCamera.ScreenToWorldPoint(position);
+				var clickPosition = isCanvasOverlay ? (Vector3)position : MainCamera.ScreenToWorldPoint(position);
 				var lossyScale = Surface.lossyScale;
 				var clickLocalPosition = Vector2.Scale(Surface.InverseTransformPoint(clickPosition), lossyScale) +
 				                         boundsSize / 2f;
@@ -257,7 +257,21 @@ namespace ScratchCardAsset
 				{
 					var point = ray.GetPoint(enter);
 					var pointLocal = Surface.InverseTransformPoint(point);
-					var uv = triangle.GetUV(pointLocal);
+
+					// Use localScale - InverseTransformPoint already handles world-to-local conversion
+					var localScale = Surface.localScale;
+            
+					// Calculate UV based on local position and boundsSize
+					// boundsSize is in local space, so we need to account for localScale
+					var uv = new Vector2(
+						(pointLocal.x * localScale.x / boundsSize.x) + 0.5f,
+						(pointLocal.y * localScale.y / boundsSize.y) + 0.5f
+					);
+
+					// Clamp UV to valid range
+					uv.x = Mathf.Clamp01(uv.x);
+					uv.y = Mathf.Clamp01(uv.y);
+
 					scratchPosition = new Vector2(uv.x * imageSize.x, uv.y * imageSize.y);
 				}
 			}
