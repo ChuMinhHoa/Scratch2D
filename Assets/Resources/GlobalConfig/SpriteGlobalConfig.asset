@@ -14,13 +14,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpriteGlobalConfig
   iconSpriteConfigs:
   - tType: 0
-    sprite: {fileID: 21300000, guid: 1edba9158f30d0f4aaac2eefba0302a5, type: 3}
+    sprite: {fileID: 21300000, guid: f7a32db7bd9627746a9f78bf897def0d, type: 3}
   - tType: 1
-    sprite: {fileID: 21300000, guid: 77515db770b26e44da85f290b374eb2f, type: 3}
+    sprite: {fileID: 21300000, guid: 3197b6609bc8b63439ce41e5980a5d03, type: 3}
   - tType: 2
-    sprite: {fileID: 21300000, guid: 730f834db08e1f84ea68ea31d1723bc1, type: 3}
+    sprite: {fileID: 21300000, guid: dd60d1a4c01b5794a851abd10e08be23, type: 3}
   - tType: 3
-    sprite: {fileID: 21300000, guid: 189b78b36924a9e48ac0388e9b5aea0f, type: 3}
+    sprite: {fileID: 21300000, guid: 637feb4076dce764fa5d16edfa618514, type: 3}
+  - tType: 4
+    sprite: {fileID: 21300000, guid: 2c786f770f9705544b65b75a28082bd9, type: 3}
+  - tType: 5
+    sprite: {fileID: 21300000, guid: 7f443b8ce130d8844aace563cc48d8de, type: 3}
+  - tType: 6
+    sprite: {fileID: 21300000, guid: d1ec76c38d03e7b4aabceed9c20bf1be, type: 3}
+  - tType: 7
+    sprite: {fileID: 21300000, guid: 2f8c41f08ebf8fb45a6038643c50b5ca, type: 3}
+  - tType: 8
+    sprite: {fileID: 21300000, guid: 9070a7103a685434ca8a6a959b14586b, type: 3}
+  - tType: 9
+    sprite: {fileID: 21300000, guid: 4b8d3101521315b40b7433eb3ee3644f, type: 3}
+  - tType: 10
+    sprite: {fileID: 21300000, guid: 91db7e1a339830a4ab2547048258fc5a, type: 3}
+  - tType: 11
+    sprite: {fileID: 21300000, guid: e90dc5b03d9b4e84386c20b1d69321aa, type: 3}
+  - tType: 12
+    sprite: {fileID: 21300000, guid: 7d641a0a6bd249a409ce102e3df8f6ef, type: 3}
+  - tType: 13
+    sprite: {fileID: 21300000, guid: 149f00c4d1bceeb409501f220ffffc40, type: 3}
+  - tType: 14
+    sprite: {fileID: 21300000, guid: a58882957cd1c41498eaa1b1f98a28cb, type: 3}
+  - tType: 15
+    sprite: {fileID: 21300000, guid: b6160b2e70f4abc44b72275e94902a68, type: 3}
+  - tType: 16
+    sprite: {fileID: 21300000, guid: 5e24711e5f84782449dc8cfb5021cefb, type: 3}
   iconObjHaveStickerConfigs:
   - tType: 0
     sprite: {fileID: 21300000, guid: afc7293958716804cbe509ca4be8883a, type: 3}
@@ -36,19 +62,71 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 462209f45231b6747ac2e2afc5a5f655, type: 3}
   iconStickerBgConfigs:
   - tType: 0
-    sprite: {fileID: 21300000, guid: be3730dbf9ff7734fa74d4817b78167e, type: 3}
+    sprite: {fileID: 21300000, guid: 8cb77dea6b476a94b94470d38c328e46, type: 3}
   - tType: 1
-    sprite: {fileID: 21300000, guid: 5a7d0be626e398343bdb3f6dc90aa562, type: 3}
+    sprite: {fileID: 21300000, guid: 3efbc21bc5573ae48b1e0c2972f18922, type: 3}
   - tType: 2
-    sprite: {fileID: 21300000, guid: 8241e95e5ee82d741beb8e6df64d6802, type: 3}
+    sprite: {fileID: 21300000, guid: 37a66f8aa3ded954a9846b5be7ba85ad, type: 3}
   - tType: 3
-    sprite: {fileID: 21300000, guid: 9967443bf48a34b478c90e2e260f45a4, type: 3}
+    sprite: {fileID: 21300000, guid: 58111988496cdc445bf093f40bc3da05, type: 3}
+  - tType: 4
+    sprite: {fileID: 21300000, guid: 7f97270bff91bdf408cc0efc693fc698, type: 3}
+  - tType: 5
+    sprite: {fileID: 21300000, guid: 8b2eac209dff1ec4a96700df767eb90b, type: 3}
+  - tType: 6
+    sprite: {fileID: 21300000, guid: 26334d52135d65e47853e05b9f644afa, type: 3}
+  - tType: 7
+    sprite: {fileID: 21300000, guid: d9d6845ed2146c6478c50926193f8625, type: 3}
+  - tType: 8
+    sprite: {fileID: 21300000, guid: 08017db4ccd6a9f4c9d44d305cf7f04e, type: 3}
+  - tType: 9
+    sprite: {fileID: 21300000, guid: 5ac6e71cd4796ed4ca7dde67fe7819bf, type: 3}
+  - tType: 10
+    sprite: {fileID: 21300000, guid: 74ce3186ec61394479ab6e744a9356b9, type: 3}
+  - tType: 11
+    sprite: {fileID: 21300000, guid: 4f0b0bbba455b644fb4f98aa278d5973, type: 3}
+  - tType: 12
+    sprite: {fileID: 21300000, guid: 046ba3ebeab4fb64bb5c4d3913a3f085, type: 3}
+  - tType: 13
+    sprite: {fileID: 21300000, guid: 0fe8653207940574d846e3f772d057cf, type: 3}
+  - tType: 14
+    sprite: {fileID: 21300000, guid: 7fdbd45059b26bf428eb7038f3259336, type: 3}
+  - tType: 15
+    sprite: {fileID: 21300000, guid: 0b6c13f8e18d1f645b026bcb8a7c9fda, type: 3}
+  - tType: 16
+    sprite: {fileID: 21300000, guid: ab6ad95da195d57419ff0083b6a7ea4f, type: 3}
   iconStickerShadowConfigs:
   - tType: 0
-    sprite: {fileID: 21300000, guid: d4af7afaa6408e34c99e838bf313eef2, type: 3}
+    sprite: {fileID: 21300000, guid: a59c818f72b1f744283a606ed6af9386, type: 3}
   - tType: 1
-    sprite: {fileID: 21300000, guid: 25480afd97b20cd4688e9f95cd2d18d4, type: 3}
+    sprite: {fileID: 21300000, guid: 923f789110f4d514eaad5ebb32cfc24f, type: 3}
   - tType: 2
-    sprite: {fileID: 21300000, guid: 5671cadc2b307ff46a506ba0b5f84ecc, type: 3}
+    sprite: {fileID: 21300000, guid: 8760ab33628c26c47a3900b258fa5a5a, type: 3}
   - tType: 3
-    sprite: {fileID: 21300000, guid: d4a1b4d5033951e4b9dc769a49e6eff0, type: 3}
+    sprite: {fileID: 21300000, guid: d435c502647bf7a45b6debc1d753b4bc, type: 3}
+  - tType: 4
+    sprite: {fileID: 21300000, guid: 13d2a8d0dc453f247990a1354463c066, type: 3}
+  - tType: 5
+    sprite: {fileID: 21300000, guid: 24b752e37351f614683e38d7e5b98806, type: 3}
+  - tType: 6
+    sprite: {fileID: 21300000, guid: 7bf42cf74097cc84c94c077488956a2a, type: 3}
+  - tType: 7
+    sprite: {fileID: 21300000, guid: 91d080b6b791762489a778ff247f652f, type: 3}
+  - tType: 8
+    sprite: {fileID: 21300000, guid: e00db1f330bdd174e8f49e04351c8cab, type: 3}
+  - tType: 9
+    sprite: {fileID: 21300000, guid: 0bad0320cae4a2b418be67c554715181, type: 3}
+  - tType: 10
+    sprite: {fileID: 21300000, guid: eab75f34376770a4291a0b7c15077387, type: 3}
+  - tType: 11
+    sprite: {fileID: 21300000, guid: ffda5caae1b39e84c9e789c6ca4141f5, type: 3}
+  - tType: 12
+    sprite: {fileID: 21300000, guid: deb99a873c60def448595ba77ba0ecda, type: 3}
+  - tType: 13
+    sprite: {fileID: 21300000, guid: b668d3acb2085a04e91b4231dae6382f, type: 3}
+  - tType: 14
+    sprite: {fileID: 21300000, guid: 38b70aee78ca68b49af69563597ceb59, type: 3}
+  - tType: 15
+    sprite: {fileID: 21300000, guid: 0c0182ddfa003f0479c0e8a44e26fa71, type: 3}
+  - tType: 16
+    sprite: {fileID: 21300000, guid: ee1607e2146640a42888678ae5081a84, type: 3}

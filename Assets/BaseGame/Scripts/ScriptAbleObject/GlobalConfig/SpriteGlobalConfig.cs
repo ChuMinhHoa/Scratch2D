@@ -1,3 +1,4 @@
+using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Sirenix.Utilities;
@@ -74,6 +75,73 @@ public class SpriteGlobalConfig : GlobalConfig<SpriteGlobalConfig>
 
         return null;
     }
+
+    #if UNITY_EDITOR
+    [Button]
+    private void GetSpriteSticker()
+    {
+        var path = @"Assets\BaseGame\Graphic\Sprites\Icon\stickers\Normal\";
+        var sprites = iconSpriteConfigs.ToList();
+        var guids = UnityEditor.AssetDatabase.FindAssets("t:Sprite", new[] { path });
+        sprites.Clear();
+        for (var i = 0; i < guids.Length; i++)
+        {
+            var assetPath = UnityEditor.AssetDatabase.GUIDToAssetPath(guids[i]);
+            var sprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>(assetPath);
+            if (sprite != null)
+            {
+                sprites.Add(new SpriteConfig<int>
+                {
+                    tType = i,
+                    sprite = sprite
+                });
+            }
+        }
+        iconSpriteConfigs = sprites.ToArray();
+        
+        path = @"Assets\BaseGame\Graphic\Sprites\Icon\stickers\Bg\";
+        sprites = iconStickerBgConfigs.ToList();
+        guids = UnityEditor.AssetDatabase.FindAssets("t:Sprite", new[] { path });
+        sprites.Clear();
+        for (var i = 0; i < guids.Length; i++)
+        {
+            var assetPath = UnityEditor.AssetDatabase.GUIDToAssetPath(guids[i]);
+            var sprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>(assetPath);
+            if (sprite != null)
+            {
+                sprites.Add(new SpriteConfig<int>
+                {
+                    tType = i,
+                    sprite = sprite
+                });
+            }
+        }
+        
+        iconStickerBgConfigs = sprites.ToArray();
+        
+        path = @"Assets\BaseGame\Graphic\Sprites\Icon\stickers\Shadow\";
+        sprites = iconStickerShadowConfigs.ToList();
+        guids = UnityEditor.AssetDatabase.FindAssets("t:Sprite", new[] { path });
+        sprites.Clear();
+        for (var i = 0; i < guids.Length; i++)
+        {
+            var assetPath = UnityEditor.AssetDatabase.GUIDToAssetPath(guids[i]);
+            var sprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>(assetPath);
+            if (sprite != null)
+            {
+                sprites.Add(new SpriteConfig<int>
+                {
+                    tType = i,
+                    sprite = sprite
+                });
+            }
+        }
+        iconStickerShadowConfigs = sprites.ToArray();
+        
+        
+        UnityEditor.EditorUtility.SetDirty(this);
+    }
+    #endif
 }
 
 [System.Serializable]

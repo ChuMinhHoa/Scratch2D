@@ -9,6 +9,9 @@ using Sirenix.Utilities;
 [GlobalConfig("Assets/Resources/GlobalConfig/")]
 public class CardDesignGlobalConfig : GlobalConfig<CardDesignGlobalConfig>
 {
+    [field: SerializeField] public Transform _cardContainer { get; set; }
+    public List<Card> _cardPrefabs = new();
+
     [field: SerializeField, CardDataEditor]
     public CardData CardData { get; set; }
 }
@@ -31,9 +34,15 @@ public sealed class CardDataEditorAttributeDrawer : OdinAttributeDrawer<CardData
     private const float MinLayerHeight = 200f;
     private const float ExtraPadding = 50f;
 
-    private static List<Card> _cardPrefabs = new();
-    private static Transform _cardContainer;
-    private static Dictionary<(int layer, int card), GameObject> _spawnedCards = new();
+    private static List<Card> _cardPrefabs => CardDesignGlobalConfig.Instance._cardPrefabs;
+
+    private static Transform _cardContainer
+    {
+        get => CardDesignGlobalConfig.Instance._cardContainer;
+        set => CardDesignGlobalConfig.Instance._cardContainer = value;
+    }
+
+    private static Dictionary<(int layer, int card), Card> _spawnedCards = new();
     private static bool _prefabsFoldout = true;
 
     private const int VerticalCardTypeThreshold = 99;
@@ -44,6 +53,8 @@ public sealed class CardDataEditorAttributeDrawer : OdinAttributeDrawer<CardData
     private static int _draggingCardIndex = -1;
     private static Vector2 _dragStartMousePos;
     private static Vector3 _dragStartCardPos;
+
+    private static int _selectedLayerIndex = -1;
 
     private Vector2 GetCardSize(CardData card)
     {
@@ -91,8 +102,6 @@ public sealed class CardDataEditorAttributeDrawer : OdinAttributeDrawer<CardData
 
         // Handle global drag events
         HandleGlobalDragEvents(levelData);
-
-        DrawPrefabSettings();
         DrawSpawnControls(levelData);
 
         float totalHeight = CalculateTotalHeight(levelData);
@@ -137,46 +146,6 @@ public sealed class CardDataEditorAttributeDrawer : OdinAttributeDrawer<CardData
     }
 
     private static LevelDesignGlobalConfig levelConfig => LevelDesignGlobalConfig.Instance;
-
-    private void DrawPrefabSettings()
-    {
-        _prefabsFoldout = EditorGUILayout.Foldout(_prefabsFoldout, "Card Prefabs", true);
-
-        if (_prefabsFoldout)
-        {
-            EditorGUI.indentLevel++;
-
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("Container", GUILayout.Width(80));
-            _cardContainer = EditorGUILayout.ObjectField(_cardContainer, typeof(Transform), true) as Transform;
-            EditorGUILayout.EndHorizontal();
-
-            EditorGUILayout.Space(3);
-
-            for (int i = 0; i < _cardPrefabs.Count; i++)
-            {
-                EditorGUILayout.BeginHorizontal();
-                _cardPrefabs[i] = EditorGUILayout.ObjectField(_cardPrefabs[i], typeof(Card), false) as Card;
-
-                if (GUILayout.Button("-", GUILayout.Width(20)))
-                {
-                    _cardPrefabs.RemoveAt(i);
-                    i--;
-                }
-
-                EditorGUILayout.EndHorizontal();
-            }
-
-            if (GUILayout.Button("+ Add Card Prefab"))
-            {
-                _cardPrefabs.Add(null);
-            }
-
-            EditorGUI.indentLevel--;
-        }
-
-        EditorGUILayout.Space(5);
-    }
 
     private void DrawSpawnControls(LevelData levelData)
     {
@@ -240,7 +209,7 @@ public sealed class CardDataEditorAttributeDrawer : OdinAttributeDrawer<CardData
 
     private void SpawnCard(CardData cardData, int layerIndex, int cardIndex, Transform parent)
     {
-        GameObject prefab = GetPrefabForCardType(cardData.cardType);
+        Card prefab = GetPrefabForCardType(cardData.cardType);
 
         if (prefab == null)
         {
@@ -248,24 +217,28 @@ public sealed class CardDataEditorAttributeDrawer : OdinAttributeDrawer<CardData
             return;
         }
 
-        GameObject cardObj = PrefabUtility.InstantiatePrefab(prefab, parent) as GameObject;
+        Card cardObj = PrefabUtility.InstantiatePrefab(prefab, parent) as Card;
         if (cardObj == null) return;
 
         cardObj.name = $"Card_{layerIndex}_{cardIndex}_{cardData.cardType}";
-        cardObj.transform.localPosition = cardData.position;
+        var pos = cardData.position;
+        pos.z = layerIndex;
+        cardObj.transform.localPosition = pos;
         cardObj.transform.localEulerAngles = cardData.rotation;
+        cardObj.data = cardData;
+        cardObj.layerIndex = layerIndex;
 
         _spawnedCards[(layerIndex, cardIndex)] = cardObj;
         Undo.RegisterCreatedObjectUndo(cardObj, "Spawn Card");
     }
 
-    private GameObject GetPrefabForCardType(CardType cardType)
+    private Card GetPrefabForCardType(CardType cardType)
     {
         foreach (var card in _cardPrefabs)
         {
             if (card != null && card.cardType == cardType)
             {
-                return card.gameObject;
+                return card;
             }
         }
 
@@ -293,7 +266,7 @@ public sealed class CardDataEditorAttributeDrawer : OdinAttributeDrawer<CardData
                 var cardData = layer.cards[cardIndex];
                 var key = (layerIndex, cardIndex);
 
-                if (_spawnedCards.TryGetValue(key, out GameObject cardObj) && cardObj != null)
+                if (_spawnedCards.TryGetValue(key, out var cardObj) && cardObj != null)
                 {
                     Undo.RecordObject(cardObj.transform, "Sync Card Position");
                     var pos = cardData.position;
@@ -380,14 +353,66 @@ public sealed class CardDataEditorAttributeDrawer : OdinAttributeDrawer<CardData
         }
     }
 
+    private void SetActiveLayer(int layerIndex, LevelData levelData)
+    {
+        if (_selectedLayerIndex == layerIndex) return;
+
+        _selectedLayerIndex = layerIndex;
+
+        for (int i = 0; i < levelData.layerCards.Length; i++)
+        {
+            var layer = levelData.layerCards[i];
+            if (layer.cards == null) continue;
+
+            for (int cardIndex = 0; cardIndex < layer.cards.Length; cardIndex++)
+            {
+                var key = (i, cardIndex);
+                if (_spawnedCards.TryGetValue(key, out var card) && card != null)
+                {
+                    if (i == layerIndex)
+                    {
+                        card.OnGDActive();
+                    }
+                    else
+                    {
+                        card.OnGDDeActive();
+                    }
+                }
+            }
+        }
+    }
+
     private void DrawLayer(Rect rect, LayerCardData layer, int layerIndex)
     {
         Color layerColor = GetLayerColor(layerIndex);
+
+        // Highlight selected layer
+        if (_selectedLayerIndex == layerIndex)
+        {
+            layerColor = new Color(layerColor.r + 0.15f, layerColor.g + 0.15f, layerColor.b + 0.15f, 1f);
+        }
+
         SirenixEditorGUI.DrawSolidRect(rect, layerColor);
-        SirenixEditorGUI.DrawBorders(rect, 1);
+        SirenixEditorGUI.DrawBorders(rect, _selectedLayerIndex == layerIndex ? 2 : 1,
+            _selectedLayerIndex == layerIndex ? Color.cyan : Color.black);
 
         Rect headerRect = new Rect(rect.x + Padding, rect.y + 2, rect.width - Padding * 2, LayerHeaderHeight - 4);
-        EditorGUI.LabelField(headerRect, $"Layer {layerIndex} ({layer.cards?.Length ?? 0} cards)",
+
+        // Handle layer selection click
+        Event e = Event.current;
+        if (e.type == EventType.MouseDown && e.button == 0 && headerRect.Contains(e.mousePosition))
+        {
+            var levelData = LevelDesignGlobalConfig.Instance.CurrentLevel.LevelData;
+            SetActiveLayer(layerIndex, levelData);
+            e.Use();
+            GUIUtility.ExitGUI();
+        }
+
+        // Add cursor hint for clickable header
+        EditorGUIUtility.AddCursorRect(headerRect, MouseCursor.Link);
+
+        string selectedIndicator = _selectedLayerIndex == layerIndex ? " ●" : "";
+        EditorGUI.LabelField(headerRect, $"Layer {layerIndex} ({layer.cards?.Length ?? 0} cards){selectedIndicator}",
             EditorStyles.boldLabel);
 
         Rect contentRect = new Rect(rect.x + Padding, rect.y + LayerHeaderHeight,
@@ -455,7 +480,7 @@ public sealed class CardDataEditorAttributeDrawer : OdinAttributeDrawer<CardData
 
     private void DrawCardCell(Rect rect, CardData card, int layerIndex, int cardIndex)
     {
-        float rotation = card.rotation.z;
+        float rotation = -card.rotation.z;
         Event e = Event.current;
 
         // Save current matrix

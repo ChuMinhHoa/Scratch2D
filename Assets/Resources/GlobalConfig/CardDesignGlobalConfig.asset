@@ -12,16 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20452f94c1c669439feef8767ed61e8, type: 3}
   m_Name: CardDesignGlobalConfig
   m_EditorClassIdentifier: Assembly-CSharp::CardDesignGlobalConfig
+  <_cardContainer>k__BackingField: {fileID: 0}
+  _cardPrefabs:
+  - {fileID: 664414986749008322, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
+  - {fileID: 851542219791232566, guid: f526676fae6a851468a87c47562aa521, type: 3}
+  - {fileID: 851542219791232566, guid: 0b1a3bfde1208d94eb2db5f223d2337e, type: 3}
   <CardData>k__BackingField:
     cardType: 0
     cardState: 0
     stickers:
-    - stickerID: 1
+    - stickerID: 0
       stickerType: 0
       stickerIndexChain: 0
     position:
-      x: -0
-      y: 0
+      x: 0
+      y: 1.8
       z: 0
     rotation:
       x: 0

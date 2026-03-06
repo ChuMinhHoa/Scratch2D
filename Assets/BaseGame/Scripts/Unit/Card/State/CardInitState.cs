@@ -40,7 +40,7 @@ public partial class Card : CardInitState.IHandler
     private CardInitState CardInitStateCache { get; set; }
     public CardInitState CardInitState => CardInitStateCache ??= new CardInitState(this);
     
-    private CardData data;
+    public CardData data;
     
     public UniTask OnEnterInitState()
     {
