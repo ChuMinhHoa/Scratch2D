@@ -44,7 +44,6 @@ public class StickerGraphic : MonoBehaviour
         {
             objGlow.SetActive(false);
         }).RunWithoutBinding().AddTo(this);
-       
     }
 
     public void DisAbleIcon()

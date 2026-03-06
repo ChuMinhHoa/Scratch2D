@@ -51,6 +51,11 @@ public partial class SlotFolder : MonoBehaviour
     {
         return slotFolderType == SlotFolderType.Normal && !IsHaveObject();
     }
+
+    public void ResetSlotFolder()
+    {
+        folderPos.ResetPos();
+    }
 }
 
 public enum SlotFolderType

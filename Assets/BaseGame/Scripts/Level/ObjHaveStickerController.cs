@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 [Serializable]
 public class ObjHaveStickerController : SpaceForSticker
@@ -32,33 +33,6 @@ public class ObjHaveStickerController : SpaceForSticker
         _ = CallNextObjSticker(true);
     }
 
-    public override bool RegisterSticker(Sticker sticker)
-    {
-        for (var i = 0; i < SlotFolders.Length; i++)
-        {
-            if (!SlotFolders[i].IsHaveObject()) continue;
-            var folder = SlotFolders[i].folderPos.obj;
-            if (!folder.IsSameSticker(sticker.stickerData.stickerID, out var stickerPos)) continue;
-            _ = SpawnStickerDone(stickerPos, sticker, folder);
-            return true;
-        }
-
-        return false;
-    }
-
-    public bool RegisterStickerDoneFromFreeSpace(StickerDone stickerDone)
-    {
-        for (var i = 0; i < SlotFolders.Length; i++)
-        {
-            if (!SlotFolders[i].IsHaveObject()) continue;
-            var folder = SlotFolders[i].folderPos.obj;
-            if (!folder.IsSameSticker(stickerDone.stickerId, out var stickerPos)) continue;
-            _ = MoveStickerDoneToObj(folder, stickerPos, stickerDone);
-            return true;
-        }
-
-        return false;
-    }
 
     public async UniTask CallNextObjSticker(bool callFromLoad = false)
     {
@@ -72,7 +46,7 @@ public class ObjHaveStickerController : SpaceForSticker
                 if (!SlotFolders[i].IsAbleFolder()) continue;
                 var folder = objHaveStickers.Dequeue();
                 SlotFolders[i].SetFolder(folder);
-                _ = folder.MoveToTarget(SlotFolders[i].folderPos.trsPos.position);
+                await folder.MoveToTarget(SlotFolders[i].folderPos.trsPos.position);
                 SlotFolders[i].folderPos.MoveDone();
             }
         }
@@ -103,7 +77,7 @@ public class ObjHaveStickerController : SpaceForSticker
         for (var i = 0; i < SlotFolders.Length; i++)
         {
             if (SlotFolders[i].folderPos.obj != folder) continue;
-            SlotFolders[i].folderPos.ResetPos();
+            SlotFolders[i].ResetSlotFolder();
         }
     }
 
@@ -125,5 +99,20 @@ public class ObjHaveStickerController : SpaceForSticker
 
         folder = null;
         return false;
+    }
+
+    public StickerPos GetFolderPos(int stickerId)
+    {
+        for (var i = 0; i < SlotFolders.Length; i++)
+        {
+            if (!SlotFolders[i].folderPos.obj) continue;
+            if (!SlotFolders[i].folderPos.IsMoveDone()) continue;
+            if (SlotFolders[i].folderPos.obj.IsSameSticker(stickerId, out var stickerPos))
+            {
+                return stickerPos;
+            }
+        }
+
+        return null;
     }
 }

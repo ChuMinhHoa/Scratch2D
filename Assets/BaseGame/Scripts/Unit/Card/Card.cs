@@ -39,12 +39,12 @@ public partial class Card : MonoBehaviour
         
         stateMachine.RequestTransition(CardWaitState);
         stateMachine.Run();
-        GlobalEventManager.OnLayerIndexChange += OnCheckChangeLayer;
+        GlobalEventManager.OnCheckChangeLayerIndex += OnCheckChangeLayer;
     }
 
     private void OnDestroy()
     {
-        GlobalEventManager.OnLayerIndexChange -= OnCheckChangeLayer;
+        GlobalEventManager.OnCheckChangeLayerIndex -= OnCheckChangeLayer;
     }
 
     private void OnCheckChangeLayer()
@@ -54,6 +54,7 @@ public partial class Card : MonoBehaviour
 
     private void OnChangeLayer(int layer)
     {
+        if (!stateMachine.IsCurrentState(CardWaitState)) return;
         if (IsDone()) return;
         if(GamePlayManager.Instance.level.IsHaveStickerWait()) return;
         isSameLayer = layerIndex == layer;

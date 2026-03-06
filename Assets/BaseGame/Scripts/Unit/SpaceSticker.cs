@@ -15,4 +15,9 @@ public class SpaceSticker : MonoBehaviour
         stickerTrs = null;
         return false;
     }
+
+    public void ResetSpace()
+    {
+        stickerPos.ResetPos();
+    }
 }

@@ -2,10 +2,11 @@ using System;
 using CoreData;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
+using TW.Utility.DesignPattern;
 using UnityEditor;
 using UnityEngine;
 
-public class Level : MonoBehaviour
+public class Level : Singleton<Level>
 {
     public int levelIndex;
     public LevelData LevelData;
@@ -42,6 +43,57 @@ public class Level : MonoBehaviour
         layerController.OnRemoveSticker(stickerId, countRemove);
     }
 
+    [Button(ButtonSizes.Gigantic)]
+    private void LoadDataClean()
+    {
+
+        var e = FindObjectsByType<ScratchObject>(FindObjectsSortMode.None);
+        var e1 = FindObjectsByType<Card>(FindObjectsSortMode.None);
+        var e2 = FindObjectsByType<Sticker>(FindObjectsSortMode.None);
+        var e3 = FindObjectsByType<StickerDone>(FindObjectsSortMode.None);
+        var e4 = FindObjectsByType<FolderHaveSticker>(FindObjectsSortMode.None);
+        var e5 = FindObjectsByType<SlotFolder>(FindObjectsSortMode.None);
+        var e6 = FindObjectsByType<SpaceSticker>(FindObjectsSortMode.None);
+        
+        for (var i = 0; i < e.Length; i++)
+        {
+            Destroy(e[i].gameObject);
+        }
+        for (var i = 0; i < e1.Length; i++)
+        {
+            Destroy(e1[i].gameObject);
+        }
+        for (var i = 0; i < e2.Length; i++)
+        {
+            Destroy(e2[i].gameObject);
+        }
+        for (var i = 0; i < e3.Length; i++)
+        {
+            Destroy(e3[i].gameObject);
+        }
+        for (var i = 0; i < e4.Length; i++)
+        {
+            Destroy(e4[i].gameObject);
+        }
+        
+        fSpaceController.stickerCantMoveAnyWhere.Clear();
+        oSController.objHaveStickers.Clear();
+        layerController.cards.Clear();
+
+        for (var i = 0; i < e5.Length; i++)
+        {
+            e5[i].ResetSlotFolder();
+        }
+        
+        for (var i = 0; i < e6.Length; i++)
+        {
+            e6[i].ResetSpace();
+        }
+        
+        
+        _ = LoadData();
+    }
+
     [Button]
     public async UniTask LoadData()
     {
@@ -71,36 +123,12 @@ public class Level : MonoBehaviour
     {
         _ = oSController.CallNextObjSticker(callFromLoad);
     }
-
+    
     public void RegisterStickerDone(Sticker sticker)
     {
-        if (RegisterStickerToObj(sticker))
-        {
-            return;
-        }
-        if (RegisterStickerToFreeSpace(sticker)) return;
-
-        _ = GamePlayManager.Instance.level.fSpaceController.SpawnStickerDoneNotMove(sticker);
-    }
-
-    private bool IsHaveFolderOnMove(out FolderPos folder)
-    {
-        return oSController.IsHaveFolderOnMove(out folder);
-    }
-
-    private bool RegisterStickerToObj(Sticker sticker)
-    {
-        return oSController.RegisterSticker(sticker);
-    }
-    
-    private bool RegisterStickerToFreeSpace(Sticker sticker)
-    {
-        return fSpaceController.RegisterSticker(sticker);
-    }
-
-    public void CheckAllStickerOnFreeSpace()
-    {
-        fSpaceController.CheckAllStickerOnFreeSpace();
+        var stickerDone = PoolManager.Instance.SpawnStickerDone(sticker.transform);
+        stickerDone.InitStickerMove(sticker.stickerData.stickerID);
+        sticker.DisAbleIcon();
     }
 
     public void NextLayer()
@@ -132,5 +160,10 @@ public class Level : MonoBehaviour
     public bool IsHaveStickerWait()
     {
         return fSpaceController.IsHaveStickerWait();
+    }
+
+    public void CheckStickerDone()
+    {
+        _ = fSpaceController.CheckStickerDone();
     }
 }

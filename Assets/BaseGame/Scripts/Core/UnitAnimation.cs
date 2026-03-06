@@ -39,7 +39,9 @@ public class UnitAnimation : MonoBehaviour
     public AnimationCurve curveMoveY;
     public AnimationCurve curveMoveZ;
     public float timeMove = 1f;
-    private MotionHandle motionHandleMove;
+    private MotionHandle motionHandleMoveX;
+    private MotionHandle motionHandleMoveY;
+    private MotionHandle motionHandleMoveZ;
     
     public float2 magnitudeX;
     public float2 magnitudeY;
@@ -48,6 +50,13 @@ public class UnitAnimation : MonoBehaviour
     [Button]
     public async UniTask PlayMoveAnim(Vector3 targetPos)
     {
+        if (motionHandleMoveZ.IsActive())
+        {
+            motionHandleMoveX.TryCancel();
+            motionHandleMoveY.TryCancel();
+            motionHandleMoveZ.TryCancel();
+        }
+        
         var currentX = transform.position.x;
         var currentY = transform.position.y;
         var currentZ = transform.position.z;
@@ -62,7 +71,7 @@ public class UnitAnimation : MonoBehaviour
       
         var currentPos = transform.position;
 
-        LMotion.Create(0f, 1f, timeMove).Bind(t =>
+        motionHandleMoveX = LMotion.Create(0f, 1f, timeMove).Bind(t =>
         {
             var x = Mathf.Lerp(currentX, targetX, t);
             var evaluateX = curveMoveX.Evaluate(t) * mx;
@@ -70,7 +79,7 @@ public class UnitAnimation : MonoBehaviour
             transform.position = currentPos;
         }).AddTo(this);
         
-        LMotion.Create(0f, 1f, timeMove).Bind(t =>
+        motionHandleMoveY = LMotion.Create(0f, 1f, timeMove).Bind(t =>
         {
             var y = Mathf.Lerp(currentY, targetY, t);
             var evaluateY = curveMoveY.Evaluate(t) * my;
@@ -78,13 +87,15 @@ public class UnitAnimation : MonoBehaviour
             transform.position = currentPos;
         }).AddTo(this);
       
-        await LMotion.Create(0f, 1f, timeMove).Bind(t =>
+        motionHandleMoveZ = LMotion.Create(0f, 1f, timeMove).Bind(t =>
         {
             var z = Mathf.Lerp(currentZ, targetZ, t);
             var evaluateZ = curveMoveZ.Evaluate(t) * mz;
             currentPos.z = z + evaluateZ;
             transform.position = currentPos;
         }).AddTo(this);
+
+        await motionHandleMoveZ;
     }
 
     #endregion
