@@ -57,8 +57,6 @@ public partial class Card : MonoBehaviour
         if (!stateMachine.IsCurrentState(CardWaitState)) return;
         if (IsDone()) return;
         if(GamePlayManager.Instance.level.IsHaveStickerWait()) return;
-        if (isSameLayer) return;
-        Debug.Log(isSameLayer);
         _ = WaitToEnableInput();
         isSameLayer = layerIndex == layer;
     }
