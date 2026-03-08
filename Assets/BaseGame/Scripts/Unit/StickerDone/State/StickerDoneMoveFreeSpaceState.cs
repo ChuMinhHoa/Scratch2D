@@ -44,11 +44,13 @@ public partial class StickerDone : StickerDoneMoveFreeSpaceState.IHandler
     {
         stickerPos.RegisterObj(this);
         stickerDoneAnim.enabled = false;
-        //LMotion.Create(sprIcon.transform.localPosition, Vector3.zero, .25f).Bind(x => sprIcon.transform.localPosition = x);
+        var currentScale = sprIcon.transform.localScale;
+        var targetScale = stickerPos.trsPos.localScale;
+        LMotion.Create(currentScale, targetScale, .25f).Bind(x => sprIcon.transform.localScale = x);
         await unitAnim.PlayMoveAnim(stickerPos.trsPos.position);
+        CheckToAbleStickerAnimAgain();
         stickerPos.MoveDone();
         Level.Instance.CheckStickerDone();
-        //return UniTask.CompletedTask;
     }
 
     public UniTask OnUpdateMoveFreeSpace()

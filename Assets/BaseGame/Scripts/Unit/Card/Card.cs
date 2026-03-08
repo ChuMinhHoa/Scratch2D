@@ -57,8 +57,10 @@ public partial class Card : MonoBehaviour
         if (!stateMachine.IsCurrentState(CardWaitState)) return;
         if (IsDone()) return;
         if(GamePlayManager.Instance.level.IsHaveStickerWait()) return;
-        isSameLayer = layerIndex == layer;
+        if (isSameLayer) return;
+        Debug.Log(isSameLayer);
         _ = WaitToEnableInput();
+        isSameLayer = layerIndex == layer;
     }
     
     private async UniTask WaitToEnableInput()
@@ -94,7 +96,7 @@ public partial class Card : MonoBehaviour
     
     private void ResetCard()
     {
-        Debug.Log("Reset Card");
+//        Debug.Log("Reset Card");
         transform.localScale = Vector3.one;
         for (var i = 0; i < stickers.Count; i++)
         {
@@ -162,5 +164,20 @@ public partial class Card : MonoBehaviour
             }
         }
         return countRemain - count;
+    }
+    
+    public bool IsHaveSticker(int stickerId)
+    {
+        for (var i = 0; i < stickers.Count; i++)
+        {
+            
+            Debug.Log($"note id {stickerId} {stickers[i].stickerData.stickerID}");
+            if (stickers[i].stickerData.stickerID == stickerId && !stickers[i].isDone)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

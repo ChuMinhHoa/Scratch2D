@@ -78,7 +78,7 @@ public partial class FolderHaveSticker : MonoBehaviour
         await unitAnim.PlayMoveAnim(target);
         readyToMove = true;
         await UniTask.WaitForSeconds(0.1f);
-         Level.Instance.CheckStickerDone();
+        Level.Instance.CheckStickerDone();
     }
 }
 

@@ -32,6 +32,8 @@ public partial class SlotFolder : MonoBehaviour
 
     public bool IsHaveObject()
     {
+        if (slotFolderType == SlotFolderType.Ads)
+            return true;
         return folderPos.IsHaveObj();
     }
 
@@ -55,6 +57,13 @@ public partial class SlotFolder : MonoBehaviour
     public void ResetSlotFolder()
     {
         folderPos.ResetPos();
+    }
+
+    public int GetNoteId()
+    {
+        if (!IsHaveObject()) return -1;
+        if (slotFolderType != SlotFolderType.Normal) return -1;
+        return folderPos.obj.data.stickerId;
     }
 }
 

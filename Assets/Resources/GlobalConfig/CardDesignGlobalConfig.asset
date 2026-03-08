@@ -21,12 +21,12 @@ MonoBehaviour:
     cardType: 0
     cardState: 0
     stickers:
-    - stickerID: 3
+    - stickerID: 0
       stickerType: 0
       stickerIndexChain: 0
     position:
-      x: 1.8
-      y: 2.5
+      x: 0
+      y: -3.2
       z: 0
     rotation:
       x: 0

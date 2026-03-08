@@ -54,6 +54,7 @@ public partial class StickerDone : StickerDoneMoveToObjHaveStickerState.IHandler
         stickerGlow.gameObject.SetActive(true);
         transform.SetParent(stickerPos.trsPos);
         stickerPos.MoveDone();
+        Level.Instance.RemoveSticker(this);
     }
 
     public UniTask OnUpdateMoveToObjHaveStickerState()

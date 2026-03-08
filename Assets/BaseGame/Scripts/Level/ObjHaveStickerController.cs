@@ -16,7 +16,7 @@ public class ObjHaveStickerController : SpaceForSticker
     public Transform posOut;
     public bool loadDone;
     public bool isEndGame;
-    [field: SerializeField] private SlotFolder[] SlotFolders { get; set; }
+    [field: SerializeField] public SlotFolder[] SlotFolders { get; set; }
 
     public void LoadData(Span<ObjHaveStickerData> objSticker)
     {
@@ -33,10 +33,12 @@ public class ObjHaveStickerController : SpaceForSticker
         _ = CallNextObjSticker(true);
     }
 
+    private UniTask checkLoseTask;
 
     public async UniTask CallNextObjSticker(bool callFromLoad = false)
     {
         if (!callFromLoad) await UniTask.WaitForSeconds(0.5f);
+        Debug.Log($"{objHaveStickers.Count}");
         if (objHaveStickers.Count > 0)
         {
             for (var i = 0; i < SlotFolders.Length; i++)
@@ -48,6 +50,11 @@ public class ObjHaveStickerController : SpaceForSticker
                 SlotFolders[i].SetFolder(folder);
                 await folder.MoveToTarget(SlotFolders[i].folderPos.trsPos.position);
                 SlotFolders[i].folderPos.MoveDone();
+                
+                // if (checkLoseTask.Status == UniTaskStatus.Pending) 
+                //     await UniTask.WaitUntil(() => checkLoseTask.Status == UniTaskStatus.Succeeded);
+                //
+                // checkLoseTask = CheckLevelLose();
             }
         }
         else
@@ -55,6 +62,8 @@ public class ObjHaveStickerController : SpaceForSticker
             if (isEndGame) return;
             for (var i = 0; i < SlotFolders.Length; i++)
             {
+                if (SlotFolders[i].slotFolderType == SlotFolderType.Ads)
+                    continue;
                 if (SlotFolders[i].IsHaveObject()) return;
             }
 
@@ -63,6 +72,24 @@ public class ObjHaveStickerController : SpaceForSticker
             Debug.Log("End game!");
             GamePlayManager.Instance.level.ResetLevel();
         }
+    }
+
+    private UniTask CheckLevelLose()
+    {
+        //sure all note on slot
+        for (var i = 0; i < SlotFolders.Length; i++)
+        {
+            if (!SlotFolders[i].IsHaveObject())
+                return UniTask.CompletedTask;
+        }
+
+        var stickerDoneWait = Level.Instance.fSpaceController.stickerDoneWait.Count;
+        if (stickerDoneWait > 0)
+        {
+            Debug.Log("level loose");
+        }
+
+        return UniTask.CompletedTask;
     }
 
     public override void ResetController()
@@ -114,5 +141,23 @@ public class ObjHaveStickerController : SpaceForSticker
         }
 
         return null;
+    }
+
+    public bool IsHaveAtLeastOneNote()
+    {
+        return objHaveStickers.Count > 0;
+    }
+
+    public bool IsHaveAllNoteOnSlot()
+    {
+        for (var i = 0; i < SlotFolders.Length; i++)
+        {
+            if (!SlotFolders[i].IsHaveObject())
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

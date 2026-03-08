@@ -72,4 +72,16 @@ public class LayerController
 
         }
     }
+
+    public void CheckToCallChangeLayerIndex()
+    {
+        for (var i = 0; i < cards.Count; i++)
+        {
+            if (cards[i].CheckIsSameLayer())
+            {
+                GlobalEventManager.OnCheckChangeLayerIndex?.Invoke();
+                return;
+            }
+        }
+    }
 }

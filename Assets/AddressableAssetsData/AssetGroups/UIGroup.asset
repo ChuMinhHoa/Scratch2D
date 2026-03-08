@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: UIGroup
   m_GUID: 909b0a21bb1915b499d12296382d340e
   m_SerializeEntries:
+  - m_GUID: 20e9544cb4d66194e931bd7766d329bb
+    m_Address: ActivityLoseGame
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8fc714d86a7cf6247bd871c15f18c3b5
     m_Address: ScreenHome
     m_ReadOnly: 0

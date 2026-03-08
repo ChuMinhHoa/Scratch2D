@@ -3,30 +3,31 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 [Serializable]
 public class FreeSpaceController : SpaceForSticker
 {
     public SpaceSticker[] spaceStickers;
-    [ShowInInspector] public List<StickerDone> stickerCantMoveAnyWhere = new();
+    [ShowInInspector] public List<StickerDone> stickerDoneWait = new();
 
-    private void CheckGameOver()
-    {
-        for (var i = 0; i < spaceStickers.Length; i++)
-        {
-            if (!spaceStickers[i].stickerPos.IsHaveObj())
-                return;
-        }
-
-        if (stickerCantMoveAnyWhere.Count == 0)
-            return;
-        GamePlayManager.Instance.level.GameOver();
-    }
+    // private void CheckGameOver()
+    // {
+    //     for (var i = 0; i < spaceStickers.Length; i++)
+    //     {
+    //         if (!spaceStickers[i].stickerPos.IsHaveObj())
+    //             return;
+    //     }
+    //
+    //     if (stickerDoneWait.Count == 0)
+    //         return;
+    //     GamePlayManager.Instance.level.GameOver();
+    // }
 
     public bool IsHaveStickerWait()
     {
-        return stickerCantMoveAnyWhere.Count > 0;
+        return stickerDoneWait.Count > 0;
     }
 
     public StickerPos GetFreeSpacePos()
@@ -57,22 +58,30 @@ public class FreeSpaceController : SpaceForSticker
             }
         }
 
-        for (var i = stickerCantMoveAnyWhere.Count - 1; i >= 0; i--)
+        for (var i = stickerDoneWait.Count - 1; i >= 0; i--)
         {
-            if (i >= stickerCantMoveAnyWhere.Count) continue;
+            if (i >= stickerDoneWait.Count) continue;
 
             await UniTask.Yield();
-            stickerCantMoveAnyWhere[i].CheckMoveToFolder(true);
+            stickerDoneWait[i].CheckMoveToFolder(true);
         }
+
+        //Level.Instance.CheckToCallChangeLayerIndex();
+
+        // if (stickerDoneWait.Count > 0) 
+        //     Level.Instance.CheckLoseGame();
     }
 
-    public void RegisterStickerDone(StickerDone stickerDone)
+    public void RegisterStickerDoneWait(StickerDone stickerDone)
     {
-        stickerCantMoveAnyWhere.Add(stickerDone);
+        stickerDoneWait.Add(stickerDone);
+
+        Level.Instance.CheckLoseGame();
     }
 
     public void RemoveStickerDoneFromNoWhere(StickerDone e)
     {
-        stickerCantMoveAnyWhere.Remove(e);
+        stickerDoneWait.Remove(e);
+        GlobalEventManager.OnCheckChangeLayerIndex?.Invoke();
     }
 }

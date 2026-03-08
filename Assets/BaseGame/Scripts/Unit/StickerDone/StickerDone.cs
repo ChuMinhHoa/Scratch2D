@@ -53,7 +53,11 @@ public partial class StickerDone : MonoBehaviour
            Level.Instance.fSpaceController.RemoveStickerDoneFromNoWhere(this);
            stickerPos = e;
            stateMachine.RequestTransition(StickerDoneMoveFreeSpaceState);
-           GlobalEventManager.OnCheckChangeLayerIndex();
        }
+   }
+
+   public bool IsHaveSticker(int noteId)
+   {
+       return noteId == stickerId;
    }
 }

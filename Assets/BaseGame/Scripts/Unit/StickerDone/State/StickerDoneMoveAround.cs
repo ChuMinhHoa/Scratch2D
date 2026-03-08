@@ -46,7 +46,7 @@ public partial class StickerDone : StickerDoneMoveAround.IHandler
     
     public UniTask OnEnterMoveAroundState()
     {
-        Level.Instance.fSpaceController.RegisterStickerDone(this);
+        Level.Instance.fSpaceController.RegisterStickerDoneWait(this);
         centerPosition = transform.position;
         orbitMotionHandle = LMotion.Create(0f, Mathf.PI * 2f, 1f)
             .WithLoops(-1)

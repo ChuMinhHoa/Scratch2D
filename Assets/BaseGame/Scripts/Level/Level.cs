@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Core.UI.Activities;
 using CoreData;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
@@ -10,13 +12,17 @@ public class Level : Singleton<Level>
 {
     public int levelIndex;
     public LevelData LevelData;
-    
+
     public ObjHaveStickerController oSController;
     public FreeSpaceController fSpaceController;
     public LayerController layerController;
 
     public GameObject objOnUsingBooster;
     
+    public List<StickerDone> stickerDone = new ();
+
+    public bool isEndGame;
+
     private void Start()
     {
         GamePlayManager.Instance.level = this;
@@ -46,7 +52,6 @@ public class Level : Singleton<Level>
     [Button(ButtonSizes.Gigantic)]
     private void LoadDataClean()
     {
-
         var e = FindObjectsByType<ScratchObject>(FindObjectsSortMode.None);
         var e1 = FindObjectsByType<Card>(FindObjectsSortMode.None);
         var e2 = FindObjectsByType<Sticker>(FindObjectsSortMode.None);
@@ -54,29 +59,33 @@ public class Level : Singleton<Level>
         var e4 = FindObjectsByType<FolderHaveSticker>(FindObjectsSortMode.None);
         var e5 = FindObjectsByType<SlotFolder>(FindObjectsSortMode.None);
         var e6 = FindObjectsByType<SpaceSticker>(FindObjectsSortMode.None);
-        
+
         for (var i = 0; i < e.Length; i++)
         {
             Destroy(e[i].gameObject);
         }
+
         for (var i = 0; i < e1.Length; i++)
         {
             Destroy(e1[i].gameObject);
         }
+
         for (var i = 0; i < e2.Length; i++)
         {
             Destroy(e2[i].gameObject);
         }
+
         for (var i = 0; i < e3.Length; i++)
         {
             Destroy(e3[i].gameObject);
         }
+
         for (var i = 0; i < e4.Length; i++)
         {
             Destroy(e4[i].gameObject);
         }
-        
-        fSpaceController.stickerCantMoveAnyWhere.Clear();
+
+        fSpaceController.stickerDoneWait.Clear();
         oSController.objHaveStickers.Clear();
         layerController.cards.Clear();
 
@@ -84,13 +93,13 @@ public class Level : Singleton<Level>
         {
             e5[i].ResetSlotFolder();
         }
-        
+
         for (var i = 0; i < e6.Length; i++)
         {
             e6[i].ResetSpace();
         }
-        
-        
+
+
         _ = LoadData();
     }
 
@@ -123,19 +132,20 @@ public class Level : Singleton<Level>
     {
         _ = oSController.CallNextObjSticker(callFromLoad);
     }
-    
+
     public void RegisterStickerDone(Sticker sticker)
     {
-        var stickerDone = PoolManager.Instance.SpawnStickerDone(sticker.transform);
-        stickerDone.InitStickerMove(sticker.stickerData.stickerID);
+        var stD = PoolManager.Instance.SpawnStickerDone(sticker.transform);
+        stD.InitStickerMove(sticker.stickerData.stickerID);
         sticker.DisAbleIcon();
+        stickerDone.Add(stD);
     }
 
     public void NextLayer()
     {
         layerController.NextLayer();
     }
-    
+
     [Button]
     public void ResetLevel()
     {
@@ -149,12 +159,7 @@ public class Level : Singleton<Level>
 
     public void MoveFolderOut(FolderHaveSticker folder)
     {
-       oSController.MoveFolderOut(folder);
-    }
-
-    public void GameOver()
-    {
-        Debug.Log("game over");
+        oSController.MoveFolderOut(folder);
     }
 
     public bool IsHaveStickerWait()
@@ -165,5 +170,100 @@ public class Level : Singleton<Level>
     public void CheckStickerDone()
     {
         _ = fSpaceController.CheckStickerDone();
+    }
+
+    public void CheckLoseGame()
+    {
+        var isHaveAllNoteOnSlot = oSController.IsHaveAllNoteOnSlot();
+
+        //Nếu tất cả các ô trống đều có note tức là thua
+        //Cần kiểm tra xem có Card nào chứa sticker chưa bóc mà trùng với Note không
+        // Nếu có thì vẫn còn cơ hội để chơi tiếp
+        Debug.Log($"Have all note on slot: {isHaveAllNoteOnSlot}");
+        if (isHaveAllNoteOnSlot)
+        {
+            var e = CheckAllCardOnLayerHaveStickerSameIdWithNote();
+            var e1 = CheckAllStickerDone();
+            if (!e && !e1)
+            {
+                Debug.Log("call end game form here");
+                //Time.timeScale = 0f;
+                _ = EndGame();
+                return;
+            }
+        }
+
+        //Nếu có ít nhất 1 note trên slot thì vẫn còn cơ hội để thắng
+
+        //Nếu có note nào đang chuẩn bị vào thì vẫn có thể chơi tiếp
+
+        var isHaveAtLeastOne = oSController.IsHaveAtLeastOneNote();
+        if (!isHaveAtLeastOne)
+        {
+            Debug.Log("call end game form here");
+            _ = EndGame();
+        }
+    }
+
+    private bool CheckAllCardOnLayerHaveStickerSameIdWithNote()
+    {
+        var slotFolders = oSController.SlotFolders;
+        var card = layerController.cards;
+        for (var i = 0; i < slotFolders.Length; i++)
+        {
+            var noteId = slotFolders[i].GetNoteId();
+            Debug.Log($"check note id: {noteId}");
+            if (noteId != -1)
+            {
+                for (var j = 0; j < card.Count; j++)
+                {
+                    if (!card[j].CheckIsSameLayer()) continue;
+                    if (card[j].IsHaveSticker(noteId))
+                        return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private bool CheckAllStickerDone()
+    {
+        var slotFolders = oSController.SlotFolders;
+        for (var i = 0; i < slotFolders.Length; i++)
+        {
+            var noteId = slotFolders[i].GetNoteId();
+            if (noteId != -1)
+            {
+                for (var j = 0; j < stickerDone.Count; j++)
+                {
+                    if (stickerDone[j].IsHaveSticker(noteId))
+                        return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private async UniTask EndGame()
+    {
+        await UniTask.WaitForFixedUpdate();
+        if (isEndGame)
+            return;
+        isEndGame = true;
+        Debug.Log("game over");
+        await UIManager.Instance.OpenActivityAsync<ActivityLoseGame>();
+    }
+
+    public void RemoveSticker(StickerDone stD)
+    {
+        stickerDone.Remove(stD);
+    }
+
+    public void CheckToCallChangeLayerIndex()
+    {
+        layerController.CheckToCallChangeLayerIndex();
+       
     }
 }
