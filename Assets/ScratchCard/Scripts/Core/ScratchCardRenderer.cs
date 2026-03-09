@@ -106,73 +106,99 @@ namespace ScratchCardAsset.Core
 		/// <summary>
 		/// Draws a few quads (line) into RenderTexture
 		/// </summary>
-		public void ScratchLine(Vector2 startPosition, Vector2 endPosition)
-		{
-			var holesCount = (int)Vector2.Distance(startPosition, endPosition) / (int)scratchCard.RenderTextureQuality;
-			var positions = new List<Vector3>();
-			var colors = new List<Color>();
-			var indices = new List<int>();
-			var uv = new List<Vector2>();
-			var count = 0;
-			for (var i = 0; i < holesCount; i++)
-			{
-				var holePosition = startPosition + (endPosition - startPosition) / holesCount * i;
-				var positionRect = new Rect(
-					(holePosition.x - 0.5f * scratchCard.Eraser.mainTexture.width * scratchCard.BrushScale.x) / imageSize.x,
-					(holePosition.y - 0.5f * scratchCard.Eraser.mainTexture.height * scratchCard.BrushScale.y) / imageSize.y,
-					scratchCard.Eraser.mainTexture.width * scratchCard.BrushScale.x / imageSize.x,
-					scratchCard.Eraser.mainTexture.height * scratchCard.BrushScale.y / imageSize.y);
+		private readonly List<Vector3> reusablePositions = new List<Vector3>(256);
+private readonly List<Color> reusableColors = new List<Color>(256);
+private readonly List<int> reusableIndices = new List<int>(512);
+private readonly List<Vector2> reusableUV = new List<Vector2>(256);
 
-				if (IsInBounds(positionRect))
-				{
-					positions.Add(new Vector3(positionRect.xMin, positionRect.yMax, 0));
-					positions.Add(new Vector3(positionRect.xMax, positionRect.yMax, 0));
-					positions.Add(new Vector3(positionRect.xMax, positionRect.yMin, 0));
-					positions.Add(new Vector3(positionRect.xMin, positionRect.yMin, 0));
+// Updated ScratchLine method (only the changed body shown)
+public void ScratchLine(Vector2 startPosition, Vector2 endPosition)
+{
+    var holesCount = (int)Vector2.Distance(startPosition, endPosition) / (int)scratchCard.RenderTextureQuality;
+    // reuse and clear
+    var positions = reusablePositions;
+    var colors = reusableColors;
+    var indices = reusableIndices;
+    var uv = reusableUV;
+    positions.Clear();
+    colors.Clear();
+    indices.Clear();
+    uv.Clear();
 
-					colors.Add(Color.white);
-					colors.Add(Color.white);
-					colors.Add(Color.white);
-					colors.Add(Color.white);
+    // ensure capacity to avoid internal resizes
+    int required = holesCount * 4;
+    if (required > positions.Capacity)
+    {
+	    int newCap = positions.Capacity == 0 ? required : System.Math.Max(positions.Capacity * 2, required);
+	    positions.Capacity = newCap;
+    }
+    if (uv.Capacity < holesCount * 4) uv.Capacity = holesCount * 4;
+    if (colors.Capacity < holesCount * 4) colors.Capacity = holesCount * 4;
+    if (indices.Capacity < holesCount * 6) indices.Capacity = holesCount * 6;
 
-					uv.Add(Vector2.up);
-					uv.Add(Vector2.one);
-					uv.Add(Vector2.right);
-					uv.Add(Vector2.zero);
+    var count = 0;
+    for (var i = 0; i < holesCount; i++)
+    {
+        var holePosition = startPosition + (endPosition - startPosition) / holesCount * i;
+        var positionRect = new Rect(
+            (holePosition.x - 0.5f * scratchCard.Eraser.mainTexture.width * scratchCard.BrushScale.x) / imageSize.x,
+            (holePosition.y - 0.5f * scratchCard.Eraser.mainTexture.height * scratchCard.BrushScale.y) / imageSize.y,
+            scratchCard.Eraser.mainTexture.width * scratchCard.BrushScale.x / imageSize.x,
+            scratchCard.Eraser.mainTexture.height * scratchCard.BrushScale.y / imageSize.y);
 
-					indices.Add(0 + count * 4);
-					indices.Add(1 + count * 4);
-					indices.Add(2 + count * 4);
-					indices.Add(2 + count * 4);
-					indices.Add(3 + count * 4);
-					indices.Add(0 + count * 4);
+        if (IsInBounds(positionRect))
+        {
+            positions.Add(new Vector3(positionRect.xMin, positionRect.yMax, 0));
+            positions.Add(new Vector3(positionRect.xMax, positionRect.yMax, 0));
+            positions.Add(new Vector3(positionRect.xMax, positionRect.yMin, 0));
+            positions.Add(new Vector3(positionRect.xMin, positionRect.yMin, 0));
 
-					count++;
-				}
-			}
+            colors.Add(Color.white);
+            colors.Add(Color.white);
+            colors.Add(Color.white);
+            colors.Add(Color.white);
 
-			if (positions.Count > 0)
-			{
-				if (meshLine != null)
-				{
-					meshLine.Clear(false);
-				}
-				else
-				{
-					meshLine = new Mesh();
-				}
-				meshLine.vertices = positions.ToArray();
-				meshLine.uv = uv.ToArray();
-				meshLine.triangles = indices.ToArray();
-				meshLine.colors = colors.ToArray();
-				GL.LoadOrtho();
-				commandBuffer.Clear();
-				commandBuffer.SetRenderTarget(rti);
-				commandBuffer.DrawMesh(meshLine, Matrix4x4.identity, scratchCard.Eraser);
-				Graphics.ExecuteCommandBuffer(commandBuffer);
-				IsScratched = true;
-			}
-		}
+            uv.Add(Vector2.up);
+            uv.Add(Vector2.one);
+            uv.Add(Vector2.right);
+            uv.Add(Vector2.zero);
+
+            indices.Add(0 + count * 4);
+            indices.Add(1 + count * 4);
+            indices.Add(2 + count * 4);
+            indices.Add(2 + count * 4);
+            indices.Add(3 + count * 4);
+            indices.Add(0 + count * 4);
+
+            count++;
+        }
+    }
+
+    if (positions.Count > 0)
+    {
+        if (meshLine != null)
+        {
+            meshLine.Clear(false);
+        }
+        else
+        {
+            meshLine = new Mesh();
+        }
+
+        // Use Set* APIs to avoid creating arrays
+        meshLine.SetVertices(positions);
+        meshLine.SetUVs(0, uv);
+        meshLine.SetTriangles(indices, 0);
+        meshLine.SetColors(colors);
+
+        GL.LoadOrtho();
+        commandBuffer.Clear();
+        commandBuffer.SetRenderTarget(rti);
+        commandBuffer.DrawMesh(meshLine, Matrix4x4.identity, scratchCard.Eraser);
+        Graphics.ExecuteCommandBuffer(commandBuffer);
+        IsScratched = true;
+    }
+}
 
 		public void FillRenderTextureWithColor(Color color)
 		{

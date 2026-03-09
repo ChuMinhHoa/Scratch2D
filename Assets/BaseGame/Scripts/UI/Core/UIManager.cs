@@ -1,12 +1,19 @@
+using System;
 using Cysharp.Threading.Tasks;
 using TW.UGUI.Core.Activities;
 using TW.UGUI.Core.Modals;
 using TW.UGUI.Core.Screens;
 using TW.UGUI.Core.Views;
 using TW.Utility.DesignPattern;
+using UnityEngine;
 
 public class UIManager : Singleton<UIManager>
 {
+    private void Start()
+    {
+        Application.targetFrameRate = 60; 
+    }
+
     protected override void Awake()
     {
         base.Awake();
