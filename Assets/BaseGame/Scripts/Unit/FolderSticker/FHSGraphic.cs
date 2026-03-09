@@ -13,7 +13,7 @@ public class FHSGraphic : MonoBehaviour
         sprIcon.sprite = SpriteGlobalConfig.Instance.GetIconObjectHaveSticker(objId);
         for (var i = 0; i < sprStickerIcons.Length; i++)
         {
-            var spriteIcon = SpriteGlobalConfig.Instance.GetStickerIcon(dataStickerId);
+            var spriteIcon = SpriteGlobalConfig.Instance.GetStickerBg(dataStickerId);
             if (spriteIcon)
             {
                 sprStickerIcons[i].sprite = spriteIcon;

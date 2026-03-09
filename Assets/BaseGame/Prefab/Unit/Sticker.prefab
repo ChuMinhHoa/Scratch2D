@@ -376,7 +376,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab4d024b0124b24fb7a16d6cfd6a0ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StickerGraphic
+  sprIconMark:
+  - {fileID: 21300000, guid: 081b072797467754a939c17d18adf087, type: 3}
+  - {fileID: 21300000, guid: 081b072797467754a939c17d18adf087, type: 3}
+  - {fileID: 21300000, guid: 081b072797467754a939c17d18adf087, type: 3}
   stickerId: 0
+  stickerType: 0
   sprIcon: {fileID: 828502245805875980}
   sprBg: {fileID: 1877877154114863188}
   sprGlow: {fileID: 2313513507217535105}
@@ -384,6 +389,7 @@ MonoBehaviour:
   objGlow: {fileID: 3708475496136982499}
   scratchManager: {fileID: 6023056218909100333}
   objScratchFake: {fileID: 7614214210092796748}
+  currentRot: {x: 0, y: 0, z: 0}
 --- !u!114 &8890121142107612431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -660,7 +666,7 @@ SpriteRenderer:
   m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 8cb77dea6b476a94b94470d38c328e46, type: 3}
-  m_Color: {r: 0.03529412, g: 0.25882354, b: 0.40000004, a: 0.8235294}
+  m_Color: {r: 0.12156863, g: 0.4, b: 0.5764706, a: 0.7882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -787,19 +793,19 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 8cb77dea6b476a94b94470d38c328e46, type: 3}
     - target: {fileID: 21281386, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
       propertyPath: m_Color.a
-      value: 0.8235294
+      value: 0.7882353
       objectReference: {fileID: 0}
     - target: {fileID: 21281386, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
       propertyPath: m_Color.b
-      value: 0.4
+      value: 0.5764706
       objectReference: {fileID: 0}
     - target: {fileID: 21281386, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
       propertyPath: m_Color.g
-      value: 0.25882354
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 21281386, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
       propertyPath: m_Color.r
-      value: 0.03529412
+      value: 0.12156863
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

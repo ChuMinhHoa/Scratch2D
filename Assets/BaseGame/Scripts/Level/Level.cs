@@ -7,10 +7,13 @@ using Sirenix.OdinInspector;
 using TW.Utility.DesignPattern;
 using UnityEditor;
 using UnityEngine;
+using Random = System.Random;
 
 public class Level : Singleton<Level>
 {
-    public int levelIndex;
+    public Reactive<int> levelIndex = new(0);
+    public TextAsset levelTextAsset;
+    public LevelConfig levelConfig;
     public LevelData LevelData;
 
     public ObjHaveStickerController oSController;
@@ -106,15 +109,54 @@ public class Level : Singleton<Level>
     [Button]
     public async UniTask LoadData()
     {
-        var assetsPath = "Assets/BaseGame/TextAssets/LevelData/";
-        var fileName = $"Level_{levelIndex}.txt";
-        var assetPath = assetsPath + fileName;
-        var levelDataTextAsset = AssetDatabase.LoadAssetAtPath<TextAsset>(assetPath);
-        LevelData = DataSerializer.Deserialize<LevelData>(levelDataTextAsset.text);
+        levelIndex = PlayerInfoManager.Instance.playerLevel;
+        levelConfig = LevelGlobalConfig.Instance.GetLevelConfig(levelIndex.Value);
+        levelTextAsset = levelConfig.levelAsset;
+        LevelData = DataSerializer.Deserialize<LevelData>(levelTextAsset.text);
+        ShuffleID();
         oSController.LoadData(LevelData.objHaveStickers);
         layerController.LoadData(LevelData.layerCards.AsSpan());
         await UniTask.WaitUntil(() => oSController.loadDone && layerController.loadDone);
         CallNextObjSticker(true);
+    }
+
+    private Dictionary<int, int> mappingID = new ();
+    
+    private void ShuffleID()
+    {
+        mappingID.Clear();
+        int totalStickerId = SpriteGlobalConfig.Instance.iconStickerBgConfigs.Length;
+        var stickers = LevelData.objHaveStickers;
+
+        // Assign mapped ids for objHaveStickers
+        for (int i = 0; i < stickers.Length; i++)
+        {
+            int originalId = stickers[i].stickerId;
+            if (!mappingID.TryGetValue(originalId, out int mappedId))
+            {
+                mappedId = GetRandomId(totalStickerId);
+                mappingID[originalId] = mappedId;
+            }
+            stickers[i].stickerId = mappedId;
+        }
+
+        // Apply mapping to layer cards
+        foreach (var layer in LevelData.layerCards)
+        {
+            foreach (var card in layer.cards)
+            {
+                for (int s = 0; s < card.stickers.Length; s++)
+                {
+                    int oldId = card.stickers[s].stickerID;
+                    card.stickers[s].stickerID = mappingID.GetValueOrDefault(oldId, 0);
+                }
+            }
+        }
+    }
+
+    private static int GetRandomId(int totalStickerId)
+    {
+        return new Random().Next(0, totalStickerId);
     }
 
     public void LoadOnlyData()
@@ -133,10 +175,10 @@ public class Level : Singleton<Level>
         _ = oSController.CallNextObjSticker(callFromLoad);
     }
 
-    public void RegisterStickerDone(Sticker sticker)
+    public void RegisterStickerDone(Sticker sticker, Vector3 rot)
     {
         var stD = PoolManager.Instance.SpawnStickerDone(sticker.transform);
-        stD.InitStickerMove(sticker.stickerData.stickerID);
+        stD.InitStickerMove(sticker.stickerData.stickerID, rot);
         sticker.DisAbleIcon();
         stickerDone.Add(stD);
     }
@@ -153,7 +195,7 @@ public class Level : Singleton<Level>
         oSController.ResetController();
         fSpaceController.ResetController();
         layerController.ResetController();
-        levelIndex++;
+        levelIndex.Value++;
         _ = LoadData();
     }
 
@@ -253,17 +295,12 @@ public class Level : Singleton<Level>
             return;
         isEndGame = true;
         Debug.Log("game over");
+        await UniTask.WaitForSeconds(1f);
         await UIManager.Instance.OpenActivityAsync<ActivityLoseGame>();
     }
 
     public void RemoveSticker(StickerDone stD)
     {
         stickerDone.Remove(stD);
-    }
-
-    public void CheckToCallChangeLayerIndex()
-    {
-        layerController.CheckToCallChangeLayerIndex();
-       
     }
 }

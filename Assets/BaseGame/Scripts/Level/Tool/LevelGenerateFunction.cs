@@ -65,23 +65,35 @@ public class LevelGenerateFunction : MonoBehaviour
     {
         var objHaveSticker = LevelData.objHaveStickers;
         var layerData = LevelData.layerCards.ToList();
+        var layerCost = objHaveSticker.Length / layerData.Count;
+        var currentLayer = 0;
+        var countForNextLayer = 0;
         for (var i = 0; i < objHaveSticker.Length; i++)
         {
             var randomCardForSticker = Random.Range(0, 3000);
-            var randomLayer = Random.Range(0, layerData.Count);
+
+            if (countForNextLayer >= layerCost)
+            {
+                currentLayer++;
+                countForNextLayer = 0;
+            }
+            
+            //var randomLayer = Random.Range(0, layerData.Count);
             if (randomCardForSticker < 1000)
             {
-                AddCard(CardType.Card3, randomLayer, 1, objHaveSticker[i].stickerId);
+                AddCard(CardType.Card3, currentLayer, 1, objHaveSticker[i].stickerId);
             }
             else if (randomCardForSticker < 2000)
             {
-                AddCard(CardType.Card2, randomLayer, 1, objHaveSticker[i].stickerId);
-                AddCard(CardType.Card1, randomLayer, 1, objHaveSticker[i].stickerId);
+                AddCard(CardType.Card2, currentLayer, 1, objHaveSticker[i].stickerId);
+                AddCard(CardType.Card1, currentLayer, 1, objHaveSticker[i].stickerId);
             }
             else
             {
-                AddCard(CardType.Card1, randomLayer, 3, objHaveSticker[i].stickerId);
+                AddCard(CardType.Card1, currentLayer, 3, objHaveSticker[i].stickerId);
             }
+
+            countForNextLayer++;
         }
     }
 

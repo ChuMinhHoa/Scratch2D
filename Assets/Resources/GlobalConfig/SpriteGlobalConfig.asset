@@ -47,6 +47,12 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: b6160b2e70f4abc44b72275e94902a68, type: 3}
   - tType: 16
     sprite: {fileID: 21300000, guid: 5e24711e5f84782449dc8cfb5021cefb, type: 3}
+  - tType: 17
+    sprite: {fileID: 21300000, guid: 51d041a2d0b483a4b9c41c30e936bed7, type: 3}
+  - tType: 18
+    sprite: {fileID: 21300000, guid: 35ffe8134fac7004ba584d5b2223454b, type: 3}
+  - tType: 19
+    sprite: {fileID: 21300000, guid: 3624dfbc80f454a41bade15c65d78f5e, type: 3}
   iconObjHaveStickerConfigs:
   - tType: 0
     sprite: {fileID: 21300000, guid: afc7293958716804cbe509ca4be8883a, type: 3}
@@ -95,6 +101,12 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 0b6c13f8e18d1f645b026bcb8a7c9fda, type: 3}
   - tType: 16
     sprite: {fileID: 21300000, guid: ab6ad95da195d57419ff0083b6a7ea4f, type: 3}
+  - tType: 17
+    sprite: {fileID: 21300000, guid: d3e1c27125a0e1e40aa3abaf99d8a8cc, type: 3}
+  - tType: 18
+    sprite: {fileID: 21300000, guid: cbce92a8301a23748bbbdba0f908d8eb, type: 3}
+  - tType: 19
+    sprite: {fileID: 21300000, guid: 33441699a93ac634ba2782984b9f2913, type: 3}
   iconStickerShadowConfigs:
   - tType: 0
     sprite: {fileID: 21300000, guid: a59c818f72b1f744283a606ed6af9386, type: 3}
@@ -130,10 +142,16 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 0c0182ddfa003f0479c0e8a44e26fa71, type: 3}
   - tType: 16
     sprite: {fileID: 21300000, guid: ee1607e2146640a42888678ae5081a84, type: 3}
+  - tType: 17
+    sprite: {fileID: 21300000, guid: b4233afae6376ab40abf3a4ce572197e, type: 3}
+  - tType: 18
+    sprite: {fileID: 21300000, guid: 5b45e6c95ccc71048a46f8f29f6517f3, type: 3}
+  - tType: 19
+    sprite: {fileID: 21300000, guid: 14282f9e994c52541b8e027f6b17ac14, type: 3}
   iconScratchCardConfigs:
   - tType: 0
     sprite: {fileID: 21300000, guid: a1c7e2a6aeb99b44db379f4892430c83, type: 3}
   - tType: 100
     sprite: {fileID: 21300000, guid: 849f146d9b4407044899016b19cf4d08, type: 3}
   - tType: 200
-    sprite: {fileID: 21300000, guid: 8f5330d1caaef084795702074822f55b, type: 3}
+    sprite: {fileID: 21300000, guid: 7cd7a36850b4e9b43bbe6c69c009709a, type: 3}

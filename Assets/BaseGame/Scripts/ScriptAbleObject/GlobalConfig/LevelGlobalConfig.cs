@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Sirenix.Utilities;
+using UnityEditor;
 using UnityEngine.AddressableAssets;
 using Random = UnityEngine.Random;
 
@@ -20,7 +22,7 @@ public class LevelGlobalConfig : GlobalConfig<LevelGlobalConfig>
             return GetRandomLevelConfig(level, levelDifficulty);
         }
 
-        return null;
+        return levelConfigs[level];
     }
 
     private LevelConfig GetRandomLevelConfig(int currentLevel, Difficulty levelDifficulty)
@@ -68,6 +70,29 @@ public class LevelGlobalConfig : GlobalConfig<LevelGlobalConfig>
 
         return levelConfigs[levelRandom];
     }
+
+#if UNITY_EDITOR
+    [Button]
+    private void GetLevelConfig()
+    {
+        var path = @"Assets\BaseGame\TextAssets\LevelData\";
+        for (var i = 0; i < levelConfigs.Length; i++)
+        {
+            levelConfigs[i].level = i;
+            var fullPath = path + "Level_" + levelConfigs[i].level + ".txt";
+            var asset = AssetDatabase.LoadAssetAtPath(fullPath, typeof(TextAsset));
+            if (asset != null)
+            {
+                levelConfigs[i].levelAsset = asset as TextAsset;
+            }
+            else
+            {
+                Debug.Log($"Null level asset for level{levelConfigs[i].level}");
+            }
+        }
+    }
+    
+#endif
 }
 
 [Serializable]

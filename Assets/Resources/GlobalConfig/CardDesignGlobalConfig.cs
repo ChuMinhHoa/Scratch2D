@@ -592,9 +592,11 @@ public sealed class CardDataEditorAttributeDrawer : OdinAttributeDrawer<CardData
 
     private void DrawStickerIcon(Rect rect, StickerData sticker)
     {
-        Color bgColor = sticker.stickerType == StickerType.Normal
-            ? new Color(0.4f, 0.4f, 0.4f, 1f)
-            : new Color(0.8f, 0.7f, 0.2f, 1f);
+        var isChain = sticker.stickerType == StickerType.Chain;
+        var isMark = sticker.stickerType == StickerType.Mark;
+        Color bgColor = new Color(0.4f, 0.4f, 0.4f, 1f);
+        bgColor = isChain ? new Color(0.8f, 0.7f, 0.2f, 1f) : bgColor;
+        bgColor = isMark ? new Color(0.2f, 0.7f, 0.8f, 1f) : bgColor;
 
         SirenixEditorGUI.DrawSolidRect(rect, bgColor);
         SirenixEditorGUI.DrawBorders(rect, 1, Color.black);

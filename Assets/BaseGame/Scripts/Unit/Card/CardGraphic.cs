@@ -15,17 +15,16 @@ public class CardGraphic : MonoBehaviour
     public Color colorStartOpen;
     public Color colorEndOpen;
     public float timeOpen = 0.25f;
-    
-    public ScratchCardManager scratchCardManager;
-    public Transform[] trsNeedRot;
+    public Vector3 offSetShadow;
 
-    public void InitData(Vector3 rot)
+    public Transform trsShadow;
+    
+    //public ScratchCardManager scratchCardManager;
+
+    [Button]
+    public void InitData()
     {
-        //scratchCardManager.gameObject.SetActive(true);
-        for (int i = 0; i < trsNeedRot.Length; i++)
-        {
-            trsNeedRot[i].eulerAngles = rot;
-        }
+        trsShadow.position = transform.position + offSetShadow;
     }
 
     [Button]
@@ -42,6 +41,7 @@ public class CardGraphic : MonoBehaviour
 
     public async UniTask SetActiveObjLook(bool active)
     {
+        trsShadow.gameObject.SetActive(!active);
         if (!active)
         {
             await OnAnimOpen();

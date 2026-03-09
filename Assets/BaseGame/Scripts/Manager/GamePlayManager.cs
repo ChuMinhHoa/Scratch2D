@@ -147,9 +147,9 @@ public class GamePlayManager : Singleton<GamePlayManager>
         Gizmos.DrawWireSphere(eraser.transform.position, radiusCheck);
     }
 
-    public void RegisterStickerDone(Sticker sticker)
+    public void RegisterStickerDone(Sticker sticker, Vector3 rot)
     {
-        level.RegisterStickerDone(sticker);
+        level.RegisterStickerDone(sticker, rot);
     }
 
     public void RemoveCurrentCard(Card card)

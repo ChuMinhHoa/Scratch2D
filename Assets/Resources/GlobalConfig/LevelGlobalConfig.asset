@@ -16,3 +16,27 @@ MonoBehaviour:
   - level: 0
     difficulty: 0
     levelAsset: {fileID: 4900000, guid: e5cbb80f5682369469aaa2f792098b27, type: 3}
+  - level: 1
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 7f0a64b36dd8f694e83a0c339d9ce456, type: 3}
+  - level: 2
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 84f68a7f3cf663146ba2e905f3bbd030, type: 3}
+  - level: 3
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 0f2ab76fe1c99264c94d1b25b273563f, type: 3}
+  - level: 4
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 80c82c034d5603d4baebe10973cb7a36, type: 3}
+  - level: 5
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 4eac2bb29462c5d47a4774c75b8d6526, type: 3}
+  - level: 6
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 0c68fd9ba0bbcb14383fceae0e4557e1, type: 3}
+  - level: 7
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: b838888536ca1e9478756b708eb0da8e, type: 3}
+  - level: 8
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: ca425637eddd8ec4494d90f645a0501f, type: 3}

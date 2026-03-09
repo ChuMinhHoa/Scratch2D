@@ -251,7 +251,9 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
         currentStickerIndex = stickerIndex;
         var stickerData = LevelData.layerCards[currentLayerIndex].cards[currentCardIndex].stickers[stickerIndex];
         var color = Color.gray3;
-        var isChain = stickerData.stickerType != StickerType.Normal;
+        var isChain = stickerData.stickerType == StickerType.Chain;
+        var isMark = stickerData.stickerType == StickerType.Mark;
+        color = isMark ? Color.cyan : color;
         color = isChain ? Color.yellow : color;
         SirenixEditorGUI.DrawSolidRect(rect, color);
         SirenixEditorGUI.DrawBorders(rect, 1);
@@ -266,7 +268,6 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
             stickerData.stickerType = StickerType.Normal;
         }
 
-
         var rectChain = new Rect(rect1.xMax - 20, rect1.y + 20, 20, 20);
         SirenixEditorGUI.DrawSolidRect(rectChain, Color.yellow);
         SirenixEditorGUI.DrawBorders(rectChain, 1);
@@ -276,7 +277,18 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
         {
             stickerData.stickerType = newValue ? StickerType.Chain : StickerType.Normal;
         }
-
+        
+        var rectMark = new Rect(rect1.xMax - 20, rect1.y + 40, 20, 20);
+        SirenixEditorGUI.DrawSolidRect(rectMark, Color.cyan);
+        SirenixEditorGUI.DrawBorders(rectMark, 1);
+        rectMark.x += 3;
+        var newMarkValue = EditorGUI.Toggle(rectMark, isMark);
+        if (newMarkValue != isMark)
+        {
+            stickerData.stickerType = newMarkValue ? StickerType.Mark : StickerType.Normal;
+        }
+        
+        
         EditorGUIUtility.labelWidth = defaultLabelWidth;
         rect1 = new Rect(rect.x + 5, currentY, 60, 60);
         stickerData.stickerID = DrawStickerSelect(rect1, stickerData.stickerID);
@@ -285,7 +297,10 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
         if (isNeedAddOn)
         {
             var rectAddOn = new Rect(rect1.xMax, currentY, 20, 40);
-            LevelDesignHelper.DrawChainAddOnSticker(rectAddOn, stickerData);
+            if (isChain)
+            {
+                LevelDesignHelper.DrawChainAddOnSticker(rectAddOn, stickerData);
+            }
         }
     }
 

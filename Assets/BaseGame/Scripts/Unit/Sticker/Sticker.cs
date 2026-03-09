@@ -63,7 +63,7 @@ public partial class Sticker : MonoBehaviour
 
     protected void StickerMoveToTarget()
     {
-        GamePlayManager.Instance.RegisterStickerDone(this);
+        GamePlayManager.Instance.RegisterStickerDone(this, stickerGraphic.currentRot);
     }
 
     public void DisAbleIcon()
@@ -76,11 +76,11 @@ public partial class Sticker : MonoBehaviour
         return requireDoneSticker.CheckDoneSticker();
     }
 
-    public void InitData(StickerData data)
+    public void InitData(StickerData data, Vector3 rot)
     {
         stickerData = data;
         stateMachine.RequestTransition(StickerInitState);
-        stickerGraphic.InitData(data.stickerID);
+        stickerGraphic.InitData(data.stickerID, rot);
     }
 
     public void EnableScratch(bool sameLayer)

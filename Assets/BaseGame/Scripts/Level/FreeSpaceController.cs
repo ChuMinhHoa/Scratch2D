@@ -12,19 +12,6 @@ public class FreeSpaceController : SpaceForSticker
     public SpaceSticker[] spaceStickers;
     [ShowInInspector] public List<StickerDone> stickerDoneWait = new();
 
-    // private void CheckGameOver()
-    // {
-    //     for (var i = 0; i < spaceStickers.Length; i++)
-    //     {
-    //         if (!spaceStickers[i].stickerPos.IsHaveObj())
-    //             return;
-    //     }
-    //
-    //     if (stickerDoneWait.Count == 0)
-    //         return;
-    //     GamePlayManager.Instance.level.GameOver();
-    // }
-
     public bool IsHaveStickerWait()
     {
         return stickerDoneWait.Count > 0;
@@ -82,6 +69,9 @@ public class FreeSpaceController : SpaceForSticker
     public void RemoveStickerDoneFromNoWhere(StickerDone e)
     {
         stickerDoneWait.Remove(e);
-        GlobalEventManager.OnCheckChangeLayerIndex?.Invoke();
+        if (stickerDoneWait.Count == 0)
+        {
+            GamePlayManager.Instance.NextLayer();
+        }
     }
 }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 26b837efa8bbdf34b98e10760c52af01
+guid: 1704bda511ade5147ae406f6b4050ff1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5073475009113800711
-    second: pack_3B_BG_0
+      213: -1058593534304033622
+    second: pack_3_dropShadow_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pack_3B_BG_0
+      name: pack_3_dropShadow_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 8
-        width: 173
-        height: 476
+        x: 0
+        y: 1
+        width: 264
+        height: 398
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9ff33f01c556799b0800000000000000
-      internalID: -5073475009113800711
+      spriteID: aa4684a0ace1f41f0800000000000000
+      internalID: -1058593534304033622
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pack_3B_BG_0: -5073475009113800711
+      pack_3_dropShadow_0: -1058593534304033622
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -68,6 +68,7 @@ public partial class Card : CardInitState.IHandler
         transform.position = pos;
         transform.eulerAngles = data.rotation;
         countSticker = cardData.stickers.Length;
+        cardGraphic.InitData();
     }
 
     private void LoadData()
@@ -76,7 +77,7 @@ public partial class Card : CardInitState.IHandler
         {
             var sticker = PoolManager.Instance.SpawnSticker(stickerPoints[i]);
             sticker.transform.localPosition = Vector3.zero;
-            sticker.InitData(data.stickers[i]);
+            sticker.InitData(data.stickers[i], data.rotation);
             stickers.Add(sticker);
             stickerSubscriptions.Add(sticker.isDone.Skip(1).Subscribe(ChangeStickerScratchDone));
         }

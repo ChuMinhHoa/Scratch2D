@@ -67,7 +67,7 @@ public class LevelGenerateText : MonoBehaviour
         }
         else LevelDataTextAsset = AssetDatabase.LoadAssetAtPath<TextAsset>(assetPath);
 
-        level.levelIndex = levelIndex;
+        level.levelIndex.Value = levelIndex;
         level.LoadOnlyData();
     }
 

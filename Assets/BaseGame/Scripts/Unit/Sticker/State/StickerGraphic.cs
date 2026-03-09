@@ -1,12 +1,14 @@
+using System;
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using ScratchCardAsset;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class StickerGraphic : MonoBehaviour
+public partial class StickerGraphic : MonoBehaviour
 {
     public int stickerId;
+    public StickerType stickerType;
     public SpriteRenderer sprIcon;
     public SpriteRenderer sprBg;
     public SpriteRenderer sprGlow;
@@ -15,19 +17,30 @@ public class StickerGraphic : MonoBehaviour
     public ScratchCardManager scratchManager;
     
     public SpriteRenderer objScratchFake;
-    
+    public Vector3 currentRot;
     [Button]
-    public void InitData(int id)
+    public void InitData(int id, Vector3 rot)
     {
         stickerId = id;
-        
-        var spriteIcon = SpriteGlobalConfig.Instance.GetStickerIcon(id);
-        var spriteBg = SpriteGlobalConfig.Instance.GetStickerBg(id);
-        
-        sprIcon.sprite = spriteIcon;
-        sprBg.sprite = spriteBg;
-        sprGlow.sprite = spriteIcon;
-        objScratchFake.sprite = spriteBg;
+        currentRot = rot;
+    }
+
+    public void InitStickerType(StickerType type)
+    {
+        stickerType = type;
+        switch (stickerType)
+        {
+            case StickerType.Chain:
+                InitStickerChain();
+                break;
+            case StickerType.Mark:
+                InitStickerMark();
+                break;
+            case StickerType.Normal:
+            default:
+                InitStickerNormal();
+                break;
+        }
         
         sprIcon.gameObject.SetActive(true);
     }
@@ -69,10 +82,16 @@ public class StickerGraphic : MonoBehaviour
 
     public void ScratchActive()
     {
+        scratchManager.ChangeSprite(sprBg.sprite);
         scratchManager.gameObject.SetActive(true);
-        var spriteScratch = SpriteGlobalConfig.Instance.GetStickerBg(stickerId);
-        scratchManager.ChangeSprite(spriteScratch);
         objScratchFake.gameObject.SetActive(false);
+        _ = WaitToActiveScratch();
+    }
+
+    private async UniTask WaitToActiveScratch()
+    {        
+        await UniTask.WaitForSeconds(0.05f);
+        transform.eulerAngles = currentRot;
     }
 
     public void EnableScratch(bool sameLayer)

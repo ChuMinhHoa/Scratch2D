@@ -39,17 +39,6 @@ public partial class Card : MonoBehaviour
         
         stateMachine.RequestTransition(CardWaitState);
         stateMachine.Run();
-        GlobalEventManager.OnCheckChangeLayerIndex += OnCheckChangeLayer;
-    }
-
-    private void OnDestroy()
-    {
-        GlobalEventManager.OnCheckChangeLayerIndex -= OnCheckChangeLayer;
-    }
-
-    private void OnCheckChangeLayer()
-    {
-        OnChangeLayer(currentLayer.Value);
     }
 
     private void OnChangeLayer(int layer)

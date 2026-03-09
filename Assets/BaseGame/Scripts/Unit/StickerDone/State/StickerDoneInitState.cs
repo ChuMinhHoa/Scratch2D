@@ -1,6 +1,7 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using TW.Utility.DesignPattern.UniTaskState;
+using UnityEngine;
 
 public class StickerDoneInitState : IState
 {
@@ -38,13 +39,13 @@ public partial class StickerDone : StickerDoneInitState.IHandler
     private StickerDoneInitState StickerDoneInitStateCache { get; set; }
     public StickerDoneInitState StickerDoneInitState => StickerDoneInitStateCache ??= new StickerDoneInitState(this);
     
-    public void InitStickerMove(int id)
+    public void InitStickerMove(int id, Vector3 rot)
     {
         stickerId = id;
         var sprite = SpriteGlobalConfig.Instance.GetStickerIcon(id);
         sprIcon.sprite = sprite;
         stickerGlow.sprite = sprite;
-        
+        transform.eulerAngles = rot;
         stateMachine.RequestTransition(StickerDoneOpenState);
     }
     

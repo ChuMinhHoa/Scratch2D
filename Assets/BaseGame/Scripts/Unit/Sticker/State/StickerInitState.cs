@@ -44,7 +44,7 @@ public partial class Sticker : StickerInitState.IHandler
     
     public UniTask OnEnterInitState()
     {
-        stickerGraphic.InitData(stickerData.stickerID);
+        stickerGraphic.InitStickerType(stickerData.stickerType);
         return UniTask.CompletedTask;
     }
 
