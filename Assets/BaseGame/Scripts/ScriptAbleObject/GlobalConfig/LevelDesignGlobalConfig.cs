@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
@@ -22,7 +23,6 @@ public sealed class LevelDataEditor : System.Attribute
 {
 }
 
-#if UNITY_EDITOR
 public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDataEditor, Level>
 {
     private static LevelData LevelData { get; set; }

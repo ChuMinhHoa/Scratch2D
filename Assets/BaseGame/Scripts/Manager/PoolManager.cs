@@ -117,11 +117,11 @@ public class PoolManager : Singleton<PoolManager>
 
     public HPool<Sticker> poolSticker;
     
-    public Sticker SpawnSticker(Transform parents)
+    public Sticker SpawnSticker()
     {
         var obj = poolSticker.Spawn();
         if (!obj) return null;
-        obj.transform.SetParent(parents);
+        obj.transform.localPosition = Vector3.zero;
         obj.transform.localScale = Vector3.one;
         return obj;
     }

@@ -69,15 +69,16 @@ public partial class Card : CardInitState.IHandler
         transform.eulerAngles = data.rotation;
         countSticker = cardData.stickers.Length;
         cardGraphic.InitData();
+        scratchObject = PoolManager.Instance.SpawnScratchManager();
     }
 
     private void LoadData()
     {
         for (var i = 0; i < data.stickers.Length; i++)
         {
-            var sticker = PoolManager.Instance.SpawnSticker(stickerPoints[i]);
-            sticker.transform.localPosition = Vector3.zero;
+            var sticker = PoolManager.Instance.SpawnSticker();
             sticker.InitData(data.stickers[i], data.rotation);
+            sticker.SetParents(stickerPoints[i]);
             stickers.Add(sticker);
             stickerSubscriptions.Add(sticker.isDone.Skip(1).Subscribe(ChangeStickerScratchDone));
         }

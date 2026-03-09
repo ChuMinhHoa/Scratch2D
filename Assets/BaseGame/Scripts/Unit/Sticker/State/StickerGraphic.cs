@@ -25,7 +25,7 @@ public partial class StickerGraphic : MonoBehaviour
         currentRot = rot;
     }
 
-    public void InitStickerType(StickerType type)
+    public async UniTask InitStickerType(StickerType type)
     {
         stickerType = type;
         switch (stickerType)
@@ -43,6 +43,8 @@ public partial class StickerGraphic : MonoBehaviour
         }
         
         sprIcon.gameObject.SetActive(true);
+        scratchManager.ChangeSprite(sprBg.sprite);
+        await ScratchActive();
     }
 
     [Button]
@@ -80,22 +82,24 @@ public partial class StickerGraphic : MonoBehaviour
         scratchManager.FillScratchCard();
     }
 
-    public void ScratchActive()
+    private async UniTask ScratchActive()
     {
-        scratchManager.ChangeSprite(sprBg.sprite);
         scratchManager.gameObject.SetActive(true);
         objScratchFake.gameObject.SetActive(false);
-        _ = WaitToActiveScratch();
-    }
-
-    private async UniTask WaitToActiveScratch()
-    {        
-        await UniTask.WaitForSeconds(0.05f);
+        await UniTask.WaitForSeconds(0.1f);
         transform.eulerAngles = currentRot;
+       
     }
 
     public void EnableScratch(bool sameLayer)
     {
         scratchManager.EnableInput(sameLayer);
+    }
+
+    public void SetParents(Transform currentParents)
+    {
+        transform.SetParent(currentParents);
+        transform.localPosition = Vector3.zero;
+        transform.localScale = Vector3.one;
     }
 }

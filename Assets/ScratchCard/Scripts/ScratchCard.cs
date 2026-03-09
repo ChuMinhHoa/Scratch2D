@@ -87,6 +87,8 @@ namespace ScratchCardAsset
 		void Start()
 		{
 			Init();
+			cardInput.isGamePlaying = GamePlayManager.Instance.onPlaying;
+			cardInput.eraserOnFollowing = GamePlayManager.Instance.isFollowing;
 		}
 
 		void OnDestroy()

@@ -17,11 +17,13 @@ public class BoosterManager : Singleton<BoosterManager>
     private void OnUseBoosterDone()
     {
         onUsingBooster = false;
+        GamePlayManager.Instance.ChangeGameState(GameState.Playing);
     }
 
     private void OnUsingBooster(BoosterType arg1, IBooster arg2)
     {
         onUsingBooster = true;
+        GamePlayManager.Instance.ChangeGameState(GameState.OnBooster);
     }
     
     

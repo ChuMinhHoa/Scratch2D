@@ -109,15 +109,17 @@ public class Level : Singleton<Level>
     [Button]
     public async UniTask LoadData()
     {
+        GamePlayManager.Instance.ChangeGameState(GameState.Loading);
         levelIndex = PlayerInfoManager.Instance.playerLevel;
         levelConfig = LevelGlobalConfig.Instance.GetLevelConfig(levelIndex.Value);
         levelTextAsset = levelConfig.levelAsset;
         LevelData = DataSerializer.Deserialize<LevelData>(levelTextAsset.text);
         ShuffleID();
-        oSController.LoadData(LevelData.objHaveStickers);
-        layerController.LoadData(LevelData.layerCards.AsSpan());
+        await oSController.LoadData(LevelData.objHaveStickers);
+        await layerController.LoadData(LevelData.layerCards);
         await UniTask.WaitUntil(() => oSController.loadDone && layerController.loadDone);
         CallNextObjSticker(true);
+        GamePlayManager.Instance.ChangeGameState(GameState.Playing);
     }
 
     private Dictionary<int, int> mappingID = new ();
@@ -158,7 +160,7 @@ public class Level : Singleton<Level>
     {
         return new Random().Next(0, totalStickerId);
     }
-
+#if UNITY_EDITOR
     public void LoadOnlyData()
     {
         var assetsPath = "Assets/BaseGame/TextAssets/LevelData/";
@@ -167,7 +169,7 @@ public class Level : Singleton<Level>
         var levelDataTextAsset = AssetDatabase.LoadAssetAtPath<TextAsset>(assetPath);
         LevelData = DataSerializer.Deserialize<LevelData>(levelDataTextAsset.text);
     }
-
+#endif
 
     [Button]
     private void CallNextObjSticker(bool callFromLoad = false)

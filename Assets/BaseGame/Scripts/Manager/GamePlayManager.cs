@@ -7,6 +7,15 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
+public enum GameState
+{
+    None = 0,
+    Normal = 1,
+    Loading = 2,
+    Playing = 10,
+    OnBooster = 20
+}
+
 public class GamePlayManager : Singleton<GamePlayManager>
 {
     [SerializeField] private Camera cam;
@@ -16,15 +25,18 @@ public class GamePlayManager : Singleton<GamePlayManager>
     public LayerMask whatIsCardLayer;
     private Dictionary<Collider2D, Card> cardCollection = new();
     private Dictionary<Collider2D, ButtonGameObject> buttonGameObjects = new();
-    bool isFollowing;
+    public Reactive<bool> isFollowing;
     public Level level;
+    public GameState gameState;
+    
+    public Reactive<bool> onPlaying = new (false);
 
-    public void SetCurrentCard(Card card)
+    private void SetCurrentCard(Card card)
     {
         eraser.SetCurrentCard(card);
     }
 
-    public bool IsCurrentCard(Card card)
+    private bool IsCurrentCard(Card card)
     {
         return eraser.currentCard == card;
     }
@@ -38,15 +50,24 @@ public class GamePlayManager : Singleton<GamePlayManager>
 
     private void UpdateFunction()
     {
+        if ((int)gameState < 10)
+        {
+            if (isFollowing.Value)
+            {
+                isFollowing.Value = false;
+                eraser.SetActiveGraphic(false);
+            }
+            return;
+        }
         if (Input.GetMouseButtonDown(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
-            isFollowing = true;
+            isFollowing.Value = true;
             eraser.SetActiveGraphic(true);
         }
 
         if (Input.GetMouseButtonUp(0) /*|| Input.GetTouch(0).phase == TouchPhase.Ended*/)
         {
-            isFollowing = false;
+            isFollowing.Value = false;
             eraser.SetActiveGraphic(false);
             CheckOverButtonGameObject();
             CheckOverSelectAbleOnBooster();
@@ -76,7 +97,7 @@ public class GamePlayManager : Singleton<GamePlayManager>
         var r = Physics2D.OverlapCircle(worldPos, radiusCheck, 7);
         if (r)
         {
-           BoosterManager.Instance.ChooseObjOnBooster(r);
+            BoosterManager.Instance.ChooseObjOnBooster(r);
         }
     }
 
@@ -165,5 +186,11 @@ public class GamePlayManager : Singleton<GamePlayManager>
     public async UniTask PlayGame()
     {
         await level.LoadData();
+    }
+
+    public void ChangeGameState(GameState state)
+    {
+        gameState = state;
+        onPlaying.Value = gameState > GameState.Loading;
     }
 }

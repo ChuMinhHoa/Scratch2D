@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
@@ -154,3 +155,5 @@ public class LevelGenerateFunction : MonoBehaviour
         return true;
     }
 }
+
+#endif

@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
@@ -21,7 +22,6 @@ public sealed class CardDataEditor : System.Attribute
 {
 }
 
-#if UNITY_EDITOR
 public sealed class CardDataEditorAttributeDrawer : OdinAttributeDrawer<CardDataEditor, CardData>
 {
     private const float Padding = 10f;

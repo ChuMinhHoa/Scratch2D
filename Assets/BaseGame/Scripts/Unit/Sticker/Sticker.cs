@@ -79,18 +79,13 @@ public partial class Sticker : MonoBehaviour
     public void InitData(StickerData data, Vector3 rot)
     {
         stickerData = data;
-        stateMachine.RequestTransition(StickerInitState);
         stickerGraphic.InitData(data.stickerID, rot);
+        stateMachine.RequestTransition(StickerInitState);
     }
 
     public void EnableScratch(bool sameLayer)
     {
         stickerGraphic.EnableScratch(sameLayer);
-    }
-
-    public void ScratchActive()
-    {
-        stickerGraphic.ScratchActive();
     }
 
     public void ForceScratchDone()

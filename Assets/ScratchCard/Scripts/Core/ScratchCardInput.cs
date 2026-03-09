@@ -49,6 +49,8 @@ namespace ScratchCardAsset.Core
 #endif
 
 		private const int MaxTouchCount = 10;
+		public Reactive<bool> isGamePlaying = new (false);
+		public Reactive<bool> eraserOnFollowing = new (false);
 
 		public ScratchCardInput(ScratchCard card)
 		{
@@ -67,7 +69,10 @@ namespace ScratchCardAsset.Core
 		{
 			if (!scratchCard.InputEnabled)
 				return;
-
+			if (!isGamePlaying.Value)
+				return;	
+			if (!eraserOnFollowing.Value)
+				return;
 			if (Input.touchSupported && Input.touchCount > 0 && !isWebgl)
 			{
 				foreach (var touch in Input.touches)

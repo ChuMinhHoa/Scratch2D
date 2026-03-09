@@ -28,6 +28,8 @@ public class BoosterBase : IBooster
 
     public virtual void UseBooster()
     {
+        if (GamePlayManager.Instance.gameState != GameState.Playing)
+            return;
         _ = UIManager.Instance.OpenActivityAsync<ActivityUsingBooster>();
         GlobalEventManager.OnBoosterUsing?.Invoke(boosterType, this);
     }

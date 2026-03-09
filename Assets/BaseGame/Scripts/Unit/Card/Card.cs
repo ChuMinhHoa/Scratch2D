@@ -26,6 +26,7 @@ public partial class Card : MonoBehaviour
 
     private CompositeDisposable stickerSubscriptions = new CompositeDisposable();
     private bool isSameLayer;
+    private Reactive<bool> isOnPlaying = new();
     
     public StateMachine stateMachine = new();
     public CardGraphic cardGraphic;
@@ -39,6 +40,14 @@ public partial class Card : MonoBehaviour
         
         stateMachine.RequestTransition(CardWaitState);
         stateMachine.Run();
+        isOnPlaying = GamePlayManager.Instance.onPlaying;
+        isOnPlaying.Skip(1).Subscribe(ChangeGameState).AddTo(this);
+    }
+
+    private void ChangeGameState(bool playing)
+    {
+        isSameLayer = layerIndex == currentLayer.Value && playing;
+        EnableInput();
     }
 
     private void OnChangeLayer(int layer)
@@ -46,14 +55,19 @@ public partial class Card : MonoBehaviour
         if (!stateMachine.IsCurrentState(CardWaitState)) return;
         if (IsDone()) return;
         if(GamePlayManager.Instance.level.IsHaveStickerWait()) return;
+        isSameLayer = layerIndex == layer && isOnPlaying.Value;
         _ = WaitToEnableInput();
-        isSameLayer = layerIndex == layer;
     }
     
     private async UniTask WaitToEnableInput()
     {
         await UniTask.WaitForSeconds(1f);
         await cardGraphic.SetActiveObjLook(!isSameLayer);
+        EnableInput();
+    }
+
+    private void EnableInput()
+    {
         for (var i = 0; i < stickers.Count; i++)
         {
             stickers[i].EnableScratch(isSameLayer);
@@ -83,7 +97,6 @@ public partial class Card : MonoBehaviour
     
     private void ResetCard()
     {
-//        Debug.Log("Reset Card");
         transform.localScale = Vector3.one;
         for (var i = 0; i < stickers.Count; i++)
         {
@@ -92,9 +105,8 @@ public partial class Card : MonoBehaviour
         }
 
         stickers.Clear();
-        
-        //scratchObject.ResetScratch();
         Destroy(scratchObject.gameObject);
+        
         stickerSubscriptions.Clear();
         PoolManager.Instance.DespawnCard(this);
         GamePlayManager.Instance.RemoveCurrentCard(this);
@@ -112,19 +124,18 @@ public partial class Card : MonoBehaviour
                
                 for (var i = 0; i < stickers.Count; i++)
                 {
-                    stickers[i].ScratchActive();
+                    //stickers[i].ScratchActive();
                     stickers[i].EnableScratch(isSameLayer);
                 }
 
-                _ = SpawnScratchObject();
+                _ = SetScratchObject();
                 
             }).WithDelay(0.15f * index).WithEase(curveFirstSpawn).Bind(x => transform.localScale = Vector3.one * x)
             .AddTo(this);
     }
 
-    private async UniTask SpawnScratchObject()
+    private async UniTask SetScratchObject()
     {
-        scratchObject = PoolManager.Instance.SpawnScratchManager();
         scratchObject.EnableInput(isSameLayer);
         await scratchObject.InitData(layerIndex, data);
         objFakeScratch.SetActive(false);

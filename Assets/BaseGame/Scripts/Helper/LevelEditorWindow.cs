@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Linq;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
@@ -70,3 +71,5 @@ public class LevelEditorWindow : OdinMenuEditorWindow
         SirenixEditorGUI.EndHorizontalToolbar();
     }
 }
+
+#endif

@@ -41,11 +41,11 @@ public partial class Sticker : StickerInitState.IHandler
     private StickerInitState StickerInitStateCache { get; set; }
     public StickerInitState StickerInitState => StickerInitStateCache ??= new StickerInitState(this);
 
-    
-    public UniTask OnEnterInitState()
+    public Transform currentParents;
+    public async UniTask OnEnterInitState()
     {
-        stickerGraphic.InitStickerType(stickerData.stickerType);
-        return UniTask.CompletedTask;
+        await stickerGraphic.InitStickerType(stickerData.stickerType);
+        stickerGraphic.SetParents(currentParents);
     }
 
     public UniTask OnUpdateInitState()
@@ -56,5 +56,10 @@ public partial class Sticker : StickerInitState.IHandler
     public UniTask OnExitInitState()
     {
         return UniTask.CompletedTask;
+    }
+
+    public void SetParents(Transform stickerPoint)
+    {
+        currentParents = stickerPoint;
     }
 }

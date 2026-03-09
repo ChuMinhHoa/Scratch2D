@@ -18,7 +18,7 @@ public class ObjHaveStickerController : SpaceForSticker
     public bool isEndGame;
     [field: SerializeField] public SlotFolder[] SlotFolders { get; set; }
 
-    public void LoadData(Span<ObjHaveStickerData> objSticker)
+    public async UniTask LoadData(ObjHaveStickerData[] objSticker)
     {
         isEndGame = false;
         for (var i = 0; i < objSticker.Length; i++)
@@ -29,8 +29,8 @@ public class ObjHaveStickerController : SpaceForSticker
             objHaveStickers.Enqueue(ot);
         }
 
+        await CallNextObjSticker(true);
         loadDone = true;
-        _ = CallNextObjSticker(true);
     }
 
     private UniTask checkLoseTask;
@@ -38,7 +38,6 @@ public class ObjHaveStickerController : SpaceForSticker
     public async UniTask CallNextObjSticker(bool callFromLoad = false)
     {
         if (!callFromLoad) await UniTask.WaitForSeconds(0.5f);
-        Debug.Log($"{objHaveStickers.Count}");
         if (objHaveStickers.Count > 0)
         {
             for (var i = 0; i < SlotFolders.Length; i++)
@@ -50,11 +49,6 @@ public class ObjHaveStickerController : SpaceForSticker
                 SlotFolders[i].SetFolder(folder);
                 await folder.MoveToTarget(SlotFolders[i].folderPos.trsPos.position);
                 SlotFolders[i].folderPos.MoveDone();
-                
-                // if (checkLoseTask.Status == UniTaskStatus.Pending) 
-                //     await UniTask.WaitUntil(() => checkLoseTask.Status == UniTaskStatus.Succeeded);
-                //
-                // checkLoseTask = CheckLevelLose();
             }
         }
         else

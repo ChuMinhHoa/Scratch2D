@@ -46,7 +46,12 @@ public partial class StickerDone : StickerDoneMoveFreeSpaceState.IHandler
         stickerDoneAnim.enabled = false;
         var currentScale = sprIcon.transform.localScale;
         var targetScale = stickerPos.trsPos.localScale;
+        var currentEulerAngle = transform.eulerAngles;
+        
         LMotion.Create(currentScale, targetScale, .25f).Bind(x => sprIcon.transform.localScale = x);
+        
+        LMotion.Create(currentEulerAngle, stickerPos.trsPos.eulerAngles, .25f).Bind(x => transform.eulerAngles = x);
+        
         await unitAnim.PlayMoveAnim(stickerPos.trsPos.position);
         CheckToAbleStickerAnimAgain();
         stickerPos.MoveDone();

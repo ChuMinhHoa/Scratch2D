@@ -11,9 +11,11 @@ public class LayerController
     public List<Card> cards;
     [field: SerializeField] public Reactive<int> layerActive { get; set; } = new(0);
     public bool loadDone;
-    public void LoadData(Span<LayerCardData> data)
+    private int totalCards;
+    public async UniTask LoadData(LayerCardData[] data)
     {
-        for (var i = 0; i < data.Length; i++)
+        totalCards = 0;
+        for (var i = data.Length - 1; i >= 0 ; i--)
         {
             LoadCardInLayer(i, data[i].cards);
         }
@@ -27,8 +29,9 @@ public class LayerController
         {
             var card = PoolManager.Instance.SpawnCard(data[i].cardType, data[i].position);
             card.InitData(data[i], layerIndex);
-            card.AnimFirstSpawn(i);
+            card.AnimFirstSpawn(totalCards);
             cards.Add(card);
+            totalCards++;
         }
     }
     
@@ -46,7 +49,7 @@ public class LayerController
 
     public void NextLayer()
     {
-        for (var i = 0; i < cards.Count; i++)
+        for (var i = cards.Count - 1; i >= 0 ; i--)
         {
             if (cards[i].layerIndex == layerActive.Value && !cards[i].IsDone())
             {
@@ -58,6 +61,7 @@ public class LayerController
         }
 
         layerActive.Value++;
+        Debug.Log($"Change layer {layerActive.Value}");
     }
 
     public void OnRemoveSticker(int stickerId, int countRemove)
