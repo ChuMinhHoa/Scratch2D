@@ -70,8 +70,12 @@ public partial class Card : CardDoneState.IHandler
         });
         ResetCard();
         if (!Level.Instance.fSpaceController.IsHaveStickerWait())
-            GamePlayManager.Instance.NextLayer();
+        {
+            Debug.Log("Need check");
+            //GamePlayManager.Instance.NextLayer();
+        }
        
         GamePlayManager.Instance.level.layerController.RemoveCard(this);
+        GlobalEventManager.OnHaveCardDone?.Invoke();
     }
 }

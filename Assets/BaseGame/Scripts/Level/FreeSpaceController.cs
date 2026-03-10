@@ -70,7 +70,7 @@ public class FreeSpaceController : SpaceForSticker
         stickerDoneWait.Remove(e);
         if (stickerDoneWait.Count == 0)
         {
-            GamePlayManager.Instance.NextLayer();
+            GlobalEventManager.OnHaveCardDone?.Invoke();
         }
     }
 

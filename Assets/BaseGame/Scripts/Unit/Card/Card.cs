@@ -1,15 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using LitMotion;
 using R3;
-using ScratchCardAsset;
 using Sirenix.OdinInspector;
 using TW.Utility.DesignPattern.UniTaskState;
 using UniRx;
-using UniRx.Triggers;
 using UnityEngine;
-using UnityEngine.Serialization;
 using CompositeDisposable = R3.CompositeDisposable;
 
 public partial class Card : MonoBehaviour
@@ -21,71 +17,68 @@ public partial class Card : MonoBehaviour
     public List<Sticker> stickers;
     public int countSticker;
 
-    private Reactive<int> currentLayer = new(0);
     public AnimationCurve curveFirstSpawn;
     public GameObject objFakeScratch;
 
     private CompositeDisposable stickerSubscriptions = new CompositeDisposable();
-    private bool isSameLayer;
     private Reactive<bool> isOnPlaying = new();
 
     public StateMachine stateMachine = new();
     public CardGraphic cardGraphic;
 
-    public ScratchObject scratchObject;
+    public ScratchObject scratchObject { get; set; }
+    public FrontChecker2D frontChecker2D;
 
     private void Start()
     {
-        currentLayer = GamePlayManager.Instance.level.layerController.layerActive;
-        currentLayer.Skip(1).Subscribe(OnChangeLayer).AddTo(this);
-
         stateMachine.RequestTransition(CardWaitState);
         stateMachine.Run();
         isOnPlaying = GamePlayManager.Instance.onPlaying;
         isOnPlaying.Skip(1).Subscribe(ChangeGameState).AddTo(this);
+        GlobalEventManager.OnHaveCardDone += CheckToShow;
     }
 
+    [Button]
     private void CheckToShow()
     {
-        Vector3 origin = transform.position;
-        Vector3 direction = transform.forward;
-        float distance = 10f;
-
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
+        if (!stateMachine.IsCurrentState(CardWaitState)) return;
+        
+        if (IsDone()) return;
+        
+        if(GamePlayManager.Instance.level.IsHaveStickerWait()) return;
+        
+        var result = frontChecker2D.IsAnythingInFront();
+        Debug.Log(result);
+        if (!result)
         {
-            Debug.Log($"GameObject che khuất: {hit.collider.gameObject.name}");
+            Debug.Log("On show mode!");
+            OnShowMode();
         }
+    }
+    
+    private void OnShowMode()
+    {
+        _ = cardGraphic.SetActiveObjLook(false);
+        EnableInput(true);
+        for (var i = 0; i < stickers.Count; i++)
+        {
+            stickers[i].EnableScratch(true);
+        }
+        objFakeScratch.SetActive(false);
     }
 
     private void ChangeGameState(bool playing)
     {
-        isSameLayer = layerIndex == currentLayer.Value && playing;
-        EnableInput();
-    }
-
-    private void OnChangeLayer(int layer)
-    {
-        if (!stateMachine.IsCurrentState(CardWaitState)) return;
-        if (IsDone()) return;
-        if(GamePlayManager.Instance.level.IsHaveStickerWait()) return;
-        isSameLayer = layerIndex == layer && isOnPlaying.Value;
-        _ = WaitToEnableInput();
+        //EnableInput(playing);
     }
     
-    private async UniTask WaitToEnableInput()
-    {
-        await UniTask.WaitForSeconds(1f);
-        await cardGraphic.SetActiveObjLook(!isSameLayer);
-        EnableInput();
-    }
-
-    private void EnableInput()
+    private void EnableInput(bool isEnable)
     {
         for (var i = 0; i < stickers.Count; i++)
         {
-            stickers[i].EnableScratch(isSameLayer);
+            stickers[i].EnableScratch(isEnable);
         }
-        scratchObject.EnableInput(isSameLayer);
+        scratchObject.EnableInput(isEnable);
     }
 
     public void SetActionCallbackChangeProgress(Action<float> callback)
@@ -130,36 +123,14 @@ public partial class Card : MonoBehaviour
     [Button]
     public void AnimFirstSpawn(int index)
     {
-        LMotion.Create(0f, 1f, 0.25f).WithOnComplete(() =>
+        LMotion.Create(0f, 1f, 0.25f).WithOnComplete(()=>
             {
-                isSameLayer = layerIndex == 0;
-                _ = cardGraphic.SetActiveObjLook(!isSameLayer);
-               
-                for (var i = 0; i < stickers.Count; i++)
-                {
-                    //stickers[i].ScratchActive();
-                    stickers[i].EnableScratch(isSameLayer);
-                }
-
-                _ = SetScratchObject();
-                
+                _ = scratchObject.InitData(layerIndex, data);
             }).WithDelay(0.15f * index).WithEase(curveFirstSpawn).Bind(x => transform.localScale = Vector3.one * x)
             .AddTo(this);
     }
 
-    private async UniTask SetScratchObject()
-    {
-        scratchObject.EnableInput(isSameLayer);
-        await scratchObject.InitData(layerIndex, data);
-        objFakeScratch.SetActive(false);
-    }
-
-    public bool CheckIsSameLayer()
-    {
-        return layerIndex == currentLayer.Value;
-    }
-
-    public bool IsDone() => countSticker == 0;
+    private bool IsDone() => countSticker == 0;
 
     public int IsHaveSticker(int stickerId, int countRemain)
     {
@@ -181,7 +152,6 @@ public partial class Card : MonoBehaviour
     {
         for (var i = 0; i < stickers.Count; i++)
         {
-            
             Debug.Log($"note id {stickerId} {stickers[i].stickerData.stickerID}");
             if (stickers[i].stickerData.stickerID == stickerId && !stickers[i].isDone)
             {

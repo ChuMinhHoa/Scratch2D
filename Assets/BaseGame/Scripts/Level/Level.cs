@@ -120,6 +120,8 @@ public class Level : Singleton<Level>
         await UniTask.WaitUntil(() => oSController.loadDone && layerController.loadDone);
         CallNextObjSticker(true);
         GamePlayManager.Instance.ChangeGameState(GameState.Playing);
+        await UniTask.WaitForSeconds(2f);
+        GlobalEventManager.OnHaveCardDone?.Invoke();
     }
 
     private Dictionary<int, int> mappingID = new ();
@@ -183,11 +185,6 @@ public class Level : Singleton<Level>
         stD.InitStickerMove(sticker.stickerData.stickerID, rot);
         sticker.DisAbleIcon();
         stickerDone.Add(stD);
-    }
-
-    public void NextLayer()
-    {
-        layerController.NextLayer();
     }
 
     [Button]
@@ -262,7 +259,8 @@ public class Level : Singleton<Level>
             {
                 for (var j = 0; j < card.Count; j++)
                 {
-                    if (!card[j].CheckIsSameLayer()) continue;
+                    Debug.Log("Need Check");
+                    //if (!card[j].CheckIsSameLayer()) continue;
                     if (card[j].IsHaveSticker(noteId))
                         return true;
                 }

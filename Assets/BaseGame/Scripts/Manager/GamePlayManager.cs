@@ -153,8 +153,6 @@ public class GamePlayManager : Singleton<GamePlayManager>
             var card = GetCardFromDictionary(hit[0]);
             if (IsCurrentCard(card))
                 return;
-            if (!card.CheckIsSameLayer())
-                return;
             SetCurrentCard(card);
         }
         else
@@ -187,11 +185,6 @@ public class GamePlayManager : Singleton<GamePlayManager>
     public void RemoveCurrentCard(Card card)
     {
         eraser.RemoveCurrentCard(card);
-    }
-
-    public void NextLayer()
-    {
-        level.NextLayer();
     }
 
     public async UniTask PlayGame()

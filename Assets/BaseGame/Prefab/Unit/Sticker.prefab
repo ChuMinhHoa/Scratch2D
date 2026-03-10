@@ -342,6 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6a66a631a14314c9a612acd041ba2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sticker
+  currentParents: {fileID: 0}
   stickerType: 0
   stickerData:
     stickerID: 0
@@ -747,6 +748,10 @@ PrefabInstance:
       propertyPath: BrushScale.y
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 11474202, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: InputEnabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 11486244, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -763,6 +768,10 @@ PrefabInstance:
       propertyPath: EraseTexture
       value: 
       objectReference: {fileID: 2800000, guid: eef5a9056291fba45ad50d97817d14ae, type: 3}
+    - target: {fileID: 11486244, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
+      propertyPath: InputEnabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 11486244, guid: bfd21db4576fb4dac871b93fdc37924b, type: 3}
       propertyPath: EraseTextureScale.x
       value: 2.5

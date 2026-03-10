@@ -1477,9 +1477,6 @@ MonoBehaviour:
   layerController:
     trsLayerParents: {fileID: 0}
     cards: []
-    <layerActive>k__BackingField:
-      value: 0
-      EditorValue: 0
     loadDone: 0
   objOnUsingBooster: {fileID: 1807813734}
   stickerDone: []
@@ -2016,9 +2013,6 @@ MonoBehaviour:
   layerController:
     trsLayerParents: {fileID: 0}
     cards: []
-    <layerActive>k__BackingField:
-      value: 0
-      EditorValue: 0
     loadDone: 1
   objOnUsingBooster: {fileID: 0}
   stickerDone: []
@@ -3243,9 +3237,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 664377655630795629, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 24759691580859917, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
+      propertyPath: currentCollider
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3319799914231244128, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
       propertyPath: m_Name
@@ -3257,15 +3251,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3811211421870402198, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.317
       objectReference: {fileID: 0}
     - target: {fileID: 3811211421870402198, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.301
       objectReference: {fileID: 0}
     - target: {fileID: 3811211421870402198, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3811211421870402198, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
       propertyPath: m_LocalRotation.w

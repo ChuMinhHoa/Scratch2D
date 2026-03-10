@@ -74,6 +74,7 @@ public partial class StickerGraphic : MonoBehaviour
         objGlow.SetActive(false);
         scratchManager.ResetScratchCard();
         scratchManager.Progress.ResetScratch();
+        scratchManager.EnableInput(false);
         scratchManager.gameObject.SetActive(false);
     }
 
@@ -91,9 +92,9 @@ public partial class StickerGraphic : MonoBehaviour
        
     }
 
-    public void EnableScratch(bool sameLayer)
+    public void EnableScratch(bool active)
     {
-        scratchManager.EnableInput(sameLayer);
+        scratchManager.EnableInput(active);
     }
 
     public void SetParents(Transform currentParents)

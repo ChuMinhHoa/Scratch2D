@@ -102,6 +102,14 @@ PrefabInstance:
       propertyPath: 'stickerPoints.Array.data[2]'
       value: 
       objectReference: {fileID: 8473638292319906264}
+    - target: {fileID: 723781657714891590, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
+      propertyPath: m_Size.y
+      value: 4.745679
+      objectReference: {fileID: 0}
+    - target: {fileID: 723781657714891590, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.036250472
+      objectReference: {fileID: 0}
     - target: {fileID: 996963301119101435, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
       propertyPath: m_Size.x
       value: 2.64
@@ -117,6 +125,22 @@ PrefabInstance:
     - target: {fileID: 996963301119101435, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
       propertyPath: m_DrawMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911137230108313111, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.762
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911137230108313111, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.338
+      objectReference: {fileID: 0}
+    - target: {fileID: 2105114268919007434, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.707
+      objectReference: {fileID: 0}
+    - target: {fileID: 2105114268919007434, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.151
       objectReference: {fileID: 0}
     - target: {fileID: 3283178575669723310, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -170,6 +194,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3928993798449269374, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.748
+      objectReference: {fileID: 0}
+    - target: {fileID: 3928993798449269374, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.266
+      objectReference: {fileID: 0}
     - target: {fileID: 4125417609307310498, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
       propertyPath: m_Size.x
       value: 1.8
@@ -190,6 +222,14 @@ PrefabInstance:
       propertyPath: ScratchSurfaceSprite
       value: 
       objectReference: {fileID: 21300000, guid: 8f5330d1caaef084795702074822f55b, type: 3}
+    - target: {fileID: 4169782188306037504, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.822
+      objectReference: {fileID: 0}
+    - target: {fileID: 4169782188306037504, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.353
+      objectReference: {fileID: 0}
     - target: {fileID: 4315992894060024350, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
       propertyPath: m_Size.x
       value: 2.64
@@ -245,6 +285,22 @@ PrefabInstance:
     - target: {fileID: 6862799922234005706, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
       value: 3.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511225684774990845, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
+      propertyPath: m_Size.x
+      value: 1.7222521
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511225684774990845, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
+      propertyPath: m_Size.y
+      value: 4.7563343
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511225684774990845, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
+      propertyPath: m_Center.x
+      value: 0.035257697
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511225684774990845, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
+      propertyPath: m_Center.y
+      value: 0.044896126
       objectReference: {fileID: 0}
     - target: {fileID: 7755128548243064035, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
       propertyPath: m_LocalPosition.x

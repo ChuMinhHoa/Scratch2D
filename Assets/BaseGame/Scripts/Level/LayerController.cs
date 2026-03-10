@@ -9,7 +9,7 @@ public class LayerController
 {
     public Transform trsLayerParents;
     public List<Card> cards;
-    [field: SerializeField] public Reactive<int> layerActive { get; set; } = new(0);
+    //[field: SerializeField] public Reactive<int> layerActive { get; set; } = new(0);
     public bool loadDone;
     private int totalCards;
     public async UniTask LoadData(LayerCardData[] data)
@@ -43,25 +43,7 @@ public class LayerController
     public void ResetController()
     {
         Debug.Log("reset layer controller");
-        layerActive.Value = 0;
         loadDone = false;
-    }
-
-    public void NextLayer()
-    {
-        for (var i = cards.Count - 1; i >= 0 ; i--)
-        {
-            if (cards[i].layerIndex == layerActive.Value && !cards[i].IsDone())
-            {
-                return;
-            }
-
-            if (cards[i].layerIndex > layerActive.Value)
-                break;
-        }
-
-        layerActive.Value++;
-        Debug.Log($"Change layer {layerActive.Value}");
     }
 
     public void OnRemoveSticker(int stickerId, int countRemove)
