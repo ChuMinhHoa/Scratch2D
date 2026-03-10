@@ -31,6 +31,12 @@ public class GamePlayManager : Singleton<GamePlayManager>
     
     public Reactive<bool> onPlaying = new (false);
 
+    protected override void Awake()
+    {
+        base.Awake();
+        Input.multiTouchEnabled = false;
+    }
+
     private void SetCurrentCard(Card card)
     {
         eraser.SetCurrentCard(card);
@@ -43,6 +49,7 @@ public class GamePlayManager : Singleton<GamePlayManager>
 
     private void Start()
     {
+        
         if (cam == null)
             cam = Camera.main;
         this.UpdateAsObservable().Subscribe(_ => { UpdateFunction(); }).AddTo(this);
@@ -59,6 +66,10 @@ public class GamePlayManager : Singleton<GamePlayManager>
             }
             return;
         }
+
+        if (Input.touchCount > 1)
+            return;
+        
         if (Input.GetMouseButtonDown(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
             isFollowing.Value = true;

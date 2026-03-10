@@ -1,10 +1,14 @@
 using System;
+using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using TW.UGUI.MVPPattern;
 using UnityEngine;
 using R3;
 using Sirenix.OdinInspector;
+using TMPro;
 using TW.UGUI.Core.Screens;
+using UniRx;
+using UnityEngine.UI;
 using Screen = TW.UGUI.Core.Screens.Screen;
 
 namespace Core.UI.Screens
@@ -39,11 +43,11 @@ namespace Core.UI.Screens
         public class UIModel : IAModel
         {
             [field: Title(nameof(UIModel))]
-            [field: SerializeField]
-            public SerializableReactiveProperty<int> SampleValue { get; private set; }
-
+            
+            public Reactive<int> level = new(0);
             public UniTask Initialize(Memory<object> args)
             {
+                level = Level.Instance.levelIndex;
                 return UniTask.CompletedTask;
             }
         }
@@ -55,6 +59,8 @@ namespace Core.UI.Screens
             [field: Title(nameof(UIView))]
             [field: SerializeField]
             public CanvasGroup MainView { get; private set; }
+            [field: SerializeField] public Button BtnSetting { get; private set; }
+            [field: SerializeField] public TextMeshProUGUI TxtLevel { get; private set; }
 
             public UniTask Initialize(Memory<object> args)
             {
@@ -73,6 +79,19 @@ namespace Core.UI.Screens
             {
                 await Model.Initialize(args);
                 await View.Initialize(args);
+                
+                View.BtnSetting.onClick.AddListener(OnClickSetting);
+                Model.level.Subscribe(ChangeLevel).AddTo(View.MainView);
+            }
+
+            public void ChangeLevel(int levelChange)
+            {
+                View.TxtLevel.SetTextFormat("Level {0}", levelChange);
+            }
+
+            private void OnClickSetting()
+            {
+                _ = UIAnimManager.Instance.AnimButton(View.BtnSetting.transform, null);
             }
         }
     }

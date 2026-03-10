@@ -69,8 +69,6 @@ namespace Core.UI.Screens
             public async UniTask AnimLoadBar()
             {
                 currentProgress = 0f;
-                var ranDomStartValue = Random.Range(0.05f, 0.1f);
-                var randomLoadValue = Random.Range(0.5f, 0.75f);
                 await LMotion.Create(currentProgress, 50f, 2f)
                     .WithEase(Ease.Linear)
                     .Bind(ShowTextProgress).AddTo(MainView);
@@ -79,9 +77,6 @@ namespace Core.UI.Screens
                     .WithEase(Ease.Linear)
                     .Bind(ShowTextProgress).AddTo(MainView);
                 currentProgress = 75f;
-                //await ServiceLoadingManager.Instance.LoadService();
-               
-                //await UniTask.WaitForSeconds(10f);
                 await LoadSceneGamePlayAsync();
                 await LMotion.Create(currentProgress, 100f, 2f)
                     .WithEase(Ease.Linear)

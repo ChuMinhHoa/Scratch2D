@@ -123,11 +123,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 1.Coin
+      name: 1.icon_coin
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
+        y: 0
         width: 512
         height: 512
       alignment: 0
@@ -138,30 +138,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1af33090f1dc8b741a9d5396829b29ef
-      internalID: -6653201201113272954
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 2.Gem
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 512
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 11bbb1dc7231cdf43a344306e316a598
-      internalID: -1824502301
+      spriteID: 20778925caaf237429b92423507d6dd8
+      internalID: -1179681607
       vertices: []
       indices: 
       edges: []
@@ -181,6 +159,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       1.Coin: -6653201201113272954
+      1.icon_coin: -1179681607
       2.Gem: -1824502301
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

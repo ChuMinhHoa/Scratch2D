@@ -225,7 +225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3889760839827512888, guid: 8484f492c27207e4da46d246d16ee370, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6474435375639482898, guid: 8484f492c27207e4da46d246d16ee370, type: 3}
       propertyPath: m_Pivot.x
@@ -315,6 +315,11 @@ PrefabInstance:
 --- !u!224 &316301723 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6474435375639482898, guid: 8484f492c27207e4da46d246d16ee370, type: 3}
+  m_PrefabInstance: {fileID: 316301722}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &316301724 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3889760839827512888, guid: 8484f492c27207e4da46d246d16ee370, type: 3}
   m_PrefabInstance: {fileID: 316301722}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &528350276
@@ -436,6 +441,7 @@ MonoBehaviour:
   <UsePrefabNameAsIdentifier>k__BackingField: 1
   <Identifier>k__BackingField: 
   <WindowContainerSettings>k__BackingField: {fileID: 11400000, guid: f9a4ebb634f57614ba9d7a46acee28ed, type: 2}
+  objFakeLoading: {fileID: 316301724}
 --- !u!225 &528350282
 CanvasGroup:
   m_ObjectHideFlags: 0

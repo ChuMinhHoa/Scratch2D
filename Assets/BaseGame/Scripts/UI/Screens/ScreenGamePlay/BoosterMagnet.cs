@@ -23,6 +23,7 @@ public class BoosterMagnet : BoosterBase
 
     public override void UsedBooster(SelectAbleOnBooster data)
     {
+        base.UsedBooster(data);
         var folder = GetFolderHaveSticker(data);
         var stickerId = folder.data.stickerId;
         Debug.Log("Sticker ID: " + stickerId);

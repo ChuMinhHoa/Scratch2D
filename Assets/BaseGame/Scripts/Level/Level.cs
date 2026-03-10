@@ -198,6 +198,7 @@ public class Level : Singleton<Level>
         fSpaceController.ResetController();
         layerController.ResetController();
         levelIndex.Value++;
+        PlayerInfoDataSave.Instance.SaveData();
         _ = LoadData();
     }
 
@@ -304,5 +305,10 @@ public class Level : Singleton<Level>
     public void RemoveSticker(StickerDone stD)
     {
         stickerDone.Remove(stD);
+    }
+
+    public void AddSlot()
+    {
+        fSpaceController.AddSlot();
     }
 }

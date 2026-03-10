@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Object = UnityEngine.Object;
 
 [Serializable]
 public class FreeSpaceController : SpaceForSticker
 {
-    public SpaceSticker[] spaceStickers;
+    public List<SpaceSticker> spaceStickers;
+    public SpaceSticker spaceStickerPitch;
     [ShowInInspector] public List<StickerDone> stickerDoneWait = new();
 
     public bool IsHaveStickerWait()
@@ -19,7 +18,7 @@ public class FreeSpaceController : SpaceForSticker
 
     public StickerPos GetFreeSpacePos()
     {
-        for (var i = 0; i < spaceStickers.Length; i++)
+        for (var i = 0; i < spaceStickers.Count; i++)
         {
             if (!spaceStickers[i].stickerPos.IsHaveObj())
             {
@@ -32,7 +31,7 @@ public class FreeSpaceController : SpaceForSticker
 
     public async UniTask CheckStickerDone()
     {
-        for (var i = 0; i < spaceStickers.Length; i++)
+        for (var i = 0; i < spaceStickers.Count; i++)
         {
             var stickerPos = spaceStickers[i].stickerPos;
             if (stickerPos.IsHaveObj() && stickerPos.IsMoveDone())
@@ -72,6 +71,37 @@ public class FreeSpaceController : SpaceForSticker
         if (stickerDoneWait.Count == 0)
         {
             GamePlayManager.Instance.NextLayer();
+        }
+    }
+
+    public bool IsCanAddSlot()
+    {
+        return spaceStickers.Count < 5;
+    }
+
+    public void AddSlot()
+    {
+        spaceStickers.Add(spaceStickerPitch);
+        spaceStickerPitch.gameObject.SetActive(true);
+        SetPositionSpaceSticker();
+    }
+
+    public override void ResetController()
+    {
+        spaceStickers.Remove(spaceStickerPitch);
+        spaceStickerPitch.gameObject.SetActive(false);
+        SetPositionSpaceSticker();
+    }
+
+    private float spaceWidth = 1.5f;
+    
+    [Button]
+    private void SetPositionSpaceSticker()
+    {   
+        for (var i = 0; i < spaceStickers.Count; i++)
+        {
+            var offset = (i - (spaceStickers.Count - 1) / 2f) * spaceWidth;
+            spaceStickers[i].transform.localPosition = new Vector3(offset, 0, 0);
         }
     }
 }

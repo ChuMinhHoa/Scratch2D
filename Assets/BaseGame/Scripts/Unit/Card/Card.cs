@@ -7,6 +7,7 @@ using ScratchCardAsset;
 using Sirenix.OdinInspector;
 using TW.Utility.DesignPattern.UniTaskState;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using CompositeDisposable = R3.CompositeDisposable;
@@ -19,7 +20,7 @@ public partial class Card : MonoBehaviour
 
     public List<Sticker> stickers;
     public int countSticker;
- 
+
     private Reactive<int> currentLayer = new(0);
     public AnimationCurve curveFirstSpawn;
     public GameObject objFakeScratch;
@@ -27,7 +28,7 @@ public partial class Card : MonoBehaviour
     private CompositeDisposable stickerSubscriptions = new CompositeDisposable();
     private bool isSameLayer;
     private Reactive<bool> isOnPlaying = new();
-    
+
     public StateMachine stateMachine = new();
     public CardGraphic cardGraphic;
 
@@ -37,11 +38,23 @@ public partial class Card : MonoBehaviour
     {
         currentLayer = GamePlayManager.Instance.level.layerController.layerActive;
         currentLayer.Skip(1).Subscribe(OnChangeLayer).AddTo(this);
-        
+
         stateMachine.RequestTransition(CardWaitState);
         stateMachine.Run();
         isOnPlaying = GamePlayManager.Instance.onPlaying;
         isOnPlaying.Skip(1).Subscribe(ChangeGameState).AddTo(this);
+    }
+
+    private void CheckToShow()
+    {
+        Vector3 origin = transform.position;
+        Vector3 direction = transform.forward;
+        float distance = 10f;
+
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
+        {
+            Debug.Log($"GameObject che khuất: {hit.collider.gameObject.name}");
+        }
     }
 
     private void ChangeGameState(bool playing)

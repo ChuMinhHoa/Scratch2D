@@ -10,7 +10,9 @@ public class GameResource
     {
         None = 0,
         Money = 1,
-        Gem = 2
+        Gem = 2,
+        BoosterMagnet = 3,
+        BoosterAddSlot = 4,
     }
     
     [field: HideLabel, HorizontalGroup(nameof(GameResource), 100)]

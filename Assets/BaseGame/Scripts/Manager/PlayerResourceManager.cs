@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using TW.Utility.CustomType;
+using TW.Utility.DesignPattern;
 using UnityEngine;
 
-public class PlayerResourceManager : MonoBehaviour
+public class PlayerResourceManager : Singleton<PlayerResourceManager>
 {
    public List<GameResourceData> gameResourceData;
    public List<GameResource> gameResource;
@@ -19,7 +20,6 @@ public class PlayerResourceManager : MonoBehaviour
       gameResourceData = PlayerResourceDataSave.Instance.gameResourceData;
       CreateGameResource();
       var typeCount = Enum.GetValues(typeof(GameResource.Type)).Length;
-      Debug.Log("game resource data count: " + typeCount);
       if (gameResourceData.Count < typeCount)
       {
          CreateNewResource();
@@ -30,6 +30,7 @@ public class PlayerResourceManager : MonoBehaviour
    {
       for (var i = 0; i < gameResourceData.Count; i++)
       {
+         Debug.Log(gameResourceData[i].ResourceType + " " + gameResourceData[i].C + " " + gameResourceData[i].E);
          var c = gameResourceData[i].C;
          var e = gameResourceData[i].E;
          var oldResource = new GameResource(gameResourceData[i].ResourceType, new BigNumber(c, e));
@@ -53,7 +54,7 @@ public class PlayerResourceManager : MonoBehaviour
       PlayerResourceDataSave.Instance.SaveData();
    }
 
-   private GameResource GetGameResource(GameResource.Type type)
+   public GameResource GetGameResource(GameResource.Type type)
    {
       for (var i = 0; i < gameResource.Count; i++)
       {
@@ -80,5 +81,12 @@ public class PlayerResourceManager : MonoBehaviour
          }
       }
       PlayerResourceDataSave.Instance.SaveData();
+   }
+
+   public bool EnoughResource(GameResource.Type resourceType, BigNumber amount)
+   {
+      var resource = GetGameResource(resourceType);
+      if (resource == null) return false;
+      return resource.Amount >= amount;
    }
 }

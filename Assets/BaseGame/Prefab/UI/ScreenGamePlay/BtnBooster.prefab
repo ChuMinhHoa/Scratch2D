@@ -111,7 +111,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 14.2, y: 36}
+  m_AnchoredPosition: {x: 11.8, y: 31.3}
   m_SizeDelta: {x: 145.1607, y: 62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6579703394467576330
@@ -325,7 +325,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 10.3, y: 0}
+  m_AnchoredPosition: {x: 10.3, y: 1.6}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8082602687451520881
@@ -383,7 +383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4850812780895383373
 RectTransform:
   m_ObjectHideFlags: 0
@@ -401,7 +401,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -53.90204, y: 36}
+  m_AnchoredPosition: {x: -48.901978, y: 31.300003}
   m_SizeDelta: {x: 97.804, y: 62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &867098430984333683
@@ -536,6 +536,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BtnBooster
   booster:
     rid: 5138881045398290626
+  gameResource:
+    <ResourceType>k__BackingField: 0
+    <ReactiveAmount>k__BackingField:
+      value:
+        coefficient: 0
+        exponent: 0
+      EditorValue:
+        coefficient: 0
+        exponent: 0
+  imgIcon: {fileID: 7218731558924098476}
+  objPrice: {fileID: 2406053628786172274}
+  objAmount: {fileID: 6340760883538561184}
+  txtAmount: {fileID: 8836228421002971872}
+  txtPrice: {fileID: 1921965963368815488}
+  price:
+    coefficient: 0
+    exponent: 0
   references:
     version: 2
     RefIds:

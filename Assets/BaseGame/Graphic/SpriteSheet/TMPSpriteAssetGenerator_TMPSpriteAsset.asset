@@ -84,12 +84,7 @@ MonoBehaviour:
     m_Unicode: 65534
     m_GlyphIndex: 0
     m_Scale: 1
-    m_Name: 1.Coin
-  - m_ElementType: 2
-    m_Unicode: 65534
-    m_GlyphIndex: 1
-    m_Scale: 1
-    m_Name: 2.Gem
+    m_Name: 1.icon_coin
   m_GlyphTable:
   - m_Index: 0
     m_Metrics:
@@ -100,28 +95,12 @@ MonoBehaviour:
       m_HorizontalAdvance: 0
     m_GlyphRect:
       m_X: 0
-      m_Y: 512
+      m_Y: 0
       m_Width: 512
       m_Height: 512
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
-    sprite: {fileID: -6653201201113272954, guid: 28974c3fbe4a8334c9a6e6f04fa1b285, type: 3}
-  - m_Index: 1
-    m_Metrics:
-      m_Width: 512
-      m_Height: 512
-      m_HorizontalBearingX: 256
-      m_HorizontalBearingY: 256
-      m_HorizontalAdvance: 0
-    m_GlyphRect:
-      m_X: 512
-      m_Y: 512
-      m_Width: 512
-      m_Height: 512
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
-    sprite: {fileID: -1824502301, guid: 28974c3fbe4a8334c9a6e6f04fa1b285, type: 3}
+    sprite: {fileID: -1179681607, guid: 28974c3fbe4a8334c9a6e6f04fa1b285, type: 3}
   spriteInfoList: []
   fallbackSpriteAssets: []

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class PlayerResourceDataSave : IDataSave<PlayerResourceDataSave>
 {
     public List<GameResourceData> gameResourceData = new();

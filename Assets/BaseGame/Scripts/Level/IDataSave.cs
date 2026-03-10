@@ -4,8 +4,6 @@ public interface IDataSave<out T> where T : class, IDataSave<T>
 {
     bool IsDirty { get; set; }
     T DefaultData();
-    string ToJson();
-    T FromJson(string json);
 }
 
 public static class DataSaveExtensions
