@@ -25,6 +25,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3319595bd1ca1944984af9cb2a55971
+    m_Address: ActivityLoadingInGamePlay
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a846498dd4b492e4981d206bdfe0dfca
     m_Address: ActivityLoading
     m_ReadOnly: 0
