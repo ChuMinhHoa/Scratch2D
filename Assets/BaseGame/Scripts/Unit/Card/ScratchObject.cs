@@ -17,7 +17,6 @@ public class ScratchObject : MonoBehaviour
         cardData = data;
         var sprite = SpriteGlobalConfig.Instance.GetScratchCardSprite(data.cardType);
         scratchCardManager.ChangeSprite(sprite);
-        
         scratchCardManager.gameObject.SetActive(true);
         await Wait();
     }

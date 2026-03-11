@@ -35,6 +35,7 @@ public class LayerController
         }
     }
     
+    
     public void RemoveCard(Card card)
     {
         cards.Remove(card);
@@ -44,6 +45,11 @@ public class LayerController
     {
         Debug.Log("reset layer controller");
         loadDone = false;
+        for (var i = 0; i < cards.Count; i++)
+        {
+            cards[i].ResetCard();
+        }
+        cards.Clear();
     }
 
     public void OnRemoveSticker(int stickerId, int countRemove)

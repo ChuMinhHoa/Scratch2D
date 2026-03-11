@@ -789,6 +789,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee2e0b1069e4b848ab848f29b0ca334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpaceSticker
+--- !u!1 &650726877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 650726878}
+  - component: {fileID: 650726879}
+  m_Layer: 0
+  m_Name: StickerDoneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &650726878
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650726877}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1495419256}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &650726879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650726877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9857bbba7889d12489a171e2a2b69f5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StickerDoneManager
 --- !u!1 &654991658
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,6 +917,8 @@ Transform:
   - {fileID: 809477999}
   - {fileID: 1517995481}
   - {fileID: 2010080579}
+  - {fileID: 1430164516}
+  - {fileID: 1004790771}
   m_Father: {fileID: 1495419256}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &731685322
@@ -890,7 +936,7 @@ MonoBehaviour:
   poolEraserEffect:
     prefab: {fileID: 2183736171908416885, guid: fd3a66741d861cc4b974ba26751041ac, type: 3}
     amount: 3
-    parents: {fileID: 731685321}
+    parents: {fileID: 1004790771}
     deActivePool: []
   poolStickerMoveEffect:
     prefab: {fileID: 4249171003687926185, guid: a52465ac36424f94caaef9bae11452fb, type: 3}
@@ -905,15 +951,15 @@ MonoBehaviour:
   poolCardData:
   - prefab: {fileID: 664414986749008322, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
     amount: 3
-    parents: {fileID: 731685321}
+    parents: {fileID: 1430164516}
     deActivePool: []
   - prefab: {fileID: 851542219791232566, guid: f526676fae6a851468a87c47562aa521, type: 3}
     amount: 3
-    parents: {fileID: 731685321}
+    parents: {fileID: 1430164516}
     deActivePool: []
   - prefab: {fileID: 851542219791232566, guid: 0b1a3bfde1208d94eb2db5f223d2337e, type: 3}
     amount: 0
-    parents: {fileID: 731685321}
+    parents: {fileID: 1430164516}
     deActivePool: []
   poolSticker:
     prefab: {fileID: 3137116920476431085, guid: 75070715be8c620488251867e5658fff, type: 3}
@@ -1653,6 +1699,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoosterManager
   onUsingBooster: 0
+--- !u!1 &1004790770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1004790771}
+  m_Layer: 0
+  m_Name: EraserSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1004790771
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004790770}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 100, y: 100, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 731685321}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1066175348
 GameObject:
   m_ObjectHideFlags: 0
@@ -2129,6 +2206,37 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1430164515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1430164516}
+  m_Layer: 0
+  m_Name: CardSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1430164516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430164515}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 100, y: 100, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 731685321}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1438113696
 GameObject:
   m_ObjectHideFlags: 0
@@ -2197,6 +2305,7 @@ Transform:
   - {fileID: 1511064818}
   - {fileID: 1916852085}
   - {fileID: 1795245955}
+  - {fileID: 650726878}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1511064817
@@ -2301,7 +2410,9 @@ MonoBehaviour:
     value: 0
     EditorValue: 0
   level: {fileID: 0}
-  gameState: 0
+  gameState:
+    value: 1
+    EditorValue: 0
   onPlaying:
     value: 0
     EditorValue: 0
@@ -3241,6 +3352,10 @@ PrefabInstance:
       propertyPath: currentCollider
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 996963301119101435, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
+      propertyPath: m_Color.a
+      value: 0.7058824
+      objectReference: {fileID: 0}
     - target: {fileID: 3319799914231244128, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
       propertyPath: m_Name
       value: Card 1
@@ -3287,6 +3402,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3811211421870402198, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4303878332484992536, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
+      propertyPath: timeOpen
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8664226168899290807, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

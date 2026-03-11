@@ -29,6 +29,8 @@ public partial class Card : MonoBehaviour
     public ScratchObject scratchObject { get; set; }
     public FrontChecker2D frontChecker2D;
 
+    public bool isShowed = false;
+
     private void Start()
     {
         stateMachine.RequestTransition(CardWaitState);
@@ -36,6 +38,11 @@ public partial class Card : MonoBehaviour
         isOnPlaying = GamePlayManager.Instance.onPlaying;
         isOnPlaying.Skip(1).Subscribe(ChangeGameState).AddTo(this);
         GlobalEventManager.OnHaveCardDone += CheckToShow;
+    }
+
+    private void OnDestroy()
+    {
+        GlobalEventManager.OnHaveCardDone -= CheckToShow;
     }
 
     [Button]
@@ -46,12 +53,14 @@ public partial class Card : MonoBehaviour
         if (IsDone()) return;
         
         if(GamePlayManager.Instance.level.IsHaveStickerWait()) return;
+
+        if (isShowed) return;
         
         var result = frontChecker2D.IsAnythingInFront();
-        Debug.Log(result);
+        Debug.Log("result check: " + result);
         if (!result)
         {
-            Debug.Log("On show mode!");
+            isShowed = true;
             OnShowMode();
         }
     }
@@ -100,8 +109,8 @@ public partial class Card : MonoBehaviour
             stateMachine.RequestTransition(CardDoneState);
         }
     }
-    
-    private void ResetCard()
+
+    public void ResetCard()
     {
         transform.localScale = Vector3.one;
         for (var i = 0; i < stickers.Count; i++)
@@ -118,6 +127,7 @@ public partial class Card : MonoBehaviour
         GamePlayManager.Instance.RemoveCurrentCard(this);
         cardGraphic.ResetCard();
         objFakeScratch.SetActive(true);
+        isShowed = false;
     }
 
     [Button]

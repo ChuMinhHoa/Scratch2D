@@ -34,26 +34,34 @@ public partial class StickerDone : MonoBehaviour
        stickerGlow.gameObject.SetActive(false);
    }
 
-   public void CheckMoveToFolder(bool fromNoWhere = false)
+   public void CheckMoveToFolder(bool fromNoWhere = false, bool fromFreeSpace = false)
    {
        var e = Level.Instance.oSController.GetFolderPos(stickerId);
        if (e != null)
        {
            stickerPos?.ResetPos();
            stickerPos = e;
+           stickerPos.RegisterObj(this);
            Level.Instance.fSpaceController.RemoveStickerDoneFromNoWhere(this);
            stateMachine.RequestTransition(StickerDoneMoveToObjHaveStickerState);
            return;
        }
 
-       if (!fromNoWhere) return;
-       e = Level.Instance.fSpaceController.GetFreeSpacePos();
-       if (e != null)
+       if (!fromFreeSpace)
        {
-           Level.Instance.fSpaceController.RemoveStickerDoneFromNoWhere(this);
-           stickerPos = e;
-           stateMachine.RequestTransition(StickerDoneMoveFreeSpaceState);
+           e = Level.Instance.fSpaceController.GetFreeSpacePos();
+           if (e != null)
+           {
+               Level.Instance.fSpaceController.RemoveStickerDoneFromNoWhere(this);
+               stickerPos = e;
+               stickerPos.RegisterObj(this);
+               stateMachine.RequestTransition(StickerDoneMoveFreeSpaceState);
+               return;
+           }
        }
+
+       if (!fromNoWhere && !fromFreeSpace)
+            stateMachine.RequestTransition(StickerDoneMoveAround);
    }
 
    public bool IsHaveSticker(int noteId)

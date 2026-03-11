@@ -378,9 +378,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StickerGraphic
   sprIconMark:
-  - {fileID: 21300000, guid: 081b072797467754a939c17d18adf087, type: 3}
-  - {fileID: 21300000, guid: 081b072797467754a939c17d18adf087, type: 3}
-  - {fileID: 21300000, guid: 081b072797467754a939c17d18adf087, type: 3}
+  - {fileID: 21300000, guid: 3624dfbc80f454a41bade15c65d78f5e, type: 3}
+  - {fileID: 21300000, guid: 3624dfbc80f454a41bade15c65d78f5e, type: 3}
+  - {fileID: 21300000, guid: 3624dfbc80f454a41bade15c65d78f5e, type: 3}
   stickerId: 0
   stickerType: 0
   sprIcon: {fileID: 828502245805875980}
@@ -389,7 +389,6 @@ MonoBehaviour:
   unitAnimation: {fileID: 8890121142107612431}
   objGlow: {fileID: 3708475496136982499}
   scratchManager: {fileID: 6023056218909100333}
-  objScratchFake: {fileID: 7614214210092796748}
   currentRot: {x: 0, y: 0, z: 0}
 --- !u!114 &8890121142107612431
 MonoBehaviour:
@@ -601,7 +600,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7629165314407765214
 Transform:
   m_ObjectHideFlags: 0

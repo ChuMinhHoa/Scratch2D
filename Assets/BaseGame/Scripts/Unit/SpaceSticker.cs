@@ -18,6 +18,10 @@ public class SpaceSticker : MonoBehaviour
 
     public void ResetSpace()
     {
+        var e = stickerPos.obj;
+        if (e != null)
+            PoolManager.Instance.DespawnStickerMove(e);
+        
         stickerPos.ResetPos();
     }
 }

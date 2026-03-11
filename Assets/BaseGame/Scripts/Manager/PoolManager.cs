@@ -184,6 +184,11 @@ public class HPool<T> where T : Component
 
     public T Spawn()
     {
+        for (var i = deActivePool.Count - 1; i >= 0 ; i--)
+        {
+            if (!deActivePool[i])
+                deActivePool.RemoveAt(i);
+        }
         if (deActivePool.Count > 0)
         {
             var e = deActivePool[0];

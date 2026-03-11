@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 [Serializable]
 public class ObjHaveStickerController : SpaceForSticker
@@ -64,30 +63,23 @@ public class ObjHaveStickerController : SpaceForSticker
             isEndGame = true;
 
             Debug.Log("End game!");
-            GamePlayManager.Instance.level.ResetLevel();
+            GamePlayManager.Instance.level.LevelUp();
         }
-    }
-
-    private UniTask CheckLevelLose()
-    {
-        //sure all note on slot
-        for (var i = 0; i < SlotFolders.Length; i++)
-        {
-            if (!SlotFolders[i].IsHaveObject())
-                return UniTask.CompletedTask;
-        }
-
-        var stickerDoneWait = Level.Instance.fSpaceController.stickerDoneWait.Count;
-        if (stickerDoneWait > 0)
-        {
-            Debug.Log("level loose");
-        }
-
-        return UniTask.CompletedTask;
     }
 
     public override void ResetController()
     {
+        var objCount = objHaveStickers.Count;
+        for (var i = 0; i < objCount; i++)
+        {
+            var e = objHaveStickers.Dequeue();
+            PoolManager.Instance.DespawnObjHaveSticker(e);
+        }
+
+        for (var i = 0; i < SlotFolders.Length; i++)
+        {
+            SlotFolders[i].ResetByLevel();
+        }
         objHaveStickers.Clear();
         loadDone = false;
     }
@@ -100,26 +92,6 @@ public class ObjHaveStickerController : SpaceForSticker
             if (SlotFolders[i].folderPos.obj != folder) continue;
             SlotFolders[i].ResetSlotFolder();
         }
-    }
-
-    public bool IsHaveFolderOnMove(out FolderPos folder)
-    {
-        if (objHaveStickers.Count == 0)
-        {
-            folder = null;
-            return false;
-        }
-
-        for (var i = 0; i < SlotFolders.Length; i++)
-        {
-            if (SlotFolders[i].folderPos.obj == null) continue;
-            if (SlotFolders[i].folderPos.IsMoveDone()) continue;
-            folder = SlotFolders[i].folderPos;
-            return true;
-        }
-
-        folder = null;
-        return false;
     }
 
     public StickerPos GetFolderPos(int stickerId)

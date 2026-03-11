@@ -1,11 +1,12 @@
 using LitMotion;
+using R3;
+using UniRx;
 using UnityEngine;
 
 public class Eraser : MonoBehaviour
 {
     [SerializeField] private float easeSpeed = 20f;
     [SerializeField] private GameObject graphic;
-    private bool isFollowing;
     public Card currentCard;
     private float lastProgress;
     private float coolDown;
@@ -17,7 +18,7 @@ public class Eraser : MonoBehaviour
     {
         SetActiveGraphic(false);
     }
-    
+
     public void SetActiveGraphic(bool active)
     {
         if (graphic != null)

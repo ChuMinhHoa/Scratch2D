@@ -24,13 +24,16 @@ public class CardGraphic : MonoBehaviour
     [Button]
     public void InitData()
     {
-        trsShadow.position = transform.position + offSetShadow;
+        //trsShadow.position = transform.position + offSetShadow;
     }
 
     [Button]
     private async UniTask OnAnimOpen()
     {
-        await LMotion.Create(colorStartOpen, colorEndOpen, timeOpen).Bind(x =>
+        var currentPoint = transform.position;
+        var targetPoint = currentPoint + offSetShadow;
+        LMotion.Create(currentPoint, targetPoint, timeOpen).Bind(x => trsShadow.position = x);
+        await LMotion.Create(colorStartOpen, colorEndOpen, timeOpen).WithEase(Ease.InCubic).Bind(x =>
         {
             for (var i = 0; i < sprAnim.Count; i++)
             {
@@ -42,6 +45,7 @@ public class CardGraphic : MonoBehaviour
     public async UniTask SetActiveObjLook(bool active)
     {
         trsShadow.gameObject.SetActive(!active);
+        
         if (!active)
         {
             await OnAnimOpen();
@@ -58,6 +62,7 @@ public class CardGraphic : MonoBehaviour
             .AddTo(this);
     }
 
+    [Button]
     public void ResetCard()
     {
         _ = SetActiveObjLook(true);

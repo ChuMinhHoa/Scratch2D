@@ -47,4 +47,14 @@ public class ProgressBar : MonoBehaviour
             rectFill.sizeDelta = fillValue;
         }).AddTo(this);
     }
+    
+    
+    public void OnlyChangeProgress(float value)
+    {
+        if (value > 1)
+            value = 1;
+
+        vectorSizeDelta = new Vector2(rectMask.rect.size.x * value, rectMask.rect.height);
+        rectFill.sizeDelta = vectorSizeDelta;
+    }
 }

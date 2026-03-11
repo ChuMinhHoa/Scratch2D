@@ -45,7 +45,8 @@ public partial class StickerDone : StickerDoneOpenState.IHandler
         CheckToAbleStickerAnimAgain();
         stickerDoneAnim.Play("StickerRemove");
         await UniTask.WaitForSeconds(1f);
-        GetPosMoveTo();
+        StickerDoneManager.Instance.AddStickerDone(this);
+        //GetPosMoveTo();
         //return UniTask.CompletedTask;
     }
 
@@ -60,12 +61,13 @@ public partial class StickerDone : StickerDoneOpenState.IHandler
     }
 
     private StickerPos stickerPos;
-    
-    private void GetPosMoveTo()
+
+    public void GetPosMoveTo()
     {
         stickerPos = Level.Instance.oSController.GetFolderPos(stickerId);
         if (stickerPos != null)
         {
+            stickerPos.RegisterObj(this);
             stateMachine.RequestTransition(StickerDoneMoveToObjHaveStickerState);
             return;
         }
@@ -73,6 +75,7 @@ public partial class StickerDone : StickerDoneOpenState.IHandler
         stickerPos = Level.Instance.fSpaceController.GetFreeSpacePos();
         if (stickerPos != null)
         {
+            stickerPos.RegisterObj(this);
             stateMachine.RequestTransition(StickerDoneMoveFreeSpaceState);
             return;
         }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47d0739ed4b23214abc0cfe58d9dd2fd, type: 3}
   m_Name: SpriteGlobalConfig
   m_EditorClassIdentifier: Assembly-CSharp::SpriteGlobalConfig
+  sprQuestMark: {fileID: 21300000, guid: c095c91f90a75334dac8d56db771dbb8, type: 3}
   iconSpriteConfigs:
   - tType: 0
     sprite: {fileID: 21300000, guid: f7a32db7bd9627746a9f78bf897def0d, type: 3}

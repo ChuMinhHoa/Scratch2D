@@ -51,7 +51,7 @@ public partial class FolderHaveSticker : MonoBehaviour
         return false;
     }
 
-    private void ResetFolderSticker()
+    public void ResetFolderSticker()
     {
         readyToMove = false;
         for (var i = 0; i < trsStickerPos.Length; i++)
@@ -71,6 +71,7 @@ public partial class FolderHaveSticker : MonoBehaviour
         GlobalEventManager.CheckToCallNextSticker?.Invoke();
         await LMotion.Create(currentPos, posOut.position, 0.25f).Bind(x => transform.position = x).AddTo(this);
         ResetFolderSticker();
+        Level.Instance.CheckLoseGame();
     }
 
     public async UniTask MoveToTarget(Vector3 target)

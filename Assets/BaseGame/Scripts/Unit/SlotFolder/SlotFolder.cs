@@ -10,12 +10,12 @@ public partial class SlotFolder : MonoBehaviour
     public SlotFolderGraphic slotFolderGraphic;
     public ButtonGameObject btnWatchAds;
     public ButtonGameObject btnBuy;
-    
+
     private void Start()
     {
         stateMachine.RequestTransition(SlotFolderInitState);
         stateMachine.Run();
-        
+
         btnWatchAds.AddListeners(CallWatchAds);
         btnBuy.AddListeners(CallBuy);
     }
@@ -59,6 +59,18 @@ public partial class SlotFolder : MonoBehaviour
         folderPos.ResetPos();
     }
 
+    public void ResetByLevel()
+    {
+        var e = folderPos.obj;
+        if (e != null)
+        {
+            e.ResetFolderSticker();
+            PoolManager.Instance.DespawnObjHaveSticker(e);
+        }
+
+        folderPos.ResetPos();
+    }
+
     public int GetNoteId()
     {
         if (!IsHaveObject()) return -1;
@@ -73,4 +85,3 @@ public enum SlotFolderType
     Coin,
     Ads,
 }
-

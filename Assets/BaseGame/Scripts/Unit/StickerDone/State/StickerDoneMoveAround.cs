@@ -56,7 +56,7 @@ public partial class StickerDone : StickerDoneMoveAround.IHandler
                 var x = centerPosition.x + Mathf.Cos(angle) * orbitRadius;
                 var y = centerPosition.y + Mathf.Sin(angle) * orbitRadius;
                 transform.position = new Vector3(x, y, centerPosition.z);
-            });
+            }).AddTo(this);
         return UniTask.CompletedTask;
     }
 

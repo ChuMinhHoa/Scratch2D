@@ -16,7 +16,7 @@ public partial class StickerGraphic : MonoBehaviour
     public GameObject objGlow;
     public ScratchCardManager scratchManager;
     
-    public SpriteRenderer objScratchFake;
+    //public SpriteRenderer objScratchFake;
     public Vector3 currentRot;
     [Button]
     public void InitData(int id, Vector3 rot)
@@ -43,7 +43,8 @@ public partial class StickerGraphic : MonoBehaviour
         }
         
         sprIcon.gameObject.SetActive(true);
-        scratchManager.ChangeSprite(sprBg.sprite);
+        //scratchManager.ChangeSprite(objScratchFake.sprite);
+        scratchManager.gameObject.SetActive(true);
         await ScratchActive();
     }
 
@@ -70,7 +71,7 @@ public partial class StickerGraphic : MonoBehaviour
     public void ResetGraphic()
     {
         sprIcon.gameObject.SetActive(true); 
-        objScratchFake.gameObject.SetActive(true);
+        //objScratchFake.gameObject.SetActive(true);
         objGlow.SetActive(false);
         scratchManager.ResetScratchCard();
         scratchManager.Progress.ResetScratch();
@@ -85,11 +86,9 @@ public partial class StickerGraphic : MonoBehaviour
 
     private async UniTask ScratchActive()
     {
-        scratchManager.gameObject.SetActive(true);
-        objScratchFake.gameObject.SetActive(false);
+        //objScratchFake.gameObject.SetActive(false);
         await UniTask.WaitForSeconds(0.1f);
         transform.eulerAngles = currentRot;
-       
     }
 
     public void EnableScratch(bool active)

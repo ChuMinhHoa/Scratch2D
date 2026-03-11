@@ -40,7 +40,8 @@ public class FreeSpaceController : SpaceForSticker
                 if (stickerDone == null) continue;
 
                 await UniTask.Yield();
-                stickerDone.CheckMoveToFolder();
+                StickerDoneManager.Instance.AddStickerDone(stickerDone);
+                //stickerDone.CheckMoveToFolder();
             }
         }
 
@@ -49,7 +50,8 @@ public class FreeSpaceController : SpaceForSticker
             if (i >= stickerDoneWait.Count) continue;
 
             await UniTask.Yield();
-            stickerDoneWait[i].CheckMoveToFolder(true);
+            //stickerDoneWait[i].CheckMoveToFolder(true);
+            StickerDoneManager.Instance.AddStickerDone(stickerDoneWait[i]);
         }
 
         //Level.Instance.CheckToCallChangeLayerIndex();
@@ -91,6 +93,15 @@ public class FreeSpaceController : SpaceForSticker
         spaceStickers.Remove(spaceStickerPitch);
         spaceStickerPitch.gameObject.SetActive(false);
         SetPositionSpaceSticker();
+        for (int i = 0; i < spaceStickers.Count; i++)
+        {
+            spaceStickers[i].ResetSpace();
+        }
+        for (var i = 0; i < stickerDoneWait.Count; i++)
+        {
+            PoolManager.Instance.DespawnStickerMove(stickerDoneWait[i]);
+        }
+        stickerDoneWait.Clear();
     }
 
     private float spaceWidth = 1.5f;
@@ -103,5 +114,21 @@ public class FreeSpaceController : SpaceForSticker
             var offset = (i - (spaceStickers.Count - 1) / 2f) * spaceWidth;
             spaceStickers[i].transform.localPosition = new Vector3(offset, 0, 0);
         }
+    }
+
+    public bool IsFromNoWhere(StickerDone stickerDone)
+    {
+        return stickerDoneWait.Contains(stickerDone);
+    }
+
+    public bool IsFromFreeSpace(StickerDone stickerDone)
+    {
+        for (var i = 0; i < spaceStickers.Count; i++)
+        {
+            if (spaceStickers[i].stickerPos.obj == stickerDone)
+                return true;
+        }
+
+        return false;
     }
 }

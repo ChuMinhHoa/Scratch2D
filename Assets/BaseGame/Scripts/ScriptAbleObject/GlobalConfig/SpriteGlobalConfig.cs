@@ -8,6 +8,7 @@ using UnityEngine.Serialization;
 [GlobalConfig("Assets/Resources/GlobalConfig/")]
 public class SpriteGlobalConfig : GlobalConfig<SpriteGlobalConfig>
 {
+    public Sprite sprQuestMark;
     public SpriteConfig<int>[] iconSpriteConfigs;
 
     public Sprite GetStickerIcon(int id)

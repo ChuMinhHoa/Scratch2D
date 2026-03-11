@@ -27,7 +27,7 @@ public class GamePlayManager : Singleton<GamePlayManager>
     private Dictionary<Collider2D, ButtonGameObject> buttonGameObjects = new();
     public Reactive<bool> isFollowing;
     public Level level;
-    public GameState gameState;
+    public Reactive<GameState> gameState = new (GameState.Normal);
     
     public Reactive<bool> onPlaying = new (false);
 
@@ -57,7 +57,7 @@ public class GamePlayManager : Singleton<GamePlayManager>
 
     private void UpdateFunction()
     {
-        if ((int)gameState < 10)
+        if (gameState.Value != GameState.Playing)
         {
             if (isFollowing.Value)
             {
@@ -194,7 +194,7 @@ public class GamePlayManager : Singleton<GamePlayManager>
 
     public void ChangeGameState(GameState state)
     {
-        gameState = state;
+        gameState.Value = state;
         onPlaying.Value = gameState > GameState.Loading;
     }
 }

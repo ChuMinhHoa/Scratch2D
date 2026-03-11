@@ -69,16 +69,16 @@ namespace Core.UI.Screens
             public async UniTask AnimLoadBar()
             {
                 currentProgress = 0f;
-                await LMotion.Create(currentProgress, 50f, 2f)
+                await LMotion.Create(currentProgress, 50f, 0.5f)
                     .WithEase(Ease.Linear)
                     .Bind(ShowTextProgress).AddTo(MainView);
                 currentProgress = 50f;
-                await LMotion.Create(currentProgress, 75f, 2f)
+                await LMotion.Create(currentProgress, 75f, 0.5f)
                     .WithEase(Ease.Linear)
                     .Bind(ShowTextProgress).AddTo(MainView);
                 currentProgress = 75f;
                 await LoadSceneGamePlayAsync();
-                await LMotion.Create(currentProgress, 100f, 2f)
+                await LMotion.Create(currentProgress, 100f, 0.5f)
                     .WithEase(Ease.Linear)
                     .Bind(ShowTextProgress).AddTo(MainView);
                 await UIManager.Instance.OpenScreenAsync<ScreenHome>(stackChange: true);
@@ -92,7 +92,7 @@ namespace Core.UI.Screens
 
             private void ShowTextProgress(float value)
             {
-                LoadingProgressBar.ChangeProgress(value/100f);
+                LoadingProgressBar.OnlyChangeProgress(value/100f);
                 _ = LoadingProgressBar.ChangeTextProgress(value);
             }
             

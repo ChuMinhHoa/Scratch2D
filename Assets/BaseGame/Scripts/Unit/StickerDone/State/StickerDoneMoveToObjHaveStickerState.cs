@@ -43,7 +43,7 @@ public partial class StickerDone : StickerDoneMoveToObjHaveStickerState.IHandler
     public async UniTask OnEnterMoveToObjHaveStickerState()
     {
         CheckToAbleStickerAnimAgain();
-        stickerPos.RegisterObj(this);
+        
         var currentScale = transform.localScale;
         var currentEulerAngle = transform.eulerAngles;
         LMotion.Create(currentScale, stickerPos.trsPos.localScale, .25f).Bind(x => transform.localScale = x);
@@ -55,6 +55,8 @@ public partial class StickerDone : StickerDoneMoveToObjHaveStickerState.IHandler
         transform.SetParent(stickerPos.trsPos);
         stickerPos.MoveDone();
         Level.Instance.RemoveSticker(this);
+        Level.Instance.CheckLoseGame();
+        
     }
 
     public UniTask OnUpdateMoveToObjHaveStickerState()

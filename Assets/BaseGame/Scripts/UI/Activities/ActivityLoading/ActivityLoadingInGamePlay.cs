@@ -1,17 +1,17 @@
 using System;
 using Cysharp.Threading.Tasks;
+using LitMotion;
 using TW.UGUI.MVPPattern;
 using UnityEngine;
 using R3;
 using Sirenix.OdinInspector;
 using TW.UGUI.Core.Activities;
-using UnityEngine.UI;
 
 namespace Core.UI.Activities
 {
-    public class ActivityLoseGame : Activity
+    public class ActivityLoadingInGamePlay : Activity
     {
-        [field: SerializeField] public ActivityLoseGameContext.UIPresenter UIPresenter { get; private set; }
+        [field: SerializeField] public ActivityLoadingInGamePlayContext.UIPresenter UIPresenter { get; private set; }
 
         protected override void Awake()
         {
@@ -27,7 +27,7 @@ namespace Core.UI.Activities
 
 
     [Serializable]
-    public class ActivityLoseGameContext
+    public class ActivityLoadingInGamePlayContext
     {
         public static class Events
         {
@@ -52,14 +52,36 @@ namespace Core.UI.Activities
         [Serializable]
         public class UIView : IAView
         {
+            private float currentProgress;
+
             [field: Title(nameof(UIView))]
             [field: SerializeField]
             public CanvasGroup MainView { get; private set; }
 
-            [field: SerializeField] public Button btnClose;
+            [field: SerializeField] public ProgressBar LoadingProgressBar { get; private set; }
+
             public UniTask Initialize(Memory<object> args)
             {
                 return UniTask.CompletedTask;
+            }
+
+            public async UniTask Loading()
+            {
+                currentProgress = 0f;
+                await LMotion.Create(currentProgress, 50f, 0.5f)
+                    .WithEase(Ease.Linear)
+                    .Bind(ShowTextProgress).AddTo(MainView);
+                await Level.Instance.LoadData();
+                await LMotion.Create(currentProgress, 100f, 0.5f)
+                    .WithEase(Ease.Linear)
+                    .Bind(ShowTextProgress).AddTo(MainView);
+                await UIManager.Instance.CloseActivityAsync<ActivityLoadingInGamePlay>();
+            }
+
+            private void ShowTextProgress(float value)
+            {
+                LoadingProgressBar.OnlyChangeProgress(value/100f);
+                _ = LoadingProgressBar.ChangeTextProgress(value);
             }
         }
 
@@ -74,14 +96,11 @@ namespace Core.UI.Activities
             {
                 await Model.Initialize(args);
                 await View.Initialize(args);
-                View.btnClose.onClick.AddListener(CloseActivity);
             }
-
-            private void CloseActivity()
+            
+            public void DidEnter(Memory<object> args)
             {
-                Level.Instance.ResetLevel();
-                _ = UIManager.Instance.CloseScreenAsync();
-                _ = UIManager.Instance.CloseActivityAsync<ActivityLoseGame>();
+                _ = View.Loading();
             }
         }
     }

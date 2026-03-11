@@ -21,8 +21,8 @@ public class Level : Singleton<Level>
     public LayerController layerController;
 
     public GameObject objOnUsingBooster;
-    
-    public List<StickerDone> stickerDone = new ();
+
+    public List<StickerDone> stickerDone = new();
 
     public bool isEndGame;
 
@@ -103,7 +103,7 @@ public class Level : Singleton<Level>
         }
 
 
-        _ = LoadData();
+        //_ = LoadData();
     }
 
     [Button]
@@ -119,13 +119,20 @@ public class Level : Singleton<Level>
         await layerController.LoadData(LevelData.layerCards);
         await UniTask.WaitUntil(() => oSController.loadDone && layerController.loadDone);
         CallNextObjSticker(true);
+        WaitToCheckCard().Forget();
+    }
+
+    private async UniTask WaitToCheckCard()
+    {
         GamePlayManager.Instance.ChangeGameState(GameState.Playing);
-        await UniTask.WaitForSeconds(2f);
+        var totalCard = layerController.cards.Count;
+        var totalTimeWait = 0.15f * totalCard + 0.25f;
+        await UniTask.WaitForSeconds(totalTimeWait);
         GlobalEventManager.OnHaveCardDone?.Invoke();
     }
 
-    private Dictionary<int, int> mappingID = new ();
-    
+    private Dictionary<int, int> mappingID = new();
+
     private void ShuffleID()
     {
         mappingID.Clear();
@@ -141,6 +148,7 @@ public class Level : Singleton<Level>
                 mappedId = GetRandomId(totalStickerId);
                 mappingID[originalId] = mappedId;
             }
+
             stickers[i].stickerId = mappedId;
         }
 
@@ -190,13 +198,28 @@ public class Level : Singleton<Level>
     [Button]
     public void ResetLevel()
     {
+        LoadDataClean();
         Debug.Log("Reset Level");
+        isEndGame = false;
+        StickerDoneManager.Instance.Clear();
         oSController.ResetController();
         fSpaceController.ResetController();
         layerController.ResetController();
+
+        for (var i = 0; i < stickerDone.Count; i++)
+        {
+            stickerDone[i].ResetStickerDone();
+            PoolManager.Instance.DespawnStickerMove(stickerDone[i]);
+        }
+        stickerDone.Clear();
+    }
+
+    public void LevelUp()
+    {
+        ResetLevel();
         levelIndex.Value++;
         PlayerInfoDataSave.Instance.SaveData();
-        _ = LoadData();
+        _ = UIManager.Instance.CloseScreenAsync();
     }
 
     public void MoveFolderOut(FolderHaveSticker folder)
@@ -216,17 +239,20 @@ public class Level : Singleton<Level>
 
     public void CheckLoseGame()
     {
+        if (!fSpaceController.IsHaveStickerWait()) return;
+        
         var isHaveAllNoteOnSlot = oSController.IsHaveAllNoteOnSlot();
 
-        //Nếu tất cả các ô trống đều có note tức là thua
-        //Cần kiểm tra xem có Card nào chứa sticker chưa bóc mà trùng với Note không
-        // Nếu có thì vẫn còn cơ hội để chơi tiếp
+        //Nếu tất cả các ô trống đều có note tức là thua hoặc
+        // Cần kiểm tra xem có Card nào chứa sticker chưa bóc mà trùng với Note không?
+        // Nếu có thì vẫn còn cơ hội để chơi tiếp => sửa thành thua luôn
         Debug.Log($"Have all note on slot: {isHaveAllNoteOnSlot}");
         if (isHaveAllNoteOnSlot)
         {
-            var e = CheckAllCardOnLayerHaveStickerSameIdWithNote();
+            //var e = CheckAllCardOnLayerHaveStickerSameIdWithNote();
             var e1 = CheckAllStickerDone();
-            if (!e && !e1)
+            Debug.Log($"note Have Sticker Done: {e1}");
+            if (/*!e && */!e1)
             {
                 Debug.Log("call end game form here");
                 //Time.timeScale = 0f;
@@ -236,7 +262,6 @@ public class Level : Singleton<Level>
         }
 
         //Nếu có ít nhất 1 note trên slot thì vẫn còn cơ hội để thắng
-
         //Nếu có note nào đang chuẩn bị vào thì vẫn có thể chơi tiếp
 
         var isHaveAtLeastOne = oSController.IsHaveAtLeastOneNote();
@@ -281,7 +306,10 @@ public class Level : Singleton<Level>
                 for (var j = 0; j < stickerDone.Count; j++)
                 {
                     if (stickerDone[j].IsHaveSticker(noteId))
+                    {
+                        Debug.Log(noteId + $" is have sticker done {stickerDone[j]} {i}");
                         return true;
+                    }
                 }
             }
         }
@@ -296,6 +324,7 @@ public class Level : Singleton<Level>
             return;
         isEndGame = true;
         Debug.Log("game over");
+        GamePlayManager.Instance.ChangeGameState(GameState.Normal);
         await UniTask.WaitForSeconds(1f);
         await UIManager.Instance.OpenActivityAsync<ActivityLoseGame>();
     }

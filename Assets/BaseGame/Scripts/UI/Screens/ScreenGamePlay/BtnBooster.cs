@@ -55,7 +55,6 @@ public class BtnBooster : MonoBehaviour
         if (isEnough)
         {
             txtAmount.SetTextFormat(MyCache.strDefault, valueChange);
-            return;
         }
     }
 

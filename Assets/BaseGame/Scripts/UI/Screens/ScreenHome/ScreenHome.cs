@@ -1,4 +1,5 @@
 using System;
+using Core.UI.Activities;
 using Cysharp.Threading.Tasks;
 using TW.UGUI.MVPPattern;
 using UnityEngine;
@@ -80,7 +81,8 @@ namespace Core.UI.Screens
 
             private async UniTask PlayGame()
             {
-                await GamePlayManager.Instance.PlayGame();
+                //await GamePlayManager.Instance.PlayGame();
+                await UIManager.Instance.OpenActivityAsync<ActivityLoadingInGamePlay>();
                 await UIManager.Instance.OpenScreenAsync<ScreenGamePlay>(stackChange: true);
             }
         }

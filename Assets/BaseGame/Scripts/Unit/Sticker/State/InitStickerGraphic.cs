@@ -17,7 +17,7 @@ public partial class StickerGraphic
         sprIcon.sprite = spriteIcon;
         sprBg.sprite = spriteBg;
         sprGlow.sprite = spriteIcon;
-        objScratchFake.sprite = spriteBg;
+        scratchManager.ChangeSprite(spriteBg);
     }
 
     private void InitStickerChain()
@@ -26,9 +26,12 @@ public partial class StickerGraphic
 
     private void InitStickerMark()
     {
-        sprIcon.sprite = sprIconMark[1];
-        sprBg.sprite = sprIconMark[0];
-        sprGlow.sprite = sprIconMark[2];
-        objScratchFake.sprite = sprIconMark[0];
+        var spriteIcon = SpriteGlobalConfig.Instance.GetStickerIcon(stickerId);
+        var spriteBg = SpriteGlobalConfig.Instance.GetStickerBg(stickerId);
+        var spriteQuestMark = SpriteGlobalConfig.Instance.sprQuestMark;
+        sprIcon.sprite = spriteIcon;
+        sprBg.sprite = spriteBg;
+        sprGlow.sprite = spriteIcon;
+        scratchManager.ChangeSprite(spriteQuestMark);
     }
 }

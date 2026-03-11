@@ -13,11 +13,15 @@ namespace ScratchCardAsset.Core
 		public event ScratchStartHandler OnScratchStart;
 		public event ScratchLineHandler OnScratchLine;
 		public event ScratchHoleHandler OnScratchHole;
+
 		public delegate Vector2 ScratchHandler(Vector2 position);
+
 		public delegate void ScratchStartHandler();
+
 		public delegate void ScratchLineHandler(Vector2 start, Vector2 end);
+
 		public delegate void ScratchHoleHandler(Vector2 position);
-		
+
 		#endregion
 
 		public bool IsScratching
@@ -32,6 +36,7 @@ namespace ScratchCardAsset.Core
 							return true;
 					}
 				}
+
 				return false;
 			}
 		}
@@ -49,7 +54,7 @@ namespace ScratchCardAsset.Core
 #endif
 
 		private const int MaxTouchCount = 10;
-		public Reactive<bool> isGamePlaying = new (false);
+		public Reactive<bool> isGamePlaying { get; set; } = new(false);
 		public Reactive<bool> eraserOnFollowing = new (false);
 
 		public ScratchCardInput(ScratchCard card)
