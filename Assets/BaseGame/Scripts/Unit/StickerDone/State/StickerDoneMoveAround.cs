@@ -44,8 +44,9 @@ public partial class StickerDone : StickerDoneMoveAround.IHandler
     private float orbitRadius = 0.3f;
     private MotionHandle orbitMotionHandle;
     
-    public UniTask OnEnterMoveAroundState()
+    public async UniTask OnEnterMoveAroundState()
     {
+        var id = UnitEventManager.Instance.RegisterEvent();
         Level.Instance.fSpaceController.RegisterStickerDoneWait(this);
         centerPosition = transform.position;
         orbitMotionHandle = LMotion.Create(0f, Mathf.PI * 2f, 1f)
@@ -57,7 +58,9 @@ public partial class StickerDone : StickerDoneMoveAround.IHandler
                 var y = centerPosition.y + Mathf.Sin(angle) * orbitRadius;
                 transform.position = new Vector3(x, y, centerPosition.z);
             }).AddTo(this);
-        return UniTask.CompletedTask;
+        await UniTask.WaitForSeconds(0.1f);
+        UnitEventManager.Instance.RemoveEventId(id);
+        Level.Instance.CheckLoseGame();
     }
 
     public UniTask OnUpdateMoveAroundState()

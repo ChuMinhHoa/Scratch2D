@@ -16,12 +16,13 @@ public class FreeSpaceController : SpaceForSticker
         return stickerDoneWait.Count > 0;
     }
 
-    public StickerPos GetFreeSpacePos()
+    public StickerPos GetFreeSpacePos(StickerDone stickerDone)
     {
         for (var i = 0; i < spaceStickers.Count; i++)
         {
             if (!spaceStickers[i].stickerPos.IsHaveObj())
             {
+                spaceStickers[i].stickerPos.RegisterObj(stickerDone);
                 return spaceStickers[i].stickerPos;
             }
         }
@@ -38,8 +39,6 @@ public class FreeSpaceController : SpaceForSticker
             {
                 var stickerDone = stickerPos.obj;
                 if (stickerDone == null) continue;
-
-                await UniTask.Yield();
                 StickerDoneManager.Instance.AddStickerDone(stickerDone);
                 //stickerDone.CheckMoveToFolder();
             }
@@ -48,9 +47,6 @@ public class FreeSpaceController : SpaceForSticker
         for (var i = stickerDoneWait.Count - 1; i >= 0; i--)
         {
             if (i >= stickerDoneWait.Count) continue;
-
-            await UniTask.Yield();
-            //stickerDoneWait[i].CheckMoveToFolder(true);
             StickerDoneManager.Instance.AddStickerDone(stickerDoneWait[i]);
         }
 
@@ -63,8 +59,10 @@ public class FreeSpaceController : SpaceForSticker
     public void RegisterStickerDoneWait(StickerDone stickerDone)
     {
         stickerDoneWait.Add(stickerDone);
-
-        Level.Instance.CheckLoseGame();
+        //GamePlayManager.Instance.ChangeGameState(GameState.WaitingCheckLoseGame);
+        //await UniTask.WaitForSeconds(0.75f);
+        // if (!StickerDoneManager.Instance.IsHaveStickerDoneMoveToNote())
+             //Level.Instance.CheckLoseGame();
     }
 
     public void RemoveStickerDoneFromNoWhere(StickerDone e)
@@ -126,6 +124,17 @@ public class FreeSpaceController : SpaceForSticker
         for (var i = 0; i < spaceStickers.Count; i++)
         {
             if (spaceStickers[i].stickerPos.obj == stickerDone)
+                return true;
+        }
+
+        return false;
+    }
+
+    public bool IsHaveFreeSlot()
+    {
+        for (var i = 0; i < spaceStickers.Count; i++)
+        {
+            if (!spaceStickers[i].stickerPos.IsHaveObj())
                 return true;
         }
 

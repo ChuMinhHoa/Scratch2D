@@ -50,21 +50,22 @@ public class ObjHaveStickerController : SpaceForSticker
                 SlotFolders[i].folderPos.MoveDone();
             }
         }
-        else
+    }
+
+    public void CallCheckEndGame()
+    {
+        if (isEndGame) return;
+        for (var i = 0; i < SlotFolders.Length; i++)
         {
-            if (isEndGame) return;
-            for (var i = 0; i < SlotFolders.Length; i++)
-            {
-                if (SlotFolders[i].slotFolderType == SlotFolderType.Ads)
-                    continue;
-                if (SlotFolders[i].IsHaveObject()) return;
-            }
-
-            isEndGame = true;
-
-            Debug.Log("End game!");
-            GamePlayManager.Instance.level.LevelUp();
+            if (SlotFolders[i].slotFolderType == SlotFolderType.Ads)
+                continue;
+            if (SlotFolders[i].IsHaveObject()) return;
         }
+
+        isEndGame = true;
+
+        Debug.Log("End game!");
+        GamePlayManager.Instance.level.LevelUp();
     }
 
     public override void ResetController()
@@ -80,28 +81,41 @@ public class ObjHaveStickerController : SpaceForSticker
         {
             SlotFolders[i].ResetByLevel();
         }
+
         objHaveStickers.Clear();
         loadDone = false;
     }
 
-    public void MoveFolderOut(FolderHaveSticker folder)
+    public async UniTask MoveFolderOut(FolderHaveSticker folder)
     {
-        _ = folder.MoveOut(posOut);
+        await folder.MoveOut(posOut);
         for (var i = 0; i < SlotFolders.Length; i++)
         {
             if (SlotFolders[i].folderPos.obj != folder) continue;
             SlotFolders[i].ResetSlotFolder();
         }
+        
+        var lastNote = Level.Instance.oSController.IsLastNote(folder);
+        Debug.Log($"Last note: {lastNote}");
+        if (lastNote)
+        {
+            Level.Instance.oSController.CallCheckEndGame();
+        }
+        else
+        {
+            GlobalEventManager.CheckToCallNextSticker?.Invoke();
+        }
     }
 
-    public StickerPos GetFolderPos(int stickerId)
+    public StickerPos GetFolderPos(StickerDone stickerDone)
     {
         for (var i = 0; i < SlotFolders.Length; i++)
         {
             if (!SlotFolders[i].folderPos.obj) continue;
             if (!SlotFolders[i].folderPos.IsMoveDone()) continue;
-            if (SlotFolders[i].folderPos.obj.IsSameSticker(stickerId, out var stickerPos))
+            if (SlotFolders[i].folderPos.obj.IsSameSticker(stickerDone.stickerId, out var stickerPos))
             {
+                stickerPos.RegisterObj(stickerDone);
                 return stickerPos;
             }
         }
@@ -111,7 +125,14 @@ public class ObjHaveStickerController : SpaceForSticker
 
     public bool IsHaveAtLeastOneNote()
     {
-        return objHaveStickers.Count > 0;
+        var isHaveAtLeastOneNote = objHaveStickers.Count > 0;
+        var isHaveNoteOnSlot = false;
+        for (var i = 0; i < SlotFolders.Length; i++)
+        {
+            if (SlotFolders[i].IsHaveObject())
+                isHaveNoteOnSlot = true;
+        }
+        return isHaveAtLeastOneNote || isHaveNoteOnSlot;
     }
 
     public bool IsHaveAllNoteOnSlot()
@@ -125,5 +146,39 @@ public class ObjHaveStickerController : SpaceForSticker
         }
 
         return true;
+    }
+
+    public bool IsLastNote(FolderHaveSticker note)
+    {
+        var noteOnStack = objHaveStickers.Count == 0;
+        if (!noteOnStack) return false;
+        var isHaveOtherNoteOnSlot = false;
+        for (var i = 0; i < SlotFolders.Length; i++)
+        {
+            if (SlotFolders[i].folderPos.obj != null && SlotFolders[i].folderPos.obj != note)
+            {
+                isHaveOtherNoteOnSlot = true;
+                break;
+            }
+            
+        }
+
+        return !isHaveOtherNoteOnSlot;
+    }
+
+    public bool IsHaveNoteMoveIn()
+    {
+        var isHaveNoteWait = objHaveStickers.Count > 0;
+        var isAllSlotHaveNote = true;
+        for (int i = 0; i < SlotFolders.Length; i++)
+        {
+            if (!SlotFolders[i].folderPos.IsHaveObj() && SlotFolders[i].slotFolderType == SlotFolderType.Normal)
+            {
+                isAllSlotHaveNote = false;
+                break;
+            }
+        }
+
+        return isHaveNoteWait && !isAllSlotHaveNote;
     }
 }

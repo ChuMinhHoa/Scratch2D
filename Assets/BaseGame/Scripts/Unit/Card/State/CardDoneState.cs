@@ -69,11 +69,7 @@ public partial class Card : CardDoneState.IHandler
             scratchObject.EnableInput(false);
         });
         ResetCard();
-        if (!Level.Instance.fSpaceController.IsHaveStickerWait())
-        {
-            Debug.Log("Need check");
-            //GamePlayManager.Instance.NextLayer();
-        }
+      
        
         GamePlayManager.Instance.level.layerController.RemoveCard(this);
         GlobalEventManager.OnHaveCardDone?.Invoke();

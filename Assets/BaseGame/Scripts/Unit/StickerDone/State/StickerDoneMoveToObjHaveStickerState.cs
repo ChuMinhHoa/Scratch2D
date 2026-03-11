@@ -39,11 +39,14 @@ public class StickerDoneMoveToObjHaveStickerState : IState
 public partial class StickerDone : StickerDoneMoveToObjHaveStickerState.IHandler
 {
     private StickerDoneMoveToObjHaveStickerState StickerDoneMoveToObjHaveStickerStateCache { get; set; }
-    public StickerDoneMoveToObjHaveStickerState StickerDoneMoveToObjHaveStickerState => StickerDoneMoveToObjHaveStickerStateCache ??= new StickerDoneMoveToObjHaveStickerState(this);
+
+    public StickerDoneMoveToObjHaveStickerState StickerDoneMoveToObjHaveStickerState =>
+        StickerDoneMoveToObjHaveStickerStateCache ??= new StickerDoneMoveToObjHaveStickerState(this);
+
     public async UniTask OnEnterMoveToObjHaveStickerState()
     {
+        var idRegister = UnitEventManager.Instance.RegisterEvent();
         CheckToAbleStickerAnimAgain();
-        
         var currentScale = transform.localScale;
         var currentEulerAngle = transform.eulerAngles;
         LMotion.Create(currentScale, stickerPos.trsPos.localScale, .25f).Bind(x => transform.localScale = x);
@@ -54,9 +57,10 @@ public partial class StickerDone : StickerDoneMoveToObjHaveStickerState.IHandler
         stickerGlow.gameObject.SetActive(true);
         transform.SetParent(stickerPos.trsPos);
         stickerPos.MoveDone();
-        Level.Instance.RemoveSticker(this);
+        StickerDoneManager.Instance.RemoveStickerDoneMoveToNote(this);
+        UnitEventManager.Instance.RemoveEventId(idRegister);
+        await UniTask.WaitForSeconds(0.25f);
         Level.Instance.CheckLoseGame();
-        
     }
 
     public UniTask OnUpdateMoveToObjHaveStickerState()
@@ -68,5 +72,4 @@ public partial class StickerDone : StickerDoneMoveToObjHaveStickerState.IHandler
     {
         return UniTask.CompletedTask;
     }
-    
 }

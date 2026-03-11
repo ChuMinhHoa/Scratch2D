@@ -12,8 +12,9 @@ public enum GameState
     None = 0,
     Normal = 1,
     Loading = 2,
+    WaitingCheckLoseGame = 3,
     Playing = 10,
-    OnBooster = 20
+    OnBooster = 20,
 }
 
 public class GamePlayManager : Singleton<GamePlayManager>

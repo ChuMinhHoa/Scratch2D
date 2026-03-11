@@ -42,6 +42,7 @@ public partial class StickerDone : StickerDoneMoveFreeSpaceState.IHandler
     public StickerDoneMoveFreeSpaceState StickerDoneMoveFreeSpaceState => StickerDoneMoveFreeSpaceStateCache ??= new StickerDoneMoveFreeSpaceState(this);
     public async UniTask OnEnterMoveFreeSpace()
     {
+        var id = UnitEventManager.Instance.RegisterEvent();
         stickerPos.RegisterObj(this);
         stickerDoneAnim.enabled = false;
         var currentScale = sprIcon.transform.localScale;
@@ -56,6 +57,7 @@ public partial class StickerDone : StickerDoneMoveFreeSpaceState.IHandler
         CheckToAbleStickerAnimAgain();
         stickerPos.MoveDone();
         Level.Instance.CheckStickerDone();
+        UnitEventManager.Instance.RemoveEventId(id);
     }
 
     public UniTask OnUpdateMoveFreeSpace()

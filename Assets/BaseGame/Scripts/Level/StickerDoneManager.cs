@@ -9,6 +9,7 @@ public class StickerDoneManager : Singleton<StickerDoneManager>
 {
     private readonly List<StickerDone> stickerDoneStack = new ();
 
+    public List<StickerDone> stickerDoneOnMoveToNote = new();
     public void AddStickerDone(StickerDone stickerDone)
     {
         if (stickerDoneStack.Contains(stickerDone))
@@ -38,4 +39,24 @@ public class StickerDoneManager : Singleton<StickerDoneManager>
     {
         stickerDoneStack.Clear();
     }
+
+    #region StickerDone On Move To Note
+
+    public void AddStickerDoneMoveToNote(StickerDone stickerDone)
+    {
+        if (stickerDoneOnMoveToNote.Contains(stickerDone))
+            return;
+        stickerDoneOnMoveToNote.Add(stickerDone);
+    }
+    
+    public void RemoveStickerDoneMoveToNote(StickerDone stickerDone)
+    {
+        if (!stickerDoneOnMoveToNote.Contains(stickerDone))
+            return;
+        stickerDoneOnMoveToNote.Remove(stickerDone);
+    }
+    
+    public bool IsHaveStickerDoneMoveToNote() => stickerDoneOnMoveToNote.Count > 0;
+
+    #endregion
 }

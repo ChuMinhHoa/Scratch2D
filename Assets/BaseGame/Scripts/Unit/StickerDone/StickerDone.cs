@@ -36,25 +36,26 @@ public partial class StickerDone : MonoBehaviour
 
    public void CheckMoveToFolder(bool fromNoWhere = false, bool fromFreeSpace = false)
    {
-       var e = Level.Instance.oSController.GetFolderPos(stickerId);
+       var e = Level.Instance.oSController.GetFolderPos(this);
        if (e != null)
        {
            stickerPos?.ResetPos();
            stickerPos = e;
-           stickerPos.RegisterObj(this);
+           StickerDoneManager.Instance.AddStickerDoneMoveToNote(this);
            Level.Instance.fSpaceController.RemoveStickerDoneFromNoWhere(this);
+           Level.Instance.RemoveStickerDone(this);
            stateMachine.RequestTransition(StickerDoneMoveToObjHaveStickerState);
            return;
        }
 
        if (!fromFreeSpace)
        {
-           e = Level.Instance.fSpaceController.GetFreeSpacePos();
+           e = Level.Instance.fSpaceController.GetFreeSpacePos(this);
            if (e != null)
            {
+               Level.Instance.RemoveStickerDone(this);
                Level.Instance.fSpaceController.RemoveStickerDoneFromNoWhere(this);
                stickerPos = e;
-               stickerPos.RegisterObj(this);
                stateMachine.RequestTransition(StickerDoneMoveFreeSpaceState);
                return;
            }

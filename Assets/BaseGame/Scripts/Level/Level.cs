@@ -224,7 +224,7 @@ public class Level : Singleton<Level>
 
     public void MoveFolderOut(FolderHaveSticker folder)
     {
-        oSController.MoveFolderOut(folder);
+        _ = oSController.MoveFolderOut(folder);
     }
 
     public bool IsHaveStickerWait()
@@ -237,65 +237,35 @@ public class Level : Singleton<Level>
         _ = fSpaceController.CheckStickerDone();
     }
 
+    [Button]
     public void CheckLoseGame()
     {
-        if (!fSpaceController.IsHaveStickerWait()) return;
-        
-        var isHaveAllNoteOnSlot = oSController.IsHaveAllNoteOnSlot();
+        if (UnitEventManager.Instance.IsHaveEvent())
+            return;
+        var isFreeSlot = fSpaceController.IsHaveFreeSlot();
+        var isHaveNoteMoveIn = oSController.IsHaveNoteMoveIn();
+        var noteDontHaveStickerOnMove = CheckAllNoteDontHaveStickerOnMove();
+        var noteHaveStickerDoneOnWait = CheckNoteHaveStickerDoneOnWait();
+        var noteHaveStickerOnCard = CheckAllCardActiveHaveStickerSameIdWithNote();
+        var noteHaveStickerOnSpace = CheckAllNoteHaveStickerOnFreeSpace();
+        var noteHaveStickerOnListDone = CheckAllNoteHaveStickerOnListDone();
 
-        //Nếu tất cả các ô trống đều có note tức là thua hoặc
-        // Cần kiểm tra xem có Card nào chứa sticker chưa bóc mà trùng với Note không?
-        // Nếu có thì vẫn còn cơ hội để chơi tiếp => sửa thành thua luôn
-        Debug.Log($"Have all note on slot: {isHaveAllNoteOnSlot}");
-        if (isHaveAllNoteOnSlot)
+        Debug.Log($" is free slot {isFreeSlot}");
+        Debug.Log("Is have note move in: " + isHaveNoteMoveIn);
+        Debug.Log("note dont have sticker on move: " + noteDontHaveStickerOnMove);
+        Debug.Log("note have sticker done on wait: " + noteHaveStickerDoneOnWait);
+        Debug.Log("note have sticker done on card: " + noteHaveStickerOnCard);
+        Debug.Log("note have sticker done on free space : " + noteHaveStickerOnSpace);
+        Debug.Log("note have sticker done on list : " + noteHaveStickerOnListDone);
+
+        if (!noteHaveStickerOnListDone && !noteHaveStickerOnSpace && !isFreeSlot && !isHaveNoteMoveIn && noteDontHaveStickerOnMove  && !noteHaveStickerDoneOnWait && !noteHaveStickerOnCard)
         {
-            //var e = CheckAllCardOnLayerHaveStickerSameIdWithNote();
-            var e1 = CheckAllStickerDone();
-            Debug.Log($"note Have Sticker Done: {e1}");
-            if (/*!e && */!e1)
-            {
-                Debug.Log("call end game form here");
-                //Time.timeScale = 0f;
-                _ = EndGame();
-                return;
-            }
-        }
-
-        //Nếu có ít nhất 1 note trên slot thì vẫn còn cơ hội để thắng
-        //Nếu có note nào đang chuẩn bị vào thì vẫn có thể chơi tiếp
-
-        var isHaveAtLeastOne = oSController.IsHaveAtLeastOneNote();
-        if (!isHaveAtLeastOne)
-        {
-            Debug.Log("call end game form here");
             _ = EndGame();
         }
+        
     }
 
-    private bool CheckAllCardOnLayerHaveStickerSameIdWithNote()
-    {
-        var slotFolders = oSController.SlotFolders;
-        var card = layerController.cards;
-        for (var i = 0; i < slotFolders.Length; i++)
-        {
-            var noteId = slotFolders[i].GetNoteId();
-            Debug.Log($"check note id: {noteId}");
-            if (noteId != -1)
-            {
-                for (var j = 0; j < card.Count; j++)
-                {
-                    Debug.Log("Need Check");
-                    //if (!card[j].CheckIsSameLayer()) continue;
-                    if (card[j].IsHaveSticker(noteId))
-                        return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    private bool CheckAllStickerDone()
+    private bool CheckAllNoteHaveStickerOnListDone()
     {
         var slotFolders = oSController.SlotFolders;
         for (var i = 0; i < slotFolders.Length; i++)
@@ -307,7 +277,7 @@ public class Level : Singleton<Level>
                 {
                     if (stickerDone[j].IsHaveSticker(noteId))
                     {
-                        Debug.Log(noteId + $" is have sticker done {stickerDone[j]} {i}");
+                        Debug.Log(noteId + $" is have sticker done {stickerDone[j]} {j}");
                         return true;
                     }
                 }
@@ -317,6 +287,127 @@ public class Level : Singleton<Level>
         return false;
     }
 
+    private bool CheckAllNoteHaveStickerOnFreeSpace()
+    {
+        var slotFolders = oSController.SlotFolders;
+        var spaceStickers = fSpaceController.spaceStickers;
+        for (var i = 0; i < slotFolders.Length; i++)
+        {
+            var noteId = slotFolders[i].GetNoteId();
+            if (noteId != -1)
+            {
+                for (var j = 0; j < spaceStickers.Count; j++)
+                {
+                    var st = spaceStickers[j].stickerPos.obj;
+                    if (st)
+                    {
+                        var isSame = st.IsHaveSticker(noteId);
+                        if(isSame)
+                            return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private bool CheckAllCardActiveHaveStickerSameIdWithNote()
+    {
+        var slotFolders = oSController.SlotFolders;
+        var card = layerController.cards;
+        for (var i = 0; i < slotFolders.Length; i++)
+        {
+            var noteId = slotFolders[i].GetNoteId();
+            Debug.Log($"id check {noteId}");
+            if (noteId != -1)
+            {
+                for (var j = 0; j < card.Count; j++)
+                {
+                    if (!card[j].isShowed) continue;
+                    if (card[j].IsHaveSticker(noteId))
+                        return true;
+                }
+            }
+        }
+
+        return false;
+    }
+    // public void CheckLoseGame()
+    // {
+    //     if (!fSpaceController.IsHaveStickerWait()) return;
+    //     if(UnitEventManager.Instance.IsHaveEvent()) return;
+    //     var isHaveAllNoteOnSlot = oSController.IsHaveAllNoteOnSlot();
+    //
+    //     //Nếu tất cả các ô trống đều có note tức là thua hoặc
+    //     // Cần kiểm tra xem có Card nào chứa sticker chưa bóc mà trùng với Note không?
+    //     // Nếu có thì vẫn còn cơ hội để chơi tiếp => sửa thành thua luôn
+    //     Debug.Log($"Have all note on slot: {isHaveAllNoteOnSlot}");
+    //     if (isHaveAllNoteOnSlot)
+    //     {
+    //         //var e = CheckAllCardOnLayerHaveStickerSameIdWithNote();
+    //         var e1 = CheckNoteHaveStickerDoneOnWait();
+    //         Debug.Log($"note Have Sticker Done: {e1}");
+    //         if (/*!e && */!e1)
+    //         {
+    //             Debug.Log("call end game form here");
+    //             //Time.timeScale = 0f;
+    //             _ = EndGame();
+    //             return;
+    //         }
+    //     }
+    //
+    //     //Nếu có ít nhất 1 note trên slot thì vẫn còn cơ hội để thắng
+    //     //Nếu có note nào đang chuẩn bị vào thì vẫn có thể chơi tiếp
+    //
+    //     var isHaveAtLeastOne = oSController.IsHaveAtLeastOneNote();
+    //     if (!isHaveAtLeastOne)
+    //     {
+    //         Debug.Log("call end game form here");
+    //         _ = EndGame();
+    //     }
+    // }
+
+    private bool CheckNoteHaveStickerDoneOnWait()
+    {
+        var slotFolders = oSController.SlotFolders;
+        var stickerWait = fSpaceController.stickerDoneWait;
+        for (var i = 0; i < slotFolders.Length; i++)
+        {
+            var noteId = slotFolders[i].GetNoteId();
+            if (noteId != -1)
+            {
+                for (var j = 0; j < stickerWait.Count; j++)
+                {
+                    if (stickerWait[j].IsHaveSticker(noteId))
+                    {
+                        Debug.Log(noteId + $" is have sticker done {stickerWait[j]} {j}");
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+    
+    private bool CheckAllNoteDontHaveStickerOnMove()
+    {
+        var slotFolders = oSController.SlotFolders;
+        for (var i = 0; i < slotFolders.Length; i++)
+        {
+            var note = slotFolders[i].folderPos.obj;
+            if (note != null)
+            {
+                var isHaveStickerOnMove = note.IsHaveStickerOnMove();
+                if (isHaveStickerOnMove)
+                    return false;
+            }
+        }
+
+        return true;
+    }
+
     private async UniTask EndGame()
     {
         await UniTask.WaitForFixedUpdate();
@@ -324,12 +415,13 @@ public class Level : Singleton<Level>
             return;
         isEndGame = true;
         Debug.Log("game over");
+        Time.timeScale = 0;
         GamePlayManager.Instance.ChangeGameState(GameState.Normal);
         await UniTask.WaitForSeconds(1f);
         await UIManager.Instance.OpenActivityAsync<ActivityLoseGame>();
     }
 
-    public void RemoveSticker(StickerDone stD)
+    public void RemoveStickerDone(StickerDone stD)
     {
         stickerDone.Remove(stD);
     }

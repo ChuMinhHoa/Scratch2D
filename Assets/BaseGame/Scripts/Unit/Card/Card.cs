@@ -57,7 +57,6 @@ public partial class Card : MonoBehaviour
         if (isShowed) return;
         
         var result = frontChecker2D.IsAnythingInFront();
-        Debug.Log("result check: " + result);
         if (!result)
         {
             isShowed = true;

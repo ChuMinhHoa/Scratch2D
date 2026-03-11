@@ -16,6 +16,7 @@ public partial class FolderHaveSticker : MonoBehaviour
     public FHSGraphic fhsGraphic;
     public StateMachine stateMachine;
     public bool readyToMove;
+
     private void Start()
     {
         stateMachine.RequestTransition(FhsWaitState);
@@ -31,7 +32,10 @@ public partial class FolderHaveSticker : MonoBehaviour
     {
         for (var i = 0; i < trsStickerPos.Length; i++)
         {
-            if (!trsStickerPos[i].moveDone) return;
+            if (!trsStickerPos[i].moveDone)
+            {
+                return;
+            }
         }
 
         Level.Instance.MoveFolderOut(this);
@@ -48,6 +52,7 @@ public partial class FolderHaveSticker : MonoBehaviour
             stickerPos = pos;
             return true;
         }
+
         return false;
     }
 
@@ -56,30 +61,47 @@ public partial class FolderHaveSticker : MonoBehaviour
         readyToMove = false;
         for (var i = 0; i < trsStickerPos.Length; i++)
         {
-            if (!trsStickerPos[i].obj)continue;
+            if (!trsStickerPos[i].obj) continue;
             trsStickerPos[i].obj.ResetStickerDone();
             PoolManager.Instance.DespawnStickerMove(trsStickerPos[i].obj);
             trsStickerPos[i].ResetPos();
         }
+
         PoolManager.Instance.DespawnObjHaveSticker(this);
     }
 
     public async UniTask MoveOut(Transform posOut)
     {
+        var id = UnitEventManager.Instance.RegisterEvent();
         var currentPos = transform.position;
         await unitAnim.PlayScaleAnimation();
-        GlobalEventManager.CheckToCallNextSticker?.Invoke();
         await LMotion.Create(currentPos, posOut.position, 0.25f).Bind(x => transform.position = x).AddTo(this);
+        UnitEventManager.Instance.RemoveEventId(id);
         ResetFolderSticker();
-        Level.Instance.CheckLoseGame();
     }
 
     public async UniTask MoveToTarget(Vector3 target)
     {
+        var id = UnitEventManager.Instance.RegisterEvent();
         await unitAnim.PlayMoveAnim(target);
         readyToMove = true;
+        UnitEventManager.Instance.RemoveEventId(id);
         await UniTask.WaitForSeconds(0.1f);
         Level.Instance.CheckStickerDone();
+        Level.Instance.CheckLoseGame();
+    }
+
+    public bool IsHaveStickerOnMove()
+    {
+        for (var i = 0; i < trsStickerPos.Length; i++)
+        {
+            if (trsStickerPos[i].obj && !trsStickerPos[i].IsMoveDone())
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
 
@@ -95,6 +117,7 @@ public class StickerPos : ObjPos<StickerDone>
     }
 
     public bool IsMoveDone() => moveDone;
+
     public override void ResetPos()
     {
         id = -1;
@@ -115,6 +138,7 @@ public class FolderPos : ObjPos<FolderHaveSticker>
     }
 
     public bool IsMoveDone() => moveDone;
+
     public override void ResetPos()
     {
         id = -1;
@@ -126,9 +150,11 @@ public class FolderPos : ObjPos<FolderHaveSticker>
 [Serializable]
 public class ObjPos<T>
 {
-    [FormerlySerializedAs("trsStickerPos")] public Transform trsPos;
+    [FormerlySerializedAs("trsStickerPos")]
+    public Transform trsPos;
+
     public T obj;
-    
+
     public void RegisterObj(T objChange)
     {
         obj = objChange;
@@ -138,6 +164,7 @@ public class ObjPos<T>
     {
         return obj != null;
     }
+
     public virtual void ResetPos()
     {
         obj = default;
