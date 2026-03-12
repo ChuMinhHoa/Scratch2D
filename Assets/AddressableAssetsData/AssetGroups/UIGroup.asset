@@ -20,8 +20,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8484f492c27207e4da46d246d16ee370
+    m_Address: ActivityLoadingFake
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8fc714d86a7cf6247bd871c15f18c3b5
     m_Address: ScreenHome
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 96c83987a042c2841955208b5a4e51b8
+    m_Address: ActivityFirstShowOnGamePlay
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 995a2fdfb9962f34980d8596f12cd02d
+    m_Address: ActivityWinGame
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

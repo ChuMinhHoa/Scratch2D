@@ -1112,42 +1112,17 @@ namespace AssetKits.ParticleImage
                     particleImage.DoPlay();
                 }
             }
-            // onStart.Invoke();
-            // _time = 0f;
-            // _burstTimer = 0f;
-            // for (int i = 0; i < _bursts.Count; i++)
-            // {
-            //     _bursts[i].used = false;
-            // }
-            // isEmitting = true;
-            // isPlaying = true;
-            // isPaused = false;
-            // isStopped = false;
-            
-            // Reset timers and counters
+            onStart.Invoke();
             _time = 0f;
             _burstTimer = 0f;
-            _loopTimer = 0f;
-            _t = 0f;
-            _t2 = 0f;
-            _orderPerSec = 0;
-            _orderOverLife = 0;
-            _orderOverDistance = 0;
-
-            // Reset burst usage
             for (int i = 0; i < _bursts.Count; i++)
             {
                 _bursts[i].used = false;
             }
-
-            // Set states
             isEmitting = true;
             isPlaying = true;
             isPaused = false;
             isStopped = false;
-
-            // Invoke start event
-            onStart.Invoke();
         }
 
         /// <summary>

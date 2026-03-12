@@ -57,7 +57,6 @@ public partial class StickerDone : StickerDoneMoveToObjHaveStickerState.IHandler
         stickerGlow.gameObject.SetActive(true);
         transform.SetParent(stickerPos.trsPos);
         stickerPos.MoveDone();
-        StickerDoneManager.Instance.RemoveStickerDoneMoveToNote(this);
         UnitEventManager.Instance.RemoveEventId(idRegister);
         await UniTask.WaitForSeconds(0.25f);
         Level.Instance.CheckLoseGame();

@@ -219,7 +219,8 @@ public class Level : Singleton<Level>
         ResetLevel();
         levelIndex.Value++;
         PlayerInfoDataSave.Instance.SaveData();
-        _ = UIManager.Instance.CloseScreenAsync();
+        _ = UIManager.Instance.OpenActivityAsync<ActivityWinGame>();
+        //_ = UIManager.Instance.CloseScreenAsync();
     }
 
     public void MoveFolderOut(FolderHaveSticker folder)
@@ -234,7 +235,7 @@ public class Level : Singleton<Level>
 
     public void CheckStickerDone()
     {
-        _ = fSpaceController.CheckStickerDone();
+        fSpaceController.CheckStickerDone();
     }
 
     [Button]
@@ -415,7 +416,6 @@ public class Level : Singleton<Level>
             return;
         isEndGame = true;
         Debug.Log("game over");
-        Time.timeScale = 0;
         GamePlayManager.Instance.ChangeGameState(GameState.Normal);
         await UniTask.WaitForSeconds(1f);
         await UIManager.Instance.OpenActivityAsync<ActivityLoseGame>();

@@ -41,7 +41,6 @@ public partial class StickerDone : MonoBehaviour
        {
            stickerPos?.ResetPos();
            stickerPos = e;
-           StickerDoneManager.Instance.AddStickerDoneMoveToNote(this);
            Level.Instance.fSpaceController.RemoveStickerDoneFromNoWhere(this);
            Level.Instance.RemoveStickerDone(this);
            stateMachine.RequestTransition(StickerDoneMoveToObjHaveStickerState);

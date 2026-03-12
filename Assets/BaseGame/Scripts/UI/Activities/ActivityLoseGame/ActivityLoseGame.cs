@@ -1,9 +1,12 @@
 using System;
+using Cysharp.Text;
 using Cysharp.Threading.Tasks;
+using LitMotion;
 using TW.UGUI.MVPPattern;
 using UnityEngine;
 using R3;
 using Sirenix.OdinInspector;
+using TMPro;
 using TW.UGUI.Core.Activities;
 using UnityEngine.UI;
 
@@ -57,8 +60,12 @@ namespace Core.UI.Activities
             public CanvasGroup MainView { get; private set; }
 
             [field: SerializeField] public Button btnClose;
+            [field: SerializeField] public TextMeshProUGUI txtLevel;
+
             public UniTask Initialize(Memory<object> args)
             {
+                var currentLevel = Level.Instance.levelIndex;
+                txtLevel.SetTextFormat(MyCache.strLevel, currentLevel);
                 return UniTask.CompletedTask;
             }
         }

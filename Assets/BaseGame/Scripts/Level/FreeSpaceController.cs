@@ -30,7 +30,7 @@ public class FreeSpaceController : SpaceForSticker
         return null;
     }
 
-    public async UniTask CheckStickerDone()
+    public void CheckStickerDone()
     {
         for (var i = 0; i < spaceStickers.Count; i++)
         {
@@ -50,19 +50,12 @@ public class FreeSpaceController : SpaceForSticker
             StickerDoneManager.Instance.AddStickerDone(stickerDoneWait[i]);
         }
 
-        //Level.Instance.CheckToCallChangeLayerIndex();
-
-        // if (stickerDoneWait.Count > 0) 
-        //     Level.Instance.CheckLoseGame();
     }
 
     public void RegisterStickerDoneWait(StickerDone stickerDone)
     {
         stickerDoneWait.Add(stickerDone);
-        //GamePlayManager.Instance.ChangeGameState(GameState.WaitingCheckLoseGame);
-        //await UniTask.WaitForSeconds(0.75f);
-        // if (!StickerDoneManager.Instance.IsHaveStickerDoneMoveToNote())
-             //Level.Instance.CheckLoseGame();
+        CheckStickerDone();
     }
 
     public void RemoveStickerDoneFromNoWhere(StickerDone e)
