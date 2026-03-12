@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using LitMotion;
 using R3;
 using Sirenix.OdinInspector;
@@ -18,7 +19,7 @@ public partial class Card : MonoBehaviour
     public int countSticker;
 
     public AnimationCurve curveFirstSpawn;
-    public GameObject objFakeScratch;
+    //public GameObject objFakeScratch;
 
     private CompositeDisposable stickerSubscriptions = new CompositeDisposable();
     private Reactive<bool> isOnPlaying = new();
@@ -52,7 +53,7 @@ public partial class Card : MonoBehaviour
         
         if (IsDone()) return;
         
-        if(GamePlayManager.Instance.level.IsHaveStickerWait()) return;
+        if(Level.Instance.IsHaveStickerWait()) return;
 
         if (isShowed) return;
         
@@ -72,7 +73,7 @@ public partial class Card : MonoBehaviour
         {
             stickers[i].EnableScratch(true);
         }
-        objFakeScratch.SetActive(false);
+        //objFakeScratch.SetActive(false);
     }
 
     private void ChangeGameState(bool playing)
@@ -125,17 +126,18 @@ public partial class Card : MonoBehaviour
         PoolManager.Instance.DespawnCard(this);
         GamePlayManager.Instance.RemoveCurrentCard(this);
         cardGraphic.ResetCard();
-        objFakeScratch.SetActive(true);
+        //objFakeScratch.SetActive(true);
         isShowed = false;
     }
 
     [Button]
     public void AnimFirstSpawn(int index)
     {
-        LMotion.Create(0f, 1f, 0.25f).WithOnComplete(()=>
+        LMotion.Create(0f, 1f, 0.25f).WithDelay(0.15f * index).WithEase(curveFirstSpawn).Bind(x =>
             {
-                _ = scratchObject.InitData(layerIndex, data);
-            }).WithDelay(0.15f * index).WithEase(curveFirstSpawn).Bind(x => transform.localScale = Vector3.one * x)
+                transform.localScale = Vector3.one * x;
+                scratchObject.transform.localScale = Vector3.one * x;
+            })
             .AddTo(this);
     }
 
@@ -169,5 +171,11 @@ public partial class Card : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void SettingForFirstAnim()
+    {
+        transform.localScale = Vector3.zero;
+        scratchObject.transform.localScale = Vector3.zero;
     }
 }

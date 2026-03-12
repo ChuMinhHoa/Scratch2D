@@ -63,7 +63,7 @@ public partial class Sticker : MonoBehaviour
 
     protected void StickerMoveToTarget()
     {
-        GamePlayManager.Instance.RegisterStickerDone(this, stickerGraphic.currentRot);
+        Level.Instance.RegisterStickerDone(this, stickerGraphic.currentRot);
     }
 
     public void DisAbleIcon()

@@ -1318,6 +1318,8 @@ MonoBehaviour:
       <ObjNewFeature>k__BackingField: {fileID: 5707150500364011037}
       <BtnClaim>k__BackingField: {fileID: 3407059141879354104}
       <BtnClaimX2>k__BackingField: {fileID: 2427876081108847437}
+      <TxtLevel>k__BackingField: {fileID: 6886017571815879198}
+      <TxtReward>k__BackingField: {fileID: 8878902181617402139}
 --- !u!1 &6375407438180872140
 GameObject:
   m_ObjectHideFlags: 0
@@ -2312,11 +2314,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2559037201267623759, guid: 88a59c8e316774bf68b9a81e990ede96, type: 3}
       propertyPath: _bursts.Array.data[0].used
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2559037201541945336, guid: 88a59c8e316774bf68b9a81e990ede96, type: 3}
       propertyPath: _bursts.Array.data[0].used
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2559037202506892816, guid: 88a59c8e316774bf68b9a81e990ede96, type: 3}
       propertyPath: m_Name

@@ -15,6 +15,12 @@ public class SelectAbleOnBooster : MonoBehaviour, ISelectAbleOnBooster
         GlobalEventManager.OnBoosterDone += OnBoosterDone;
     }
 
+    private void OnDestroy()
+    {
+        GlobalEventManager.OnBoosterUsing -= OnBoosterUsing;
+        GlobalEventManager.OnBoosterDone -= OnBoosterDone;
+    }
+
     private void OnBoosterDone()
     {
         onCanSelect = false;
@@ -42,6 +48,7 @@ public class SelectAbleOnBooster : MonoBehaviour, ISelectAbleOnBooster
 
     public void OnSelect()
     {
+        Debug.Log($"Select by booster {gameObject}");
         Booster?.UsedBooster(this);
         GlobalEventManager.OnBoosterDone?.Invoke();
     }

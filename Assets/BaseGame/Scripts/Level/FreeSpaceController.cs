@@ -49,7 +49,6 @@ public class FreeSpaceController : SpaceForSticker
             if (i >= stickerDoneWait.Count) continue;
             StickerDoneManager.Instance.AddStickerDone(stickerDoneWait[i]);
         }
-
     }
 
     public void RegisterStickerDoneWait(StickerDone stickerDone)
@@ -88,22 +87,28 @@ public class FreeSpaceController : SpaceForSticker
         {
             spaceStickers[i].ResetSpace();
         }
+
         for (var i = 0; i < stickerDoneWait.Count; i++)
         {
             PoolManager.Instance.DespawnStickerMove(stickerDoneWait[i]);
         }
+
         stickerDoneWait.Clear();
     }
 
     private float spaceWidth = 1.5f;
-    
+
     [Button]
     private void SetPositionSpaceSticker()
-    {   
+    {
         for (var i = 0; i < spaceStickers.Count; i++)
         {
             var offset = (i - (spaceStickers.Count - 1) / 2f) * spaceWidth;
             spaceStickers[i].transform.localPosition = new Vector3(offset, 0, 0);
+            if (spaceStickers[i].stickerPos.obj)
+            {
+                spaceStickers[i].stickerPos.obj.transform.position = spaceStickers[i].stickerPos.trsPos.position;
+            }
         }
     }
 

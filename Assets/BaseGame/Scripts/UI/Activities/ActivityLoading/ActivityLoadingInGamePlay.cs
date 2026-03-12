@@ -76,6 +76,7 @@ namespace Core.UI.Activities
                     .WithEase(Ease.Linear)
                     .Bind(ShowTextProgress).AddTo(MainView);
                 await UIManager.Instance.CloseActivityAsync<ActivityLoadingInGamePlay>();
+                await Level.Instance.AnimFirstSpawn();
             }
 
             private void ShowTextProgress(float value)

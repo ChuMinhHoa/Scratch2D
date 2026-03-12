@@ -21,11 +21,6 @@ public class CardGraphic : MonoBehaviour
     
     //public ScratchCardManager scratchCardManager;
 
-    [Button]
-    public void InitData()
-    {
-        //trsShadow.position = transform.position + offSetShadow;
-    }
 
     [Button]
     private async UniTask OnAnimOpen()

@@ -27,7 +27,6 @@ public class GamePlayManager : Singleton<GamePlayManager>
     private Dictionary<Collider2D, Card> cardCollection = new();
     private Dictionary<Collider2D, ButtonGameObject> buttonGameObjects = new();
     public Reactive<bool> isFollowing;
-    public Level level;
     public Reactive<GameState> gameState = new (GameState.Normal);
     
     public Reactive<bool> onPlaying = new (false);
@@ -58,6 +57,11 @@ public class GamePlayManager : Singleton<GamePlayManager>
 
     private void UpdateFunction()
     {
+        if (gameState.Value == GameState.OnBooster)
+        {
+            OnGameUsingBooster();
+        }
+
         if (gameState.Value != GameState.Playing)
         {
             if (isFollowing.Value)
@@ -67,7 +71,25 @@ public class GamePlayManager : Singleton<GamePlayManager>
             }
             return;
         }
+        
+        OnGamePlaying();
+        
+    }
 
+    private void OnGameUsingBooster()
+    {
+        if (Input.touchCount > 1)
+            return;
+        
+        
+        if (Input.GetMouseButtonUp(0) /*|| Input.GetTouch(0).phase == TouchPhase.Ended*/)
+        {
+            CheckOverSelectAbleOnBooster();
+        }
+    }
+
+    private void OnGamePlaying()
+    {
         if (Input.touchCount > 1)
             return;
         
@@ -178,19 +200,9 @@ public class GamePlayManager : Singleton<GamePlayManager>
         Gizmos.DrawWireSphere(eraser.transform.position, radiusCheck);
     }
 
-    public void RegisterStickerDone(Sticker sticker, Vector3 rot)
-    {
-        level.RegisterStickerDone(sticker, rot);
-    }
-
     public void RemoveCurrentCard(Card card)
     {
         eraser.RemoveCurrentCard(card);
-    }
-
-    public async UniTask PlayGame()
-    {
-        await level.LoadData();
     }
 
     public void ChangeGameState(GameState state)

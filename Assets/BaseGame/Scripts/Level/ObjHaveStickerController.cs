@@ -28,7 +28,7 @@ public class ObjHaveStickerController : SpaceForSticker
             objHaveStickers.Enqueue(ot);
         }
 
-        await CallNextObjSticker(true);
+        //await CallNextObjSticker(true);
         loadDone = true;
     }
 
@@ -65,7 +65,7 @@ public class ObjHaveStickerController : SpaceForSticker
         isEndGame = true;
 
         Debug.Log("End game!");
-        GamePlayManager.Instance.level.LevelUp();
+        Level.Instance.LevelUp();
     }
 
     public override void ResetController()

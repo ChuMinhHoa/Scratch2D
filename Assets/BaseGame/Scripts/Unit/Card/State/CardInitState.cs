@@ -58,22 +58,34 @@ public partial class Card : CardInitState.IHandler
         return UniTask.CompletedTask;
     }
     
-    public void InitData(CardData cardData, int layer)
+    // public void InitData(CardData cardData, int layer)
+    // {
+    //     data = cardData;
+    //     layerIndex = layer;
+    //     stateMachine.RequestTransition(CardInitState);
+    //     var pos = transform.position;
+    //     pos.z = layerIndex;
+    //     transform.position = pos;
+    //     transform.eulerAngles = data.rotation;
+    //     countSticker = cardData.stickers.Length;
+    //     scratchObject = PoolManager.Instance.SpawnScratchManager();
+    // }
+
+    public async UniTask InitData(CardData cardData, int layer)
     {
         data = cardData;
         layerIndex = layer;
-        stateMachine.RequestTransition(CardInitState);
         var pos = transform.position;
         pos.z = layerIndex;
         transform.position = pos;
         transform.eulerAngles = data.rotation;
         countSticker = cardData.stickers.Length;
-        cardGraphic.InitData();
+        
+        //Spawn scratch object
         scratchObject = PoolManager.Instance.SpawnScratchManager();
-    }
-
-    private void LoadData()
-    {
+        await scratchObject.InitData(layerIndex, data);
+        
+        //Spawn sticker
         for (var i = 0; i < data.stickers.Length; i++)
         {
             var sticker = PoolManager.Instance.SpawnSticker();
@@ -82,6 +94,12 @@ public partial class Card : CardInitState.IHandler
             stickers.Add(sticker);
             stickerSubscriptions.Add(sticker.isDone.Skip(1).Subscribe(ChangeStickerScratchDone));
         }
+        
+        stateMachine.RequestTransition(CardInitState);
+    }
+
+    private void LoadData()
+    {
         stateMachine.RequestTransition(CardWaitState);
     }
 }

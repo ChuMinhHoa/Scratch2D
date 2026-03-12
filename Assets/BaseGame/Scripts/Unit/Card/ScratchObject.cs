@@ -28,7 +28,6 @@ public class ScratchObject : MonoBehaviour
         var pos= cardData.position;
         pos.z = layerIndex;
         transform.position = pos;
-        await UniTask.WaitForSeconds(0.1f);
     }
 
     public void EnableInput(bool isSameLayer)

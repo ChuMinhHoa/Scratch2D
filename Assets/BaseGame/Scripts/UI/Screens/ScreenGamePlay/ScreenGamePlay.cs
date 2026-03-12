@@ -86,7 +86,7 @@ namespace Core.UI.Screens
 
             public void ChangeLevel(int levelChange)
             {
-                View.TxtLevel.SetTextFormat("Level {0}", levelChange);
+                View.TxtLevel.SetTextFormat(MyCache.strLevel, levelChange);
             }
 
             private void OnClickSetting()

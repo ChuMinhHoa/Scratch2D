@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Core.UI.Activities;
 using CoreData;
 using Cysharp.Threading.Tasks;
@@ -7,7 +8,7 @@ using Sirenix.OdinInspector;
 using TW.Utility.DesignPattern;
 using UnityEditor;
 using UnityEngine;
-using Random = System.Random;
+using Random = UnityEngine.Random;
 
 public class Level : Singleton<Level>
 {
@@ -28,7 +29,7 @@ public class Level : Singleton<Level>
 
     private void Start()
     {
-        GamePlayManager.Instance.level = this;
+        levelIndex = PlayerInfoManager.Instance.playerLevel;
         GlobalEventManager.CheckToCallNextSticker = () => CallNextObjSticker();
 
         GlobalEventManager.OnRemoveSticker = OnRemoveSticker;
@@ -101,9 +102,6 @@ public class Level : Singleton<Level>
         {
             e6[i].ResetSpace();
         }
-
-
-        //_ = LoadData();
     }
 
     [Button]
@@ -118,16 +116,17 @@ public class Level : Singleton<Level>
         await oSController.LoadData(LevelData.objHaveStickers);
         await layerController.LoadData(LevelData.layerCards);
         await UniTask.WaitUntil(() => oSController.loadDone && layerController.loadDone);
-        CallNextObjSticker(true);
-        WaitToCheckCard().Forget();
     }
 
-    private async UniTask WaitToCheckCard()
+    [Button]
+    public async UniTask AnimFirstSpawn()
     {
-        GamePlayManager.Instance.ChangeGameState(GameState.Playing);
+        layerController.AnimFirstSpawn();
+        CallNextObjSticker(true);
         var totalCard = layerController.cards.Count;
         var totalTimeWait = 0.15f * totalCard + 0.25f;
         await UniTask.WaitForSeconds(totalTimeWait);
+        GamePlayManager.Instance.ChangeGameState(GameState.Playing);
         GlobalEventManager.OnHaveCardDone?.Invoke();
     }
 
@@ -136,16 +135,17 @@ public class Level : Singleton<Level>
     private void ShuffleID()
     {
         mappingID.Clear();
-        int totalStickerId = SpriteGlobalConfig.Instance.iconStickerBgConfigs.Length;
+        var totalStickerId = SpriteGlobalConfig.Instance.iconStickerBgConfigs.Length;
+        CreateNewCanUse(totalStickerId);
         var stickers = LevelData.objHaveStickers;
 
         // Assign mapped ids for objHaveStickers
-        for (int i = 0; i < stickers.Length; i++)
+        for (var i = 0; i < stickers.Length; i++)
         {
-            int originalId = stickers[i].stickerId;
-            if (!mappingID.TryGetValue(originalId, out int mappedId))
+            var originalId = stickers[i].stickerId;
+            if (!mappingID.TryGetValue(originalId, out var mappedId))
             {
-                mappedId = GetRandomId(totalStickerId);
+                mappedId = GetRandomId(originalId);
                 mappingID[originalId] = mappedId;
             }
 
@@ -157,19 +157,39 @@ public class Level : Singleton<Level>
         {
             foreach (var card in layer.cards)
             {
-                for (int s = 0; s < card.stickers.Length; s++)
+                foreach (var t in card.stickers)
                 {
-                    int oldId = card.stickers[s].stickerID;
-                    card.stickers[s].stickerID = mappingID.GetValueOrDefault(oldId, 0);
+                    var oldId = t.stickerID;
+                    t.stickerID = mappingID.GetValueOrDefault(oldId, 0);
                 }
             }
         }
     }
 
-    private static int GetRandomId(int totalStickerId)
+    private List<int> canUse = new();
+    private void CreateNewCanUse(int totalStickerId)
     {
-        return new Random().Next(0, totalStickerId);
+        canUse.Clear();
+        for (var i = 0; i < totalStickerId; i++)
+        {
+            canUse.Add(i);
+        }
     }
+    
+    private int GetRandomId(int idIgnore)
+    {
+
+        canUse.Remove(idIgnore);
+
+        var randomIndex = Random.Range(0, canUse.Count);
+        var idReturn = canUse[randomIndex];
+
+        canUse.Remove(idReturn);
+        canUse.Add(idIgnore);
+        
+        return idReturn;
+    }
+    
 #if UNITY_EDITOR
     public void LoadOnlyData()
     {

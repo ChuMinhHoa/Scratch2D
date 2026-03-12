@@ -71,7 +71,7 @@ public partial class Card : CardDoneState.IHandler
         ResetCard();
       
        
-        GamePlayManager.Instance.level.layerController.RemoveCard(this);
+        Level.Instance.layerController.RemoveCard(this);
         GlobalEventManager.OnHaveCardDone?.Invoke();
     }
 }

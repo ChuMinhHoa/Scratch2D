@@ -66,7 +66,7 @@ public class LevelGenerateFunction : MonoBehaviour
     {
         var objHaveSticker = LevelData.objHaveStickers;
         var layerData = LevelData.layerCards.ToList();
-        var layerCost = objHaveSticker.Length / layerData.Count;
+        var layerCost = objHaveSticker.Length / layerData.Count + ((float)objHaveSticker.Length % (float)layerData.Count > 0 ? 1 : 0);
         var currentLayer = 0;
         var countForNextLayer = 0;
         for (var i = 0; i < objHaveSticker.Length; i++)

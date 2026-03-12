@@ -17,25 +17,32 @@ public class LayerController
         totalCards = 0;
         for (var i = data.Length - 1; i >= 0 ; i--)
         {
-            LoadCardInLayer(i, data[i].cards);
+            await LoadCardInLayer(i, data[i].cards);
         }
 
         loadDone = true;
     }
 
-    private void LoadCardInLayer(int layerIndex, CardData[] data)
+    private async UniTask LoadCardInLayer(int layerIndex, CardData[] data)
     {
         for (var i = 0; i < data.Length; i++)
         {
             var card = PoolManager.Instance.SpawnCard(data[i].cardType, data[i].position);
-            card.InitData(data[i], layerIndex);
-            card.AnimFirstSpawn(totalCards);
+            await card.InitData(data[i], layerIndex);
+            card.SettingForFirstAnim();
             cards.Add(card);
             totalCards++;
         }
     }
-    
-    
+
+    public void AnimFirstSpawn()
+    {
+        for (var i = 0; i < cards.Count; i++)
+        {
+            cards[i].AnimFirstSpawn(i);
+        }
+    }
+
     public void RemoveCard(Card card)
     {
         cards.Remove(card);
