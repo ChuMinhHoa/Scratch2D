@@ -13,18 +13,24 @@ MonoBehaviour:
   m_Name: WindowContainerSettings
   m_EditorClassIdentifier: TW.UGUI::TW.UGUI.Core.Windows.WindowContainerSettings
   containers:
-  - name: Modals
-    containerType: 0
-    overrideSorting: 1
-    sortingLayer:
-      id: 0
-    orderInLayer: 200
   - name: Screens
     containerType: 1
     overrideSorting: 1
     sortingLayer:
       id: 0
     orderInLayer: 100
+  - name: ScreenDefault
+    containerType: 1
+    overrideSorting: 1
+    sortingLayer:
+      id: 0
+    orderInLayer: 150
+  - name: Modals
+    containerType: 0
+    overrideSorting: 1
+    sortingLayer:
+      id: 0
+    orderInLayer: 200
   - name: Activities
     containerType: 2
     overrideSorting: 1

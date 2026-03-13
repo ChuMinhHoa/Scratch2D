@@ -19,7 +19,6 @@ public partial class Card : MonoBehaviour
     public int countSticker;
 
     public AnimationCurve curveFirstSpawn;
-    //public GameObject objFakeScratch;
 
     private CompositeDisposable stickerSubscriptions = new CompositeDisposable();
     private Reactive<bool> isOnPlaying = new();
@@ -27,7 +26,7 @@ public partial class Card : MonoBehaviour
     public StateMachine stateMachine = new();
     public CardGraphic cardGraphic;
 
-    public ScratchObject scratchObject { get; set; }
+    private ScratchObject scratchObject { get; set; }
     public FrontChecker2D frontChecker2D;
 
     public bool isShowed = false;
@@ -36,8 +35,8 @@ public partial class Card : MonoBehaviour
     {
         stateMachine.RequestTransition(CardWaitState);
         stateMachine.Run();
-        isOnPlaying = GamePlayManager.Instance.onPlaying;
-        isOnPlaying.Skip(1).Subscribe(ChangeGameState).AddTo(this);
+        
+        
         GlobalEventManager.OnHaveCardDone += CheckToShow;
     }
 
@@ -73,12 +72,6 @@ public partial class Card : MonoBehaviour
         {
             stickers[i].EnableScratch(true);
         }
-        //objFakeScratch.SetActive(false);
-    }
-
-    private void ChangeGameState(bool playing)
-    {
-        //EnableInput(playing);
     }
     
     private void EnableInput(bool isEnable)
@@ -133,7 +126,8 @@ public partial class Card : MonoBehaviour
     [Button]
     public void AnimFirstSpawn(int index)
     {
-        LMotion.Create(0f, 1f, 0.25f).WithDelay(0.15f * index).WithEase(curveFirstSpawn).Bind(x =>
+        var timeDelay = Mathf.Clamp(0.15f * index, 0f, 0.5f);
+        LMotion.Create(0f, 1f, 0.15f).WithDelay(timeDelay).WithEase(curveFirstSpawn).Bind(x =>
             {
                 transform.localScale = Vector3.one * x;
                 scratchObject.transform.localScale = Vector3.one * x;

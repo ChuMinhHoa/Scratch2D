@@ -1,4 +1,5 @@
 using System;
+using Core.UI.Screens;
 using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using LitMotion;
@@ -114,8 +115,14 @@ namespace Core.UI.Activities
             private void Claim(bool isX2 = false)
             {
                 PlayerResourceManager.Instance.ChangeResource(GameResource.Type.Money, 10 * (isX2 ? 2 : 1));
-                _ = UIManager.Instance.CloseActivityAsync<ActivityWinGame>();
-                _ = UIManager.Instance.CloseScreenAsync();
+                UIControl().Forget();
+            }
+
+            private async UniTask UIControl()
+            {
+                await UIManager.Instance.CloseScreenAsync();
+                await UIManager.Instance.OpenScreenDefaultAsync<ScreenDefault>();
+                await UIManager.Instance.CloseActivityAsync<ActivityWinGame>();
             }
 
             public void DidEnter(Memory<object> args)

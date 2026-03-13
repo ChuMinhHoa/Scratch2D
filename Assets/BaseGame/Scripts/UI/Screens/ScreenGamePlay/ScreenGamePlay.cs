@@ -45,9 +45,13 @@ namespace Core.UI.Screens
             [field: Title(nameof(UIModel))]
             
             public Reactive<int> level = new(0);
+            public Reactive<int> countDone = new(0);
+            public Reactive<int> maxCount = new(0);
             public UniTask Initialize(Memory<object> args)
             {
                 level = Level.Instance.levelIndex;
+                countDone = Level.Instance.oSController.countDone;
+                maxCount = Level.Instance.oSController.totalCount;
                 return UniTask.CompletedTask;
             }
         }
@@ -61,6 +65,7 @@ namespace Core.UI.Screens
             public CanvasGroup MainView { get; private set; }
             [field: SerializeField] public Button BtnSetting { get; private set; }
             [field: SerializeField] public TextMeshProUGUI TxtLevel { get; private set; }
+            [field: SerializeField] public TextMeshProUGUI TxtCount { get; private set; }
 
             public UniTask Initialize(Memory<object> args)
             {
@@ -82,11 +87,24 @@ namespace Core.UI.Screens
                 
                 View.BtnSetting.onClick.AddListener(OnClickSetting);
                 Model.level.Subscribe(ChangeLevel).AddTo(View.MainView);
+                Model.countDone.Subscribe(ChangeTotalCount).AddTo(View.MainView);
+                Model.maxCount.Subscribe(ChangeMaxCount).AddTo(View.MainView);
+
+            }
+
+            public void ChangeMaxCount(int maxChange)
+            {
+                View.TxtCount.SetTextFormat(MyCache.strProgress, Model.countDone, maxChange);
+            }
+
+            public void ChangeTotalCount(int countChange)
+            {
+                View.TxtCount.SetTextFormat(MyCache.strProgress, countChange, Model.maxCount);
             }
 
             public void ChangeLevel(int levelChange)
             {
-                View.TxtLevel.SetTextFormat(MyCache.strLevel, levelChange);
+                View.TxtLevel.SetTextFormat(MyCache.strLevel, levelChange + 1);
             }
 
             private void OnClickSetting()

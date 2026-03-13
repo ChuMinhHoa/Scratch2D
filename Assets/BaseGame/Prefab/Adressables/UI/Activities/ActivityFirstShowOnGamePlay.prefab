@@ -699,7 +699,42 @@ MonoBehaviour:
         value: 0
     <View>k__BackingField:
       <MainView>k__BackingField: {fileID: 6324320466693253818}
+      <TrsContent>k__BackingField: {fileID: 7981901151462504086}
       <TxtTotalItems>k__BackingField: {fileID: 7179027055264255643}
+      <TxtLevel>k__BackingField: {fileID: 5309859937950811277}
+      <CurveAnim>k__BackingField:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.57633305
+          value: 1.1914903
+          inSlope: 0.74048924
+          outSlope: 0.74048924
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
 --- !u!1 &7846221310630055432
 GameObject:
   m_ObjectHideFlags: 0

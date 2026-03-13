@@ -78,6 +78,7 @@ public partial class FolderHaveSticker : MonoBehaviour
         await LMotion.Create(currentPos, posOut.position, 0.25f).Bind(x => transform.position = x).AddTo(this);
         UnitEventManager.Instance.RemoveEventId(id);
         ResetFolderSticker();
+        Level.Instance.oSController.OnNoteDone();
     }
 
     public async UniTask MoveToTarget(Vector3 target)

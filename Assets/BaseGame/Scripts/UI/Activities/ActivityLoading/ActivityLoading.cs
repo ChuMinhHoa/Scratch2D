@@ -81,7 +81,7 @@ namespace Core.UI.Screens
                 await LMotion.Create(currentProgress, 100f, 0.5f)
                     .WithEase(Ease.Linear)
                     .Bind(ShowTextProgress).AddTo(MainView);
-                await UIManager.Instance.OpenScreenAsync<ScreenHome>(stackChange: true);
+                await UIManager.Instance.OpenScreenDefaultAsync<ScreenDefault>();
                 await UIManager.Instance.CloseActivityAsync<ActivityLoading>();
             }
 

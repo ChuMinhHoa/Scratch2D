@@ -29,7 +29,15 @@ public class Level : Singleton<Level>
 
     private void Start()
     {
+        InitData().Forget();
+    }
+
+    private async UniTask InitData()
+    {
+        await UniTask.WaitUntil(() => PlayerInfoManager.Instance.loadDone);
+        
         levelIndex = PlayerInfoManager.Instance.playerLevel;
+        
         GlobalEventManager.CheckToCallNextSticker = () => CallNextObjSticker();
 
         GlobalEventManager.OnRemoveSticker = OnRemoveSticker;
@@ -53,6 +61,9 @@ public class Level : Singleton<Level>
         layerController.OnRemoveSticker(stickerId, countRemove);
     }
 
+    /// <summary>
+    /// CODE NHƯ CỨT. LÀM VỘI NÊN MỚI PHẢI CHỐNG CHẾ THẾ NÀY
+    /// </summary>
     [Button(ButtonSizes.Gigantic)]
     private void LoadDataClean()
     {
@@ -108,12 +119,11 @@ public class Level : Singleton<Level>
     public async UniTask LoadData()
     {
         GamePlayManager.Instance.ChangeGameState(GameState.Loading);
-        levelIndex = PlayerInfoManager.Instance.playerLevel;
         levelConfig = LevelGlobalConfig.Instance.GetLevelConfig(levelIndex.Value);
         levelTextAsset = levelConfig.levelAsset;
         LevelData = DataSerializer.Deserialize<LevelData>(levelTextAsset.text);
         ShuffleID();
-        await oSController.LoadData(LevelData.objHaveStickers);
+        oSController.LoadData(LevelData.objHaveStickers);
         await layerController.LoadData(LevelData.layerCards);
         await UniTask.WaitUntil(() => oSController.loadDone && layerController.loadDone);
     }
@@ -123,9 +133,9 @@ public class Level : Singleton<Level>
     {
         layerController.AnimFirstSpawn();
         CallNextObjSticker(true);
-        var totalCard = layerController.cards.Count;
-        var totalTimeWait = 0.15f * totalCard + 0.25f;
+        var totalTimeWait = 0.75f;
         await UniTask.WaitForSeconds(totalTimeWait);
+        await UIManager.Instance.OpenActivityAsync<ActivityFirstShowOnGamePlay>();
         GamePlayManager.Instance.ChangeGameState(GameState.Playing);
         GlobalEventManager.OnHaveCardDone?.Invoke();
     }
@@ -167,6 +177,7 @@ public class Level : Singleton<Level>
     }
 
     private List<int> canUse = new();
+
     private void CreateNewCanUse(int totalStickerId)
     {
         canUse.Clear();
@@ -175,10 +186,9 @@ public class Level : Singleton<Level>
             canUse.Add(i);
         }
     }
-    
+
     private int GetRandomId(int idIgnore)
     {
-
         canUse.Remove(idIgnore);
 
         var randomIndex = Random.Range(0, canUse.Count);
@@ -186,15 +196,15 @@ public class Level : Singleton<Level>
 
         canUse.Remove(idReturn);
         canUse.Add(idIgnore);
-        
+
         return idReturn;
     }
-    
+
 #if UNITY_EDITOR
     public void LoadOnlyData()
     {
         var assetsPath = "Assets/BaseGame/TextAssets/LevelData/";
-        var fileName = $"Level_{levelIndex}.txt";
+        var fileName = $"Level_{levelIndex.Value}.txt";
         var assetPath = assetsPath + fileName;
         var levelDataTextAsset = AssetDatabase.LoadAssetAtPath<TextAsset>(assetPath);
         LevelData = DataSerializer.Deserialize<LevelData>(levelDataTextAsset.text);
@@ -231,6 +241,7 @@ public class Level : Singleton<Level>
             stickerDone[i].ResetStickerDone();
             PoolManager.Instance.DespawnStickerMove(stickerDone[i]);
         }
+
         stickerDone.Clear();
     }
 
@@ -279,11 +290,11 @@ public class Level : Singleton<Level>
         Debug.Log("note have sticker done on free space : " + noteHaveStickerOnSpace);
         Debug.Log("note have sticker done on list : " + noteHaveStickerOnListDone);
 
-        if (!noteHaveStickerOnListDone && !noteHaveStickerOnSpace && !isFreeSlot && !isHaveNoteMoveIn && noteDontHaveStickerOnMove  && !noteHaveStickerDoneOnWait && !noteHaveStickerOnCard)
+        if (!noteHaveStickerOnListDone && !noteHaveStickerOnSpace && !isFreeSlot && !isHaveNoteMoveIn &&
+            noteDontHaveStickerOnMove && !noteHaveStickerDoneOnWait && !noteHaveStickerOnCard)
         {
             _ = EndGame();
         }
-        
     }
 
     private bool CheckAllNoteHaveStickerOnListDone()
@@ -323,7 +334,7 @@ public class Level : Singleton<Level>
                     if (st)
                     {
                         var isSame = st.IsHaveSticker(noteId);
-                        if(isSame)
+                        if (isSame)
                             return true;
                     }
                 }
@@ -411,7 +422,7 @@ public class Level : Singleton<Level>
 
         return false;
     }
-    
+
     private bool CheckAllNoteDontHaveStickerOnMove()
     {
         var slotFolders = oSController.SlotFolders;

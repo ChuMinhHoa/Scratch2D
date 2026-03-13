@@ -83,7 +83,8 @@ namespace Core.UI.Screens
             {
                 //await GamePlayManager.Instance.PlayGame();
                 await UIManager.Instance.OpenActivityAsync<ActivityLoadingInGamePlay>();
-                await UIManager.Instance.OpenScreenAsync<ScreenGamePlay>(stackChange: true);
+                await UIManager.Instance.CloseScreenDefaultAsync();
+                await UIManager.Instance.OpenScreenAsync<ScreenGamePlay>();
             }
         }
     }

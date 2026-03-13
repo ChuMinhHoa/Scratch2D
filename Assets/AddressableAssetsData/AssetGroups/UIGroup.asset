@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 58139562234b0c74d9d974b283f98b8d
+    m_Address: ScreenDefault
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8484f492c27207e4da46d246d16ee370
     m_Address: ActivityLoadingFake
     m_ReadOnly: 0

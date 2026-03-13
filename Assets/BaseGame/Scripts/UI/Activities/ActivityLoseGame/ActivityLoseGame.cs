@@ -1,4 +1,5 @@
 using System;
+using Core.UI.Screens;
 using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using LitMotion;
@@ -87,8 +88,14 @@ namespace Core.UI.Activities
             private void CloseActivity()
             {
                 Level.Instance.ResetLevel();
-                _ = UIManager.Instance.CloseScreenAsync();
-                _ = UIManager.Instance.CloseActivityAsync<ActivityLoseGame>();
+                CloseActivityAsync().Forget();
+            }
+
+            private async UniTask CloseActivityAsync()
+            {
+                await UIManager.Instance.CloseScreenAsync();
+                await UIManager.Instance.OpenScreenDefaultAsync<ScreenDefault>();
+                await UIManager.Instance.CloseActivityAsync<ActivityLoseGame>();
             }
         }
     }

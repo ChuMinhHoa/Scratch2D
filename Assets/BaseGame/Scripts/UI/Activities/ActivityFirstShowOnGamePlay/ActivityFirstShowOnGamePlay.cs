@@ -57,7 +57,10 @@ namespace Core.UI.Activities
             [field: Title(nameof(UIView))]
             [field: SerializeField]
             public CanvasGroup MainView { get; private set; }
+            [field: SerializeField] public Transform TrsContent { get; private set; }
             [field: SerializeField] public TextMeshProUGUI TxtTotalItems { get; private set; }
+            [field: SerializeField] public TextMeshProUGUI TxtLevel { get; private set; }
+            [field: SerializeField] public AnimationCurve CurveAnim { get; set; }
 
             public UniTask Initialize(Memory<object> args)
             {
@@ -77,12 +80,23 @@ namespace Core.UI.Activities
                 await Model.Initialize(args);
                 await View.Initialize(args);
                 View.TxtTotalItems.SetText("0");
+                var level = Level.Instance.levelIndex;
+                View.TxtLevel.SetTextFormat(MyCache.strLevel, level.Value + 1);
             }
 
-            private void AnimOpen()
+            public void DidEnter(Memory<object> args)
             {
-                var totalItems = Level.Instance.oSController.objHaveStickers.Count;
-                LMotion.Create(0, totalItems, 0.25f).Bind(x=> View.TxtTotalItems.text = $"{x}").AddTo(View.MainView);
+                AnimOpen().Forget();
+            }
+
+            private async UniTask AnimOpen()
+            {
+                var totalItems = Level.Instance.oSController.totalCount.Value;
+                await LMotion.Create(0f, 1f, 0.25f).WithEase(View.CurveAnim).Bind(x => View.TrsContent.localScale = Vector3.one * x);
+                await LMotion.Create(0, totalItems, 0.25f).Bind(x=> View.TxtTotalItems.text = $"{x}").AddTo(View.MainView);
+                await UniTask.WaitForSeconds(1f);
+                await LMotion.Create(1f, 0f, 0.15f).WithEase(View.CurveAnim).Bind(x => View.MainView.alpha = x);
+                await UIManager.Instance.CloseActivityAsync<ActivityFirstShowOnGamePlay>();
             }
         }
     }

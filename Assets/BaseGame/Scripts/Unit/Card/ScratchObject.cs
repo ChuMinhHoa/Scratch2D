@@ -23,7 +23,7 @@ public class ScratchObject : MonoBehaviour
 
     private async UniTask Wait()
     {
-        await UniTask.WaitForSeconds(0.1f);
+        await UniTask.WaitForEndOfFrame();
         trsNeedRot.eulerAngles = cardData.rotation;
         var pos= cardData.position;
         pos.z = layerIndex;
@@ -43,11 +43,6 @@ public class ScratchObject : MonoBehaviour
     public void RemoveActionCallBackChangeProgress(Action<float> callback)
     {
         scratchCardManager.RemoveActionCallBackChangeProgress(callback);
-    }
-
-    public void ResetScratch()
-    {
-        scratchCardManager.Progress.ResetScratch();
     }
 
     public void AnimClose()

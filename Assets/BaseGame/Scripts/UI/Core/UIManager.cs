@@ -52,6 +52,38 @@ public class UIManager : Singleton<UIManager>
 
     #endregion
     
+    #region Screen Default
+
+    public async UniTask OpenScreenDefaultAsync<T>(bool stackChange, params object[] args)
+    {
+        var option = new ScreenOptions(typeof(T).Name, stack: stackChange);
+        await ScreenContainer.Find(ContainerKey.ScreenDefault).PushAsync(option, args);
+    }
+
+    public async UniTask OpenScreenDefaultAsync<T>(params object[] args)
+    {
+        var option = new ScreenOptions(typeof(T).Name, stack: false);
+        await ScreenContainer.Find(ContainerKey.ScreenDefault).PushAsync(option, args);
+    }
+
+    public void OpenScreenDefault<T>(params object[] args)
+    {
+        ScreenOptions option = new ScreenOptions(typeof(T).Name, stack: false);
+        ScreenContainer.Find(ContainerKey.ScreenDefault).Push(option, args);
+    }
+
+    public async UniTask CloseScreenDefaultAsync(bool playAnimation = true)
+    {
+        await ScreenContainer.Find(ContainerKey.ScreenDefault).PopAsync(playAnimation);
+    }
+
+    public void CloseScreenDefault(bool playAnimation = true)
+    {
+        ScreenContainer.Find(ContainerKey.ScreenDefault).Pop(playAnimation);
+    }
+
+    #endregion
+    
     #region Modal
 
     public async UniTask OpenModalAsync<T>(bool anim, params object[] args)

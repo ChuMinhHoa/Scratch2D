@@ -2,6 +2,7 @@ using UnityEngine;
 
 public static class MyCache
 {
+    public static string strProgress = "{0}/{1}";
     public static string strDefault = "{0}";
     public static string strLevel = "Level {0}";
     

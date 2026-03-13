@@ -10,14 +10,15 @@ public class ObjHaveStickerController : SpaceForSticker
     [ShowInInspector]
     [field: SerializeField]
     public Queue<FolderHaveSticker> objHaveStickers { get; set; } = new();
-
-    public Transform posFirstSpawn;
     public Transform posOut;
     public bool loadDone;
     public bool isEndGame;
+    public Reactive<int> countDone = new(0);
+    public Reactive<int> totalCount = new(0);
+    
     [field: SerializeField] public SlotFolder[] SlotFolders { get; set; }
 
-    public async UniTask LoadData(ObjHaveStickerData[] objSticker)
+    public void LoadData(ObjHaveStickerData[] objSticker)
     {
         isEndGame = false;
         for (var i = 0; i < objSticker.Length; i++)
@@ -28,7 +29,8 @@ public class ObjHaveStickerController : SpaceForSticker
             objHaveStickers.Enqueue(ot);
         }
 
-        //await CallNextObjSticker(true);
+        countDone.Value = 0;
+        totalCount.Value = objSticker.Length;
         loadDone = true;
     }
 
@@ -123,31 +125,6 @@ public class ObjHaveStickerController : SpaceForSticker
         return null;
     }
 
-    public bool IsHaveAtLeastOneNote()
-    {
-        var isHaveAtLeastOneNote = objHaveStickers.Count > 0;
-        var isHaveNoteOnSlot = false;
-        for (var i = 0; i < SlotFolders.Length; i++)
-        {
-            if (SlotFolders[i].IsHaveObject())
-                isHaveNoteOnSlot = true;
-        }
-        return isHaveAtLeastOneNote || isHaveNoteOnSlot;
-    }
-
-    public bool IsHaveAllNoteOnSlot()
-    {
-        for (var i = 0; i < SlotFolders.Length; i++)
-        {
-            if (!SlotFolders[i].IsHaveObject())
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     public bool IsLastNote(FolderHaveSticker note)
     {
         var noteOnStack = objHaveStickers.Count == 0;
@@ -170,7 +147,7 @@ public class ObjHaveStickerController : SpaceForSticker
     {
         var isHaveNoteWait = objHaveStickers.Count > 0;
         var isAllSlotHaveNote = true;
-        for (int i = 0; i < SlotFolders.Length; i++)
+        for (var i = 0; i < SlotFolders.Length; i++)
         {
             if (!SlotFolders[i].folderPos.IsHaveObj() && SlotFolders[i].slotFolderType == SlotFolderType.Normal)
             {
@@ -180,5 +157,10 @@ public class ObjHaveStickerController : SpaceForSticker
         }
 
         return isHaveNoteWait && !isAllSlotHaveNote;
+    }
+
+    public void OnNoteDone()
+    {
+        countDone.Value++;
     }
 }
