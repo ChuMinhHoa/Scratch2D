@@ -140,6 +140,7 @@ public class GamePlayManager : Singleton<GamePlayManager>
         var mouseScreenPos = Input.mousePosition;
 
         var worldPos = cam.ScreenToWorldPoint(mouseScreenPos);
+        worldPos.z = 0;
         var hit = new Collider2D[5];
         if (Physics2D.OverlapCircleNonAlloc(worldPos, radiusCheck, hit) > 0)
         {

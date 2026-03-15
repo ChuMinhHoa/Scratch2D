@@ -1,0 +1,154 @@
+<linker>
+  <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="BtnBooster" preserve="all" />
+    <type fullname="Core.UI.Activities.ActivityFirstShowOnGamePlay" preserve="all" />
+    <type fullname="Core.UI.Activities.ActivityLoadingInGamePlay" preserve="all" />
+    <type fullname="Core.UI.Activities.ActivityLoseGame" preserve="all" />
+    <type fullname="Core.UI.Activities.ActivityUsingBooster" preserve="all" />
+    <type fullname="Core.UI.Activities.ActivityWinGame" preserve="all" />
+    <type fullname="Core.UI.Screens.ActivityLoading" preserve="all" />
+    <type fullname="Core.UI.Screens.ScreenDefault" preserve="all" />
+    <type fullname="Core.UI.Screens.ScreenGamePlay" preserve="all" />
+    <type fullname="Core.UI.Screens.ScreenHome" preserve="all" />
+    <type fullname="Core.UI.Screens.ScreenShop" preserve="all" />
+    <type fullname="LineSlotLevel" preserve="all" />
+    <type fullname="ProgressBar" preserve="all" />
+    <type fullname="SlotLevel" preserve="all" />
+    <type fullname="SlotPack" preserve="all" />
+    <type fullname="SlotTabMenu" preserve="all" />
+    <type fullname="UIResource" preserve="all" />
+    <type fullname="UnitAnimation" preserve="all" />
+    <type fullname="BoosterAddSlot" preserve="nothing" serialized="true" />
+    <type fullname="BoosterMagnet" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Activities.ActivityFirstShowOnGamePlayContext/UIModel" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Activities.ActivityFirstShowOnGamePlayContext/UIPresenter" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Activities.ActivityFirstShowOnGamePlayContext/UIView" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Activities.ActivityLoadingInGamePlayContext/UIModel" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Activities.ActivityLoadingInGamePlayContext/UIPresenter" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Activities.ActivityLoadingInGamePlayContext/UIView" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Activities.ActivityLoseGameContext/UIModel" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Activities.ActivityLoseGameContext/UIPresenter" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Activities.ActivityLoseGameContext/UIView" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Activities.ActivityUsingBoosterContext/UIModel" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Activities.ActivityUsingBoosterContext/UIPresenter" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Activities.ActivityUsingBoosterContext/UIView" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Activities.ActivityWinGameContext/UIModel" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Activities.ActivityWinGameContext/UIPresenter" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Activities.ActivityWinGameContext/UIView" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Screens.ActivityLoadingContext/UIModel" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Screens.ActivityLoadingContext/UIPresenter" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Screens.ActivityLoadingContext/UIView" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Screens.ScreenDefaultContext/UIModel" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Screens.ScreenDefaultContext/UIPresenter" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Screens.ScreenDefaultContext/UIView" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Screens.ScreenGamePlayContext/UIModel" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Screens.ScreenGamePlayContext/UIPresenter" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Screens.ScreenGamePlayContext/UIView" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Screens.ScreenHomeContext/UIModel" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Screens.ScreenHomeContext/UIPresenter" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Screens.ScreenHomeContext/UIView" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Screens.ScreenShopContext/UIModel" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Screens.ScreenShopContext/UIPresenter" preserve="nothing" serialized="true" />
+    <type fullname="Core.UI.Screens.ScreenShopContext/UIView" preserve="nothing" serialized="true" />
+    <type fullname="GameResource" preserve="nothing" serialized="true" />
+    <type fullname="IAPPackage" preserve="nothing" serialized="true" />
+    <type fullname="R3.SerializableReactiveProperty`1" preserve="nothing" serialized="true" />
+    <type fullname="Reactive`1" preserve="nothing" serialized="true" />
+    <type fullname="ShopPackageDataConfig" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="ParticleImage, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="AssetKits.ParticleImage.ParticleImage" preserve="all" />
+    <type fullname="AssetKits.ParticleImage.ParticleTrailRenderer" preserve="all" />
+    <type fullname="AssetKits.ParticleImage.Burst" preserve="nothing" serialized="true" />
+    <type fullname="AssetKits.ParticleImage.Module" preserve="nothing" serialized="true" />
+    <type fullname="AssetKits.ParticleImage.SeparatedMinMaxCurve" preserve="nothing" serialized="true" />
+    <type fullname="AssetKits.ParticleImage.SpeedRange" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="TMPro.TextMeshProUGUI" preserve="all" />
+    <type fullname="TMPro.TMP_FontAsset" preserve="all" />
+    <type fullname="TMPro.FaceInfo_Legacy" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.FontAssetCreationSettings" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.GlyphAnchorPoint" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.KerningTable" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.LigatureSubstitutionRecord" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.MarkPositionAdjustment" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.MarkToBaseAdjustmentRecord" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_FontFeatureTable" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.TMP_FontWeightPair" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.VertexGradient" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Animation" preserve="all" />
+    <type fullname="UnityEngine.AnimationClip" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.Material" preserve="all" />
+    <type fullname="UnityEngine.Object" preserve="all" />
+    <type fullname="UnityEngine.RectTransform" preserve="all" />
+    <type fullname="UnityEngine.Shader" preserve="all" />
+    <type fullname="UnityEngine.Sprite" preserve="all" />
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
+    <type fullname="UnityEngine.Events.PersistentCallGroup" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Events.UnityEvent" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.RectOffset" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Font" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.UI.Button" preserve="all" />
+    <type fullname="UnityEngine.UI.GraphicRaycaster" preserve="all" />
+    <type fullname="UnityEngine.UI.GridLayoutGroup" preserve="all" />
+    <type fullname="UnityEngine.UI.HorizontalLayoutGroup" preserve="all" />
+    <type fullname="UnityEngine.UI.Image" preserve="all" />
+    <type fullname="UnityEngine.UI.LayoutElement" preserve="all" />
+    <type fullname="UnityEngine.UI.Mask" preserve="all" />
+    <type fullname="UnityEngine.UI.ScrollRect" preserve="all" />
+    <type fullname="UnityEngine.UI.VerticalLayoutGroup" preserve="all" />
+    <type fullname="UnityEngine.UI.AnimationTriggers" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.Button/ButtonClickedEvent" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.ColorBlock" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.MaskableGraphic/CullStateChangedEvent" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.Navigation" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.ScrollRect/ScrollRectEvent" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.SpriteState" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Canvas" preserve="all" />
+    <type fullname="UnityEngine.CanvasGroup" preserve="all" />
+    <type fullname="UnityEngine.CanvasRenderer" preserve="all" />
+  </assembly>
+  <assembly fullname="TW.UGUI">
+    <type fullname="TW.UGUI.Core.Activities.ActivityTransitionAnimationContainer" preserve="nothing" serialized="true" />
+    <type fullname="TW.UGUI.Core.Activities.ActivityTransitionAnimationContainer/TransitionAnimation" preserve="nothing" serialized="true" />
+    <type fullname="TW.UGUI.Core.Screens.ScreenTransitionAnimationContainer" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="TW.Utility.CustomType">
+    <type fullname="TW.Utility.CustomType.BigNumber" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.Mathematics">
+    <type fullname="Unity.Mathematics.float2" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.ParticleSystemModule">
+    <type fullname="UnityEngine.ParticleSystem/MinMaxCurve" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.ParticleSystem/MinMaxGradient" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.TextCoreFontEngineModule">
+    <type fullname="UnityEngine.TextCore.FaceInfo" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.GlyphRect" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.LowLevel.GlyphAdjustmentRecord" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.LowLevel.GlyphPairAdjustmentRecord" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.LowLevel.GlyphValueRecord" preserve="nothing" serialized="true" />
+  </assembly>
+</linker>

@@ -93,7 +93,12 @@ namespace Core.UI.Screens
                 await View.OpenScreenHome();
             }
 
-            private SlotTabType currentTabType;
+            public void DidPushEnter(Memory<object> args)
+            {
+                ActionSlotTabCallback(SlotTabType.Home);
+            }
+
+            private SlotTabType currentTabType = SlotTabType.None;
 
             [Button]
             private void ActionSlotTabCallback(SlotTabType type)
@@ -114,7 +119,7 @@ namespace Core.UI.Screens
                 {
                     case SlotTabType.Shop:
                         Debug.Log("Open shop");
-                        _ = UIManager.Instance.OpenScreenAsync<ScreenHome>();
+                        _ = UIManager.Instance.OpenScreenAsync<ScreenShop>();
                         break;
                     case SlotTabType.Home:
                         Debug.Log("Open Home");

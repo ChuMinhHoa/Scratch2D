@@ -1,0 +1,183 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49bbb576a6f44d129ff99af55d259e97, type: 3}
+  m_Name: ShopGlobalConfig
+  m_EditorClassIdentifier: Assembly-CSharp::ShopGlobalConfig
+  shopPackage:
+  - mainIcon: {fileID: 21300000, guid: f78c95bcc02b9344481d345bd76daa28, type: 3}
+    packageName: 100
+    packageNameToUI: 
+    packageSaleOffTag: 
+    percentSaleOff: 0
+    packageDes: 100
+    purchaseType: 2
+    productType: 0
+    price: 9
+    resourcePrice:
+      <ResourceType>k__BackingField: 0
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 0
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
+    gameResources:
+    - <ResourceType>k__BackingField: 1
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 100
+          exponent: 0
+        EditorValue:
+          coefficient: 100
+          exponent: 0
+    isAvailable: 1
+  - mainIcon: {fileID: 21300000, guid: 56510700e0f9999418a4e2a35b8fbb2f, type: 3}
+    packageName: 101
+    packageNameToUI: 
+    packageSaleOffTag: 
+    percentSaleOff: 0
+    packageDes: 200
+    purchaseType: 2
+    productType: 0
+    price: 19
+    resourcePrice:
+      <ResourceType>k__BackingField: 0
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 0
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
+    gameResources:
+    - <ResourceType>k__BackingField: 1
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 200
+          exponent: 0
+        EditorValue:
+          coefficient: 200
+          exponent: 0
+    isAvailable: 1
+  - mainIcon: {fileID: 21300000, guid: e92fe7299fbe0e045a895b0bc3eb39b9, type: 3}
+    packageName: 102
+    packageNameToUI: 
+    packageSaleOffTag: 
+    percentSaleOff: 0
+    packageDes: 300
+    purchaseType: 2
+    productType: 0
+    price: 29
+    resourcePrice:
+      <ResourceType>k__BackingField: 0
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 0
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
+    gameResources:
+    - <ResourceType>k__BackingField: 1
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 300
+          exponent: 0
+        EditorValue:
+          coefficient: 300
+          exponent: 0
+    isAvailable: 1
+  - mainIcon: {fileID: 21300000, guid: 105514143bc2fba4db7810319c142146, type: 3}
+    packageName: 103
+    packageNameToUI: 
+    packageSaleOffTag: 
+    percentSaleOff: 0
+    packageDes: 500
+    purchaseType: 2
+    productType: 0
+    price: 39
+    resourcePrice:
+      <ResourceType>k__BackingField: 0
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 0
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
+    gameResources:
+    - <ResourceType>k__BackingField: 1
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 500
+          exponent: 0
+        EditorValue:
+          coefficient: 500
+          exponent: 0
+    isAvailable: 1
+  - mainIcon: {fileID: 21300000, guid: d884e6e158f11c84eba15e6460ca7e95, type: 3}
+    packageName: 104
+    packageNameToUI: 
+    packageSaleOffTag: 
+    percentSaleOff: 0
+    packageDes: 1K
+    purchaseType: 2
+    productType: 0
+    price: 49
+    resourcePrice:
+      <ResourceType>k__BackingField: 0
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 0
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
+    gameResources:
+    - <ResourceType>k__BackingField: 1
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 1
+          exponent: 1
+        EditorValue:
+          coefficient: 1
+          exponent: 1
+    isAvailable: 1
+  - mainIcon: {fileID: 21300000, guid: fd7ebad55fa5a834eaa7cc120c23cd91, type: 3}
+    packageName: 105
+    packageNameToUI: 
+    packageSaleOffTag: 
+    percentSaleOff: 0
+    packageDes: 10K
+    purchaseType: 2
+    productType: 0
+    price: 59
+    resourcePrice:
+      <ResourceType>k__BackingField: 0
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 0
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
+    gameResources:
+    - <ResourceType>k__BackingField: 1
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 10
+          exponent: 1
+        EditorValue:
+          coefficient: 10
+          exponent: 1
+    isAvailable: 1

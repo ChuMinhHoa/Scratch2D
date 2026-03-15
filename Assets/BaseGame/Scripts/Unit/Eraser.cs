@@ -1,4 +1,5 @@
 using LitMotion;
+using Lofelt.NiceVibrations;
 using R3;
 using UniRx;
 using UnityEngine;
@@ -42,6 +43,8 @@ public class Eraser : MonoBehaviour
         if (lastProgress != progress && coolDown <= 0f)
         {
             var e = PoolManager.Instance.SpawnEraserEffect(transform);
+            SoundManager.Instance.PlaySoundAtTimeSfx(AudioKey.Sfx_Scratch, 0.3f);
+            SoundManager.Instance.PlayVibrate(HapticPatterns.PresetType.LightImpact);
             LMotion.Create(0, 1, 0.5f).WithOnComplete(() =>
             {
                 PoolManager.Instance.DespawnEraserEffect(e);

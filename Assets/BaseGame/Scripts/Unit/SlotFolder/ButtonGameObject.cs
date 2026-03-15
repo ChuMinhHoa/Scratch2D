@@ -11,6 +11,7 @@ public class ButtonGameObject : MonoBehaviour
 
     public void OnClick()
     {
+        Debug.Log("OnClick ButtonGameObject");
         actionCallBack?.Invoke();
     }
 

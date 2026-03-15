@@ -81,7 +81,7 @@ namespace Core.UI.Screens
 
             private async UniTask PlayGame()
             {
-                //await GamePlayManager.Instance.PlayGame();
+                _ = UIAnimManager.Instance.AnimButton(View.BtnPlay.transform, null);
                 await UIManager.Instance.OpenActivityAsync<ActivityLoadingInGamePlay>();
                 await UIManager.Instance.CloseScreenDefaultAsync();
                 await UIManager.Instance.OpenScreenAsync<ScreenGamePlay>();
