@@ -121,14 +121,20 @@ public class GamePlayManager : Singleton<GamePlayManager>
 
         eraser.Move(targetPos);
     }
-
+    public LayerMask whatCanSelectOnBooster;
+    
+    public void SetWhatCanSelectOnBooster(LayerMask layerMask)
+    {
+        whatCanSelectOnBooster = layerMask;
+    }
+    
     private void CheckOverSelectAbleOnBooster()
     {
         if (!BoosterManager.Instance.onUsingBooster)
             return;
         var mouseScreenPos = Input.mousePosition;
         var worldPos = cam.ScreenToWorldPoint(mouseScreenPos);
-        var r = Physics2D.OverlapCircle(worldPos, radiusCheck, 7);
+        var r = Physics2D.OverlapCircle(worldPos, radiusCheck, whatCanSelectOnBooster);
         if (r)
         {
             BoosterManager.Instance.ChooseObjOnBooster(r);

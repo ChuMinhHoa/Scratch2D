@@ -149,7 +149,7 @@ public class ObjHaveStickerController : SpaceForSticker
         var isAllSlotHaveNote = true;
         for (var i = 0; i < SlotFolders.Length; i++)
         {
-            if (!SlotFolders[i].folderPos.IsHaveObj() && SlotFolders[i].slotFolderType == SlotFolderType.Normal)
+            if (!SlotFolders[i].folderPos.IsHaveObj() && SlotFolders[i].slotFolderType == SlotFolderType.Normal )
             {
                 isAllSlotHaveNote = false;
                 break;

@@ -64,7 +64,7 @@ public class LayerController
         var count = countRemove;
         for (var i = 0; i < cards.Count; i++)
         {
-            count = cards[i].IsHaveSticker(stickerId, count);
+            count = cards[i].ForceScratchDone(stickerId, count);
 
             if (count == 0)
                 break;

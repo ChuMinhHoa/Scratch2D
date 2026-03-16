@@ -35,11 +35,11 @@ public class PoolManager : Singleton<PoolManager>
 
     public HPool<StickerDone> poolStickerMoveEffect;
     
-    public StickerDone SpawnStickerDone(Transform parent)
+    public StickerDone SpawnStickerDone(Vector3 parent)
     {
         var obj = poolStickerMoveEffect.Spawn();
         if (!obj) return null;
-        obj.transform.position = parent.position;
+        obj.transform.position = parent;
         obj.transform.localScale = Vector3.one;
         return obj;
     }

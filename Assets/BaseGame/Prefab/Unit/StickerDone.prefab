@@ -221,8 +221,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   timeMove: 0.25
   magnitudeX:
-    x: -1
-    y: 1
+    x: -3
+    y: 3
   magnitudeY:
     x: 0
     y: 0

@@ -79,4 +79,13 @@ public partial class Card : CardLockState.IHandler
     {
         return UniTask.CompletedTask;
     }
+
+    public void OnUnlockCardByBooster()
+    {
+        countUnlockSticker = 0;
+        cardGraphic.SetTextCount(countUnlockSticker);
+        GlobalEventManager.OnNoteDoneCallBack -= OnNoteDone;
+        ChangeCardState(CardState.Normal);
+        _ = WaitForCheckCard();
+    }
 }

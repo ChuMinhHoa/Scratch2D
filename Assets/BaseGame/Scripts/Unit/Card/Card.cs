@@ -141,7 +141,7 @@ public partial class Card : MonoBehaviour
 
     private bool IsDone() => countSticker == 0;
 
-    public int IsHaveSticker(int stickerId, int countRemain)
+    public int ForceScratchDone(int stickerId, int countRemain)
     {
         var count = 0;
         for (var i = 0; i < stickers.Count; i++)

@@ -23,6 +23,8 @@ public partial class Sticker : MonoBehaviour
     [SerializeReference] public IRequireDoneSticker requireDoneSticker;
     public bool IsOnDoneState => stateMachine.CurrentState == StickerDoneState;
 
+    private bool forceScratch = false;
+
     private void Start()
     {
         progress = stickerGraphic.scratchManager.Progress.reactiveCurrentProgress;
@@ -38,7 +40,6 @@ public partial class Sticker : MonoBehaviour
             return;
         if (progressChange >= progressDone)
         {
-            
             OnDoneProgress();
             stickerGraphic.FillAllScratch();
         }
@@ -59,11 +60,12 @@ public partial class Sticker : MonoBehaviour
         var pos = transform.position;
         pos.z = 0;
         transform.position = pos;
+        forceScratch = false;
     }
 
     protected void StickerMoveToTarget()
     {
-        Level.Instance.RegisterStickerDone(this, stickerGraphic.currentRot);
+        Level.Instance.RegisterStickerDone(this, stickerGraphic.currentRot, forceScratch);
     }
 
     public void DisAbleIcon()
@@ -90,6 +92,7 @@ public partial class Sticker : MonoBehaviour
 
     public void ForceScratchDone()
     {
+        forceScratch = true;
         stateMachine.RequestTransition(StickerDoneState);
         stickerGraphic.FillAllScratch();
     }

@@ -30,9 +30,9 @@ public class SelectAbleOnBooster : MonoBehaviour, ISelectAbleOnBooster
 
     private void OnBoosterDone()
     {
+        if (!onCanSelect)
+            return;
         onCanSelect = false;
-        // var position = transform.localPosition;
-        // position.z = 0;
         transform.localPosition = defaultPos;
     }
 
@@ -56,6 +56,7 @@ public class SelectAbleOnBooster : MonoBehaviour, ISelectAbleOnBooster
         onCanSelect = true;
         var position = transform.localPosition;
         defaultPos = transform.localPosition;
+        Debug.Log(defaultPos);
         position.z = -5;
         transform.localPosition = position;
     }
