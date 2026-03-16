@@ -72,6 +72,10 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: cb5bfa9ab2befce4eb0c1846e94165c7, type: 3}
   - tType: 28
     sprite: {fileID: 21300000, guid: 0a07a84fbeb5a1344a787319179194ab, type: 3}
+  - tType: 29
+    sprite: {fileID: 21300000, guid: ffb342ab4e15bab4da52aac1454c971c, type: 3}
+  - tType: 30
+    sprite: {fileID: 21300000, guid: 09f99838847812840b2f5a388761d3cb, type: 3}
   iconObjHaveStickerConfigs:
   - tType: 0
     sprite: {fileID: 21300000, guid: afc7293958716804cbe509ca4be8883a, type: 3}
@@ -144,6 +148,12 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 52193d20ea1dbd64c9c1748efa10fba4, type: 3}
   - tType: 28
     sprite: {fileID: 21300000, guid: 99afd33e4586a2343bf1fdbce022f45f, type: 3}
+  - tType: 29
+    sprite: {fileID: 21300000, guid: c4b839a3222183845bcc67268caba433, type: 3}
+  - tType: 30
+    sprite: {fileID: 21300000, guid: a5d6e73c556de9f4a994214c0dff8b8f, type: 3}
+  - tType: 31
+    sprite: {fileID: 21300000, guid: c095c91f90a75334dac8d56db771dbb8, type: 3}
   iconStickerShadowConfigs:
   - tType: 0
     sprite: {fileID: 21300000, guid: a59c818f72b1f744283a606ed6af9386, type: 3}
@@ -203,6 +213,10 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: c4fe0627f3e9972478f827b6e3386f0f, type: 3}
   - tType: 28
     sprite: {fileID: 21300000, guid: a951f869729be6240876d908e528d88c, type: 3}
+  - tType: 29
+    sprite: {fileID: 21300000, guid: 211a8a51773caa24495c9a2b16f113c8, type: 3}
+  - tType: 30
+    sprite: {fileID: 21300000, guid: 25285a3af4422e241ad0a2e8185e0c6f, type: 3}
   iconScratchCardConfigs:
   - tType: 0
     sprite: {fileID: 21300000, guid: a1c7e2a6aeb99b44db379f4892430c83, type: 3}
