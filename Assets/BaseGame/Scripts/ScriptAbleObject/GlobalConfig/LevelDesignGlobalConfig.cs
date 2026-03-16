@@ -97,6 +97,9 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
     private int currentCardIndex = 0;
     private int currentStickerIndex = 0;
 
+    private static int selectedLayerIndex = -1;
+    private static int selectedCardIndex = -1;
+
     private void DrawLayerCard(Rect rect, int layerIndex)
     {
         currentLayerIndex = layerIndex;
@@ -106,17 +109,23 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
         LevelDesignHelper.HandleLayerDrop(rect, layerIndex, LevelData);
         var rect1 = new Rect(rect.x + 5, rect.y + 5, rect.width - 10, LevelDesignHelper.defaultHeightButtonHeader);
 
-        if (GUI.Button(rect1.AlignRight(40).AlignLeft(20).SetSize(20), "+"))
+        if (GUI.Button(rect1.AlignRight(200).AlignLeft(20).SetWidth(100).SetHeight(20), "Add Card"))
         {
             var cardList = LevelData.layerCards[layerIndex].cards.ToList();
             cardList.Add(DefaultDataCreator.CreateDefaultCardData());
             LevelData.layerCards[layerIndex].cards = cardList.ToArray();
         }
 
-        if (GUI.Button(rect1.AlignRight(20).AlignLeft(20).SetSize(20), "-"))
+        if (GUI.Button(rect1.AlignRight(100).AlignLeft(20).SetWidth(100).SetHeight(20), "Remove Card"))
         {
             var cardList = LevelData.layerCards[layerIndex].cards.ToList();
-            cardList.RemoveAt(cardList.Count - 1);
+            if (selectedCardIndex != -1)
+            {
+                cardList.RemoveAt(selectedCardIndex);
+            }
+            else
+                cardList.RemoveAt(cardList.Count - 1);
+
             LevelData.layerCards[layerIndex].cards = cardList.ToArray();
         }
 
@@ -139,31 +148,64 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
 
             var totalStickerOnCard = cardsData[i].stickers.Length;
             var totalLineSticker = Mathf.CeilToInt((float)totalStickerOnCard / LevelDesignHelper.totalStickerInRow);
-            //var cardWidth = LevelDesignHelper.defaultStickerWidth * LevelDesignHelper.totalStickerInRow +
-            //                LevelDesignHelper.defaultSpace * 2;
             var cardWidth = LevelDesignHelper.GetWidthCard(cardsData[i].stickers);
             var cardHeight = LevelDesignHelper.defaultStickerHeight * totalLineSticker +
                              LevelDesignHelper.defaultHeightButtonHeader + LevelDesignHelper.defaultSpace * 2 +
-                             LevelDesignHelper.vectorSpace * 2 + (cardsData[i].cardState == CardState.Lock ? 25 : 0);
+                             LevelDesignHelper.vectorSpace * 2 + (cardsData[i].cardState == CardState.Lock ? 25 : 0) +
+                             25;
 
             Rect cardRect = new Rect(currentX, currentY, cardWidth, cardHeight);
+            var rectControlCard = new Rect(currentX, currentY, cardWidth, 25);
+            // Handle mouse click selection on the card rect
+            Event evt = Event.current;
+            if (evt.type == EventType.MouseDown && evt.button == 0 && rectControlCard.Contains(evt.mousePosition))
+            {
+                selectedLayerIndex = layerIndex;
+
+
+                if (selectedCardIndex != cardIndex)
+                {
+                    selectedCardIndex = i;
+                }
+                else
+                {
+                    selectedCardIndex = -1;
+                    selectedLayerIndex = -1;
+                }
+                
+                evt.Use();
+            }
+
+
             DrawCard(cardRect, i);
             currentX += cardWidth + 5;
             cardIndex++;
         }
-       
     }
 
     private void DrawCard(Rect rect, int cardIndex)
     {
         currentCardIndex = cardIndex;
         var stickerData = LevelData.layerCards[currentLayerIndex].cards[cardIndex].stickers;
-        
-        SirenixEditorGUI.DrawSolidRect(rect, Color.gray2);
-        SirenixEditorGUI.DrawBorders(rect, 1);
+      
+        // Draw selection highlight if this card is selected
+        if (selectedLayerIndex == currentLayerIndex && selectedCardIndex == cardIndex)
+        {
+            SirenixEditorGUI.DrawSolidRect(rect, new Color(0.2f, 0.8f, .5f, 0.12f));
+            SirenixEditorGUI.DrawBorders(rect, 2, new Color(0.2f, 0.9f, .5f, 0.8f));
+        }
+        else
+        {
+            var cardState = LevelData.layerCards[currentLayerIndex].cards[cardIndex].cardState;
+            var colorCard = LevelDesignHelper.GetColorCard(cardState);
+            SirenixEditorGUI.DrawSolidRect(rect, colorCard);
+            SirenixEditorGUI.DrawBorders(rect, 1);
+        }
+
         LevelDesignHelper.HandleCardDragAndDrop(rect, currentLayerIndex, cardIndex, LevelData);
-        
-        var rect1 = new Rect(rect.x + 5, rect.y + 5, rect.width - 10, LevelDesignHelper.defaultHeightButtonHeader);
+
+        var currentY = rect.y + 25;
+        var rect1 = new Rect(rect.x + 5, currentY, rect.width - 10, LevelDesignHelper.defaultHeightButtonHeader);
         if (GUI.Button(rect1.AlignRight(40).AlignLeft(20).SetSize(20), "+"))
         {
             var stickerList = stickerData.ToList();
@@ -178,10 +220,8 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
             LevelData.layerCards[currentLayerIndex].cards[cardIndex].stickers = stickerList.ToArray();
         }
 
-        var currentY = rect.y + 5;
-
         EditorGUI.BeginChangeCheck();
-        Rect rectCardType = new Rect(rect.x + 5, currentY, (rect.width - 50) /2, 20);
+        Rect rectCardType = new Rect(rect.x + 5, currentY, (rect.width - 50) / 2, 20);
         LevelData.layerCards[currentLayerIndex].cards[cardIndex].cardType = (CardType)EditorGUI.EnumPopup(rectCardType,
             LevelData.layerCards[currentLayerIndex].cards[cardIndex].cardType);
         if (EditorGUI.EndChangeCheck())
@@ -204,10 +244,11 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
 
             LevelData.layerCards[currentLayerIndex].cards[cardIndex].stickers = newStickers;
         }
-        
+
         EditorGUI.BeginChangeCheck();
-        Rect rectCardState = new Rect(rect.x + 5 + (rect.width - 50) /2, currentY, (rect.width - 50) /2 , 20);
-        LevelData.layerCards[currentLayerIndex].cards[cardIndex].cardState = (CardState)EditorGUI.EnumPopup(rectCardState,
+        Rect rectCardState = new Rect(rect.x + 5 + (rect.width - 50) / 2, currentY, (rect.width - 50) / 2, 20);
+        LevelData.layerCards[currentLayerIndex].cards[cardIndex].cardState = (CardState)EditorGUI.EnumPopup(
+            rectCardState,
             LevelData.layerCards[currentLayerIndex].cards[cardIndex].cardState);
         if (EditorGUI.EndChangeCheck())
         {
@@ -216,16 +257,16 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
             LevelData.layerCards[currentLayerIndex].cards[cardIndex].cardState = newCardState;
         }
 
-        currentY = rect.y;
+        //currentY = rect.y;
 
         var isCardLock = LevelData.layerCards[currentLayerIndex].cards[cardIndex].cardState == CardState.Lock;
         if (isCardLock)
         {
             currentY += LevelDesignHelper.defaultHeightButtonHeader;
             var totalUnlockCard = LevelData.layerCards[currentLayerIndex].cards[cardIndex].totalSUnlock;
-            var rectIntField = new Rect(rect.x + 5 , currentY, rect.width - 10, 20);
+            var rectIntField = new Rect(rect.x + 5, currentY, rect.width - 10, 20);
             totalUnlockCard = EditorGUI.IntField(rectIntField, totalUnlockCard);
-            
+
             LevelData.layerCards[currentLayerIndex].cards[cardIndex].totalSUnlock = totalUnlockCard;
         }
 
@@ -268,7 +309,6 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
         LevelData.layerCards[currentLayerIndex].cards[cardIndex].rotation = rot;
 
         EditorGUIUtility.labelWidth = labelW;
-        
     }
 
     private void DrawSticker(Rect rect, int stickerIndex)
@@ -302,7 +342,7 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
         {
             stickerData.stickerType = newValue ? StickerType.Chain : StickerType.Normal;
         }
-        
+
         var rectMark = new Rect(rect1.xMax - 20, rect1.y + 40, 20, 20);
         SirenixEditorGUI.DrawSolidRect(rectMark, Color.cyan);
         SirenixEditorGUI.DrawBorders(rectMark, 1);
@@ -312,12 +352,12 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
         {
             stickerData.stickerType = newMarkValue ? StickerType.Mark : StickerType.Normal;
         }
-        
-        
+
+
         EditorGUIUtility.labelWidth = defaultLabelWidth;
         rect1 = new Rect(rect.x + 5, currentY, 60, 60);
         stickerData.stickerID = DrawStickerSelect(rect1, stickerData.stickerID);
-        
+
         var isNeedAddOn = stickerData.stickerType != StickerType.Normal;
         if (isNeedAddOn)
         {
