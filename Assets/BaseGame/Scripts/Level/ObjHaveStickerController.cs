@@ -161,6 +161,7 @@ public class ObjHaveStickerController : SpaceForSticker
 
     public void OnNoteDone()
     {
+        GlobalEventManager.OnNoteDoneCallBack?.Invoke();
         countDone.Value++;
     }
 }

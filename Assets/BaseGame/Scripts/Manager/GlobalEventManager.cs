@@ -8,4 +8,5 @@ public static class GlobalEventManager
     public static Action<int, int> OnRemoveSticker { get; set; }
     public static Action OnBoosterDone { get; set; }
     public static Action OnHaveCardDone { get; set; }
+    public static Action OnNoteDoneCallBack { get; set; }
 }

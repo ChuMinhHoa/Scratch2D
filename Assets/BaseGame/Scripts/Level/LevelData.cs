@@ -41,6 +41,8 @@ public class CardData
     public StickerData[] stickers;
     public float3 position;
     public float3 rotation;
+    [ShowIf("@cardState == CardState.Lock")]
+    public int totalSUnlock;
 }
 
 [Serializable]

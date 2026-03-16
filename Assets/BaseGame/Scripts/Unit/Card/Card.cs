@@ -12,6 +12,7 @@ using CompositeDisposable = R3.CompositeDisposable;
 public partial class Card : MonoBehaviour
 {
     public CardType cardType;
+    public CardState cardState;
     public int layerIndex;
     public Transform[] stickerPoints;
 
@@ -28,6 +29,7 @@ public partial class Card : MonoBehaviour
 
     private ScratchObject scratchObject { get; set; }
     public FrontChecker2D frontChecker2D;
+    public SelectAbleOnBooster selectAbleOnBooster;
 
     public bool isShowed = false;
 
@@ -38,17 +40,19 @@ public partial class Card : MonoBehaviour
         
         
         GlobalEventManager.OnHaveCardDone += CheckToShow;
+        selectAbleOnBooster.SetConditionToSelect(ConditionShowOnBooster);
     }
 
     private void OnDestroy()
     {
         GlobalEventManager.OnHaveCardDone -= CheckToShow;
+        GlobalEventManager.OnNoteDoneCallBack -= OnNoteDone;
     }
 
     [Button]
     private void CheckToShow()
     {
-        if (!stateMachine.IsCurrentState(CardWaitState)) return;
+        //if (!stateMachine.IsCurrentState(CardWaitState)) return;
         
         if (IsDone()) return;
         
@@ -171,5 +175,16 @@ public partial class Card : MonoBehaviour
     {
         transform.localScale = Vector3.zero;
         scratchObject.transform.localScale = Vector3.zero;
+    }
+
+    private bool ConditionShowOnBooster()
+    {
+        if (!isShowed) return false;
+        if (IsDone()) return false;
+        if (selectAbleOnBooster.boosterActive == BoosterType.Hammer)
+        {
+            return stateMachine.CurrentState == CardLockState;
+        }
+        return true;
     }
 }

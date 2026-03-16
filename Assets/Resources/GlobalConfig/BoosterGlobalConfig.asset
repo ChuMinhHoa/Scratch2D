@@ -23,3 +23,8 @@ MonoBehaviour:
     price:
       coefficient: 150
       exponent: 0
+  - icon: {fileID: 21300000, guid: d9dfac042ce87ac4d91f5a535ac4ba5c, type: 3}
+    boosterType: 2
+    price:
+      coefficient: 250
+      exponent: 0

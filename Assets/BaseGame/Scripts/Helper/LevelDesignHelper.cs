@@ -124,7 +124,7 @@ public static class LevelDesignHelper
 
     public static float GetWidthCard(StickerData[] stickerData)
     {
-        var totalWidth = 0f;
+        var totalWidth = defaultSpace * 2 + defaultStickerWidth * 3;
         var widthOfRow = 0f;
         var countSticker = 0;
         for (var i = 0; i < stickerData.Length; i++)

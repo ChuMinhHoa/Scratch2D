@@ -144,7 +144,7 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
             var cardWidth = LevelDesignHelper.GetWidthCard(cardsData[i].stickers);
             var cardHeight = LevelDesignHelper.defaultStickerHeight * totalLineSticker +
                              LevelDesignHelper.defaultHeightButtonHeader + LevelDesignHelper.defaultSpace * 2 +
-                             LevelDesignHelper.vectorSpace * 2;
+                             LevelDesignHelper.vectorSpace * 2 + (cardsData[i].cardState == CardState.Lock ? 25 : 0);
 
             Rect cardRect = new Rect(currentX, currentY, cardWidth, cardHeight);
             DrawCard(cardRect, i);
@@ -158,9 +158,11 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
     {
         currentCardIndex = cardIndex;
         var stickerData = LevelData.layerCards[currentLayerIndex].cards[cardIndex].stickers;
+        
         SirenixEditorGUI.DrawSolidRect(rect, Color.gray2);
         SirenixEditorGUI.DrawBorders(rect, 1);
         LevelDesignHelper.HandleCardDragAndDrop(rect, currentLayerIndex, cardIndex, LevelData);
+        
         var rect1 = new Rect(rect.x + 5, rect.y + 5, rect.width - 10, LevelDesignHelper.defaultHeightButtonHeader);
         if (GUI.Button(rect1.AlignRight(40).AlignLeft(20).SetSize(20), "+"))
         {
@@ -179,7 +181,7 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
         var currentY = rect.y + 5;
 
         EditorGUI.BeginChangeCheck();
-        Rect rectCardType = new Rect(rect.x + 5, currentY, rect.width - 50, 20);
+        Rect rectCardType = new Rect(rect.x + 5, currentY, (rect.width - 50) /2, 20);
         LevelData.layerCards[currentLayerIndex].cards[cardIndex].cardType = (CardType)EditorGUI.EnumPopup(rectCardType,
             LevelData.layerCards[currentLayerIndex].cards[cardIndex].cardType);
         if (EditorGUI.EndChangeCheck())
@@ -202,8 +204,32 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
 
             LevelData.layerCards[currentLayerIndex].cards[cardIndex].stickers = newStickers;
         }
+        
+        EditorGUI.BeginChangeCheck();
+        Rect rectCardState = new Rect(rect.x + 5 + (rect.width - 50) /2, currentY, (rect.width - 50) /2 , 20);
+        LevelData.layerCards[currentLayerIndex].cards[cardIndex].cardState = (CardState)EditorGUI.EnumPopup(rectCardState,
+            LevelData.layerCards[currentLayerIndex].cards[cardIndex].cardState);
+        if (EditorGUI.EndChangeCheck())
+        {
+            var newCardState = LevelData.layerCards[currentLayerIndex].cards[cardIndex].cardState;
 
-        currentY = rect.y + LevelDesignHelper.defaultHeightButtonHeader;
+            LevelData.layerCards[currentLayerIndex].cards[cardIndex].cardState = newCardState;
+        }
+
+        currentY = rect.y;
+
+        var isCardLock = LevelData.layerCards[currentLayerIndex].cards[cardIndex].cardState == CardState.Lock;
+        if (isCardLock)
+        {
+            currentY += LevelDesignHelper.defaultHeightButtonHeader;
+            var totalUnlockCard = LevelData.layerCards[currentLayerIndex].cards[cardIndex].totalSUnlock;
+            var rectIntField = new Rect(rect.x + 5 , currentY, rect.width - 10, 20);
+            totalUnlockCard = EditorGUI.IntField(rectIntField, totalUnlockCard);
+            
+            LevelData.layerCards[currentLayerIndex].cards[cardIndex].totalSUnlock = totalUnlockCard;
+        }
+
+        currentY += LevelDesignHelper.defaultHeightButtonHeader;
         var currentX = rect.x + 5;
         var stickers = LevelData.layerCards[currentLayerIndex].cards[cardIndex].stickers;
         for (var i = 0; i < stickers.Length; i++)
@@ -221,10 +247,9 @@ public sealed class LevelDataEditorAttributeDrawer : OdinAttributeDrawer<LevelDa
             currentX += stickerWidth;
         }
 
-        var totalRow = Mathf.CeilToInt((float)LevelData.layerCards[currentLayerIndex].cards[cardIndex].stickers.Length /
-                                       LevelDesignHelper.totalStickerInRow);
-        currentY = rect.y + LevelDesignHelper.defaultHeightButtonHeader +
-                   LevelDesignHelper.defaultStickerHeight * totalRow;
+        // var totalRow = Mathf.CeilToInt((float)LevelData.layerCards[currentLayerIndex].cards[cardIndex].stickers.Length /
+        //                                LevelDesignHelper.totalStickerInRow);
+        currentY += LevelDesignHelper.defaultStickerHeight;
         currentX = rect.x + 5;
 
         var fieldWidth = rect.width - 10;

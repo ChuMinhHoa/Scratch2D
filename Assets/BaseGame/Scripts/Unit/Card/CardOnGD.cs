@@ -24,7 +24,7 @@ public partial class Card
         var trs = transform.position;
         var target = new Vector3(trs.x, trs.y, -5);
         LMotion.Create(trs, target, 0.25f).Bind(x=>transform.position = x).AddTo(this);
-        cardGraphic.objLock.SetActive(false);
+        cardGraphic.objDisable.SetActive(false);
     }
 
     public void OnGDDeActive()
@@ -33,7 +33,7 @@ public partial class Card
         var target = data.position;
         target.z = layerIndex;
         LMotion.Create(trs, target, 0.25f).Bind(x=>transform.position = x).AddTo(this);
-        cardGraphic.objLock.SetActive(true);
+        cardGraphic.objDisable.SetActive(true);
     }
     
 }

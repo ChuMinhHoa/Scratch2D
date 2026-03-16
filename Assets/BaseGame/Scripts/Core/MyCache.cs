@@ -15,6 +15,7 @@ public static class MyCache
         {
             BoosterType.Magnet => GameResource.Type.BoosterMagnet,
             BoosterType.AddSlot => GameResource.Type.BoosterAddSlot,
+            BoosterType.Hammer => GameResource.Type.BoosterHammer,
             _ => GameResource.Type.None
         };
     }

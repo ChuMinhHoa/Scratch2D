@@ -1011,7 +1011,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7060373272206288347, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: m_Name
-      value: BtnBooster
+      value: BtnBoosterAddSlot
       objectReference: {fileID: 0}
     - target: {fileID: 7060373272206288347, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: m_IsActive
@@ -1163,6 +1163,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 836577924963637081}
     m_Modifications:
+    - target: {fileID: 2479380628438869268, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
+      propertyPath: booster
+      value: 5138881317743624511
+      objectReference: {fileID: 0}
+    - target: {fileID: 2479380628438869268, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
+      propertyPath: 'managedReferences[5138881317743624511]'
+      value: Assembly-CSharp BoosterHammer
+      objectReference: {fileID: 0}
+    - target: {fileID: 2479380628438869268, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
+      propertyPath: managedReferences[5138881317743624511].boosterText
+      value: 
+      objectReference: {fileID: 3359233002143793925}
+    - target: {fileID: 2479380628438869268, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
+      propertyPath: managedReferences[5138881317743624511].boosterType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2479380628438869268, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
+      propertyPath: managedReferences[5138881317743624511].boosterButton
+      value: 
+      objectReference: {fileID: 6915546730568474037}
+    - target: {fileID: 2479380628438869268, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
+      propertyPath: managedReferences[5138881317743624511].isCanUse.value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2479380628438869268, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
+      propertyPath: managedReferences[5138881317743624511].isCanUse.EditorValue
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5142897512746824741, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1177,7 +1205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5142897512746824741, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5142897512746824741, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: m_AnchorMin.x
@@ -1185,7 +1213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5142897512746824741, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5142897512746824741, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1225,11 +1253,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5142897512746824741, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 295
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 5142897512746824741, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 99
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 5142897512746824741, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1245,11 +1273,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7060373272206288347, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: m_Name
-      value: BtnBooster (2)
+      value: BtnBoosterHammer
       objectReference: {fileID: 0}
     - target: {fileID: 7060373272206288347, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1261,6 +1289,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5142897512746824741, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
   m_PrefabInstance: {fileID: 6070555913521662437}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3359233002143793925 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8836228421002971872, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
+  m_PrefabInstance: {fileID: 6070555913521662437}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &6915546730568474037 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 848373743762723920, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
+  m_PrefabInstance: {fileID: 6070555913521662437}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &7123501844162778977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1351,7 +1401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7060373272206288347, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: m_Name
-      value: BtnBooster (1)
+      value: BtnBoosterMagnet
       objectReference: {fileID: 0}
     - target: {fileID: 8271238403539830904, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: m_Name

@@ -1677,6 +1677,7 @@ MonoBehaviour:
           x: 0
           y: 0
           z: 0
+        totalSUnlock: 0
       - cardType: 100
         cardState: 0
         stickers:
@@ -1694,6 +1695,7 @@ MonoBehaviour:
           x: 0
           y: 0
           z: 0
+        totalSUnlock: 0
       - cardType: 100
         cardState: 0
         stickers:
@@ -1711,6 +1713,7 @@ MonoBehaviour:
           x: 0
           y: 0
           z: 0
+        totalSUnlock: 0
     - layerIndex: 1
       cards:
       - cardType: 100
@@ -1730,6 +1733,7 @@ MonoBehaviour:
           x: 0
           y: 0
           z: 0
+        totalSUnlock: 0
       - cardType: 100
         cardState: 0
         stickers:
@@ -1747,6 +1751,7 @@ MonoBehaviour:
           x: 0
           y: 0
           z: 0
+        totalSUnlock: 0
       - cardType: 0
         cardState: 0
         stickers:
@@ -1761,6 +1766,7 @@ MonoBehaviour:
           x: 0
           y: 0
           z: 0
+        totalSUnlock: 0
       - cardType: 0
         cardState: 0
         stickers:
@@ -1775,6 +1781,7 @@ MonoBehaviour:
           x: 0
           y: 0
           z: 0
+        totalSUnlock: 0
   oSController:
     posOut: {fileID: 534719114}
     loadDone: 0
@@ -2190,8 +2197,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelGenerateText
   level: {fileID: 1125280225}
-  levelIndex: 10
-  <LevelDataTextAsset>k__BackingField: {fileID: 4900000, guid: 04f1a04574ee2b340bd55817d3766060, type: 3}
+  levelIndex: 11
+  <LevelDataTextAsset>k__BackingField: {fileID: 4900000, guid: 9b7374b09dde5094d87836e37d4e4867, type: 3}
   stickers: []
 --- !u!114 &1125280225
 MonoBehaviour:
@@ -2206,8 +2213,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Level
   levelIndex:
-    value: 10
-    EditorValue: 10
+    value: 11
+    EditorValue: 11
   levelTextAsset: {fileID: 0}
   levelConfig:
     level: 0
@@ -2217,455 +2224,147 @@ MonoBehaviour:
     level: 0
     objHaveStickers:
     - objID: 0
+      stickerId: 6
+    - objID: 0
+      stickerId: 13
+    - objID: 0
       stickerId: 26
     - objID: 0
-      stickerId: 13
+      stickerId: 28
+    - objID: 0
+      stickerId: 3
+    - objID: 0
+      stickerId: 6
+    - objID: 0
+      stickerId: 21
     - objID: 0
       stickerId: 20
     - objID: 0
-      stickerId: 28
-    - objID: 0
-      stickerId: 13
+      stickerId: 30
     - objID: 0
       stickerId: 28
-    - objID: 0
-      stickerId: 17
-    - objID: 0
-      stickerId: 9
-    - objID: 0
-      stickerId: 7
-    - objID: 0
-      stickerId: 18
-    - objID: 0
-      stickerId: 8
-    - objID: 0
-      stickerId: 5
-    - objID: 0
-      stickerId: 16
-    - objID: 0
-      stickerId: 20
-    - objID: 0
-      stickerId: 23
     layerCards:
     - layerIndex: 0
       cards:
-      - cardType: 100
-        cardState: 0
-        stickers:
-        - stickerID: 26
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 13
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -2
-          y: 0
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 26
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 1.9
-          y: -0
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 13
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 0.1
-          y: 2
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 26
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -0
-          y: -2.3
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 13
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -1.9
-          y: -2.7
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 20
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 1.9
-          y: -2.4
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 20
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 0.1
-          y: -4.5
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 20
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -2
-          y: -4.5
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 28
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 2.2
-          y: -4.4
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 28
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 4
-          y: -4.3
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 28
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -0
-          y: -0.1
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
       - cardType: 200
         cardState: 0
         stickers:
-        - stickerID: 13
-          stickerType: 0
+        - stickerID: 6
+          stickerType: 2
           stickerIndexChain: 0
-        - stickerID: 17
-          stickerType: 0
+        - stickerID: 6
+          stickerType: 2
           stickerIndexChain: 0
-        - stickerID: 28
-          stickerType: 0
+        - stickerID: 6
+          stickerType: 2
           stickerIndexChain: 0
         position:
-          x: 3.8
-          y: 0.1
+          x: 2.1
+          y: 0.2
           z: 0
         rotation:
           x: 0
           y: 0
           z: 0
-    - layerIndex: 1
-      cards:
+        totalSUnlock: 2
+      - cardType: 100
+        cardState: 1
+        stickers:
+        - stickerID: 13
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 13
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -2.4
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 2
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 17
+        - stickerID: 13
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -3.3
+          y: 2.7
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 26
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -1.1
+          y: 3.1
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 26
           stickerType: 0
           stickerIndexChain: 0
         position:
           x: -2.3
-          y: 0.5
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 13
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 2
-          y: 0.5
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 13
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -2
-          y: -1.3
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 100
-        cardState: 0
-        stickers:
-        - stickerID: 28
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 8
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 1.9
-          y: -2.3
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 9
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -1.9
-          y: -3.3
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 7
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 0
-          y: -3.9
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 9
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 0
-          y: -2
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 5
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -3.8
-          y: -3.3
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 16
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -2.3
-          y: 2.4
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 100
-        cardState: 0
-        stickers:
-        - stickerID: 18
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 7
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 2
-          y: 3.3
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 23
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -4
-          y: -1.4
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 100
-        cardState: 0
-        stickers:
-        - stickerID: 7
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 18
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 0
-          y: 2.6
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-    - layerIndex: 2
-      cards:
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 8
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 2
-          y: 0.1
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 17
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -2.1
-          y: -0
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 9
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 2
-          y: 1.9
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-      - cardType: 100
-        cardState: 0
-        stickers:
-        - stickerID: 5
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 20
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -2.1
           y: -2.9
           z: 0
         rotation:
           x: 0
           y: 0
           z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 26
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -0.1
+          y: -4.1
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+    - layerIndex: 1
+      cards:
+      - cardType: 100
+        cardState: 1
+        stickers:
+        - stickerID: 28
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 28
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -1.9
+          y: 0.1
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 5
       - cardType: 0
         cardState: 0
         stickers:
@@ -2673,33 +2372,91 @@ MonoBehaviour:
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: -2.2
-          y: 2.1
+          x: 1.9
+          y: 0.3
           z: 0
         rotation:
           x: 0
           y: 0
           z: 0
+        totalSUnlock: 0
       - cardType: 200
         cardState: 0
         stickers:
-        - stickerID: 23
+        - stickerID: 3
           stickerType: 0
           stickerIndexChain: 0
-        - stickerID: 8
+        - stickerID: 3
           stickerType: 0
           stickerIndexChain: 0
-        - stickerID: 16
+        - stickerID: 3
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: 4.1
-          y: -1.7
+          x: 3.7
+          y: 0.4
           z: 0
         rotation:
           x: 0
           y: 0
           z: 0
+        totalSUnlock: 0
+      - cardType: 100
+        cardState: 0
+        stickers:
+        - stickerID: 6
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 6
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -1.9
+          y: -3.6
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 6
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+    - layerIndex: 2
+      cards:
+      - cardType: 200
+        cardState: 0
+        stickers:
+        - stickerID: 21
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 21
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 21
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -2.9
+          y: -0.1
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
       - cardType: 0
         cardState: 0
         stickers:
@@ -2707,27 +2464,14 @@ MonoBehaviour:
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: -0.1
-          y: 2
+          x: 1.1
+          y: 2.4
           z: 0
         rotation:
           x: 0
           y: 0
           z: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 5
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 2
-          y: -2.3
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
+        totalSUnlock: 0
       - cardType: 0
         cardState: 0
         stickers:
@@ -2735,55 +2479,97 @@ MonoBehaviour:
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: 2
-          y: -4.4
+          x: -0.8
+          y: -1.8
           z: 0
         rotation:
           x: 0
           y: 0
           z: 0
+        totalSUnlock: 0
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 18
+        - stickerID: 20
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: -0.1
-          y: -2.4
+          x: 1.5
+          y: -1.6
           z: 0
         rotation:
           x: 0
           y: 0
           z: 0
+        totalSUnlock: 0
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 16
+        - stickerID: 30
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: -0.1
-          y: -4.5
+          x: 3
+          y: 1.2
           z: 0
         rotation:
           x: 0
           y: 0
           z: 0
+        totalSUnlock: 0
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 23
+        - stickerID: 30
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: -0.1
-          y: -0
+          x: -0.9
+          y: 3.4
           z: 0
         rotation:
           x: 0
           y: 0
           z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 30
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 3.3
+          y: 3.9
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+    - layerIndex: 3
+      cards:
+      - cardType: 200
+        cardState: 0
+        stickers:
+        - stickerID: 28
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 28
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 28
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -1.3
+          y: 0.2
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
   oSController:
     posOut: {fileID: 0}
     loadDone: 1
@@ -2819,7 +2605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelGenerateFunction
   levelGenerateText: {fileID: 1125280224}
-  totalSticker: 15
+  totalSticker: 10
   totalCardAdd: 1
   layerIndex: 2
 --- !u!4 &1214731164 stripped
@@ -4003,14 +3789,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 24759691580859917, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
-      propertyPath: currentCollider
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 996963301119101435, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
-      propertyPath: m_Color.a
-      value: 0.7058824
-      objectReference: {fileID: 0}
     - target: {fileID: 3319799914231244128, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
       propertyPath: m_Name
       value: Card 1
@@ -4021,11 +3799,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3811211421870402198, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.317
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3811211421870402198, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.301
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3811211421870402198, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4057,14 +3835,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3811211421870402198, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4303878332484992536, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
-      propertyPath: timeOpen
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8664226168899290807, guid: 9fb4c3ae5142f8e438e186cda2f586d6, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

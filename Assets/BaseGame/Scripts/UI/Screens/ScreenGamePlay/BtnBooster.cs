@@ -60,7 +60,7 @@ public class BtnBooster : MonoBehaviour
 
     private void UseBooster()
     {
-        UIAnimManager.Instance.AnimButton(transform);
+        UIAnimManager.Instance.AnimButton(imgIcon.transform);
         
         if (gameResource.Amount > 0)
         {
@@ -90,4 +90,5 @@ public enum BoosterType
 {
     Magnet,
     AddSlot,
+    Hammer
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using R3;
@@ -74,12 +75,17 @@ public partial class Card : CardInitState.IHandler
     public async UniTask InitData(CardData cardData, int layer)
     {
         data = cardData;
+        
+        cardState = data.cardState;
+        cardType = data.cardType;
+        
         layerIndex = layer;
         var pos = transform.position;
         pos.z = layerIndex;
         transform.position = pos;
         transform.eulerAngles = data.rotation;
         countSticker = cardData.stickers.Length;
+        
         
         //Spawn scratch object
         scratchObject = PoolManager.Instance.SpawnScratchManager();
@@ -100,6 +106,27 @@ public partial class Card : CardInitState.IHandler
 
     private void LoadData()
     {
-        stateMachine.RequestTransition(CardWaitState);
+        switch (cardState)
+        {
+            case CardState.Normal:
+                stateMachine.RequestTransition(CardWaitState);
+                break;
+            case CardState.Lock:
+                stateMachine.RequestTransition(CardLockState);
+                break;
+            case CardState.Freeze:
+            case CardState.Key:
+            default:
+                break;
+        }
+        
+        
+        cardGraphic.InitData(cardState);
+    }
+
+    private void ChangeCardState(CardState cardStateChange)
+    {
+        cardState = cardStateChange;
+        LoadData();
     }
 }

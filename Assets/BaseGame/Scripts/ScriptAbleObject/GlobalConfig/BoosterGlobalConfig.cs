@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Sirenix.Utilities;
 using TW.Utility.CustomType;
@@ -23,7 +24,7 @@ public class BoosterGlobalConfig : GlobalConfig<BoosterGlobalConfig>
 [System.Serializable]
 public class BoosterConfig
 {
-    public Sprite icon;
+    [PreviewField] public Sprite icon;
     public BoosterType boosterType;
     public BigNumber price;
 }

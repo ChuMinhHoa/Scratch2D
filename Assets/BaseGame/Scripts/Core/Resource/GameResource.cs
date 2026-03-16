@@ -13,6 +13,7 @@ public class GameResource
         Gem = 2,
         BoosterMagnet = 3,
         BoosterAddSlot = 4,
+        BoosterHammer = 5,
     }
     
     [field: HideLabel, HorizontalGroup(nameof(GameResource), 100)]

@@ -10,7 +10,10 @@ using UnityEngine;
 
 public class CardGraphic : MonoBehaviour
 {
-    public GameObject objLock;
+    public CardState cardState;
+    public GameObject objDisable;
+
+
     public List<SpriteRenderer> sprAnim;
     public Color colorStartOpen;
     public Color colorEndOpen;
@@ -18,9 +21,30 @@ public class CardGraphic : MonoBehaviour
     public Vector3 offSetShadow;
 
     public Transform trsShadow;
-    
-    //public ScratchCardManager scratchCardManager;
 
+    #region Lock State
+
+    [ShowIf("@cardState == CardState.Lock")]
+    public GameObject objLock;
+
+    [ShowIf("@cardState == CardState.Lock")]
+    public TextMeshPro txtCountUnlock;
+
+    public void SetTextCount(int countRemaining)
+    {
+        Debug.Log("Cout remaining: " +countRemaining);
+        
+        txtCountUnlock.text = countRemaining.ToString();
+    }
+
+    #endregion
+
+
+    public void InitData(CardState cardStateChange)
+    {
+        cardState = cardStateChange;
+        objLock.SetActive(cardState == CardState.Lock);
+    }
 
     [Button]
     private async UniTask OnAnimOpen()
@@ -40,12 +64,13 @@ public class CardGraphic : MonoBehaviour
     public async UniTask SetActiveObjLook(bool active)
     {
         trsShadow.gameObject.SetActive(!active);
-        
+
         if (!active)
         {
             await OnAnimOpen();
-        }   
-        objLock.SetActive(active);
+        }
+
+        objDisable.SetActive(active);
     }
 
     public async UniTask AnimCardDone(Action callBack = null)

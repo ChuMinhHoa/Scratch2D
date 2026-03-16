@@ -9,6 +9,13 @@ public class SelectAbleOnBooster : MonoBehaviour, ISelectAbleOnBooster
     public bool onCanSelect;
     public Vector3 defaultPos;
 
+    private Func<bool> conditionToSelect;
+    
+    public void SetConditionToSelect(Func<bool> condition)
+    {
+        conditionToSelect = condition;
+    }
+
     private void Start()
     {
         GlobalEventManager.OnBoosterUsing += OnBoosterUsing;
@@ -24,15 +31,22 @@ public class SelectAbleOnBooster : MonoBehaviour, ISelectAbleOnBooster
     private void OnBoosterDone()
     {
         onCanSelect = false;
-        var position = transform.localPosition;
-        position.z = 0;
-        transform.localPosition = position;
+        // var position = transform.localPosition;
+        // position.z = 0;
+        transform.localPosition = defaultPos;
     }
 
     private void OnBoosterUsing(BoosterType bType, IBooster booster)
     {
         if (bType != boosterActive)
             return;
+        
+        if (conditionToSelect != null)
+        {
+            var e = conditionToSelect();
+            if (!e) return;
+        }
+        
         Booster = booster;
         OnCanSelect();
     }
@@ -41,7 +55,7 @@ public class SelectAbleOnBooster : MonoBehaviour, ISelectAbleOnBooster
     {
         onCanSelect = true;
         var position = transform.localPosition;
-        defaultPos = position;
+        defaultPos = transform.localPosition;
         position.z = -5;
         transform.localPosition = position;
     }
