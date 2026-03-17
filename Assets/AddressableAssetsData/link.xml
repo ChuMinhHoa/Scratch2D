@@ -19,6 +19,7 @@
     <type fullname="UIResource" preserve="all" />
     <type fullname="UnitAnimation" preserve="all" />
     <type fullname="BoosterAddSlot" preserve="nothing" serialized="true" />
+    <type fullname="BoosterHammer" preserve="nothing" serialized="true" />
     <type fullname="BoosterMagnet" preserve="nothing" serialized="true" />
     <type fullname="Core.UI.Activities.ActivityFirstShowOnGamePlayContext/UIModel" preserve="nothing" serialized="true" />
     <type fullname="Core.UI.Activities.ActivityFirstShowOnGamePlayContext/UIPresenter" preserve="nothing" serialized="true" />
@@ -58,7 +59,6 @@
   </assembly>
   <assembly fullname="ParticleImage, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="AssetKits.ParticleImage.ParticleImage" preserve="all" />
-    <type fullname="AssetKits.ParticleImage.ParticleTrailRenderer" preserve="all" />
     <type fullname="AssetKits.ParticleImage.Burst" preserve="nothing" serialized="true" />
     <type fullname="AssetKits.ParticleImage.Module" preserve="nothing" serialized="true" />
     <type fullname="AssetKits.ParticleImage.SeparatedMinMaxCurve" preserve="nothing" serialized="true" />

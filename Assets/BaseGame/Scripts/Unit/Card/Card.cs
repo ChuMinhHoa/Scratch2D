@@ -46,7 +46,7 @@ public partial class Card : MonoBehaviour
     private void OnDestroy()
     {
         GlobalEventManager.OnHaveCardDone -= CheckToShow;
-        GlobalEventManager.OnNoteDoneCallBack -= OnNoteDone;
+        GlobalEventManager.OnNoteDoneCallBack -= OnNoteDoneForLock;
     }
 
     [Button]
@@ -71,13 +71,17 @@ public partial class Card : MonoBehaviour
     private void OnShowMode()
     {
         _ = cardGraphic.SetActiveObjLook(false);
-        EnableInput(true);
-        for (var i = 0; i < stickers.Count; i++)
-        {
-            stickers[i].EnableScratch(true);
-        }
+        var isEnableInput = IsEnableInput();
+        EnableInput(isEnableInput);
     }
-    
+
+    private bool IsEnableInput()
+    {
+        var isLock = stateMachine.CurrentState == CardLockState;
+        var isFreeze = stateMachine.CurrentState == CardFreezeState;
+        return !isLock && !isFreeze;
+    }
+
     private void EnableInput(bool isEnable)
     {
         for (var i = 0; i < stickers.Count; i++)
@@ -160,8 +164,7 @@ public partial class Card : MonoBehaviour
     public bool IsHaveSticker(int stickerId)
     {
         for (var i = 0; i < stickers.Count; i++)
-        {
-            Debug.Log($"note id {stickerId} {stickers[i].stickerData.stickerID}");
+        {;
             if (stickers[i].stickerData.stickerID == stickerId && !stickers[i].isDone)
             {
                 return true;

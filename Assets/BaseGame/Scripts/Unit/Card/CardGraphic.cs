@@ -39,11 +39,49 @@ public class CardGraphic : MonoBehaviour
 
     #endregion
 
+    #region MyRegion
+
+    [ShowIf("@cardState == CardState.Freeze")]
+    public GameObject objFreeze;
+    
+    [ShowIf("@cardState == CardState.Freeze")]
+    public SpriteRenderer sprCardFreeze;
+
+    [ShowIf("@cardState == CardState.Freeze")]
+    public Sprite[] sprFreezes;
+
+    [ShowIf("@cardState == CardState.Freeze")]
+    public GameObject freezeParticle;
+    
+    public void SetSpriteFreeze(int index)
+    {
+        if (!sprCardFreeze.gameObject.activeSelf)
+            sprCardFreeze.gameObject.SetActive(true);
+        
+        if (index - 1 < sprFreezes.Length)
+        {
+            sprCardFreeze.sprite = sprFreezes[index - 1];
+        }
+        freezeParticle.SetActive(true);
+    }
+
+    public void OnFreezeDone()
+    {
+        objFreeze.SetActive(false);
+        freezeParticle.SetActive(true);
+    }
+
+    #endregion Freeze State
 
     public void InitData(CardState cardStateChange)
     {
         cardState = cardStateChange;
-        objLock.SetActive(cardState == CardState.Lock);
+        
+        var isLock = cardState == CardState.Lock;
+        objLock.SetActive(isLock);
+        
+        var isFreeze = cardState == CardState.Freeze;
+        objFreeze.SetActive(isFreeze);
     }
 
     [Button]
