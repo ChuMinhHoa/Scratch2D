@@ -66,7 +66,8 @@ public class LevelGenerateFunction : MonoBehaviour
     {
         var objHaveSticker = LevelData.objHaveStickers;
         var layerData = LevelData.layerCards.ToList();
-        var layerCost = objHaveSticker.Length / layerData.Count + ((float)objHaveSticker.Length % (float)layerData.Count > 0 ? 1 : 0);
+        var layerCost = objHaveSticker.Length / layerData.Count +
+                        ((float)objHaveSticker.Length % (float)layerData.Count > 0 ? 1 : 0);
         var currentLayer = 0;
         var countForNextLayer = 0;
         for (var i = 0; i < objHaveSticker.Length; i++)
@@ -78,7 +79,7 @@ public class LevelGenerateFunction : MonoBehaviour
                 currentLayer++;
                 countForNextLayer = 0;
             }
-            
+
             //var randomLayer = Random.Range(0, layerData.Count);
             if (randomCardForSticker < 1000)
             {
@@ -153,7 +154,69 @@ public class LevelGenerateFunction : MonoBehaviour
         }
 
         return true;
-    }   
+    }
+
+    public int shuffleLayerIndexStart;
+    public int shuffleLayerIndexEnd;
+
+    [Button]
+    private void Shuffle()
+    {
+        if (LevelData == null || LevelData.layerCards == null || LevelData.layerCards.Length == 0)
+        {
+            Debug.LogWarning("No level data to shuffle");
+            return;
+        }
+
+        int start = Mathf.Clamp(shuffleLayerIndexStart, 0, LevelData.layerCards.Length - 1);
+        int end = Mathf.Clamp(shuffleLayerIndexEnd, 0, LevelData.layerCards.Length - 1);
+        if (start > end)
+        {
+            (start, end) = (end, start);
+        }
+
+        var stickerIds = new List<int>();
+        var stickerRefs = new List<StickerData>();
+
+        for (int li = start; li <= end; li++)
+        {
+            var layer = LevelData.layerCards[li];
+            if (layer.cards == null) continue;
+
+            for (int ci = 0; ci < layer.cards.Length; ci++)
+            {
+                var card = layer.cards[ci];
+                if (card.stickers == null) continue;
+
+                foreach (var s in card.stickers)
+                {
+                    stickerRefs.Add(s);
+                    stickerIds.Add(s.stickerID);
+                }
+            }
+        }
+
+        if (stickerIds.Count <= 1)
+        {
+            Debug.Log("Not enough stickers to shuffle");
+            return;
+        }
+
+        var rng = new System.Random();
+        for (int i = stickerIds.Count - 1; i > 0; i--)
+        {
+            int j = rng.Next(i + 1);
+            (stickerIds[i], stickerIds[j]) = (stickerIds[j], stickerIds[i]);
+        }
+
+        for (int i = 0; i < stickerRefs.Count; i++)
+        {
+            stickerRefs[i].stickerID = stickerIds[i];
+        }
+
+        UnityEditor.EditorUtility.SetDirty(levelGenerateText);
+        Debug.Log($"Shuffled {stickerIds.Count} stickers between layers {start} and {end}");
+    }
 }
 
 #endif

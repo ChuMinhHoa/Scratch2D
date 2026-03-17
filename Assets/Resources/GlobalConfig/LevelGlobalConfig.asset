@@ -49,3 +49,6 @@ MonoBehaviour:
   - level: 11
     difficulty: 0
     levelAsset: {fileID: 4900000, guid: 9b7374b09dde5094d87836e37d4e4867, type: 3}
+  - level: 12
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: b3470e474f679fc48a2d6b17aa7be584, type: 3}

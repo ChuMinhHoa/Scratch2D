@@ -76,6 +76,54 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: ffb342ab4e15bab4da52aac1454c971c, type: 3}
   - tType: 30
     sprite: {fileID: 21300000, guid: 09f99838847812840b2f5a388761d3cb, type: 3}
+  - tType: 31
+    sprite: {fileID: 21300000, guid: 8c2b8c3786c81a34f93bbf41d277daba, type: 3}
+  - tType: 32
+    sprite: {fileID: 21300000, guid: 331f507309e96bd46ae65a3b13e6e6b7, type: 3}
+  - tType: 33
+    sprite: {fileID: 21300000, guid: df92b4d381cde214dad8b585f7d9870e, type: 3}
+  - tType: 34
+    sprite: {fileID: 21300000, guid: d09da76fbcff2e74cbf80b4c74fee635, type: 3}
+  - tType: 35
+    sprite: {fileID: 21300000, guid: 45cfe334bab22a641a5915b505d1e3a3, type: 3}
+  - tType: 36
+    sprite: {fileID: 21300000, guid: ca04a06ee4153fa4cbe755adb8994a9c, type: 3}
+  - tType: 37
+    sprite: {fileID: 21300000, guid: 74fcaf94195456642a91eee3f1866324, type: 3}
+  - tType: 38
+    sprite: {fileID: 21300000, guid: 6b4971412d52af34a8271f7b583b8e44, type: 3}
+  - tType: 39
+    sprite: {fileID: 21300000, guid: 4fe7024b0a2827a45bcc757acece995d, type: 3}
+  - tType: 40
+    sprite: {fileID: 21300000, guid: fa0a3dd31f670b342bbfaf7e5b04a277, type: 3}
+  - tType: 41
+    sprite: {fileID: 21300000, guid: 4ca156cab0e0353428c43df7f2543f12, type: 3}
+  - tType: 42
+    sprite: {fileID: 21300000, guid: 226408bba848fac4aa8174f9c1499ab4, type: 3}
+  - tType: 43
+    sprite: {fileID: 21300000, guid: 0dec7d3a75764a0449fd566f2169ceb6, type: 3}
+  - tType: 44
+    sprite: {fileID: 21300000, guid: 249c4d5a8b00e8c408d83215495861d8, type: 3}
+  - tType: 45
+    sprite: {fileID: 21300000, guid: a0bdb3cf6cea3904494c28554fbce896, type: 3}
+  - tType: 46
+    sprite: {fileID: 21300000, guid: d9d956de8cc2cc74e856661aec2bfdc0, type: 3}
+  - tType: 47
+    sprite: {fileID: 21300000, guid: 69fc1bfec83c6d5438d5c04e6dab9c48, type: 3}
+  - tType: 48
+    sprite: {fileID: 21300000, guid: 4363d0f43b2f9f74a87c1962e2f82696, type: 3}
+  - tType: 49
+    sprite: {fileID: 21300000, guid: c7a18b66af5d3e6488bcbe12e57a0ae7, type: 3}
+  - tType: 50
+    sprite: {fileID: 21300000, guid: 4e2a659b06a89a94da3f71032687abdc, type: 3}
+  - tType: 51
+    sprite: {fileID: 21300000, guid: 821001acc586ebe4f84c9661bc5d2b99, type: 3}
+  - tType: 52
+    sprite: {fileID: 21300000, guid: 889f749881ecfd8439bb1ddf767ea45b, type: 3}
+  - tType: 53
+    sprite: {fileID: 21300000, guid: 2c535bedea683b64187879824512cfd8, type: 3}
+  - tType: 54
+    sprite: {fileID: 21300000, guid: 87c730d4bee03244ab1b1cba7a1e3600, type: 3}
   iconObjHaveStickerConfigs:
   - tType: 0
     sprite: {fileID: 21300000, guid: afc7293958716804cbe509ca4be8883a, type: 3}
@@ -152,6 +200,54 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: c4b839a3222183845bcc67268caba433, type: 3}
   - tType: 30
     sprite: {fileID: 21300000, guid: a5d6e73c556de9f4a994214c0dff8b8f, type: 3}
+  - tType: 31
+    sprite: {fileID: 21300000, guid: 444ef2a65c3028445bb5117a05928b0e, type: 3}
+  - tType: 32
+    sprite: {fileID: 21300000, guid: ba4a01561a7b7ee439ae3430056ab876, type: 3}
+  - tType: 33
+    sprite: {fileID: 21300000, guid: 08794438687061e4caf4583099059696, type: 3}
+  - tType: 34
+    sprite: {fileID: 21300000, guid: f36efb21e5f3751458fcf2d67c226967, type: 3}
+  - tType: 35
+    sprite: {fileID: 21300000, guid: a1542cf93e4e50d4a9fbe057b37fd24b, type: 3}
+  - tType: 36
+    sprite: {fileID: 21300000, guid: aa3b1ccaff5ef3e4d881d5edc85ad032, type: 3}
+  - tType: 37
+    sprite: {fileID: 21300000, guid: b0d9d1de747fb114d9a73d0ec6afbe1f, type: 3}
+  - tType: 38
+    sprite: {fileID: 21300000, guid: 99f15f6cad24cbc4c9ac96af893431c1, type: 3}
+  - tType: 39
+    sprite: {fileID: 21300000, guid: 06b75b83a2b08a64ea051f8345c45289, type: 3}
+  - tType: 40
+    sprite: {fileID: 21300000, guid: 3b47726eb5bcc374ea4492dbd6871d2e, type: 3}
+  - tType: 41
+    sprite: {fileID: 21300000, guid: 2c5e1e653d7e1c942b98ea4aab175fbf, type: 3}
+  - tType: 42
+    sprite: {fileID: 21300000, guid: 9216de0a9d247c7439395c2298e6e85b, type: 3}
+  - tType: 43
+    sprite: {fileID: 21300000, guid: 6a079378b9691bb4baa6d072174788ca, type: 3}
+  - tType: 44
+    sprite: {fileID: 21300000, guid: 0e90d1ee17603144bb112660435da863, type: 3}
+  - tType: 45
+    sprite: {fileID: 21300000, guid: 47067e675d2ad5b4a9f5fdccb40f9c9d, type: 3}
+  - tType: 46
+    sprite: {fileID: 21300000, guid: 080e37ac3137c5541b8a85982c464217, type: 3}
+  - tType: 47
+    sprite: {fileID: 21300000, guid: 15e6287fee4a01647bd0e6f65a1c5398, type: 3}
+  - tType: 48
+    sprite: {fileID: 21300000, guid: d5ed4dde059aec2489aaef55b341caf4, type: 3}
+  - tType: 49
+    sprite: {fileID: 21300000, guid: 4a9fb8a0778b9e148b88ad6f4faee216, type: 3}
+  - tType: 50
+    sprite: {fileID: 21300000, guid: cbdc9fe59dde8d14dbbb9a1fa1b49007, type: 3}
+  - tType: 51
+    sprite: {fileID: 21300000, guid: e452f3a017147f94d8ee5606476dbbfa, type: 3}
+  - tType: 52
+    sprite: {fileID: 21300000, guid: 3d19bd60220a5a44e8ff547573b5c089, type: 3}
+  - tType: 53
+    sprite: {fileID: 21300000, guid: 176573827a3ecfb49b4188914e691885, type: 3}
+  - tType: 54
+    sprite: {fileID: 21300000, guid: 665b07d9a7cd2cb4fa236108f696990c, type: 3}
   iconStickerShadowConfigs:
   - tType: 0
     sprite: {fileID: 21300000, guid: a59c818f72b1f744283a606ed6af9386, type: 3}
@@ -215,6 +311,54 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 211a8a51773caa24495c9a2b16f113c8, type: 3}
   - tType: 30
     sprite: {fileID: 21300000, guid: 25285a3af4422e241ad0a2e8185e0c6f, type: 3}
+  - tType: 31
+    sprite: {fileID: 21300000, guid: 99df1259db2437848a7d99bc5b60a83c, type: 3}
+  - tType: 32
+    sprite: {fileID: 21300000, guid: 916f7e2153e7d6942b756b1432832a2d, type: 3}
+  - tType: 33
+    sprite: {fileID: 21300000, guid: 0298b31be4983b44c8ac7da8ef769e41, type: 3}
+  - tType: 34
+    sprite: {fileID: 21300000, guid: 5334b6bf7cd06b5419e4ef6d063b9a15, type: 3}
+  - tType: 35
+    sprite: {fileID: 21300000, guid: b9b38bb7144e92d45ac1a5f44c50bde9, type: 3}
+  - tType: 36
+    sprite: {fileID: 21300000, guid: 7c2946ead94971541aea403d9d25fc2a, type: 3}
+  - tType: 37
+    sprite: {fileID: 21300000, guid: 940922ef8bbeb1c4285e933c359a7305, type: 3}
+  - tType: 38
+    sprite: {fileID: 21300000, guid: 3050b5b4aef3d484fa7203ec783b9fc7, type: 3}
+  - tType: 39
+    sprite: {fileID: 21300000, guid: 5b43f6b69c450f5448c57e57b475565f, type: 3}
+  - tType: 40
+    sprite: {fileID: 21300000, guid: f8d1d14e863140241a45c5e42df5672f, type: 3}
+  - tType: 41
+    sprite: {fileID: 21300000, guid: 3c42e599786eb2846aec52b3cc4622a9, type: 3}
+  - tType: 42
+    sprite: {fileID: 21300000, guid: 112a2ca0bafb1284689d268d845e0a8d, type: 3}
+  - tType: 43
+    sprite: {fileID: 21300000, guid: ca62a454cfbafda4c943aa228c852f92, type: 3}
+  - tType: 44
+    sprite: {fileID: 21300000, guid: 9aaaf7d7863ff984f94001128e89bd70, type: 3}
+  - tType: 45
+    sprite: {fileID: 21300000, guid: e0d0de66829c206419265e70500dd86a, type: 3}
+  - tType: 46
+    sprite: {fileID: 21300000, guid: d9cdef2fc8f48af45bfcfcfaa2264dbe, type: 3}
+  - tType: 47
+    sprite: {fileID: 21300000, guid: 67ab87f40b6c3f34d9b28e7d7185bb13, type: 3}
+  - tType: 48
+    sprite: {fileID: 21300000, guid: be0314a3eed941c4aaee7e559e10f2a1, type: 3}
+  - tType: 49
+    sprite: {fileID: 21300000, guid: e8b324a8d8782ff45975366138cda88d, type: 3}
+  - tType: 50
+    sprite: {fileID: 21300000, guid: 3cf3da99ea3ec8942a39efdb2b657217, type: 3}
+  - tType: 51
+    sprite: {fileID: 21300000, guid: 20a928d9dcc8caa4598546195d657006, type: 3}
+  - tType: 52
+    sprite: {fileID: 21300000, guid: 66a72c87cda423c44a702745acaf5896, type: 3}
+  - tType: 53
+    sprite: {fileID: 21300000, guid: 0d1ef7e11336549418ab528390cd5852, type: 3}
+  - tType: 54
+    sprite: {fileID: 21300000, guid: f4a0cb35e53a3ae4a9169ab394a2d8ca, type: 3}
   iconScratchCardConfigs:
   - tType: 0
     sprite: {fileID: 21300000, guid: a1c7e2a6aeb99b44db379f4892430c83, type: 3}
