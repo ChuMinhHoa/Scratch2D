@@ -2963,6 +2963,9 @@ MonoBehaviour:
   onPlaying:
     value: 0
     EditorValue: 0
+  whatCanSelectOnBooster:
+    serializedVersion: 2
+    m_Bits: 192
 --- !u!114 &1513406128
 MonoBehaviour:
   m_ObjectHideFlags: 0

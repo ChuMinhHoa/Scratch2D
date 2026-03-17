@@ -100,7 +100,7 @@ public static class LevelDesignHelper
         var totalRowSticker = Mathf.CeilToInt((float)totalSticker / totalStickerInRow);
         var height = defaultHeightButtonHeader + totalRowSticker * defaultStickerHeight + defaultSpace +
                      vectorSpace * 2 +
-                     defaultSpace + GetHeightAddOnCard(cardData.cardState);
+                     defaultSpace + GetHeightAddOnCard(cardData.cardState) + 25;
         return height;
     }
 
@@ -410,6 +410,18 @@ public static class LevelDesignHelper
         dragSourceLayerIndex = -1;
         dragSourceCardIndex = -1;
         dragSourceStickerIndex = -1;
+    }
+
+    public static Color GetColorCard(CardState cardState)
+    {
+        return cardState switch
+        {
+            CardState.Normal => Color.gray2,
+            CardState.Lock => new Color(0.8f, 0.5f, 0.8f, .5f),
+            CardState.Key => new Color(0.5f, 0.3f, 0.3f, .5f),
+            CardState.Freeze => new Color(0.1f, 0.1f, 1f, .5f),
+            _ => new Color(0.5f, 0.1f, 0.5f, .5f)
+        };
     }
 }
 #endif

@@ -58,19 +58,6 @@ public partial class Card : CardInitState.IHandler
     {
         return UniTask.CompletedTask;
     }
-    
-    // public void InitData(CardData cardData, int layer)
-    // {
-    //     data = cardData;
-    //     layerIndex = layer;
-    //     stateMachine.RequestTransition(CardInitState);
-    //     var pos = transform.position;
-    //     pos.z = layerIndex;
-    //     transform.position = pos;
-    //     transform.eulerAngles = data.rotation;
-    //     countSticker = cardData.stickers.Length;
-    //     scratchObject = PoolManager.Instance.SpawnScratchManager();
-    // }
 
     public async UniTask InitData(CardData cardData, int layer)
     {
@@ -90,6 +77,7 @@ public partial class Card : CardInitState.IHandler
         //Spawn scratch object
         scratchObject = PoolManager.Instance.SpawnScratchManager();
         await scratchObject.InitData(layerIndex, data);
+        scratchObject.transform.SetParent(transform);
         
         //Spawn sticker
         for (var i = 0; i < data.stickers.Length; i++)

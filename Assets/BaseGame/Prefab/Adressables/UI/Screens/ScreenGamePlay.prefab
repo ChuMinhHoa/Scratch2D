@@ -929,6 +929,10 @@ PrefabInstance:
       propertyPath: managedReferences[5138881183801409758].isCanUse.EditorValue
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2479380628438869268, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
+      propertyPath: managedReferences[5138881183801409758].layerCanSelect.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5142897512746824741, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1191,6 +1195,10 @@ PrefabInstance:
       propertyPath: managedReferences[5138881317743624511].isCanUse.EditorValue
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2479380628438869268, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
+      propertyPath: managedReferences[5138881317743624511].layerCanSelect.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 5142897512746824741, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1319,6 +1327,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 836577924963637081}
     m_Modifications:
+    - target: {fileID: 2479380628438869268, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
+      propertyPath: managedReferences[5138881045398290626].layerCanSelect.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 5142897512746824741, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

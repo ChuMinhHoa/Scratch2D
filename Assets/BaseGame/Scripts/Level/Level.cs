@@ -217,9 +217,11 @@ public class Level : Singleton<Level>
         _ = oSController.CallNextObjSticker(callFromLoad);
     }
 
-    public void RegisterStickerDone(Sticker sticker, Vector3 rot)
+    public void RegisterStickerDone(Sticker sticker, Vector3 rot, bool forceScratch)
     {
-        var stD = PoolManager.Instance.SpawnStickerDone(sticker.transform);
+        var posSpawn = sticker.transform.position;
+        posSpawn.z = forceScratch ? -2f : posSpawn.z;
+        var stD = PoolManager.Instance.SpawnStickerDone(posSpawn);
         stD.InitStickerMove(sticker.stickerData.stickerID, rot);
         sticker.DisAbleIcon();
         stickerDone.Add(stD);
@@ -250,8 +252,8 @@ public class Level : Singleton<Level>
         ResetLevel();
         levelIndex.Value++;
         PlayerInfoDataSave.Instance.SaveData();
+        GamePlayManager.Instance.ChangeGameState(GameState.Normal);
         _ = UIManager.Instance.OpenActivityAsync<ActivityWinGame>();
-        //_ = UIManager.Instance.CloseScreenAsync();
     }
 
     public void MoveFolderOut(FolderHaveSticker folder)

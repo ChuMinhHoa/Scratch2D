@@ -25,6 +25,7 @@ public class BoosterBase : IBooster
     public Action actionUsedCallBack;
     
     public Reactive<bool> isCanUse = new(false);
+    public LayerMask layerCanSelect;
     
     public virtual void InitData(UnityAction actionCall)
     {
@@ -35,6 +36,7 @@ public class BoosterBase : IBooster
     {
         if (GamePlayManager.Instance.gameState != GameState.Playing)
             return;
+        GamePlayManager.Instance.SetWhatCanSelectOnBooster(layerCanSelect);
         _ = UIManager.Instance.OpenActivityAsync<ActivityUsingBooster>();
         GlobalEventManager.OnBoosterUsing?.Invoke(boosterType, this);
     }

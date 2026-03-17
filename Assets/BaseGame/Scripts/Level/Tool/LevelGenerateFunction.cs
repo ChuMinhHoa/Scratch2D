@@ -153,7 +153,7 @@ public class LevelGenerateFunction : MonoBehaviour
         }
 
         return true;
-    }
+    }   
 }
 
 #endif

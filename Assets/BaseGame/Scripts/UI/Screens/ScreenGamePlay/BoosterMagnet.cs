@@ -7,8 +7,6 @@ public class BoosterMagnet : BoosterBase
 {
     public int stickerID;
     
-    Dictionary<SelectAbleOnBooster, FolderHaveSticker> dataHaveStickerDict = new Dictionary<SelectAbleOnBooster, FolderHaveSticker>();
-    
     public override void UseBooster()
     {
         base.UseBooster();
@@ -32,10 +30,7 @@ public class BoosterMagnet : BoosterBase
 
     private FolderHaveSticker GetFolderHaveSticker(SelectAbleOnBooster data)
     {
-        if (dataHaveStickerDict.TryGetValue(data, out FolderHaveSticker folderHaveSticker))
-            return folderHaveSticker;
         var folder = data.GetComponent<FolderHaveSticker>();
-        dataHaveStickerDict.Add(data, folder);
         return folder;
     }
 
