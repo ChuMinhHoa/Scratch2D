@@ -1,9 +1,12 @@
 using System;
+using Cysharp.Text;
 using Cysharp.Threading.Tasks;
+using LitMotion;
 using TW.UGUI.MVPPattern;
 using UnityEngine;
 using R3;
 using Sirenix.OdinInspector;
+using TMPro;
 using TW.UGUI.Core.Screens;
 using Screen = TW.UGUI.Core.Screens.Screen;
 
@@ -57,6 +60,8 @@ namespace Core.UI.Screens
             public CanvasGroup MainView { get; private set; }
 
             [field: SerializeField] public SlotTabMenu[] SlotTabMenu { get; private set; }
+            [field: SerializeField] public Transform ObjectFocus { get; private set; }
+            [field: SerializeField] public TextMeshProUGUI TxtFocus { get; private set; }
 
             public UniTask Initialize(Memory<object> args)
             {
@@ -74,6 +79,21 @@ namespace Core.UI.Screens
             public async UniTask OpenScreenHome()
             {
                 await UIManager.Instance.OpenScreenAsync<ScreenHome>();
+            }
+
+            public void MoveObjectFocus(SlotTabType type)
+            {
+                var targetPos = SlotTabMenu[1].transform.position;
+                for (var i = 0; i < SlotTabMenu.Length; i++)
+                {
+                    if (SlotTabMenu[i].slotTabType == type)
+                        targetPos = SlotTabMenu[i].transform.position;
+                }
+                
+                var currentPos = ObjectFocus.position;
+
+                LMotion.Create(currentPos, targetPos, 0.25f).Bind(x => ObjectFocus.position = x).AddTo(MainView);
+                TxtFocus.SetTextFormat(MyCache.strDefault, MyCache.ConvertBoosterToResourceType(type));
             }
         }
 
@@ -105,7 +125,7 @@ namespace Core.UI.Screens
             {
                 if (type == currentTabType) return;
                 currentTabType = type;
-
+                View.MoveObjectFocus(type);
                 for (var i = 0; i < View.SlotTabMenu.Length; i++)
                 {
                     if (View.SlotTabMenu[i].slotTabType == type) View.SlotTabMenu[i].OnSelect();

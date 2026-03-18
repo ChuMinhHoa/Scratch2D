@@ -10,7 +10,7 @@ public class FreeSpaceController : SpaceForSticker
     public List<SpaceSticker> spaceStickers;
     public SpaceSticker spaceStickerPitch;
     [ShowInInspector] public List<StickerDone> stickerDoneWait = new();
-
+    public GameObject objEffectSpawn;
     public bool IsHaveStickerWait()
     {
         return stickerDoneWait.Count > 0;
@@ -76,6 +76,7 @@ public class FreeSpaceController : SpaceForSticker
         spaceStickers.Add(spaceStickerPitch);
         spaceStickerPitch.gameObject.SetActive(true);
         SetPositionSpaceSticker();
+        objEffectSpawn.SetActive(true);
     }
 
     public override void ResetController()

@@ -39,10 +39,10 @@ public partial class StickerDone : MonoBehaviour
        var e = Level.Instance.oSController.GetFolderPos(this);
        if (e != null)
        {
-           stickerPos?.ResetPos();
-           stickerPos = e;
            Level.Instance.fSpaceController.RemoveStickerDoneFromNoWhere(this);
            Level.Instance.RemoveStickerDone(this);
+           stickerPos?.ResetPos();
+           stickerPos = e;
            stateMachine.RequestTransition(StickerDoneMoveToObjHaveStickerState);
            return;
        }
@@ -52,9 +52,9 @@ public partial class StickerDone : MonoBehaviour
            e = Level.Instance.fSpaceController.GetFreeSpacePos(this);
            if (e != null)
            {
-               Level.Instance.RemoveStickerDone(this);
-               Level.Instance.fSpaceController.RemoveStickerDoneFromNoWhere(this);
                stickerPos = e;
+               Level.Instance.fSpaceController.RemoveStickerDoneFromNoWhere(this);
+               Level.Instance.RemoveStickerDone(this);
                stateMachine.RequestTransition(StickerDoneMoveFreeSpaceState);
                return;
            }

@@ -113,6 +113,8 @@ public class Level : Singleton<Level>
         {
             e6[i].ResetSpace();
         }
+
+        oSController.SlotFolders[^1].ChangeFolderType(SlotFolderType.Ads);
     }
 
     [Button]
@@ -221,6 +223,7 @@ public class Level : Singleton<Level>
     {
         var posSpawn = sticker.transform.position;
         posSpawn.z = forceScratch ? -2f : posSpawn.z;
+        Debug.Log("Call Spawn Sticker Done ");
         var stD = PoolManager.Instance.SpawnStickerDone(posSpawn);
         stD.InitStickerMove(sticker.stickerData.stickerID, rot);
         sticker.DisAbleIcon();
@@ -462,5 +465,10 @@ public class Level : Singleton<Level>
     public void AddSlot()
     {
         fSpaceController.AddSlot();
+    }
+
+    public Difficulty GetLevelDifficult()
+    {
+        return levelConfig.difficulty;
     }
 }

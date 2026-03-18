@@ -8,6 +8,7 @@ using R3;
 using Sirenix.OdinInspector;
 using TMPro;
 using TW.UGUI.Core.Activities;
+using UnityEngine.UI;
 
 namespace Core.UI.Activities
 {
@@ -61,10 +62,20 @@ namespace Core.UI.Activities
             [field: SerializeField] public TextMeshProUGUI TxtTotalItems { get; private set; }
             [field: SerializeField] public TextMeshProUGUI TxtLevel { get; private set; }
             [field: SerializeField] public AnimationCurve CurveAnim { get; set; }
+            [field: SerializeField] public GameObject[] ObjLevelDifficult { get; set; }
 
             public UniTask Initialize(Memory<object> args)
             {
                 return UniTask.CompletedTask;
+            }
+
+            public void SetLevelDifficult(Difficulty levelDifficult)
+            {
+                for (var i = 0; i < ObjLevelDifficult.Length; i++)
+                {
+                    ObjLevelDifficult[i].SetActive(false);
+                }
+                ObjLevelDifficult[(int)levelDifficult].SetActive(true);
             }
         }
 
@@ -82,6 +93,7 @@ namespace Core.UI.Activities
                 View.TxtTotalItems.SetText("0");
                 var level = Level.Instance.levelIndex;
                 View.TxtLevel.SetTextFormat(MyCache.strLevel, level.Value + 1);
+                View.SetLevelDifficult(Level.Instance.GetLevelDifficult());
             }
 
             public void DidEnter(Memory<object> args)

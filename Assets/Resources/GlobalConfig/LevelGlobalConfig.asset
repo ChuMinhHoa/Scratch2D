@@ -44,11 +44,17 @@ MonoBehaviour:
     difficulty: 0
     levelAsset: {fileID: 4900000, guid: cca0ea4b5ffb5d94eb6922121747155d, type: 3}
   - level: 10
-    difficulty: 0
+    difficulty: 2
     levelAsset: {fileID: 4900000, guid: 04f1a04574ee2b340bd55817d3766060, type: 3}
   - level: 11
-    difficulty: 0
+    difficulty: 1
     levelAsset: {fileID: 4900000, guid: 9b7374b09dde5094d87836e37d4e4867, type: 3}
   - level: 12
     difficulty: 0
     levelAsset: {fileID: 4900000, guid: b3470e474f679fc48a2d6b17aa7be584, type: 3}
+  - level: 13
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 85156e93f9d065748bf6fc9c6cfa1943, type: 3}
+  - level: 14
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 316b65bef063f1d4bb6cd44d30137a8d, type: 3}

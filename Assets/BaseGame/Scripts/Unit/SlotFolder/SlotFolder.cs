@@ -10,6 +10,7 @@ public partial class SlotFolder : MonoBehaviour
     public SlotFolderGraphic slotFolderGraphic;
     public ButtonGameObject btnWatchAds;
     public ButtonGameObject btnBuy;
+    public GameObject objEffectSpawn;
 
     private void Start()
     {
@@ -42,9 +43,14 @@ public partial class SlotFolder : MonoBehaviour
         folderPos.RegisterObj(folder);
     }
 
-    private void ChangeFolderType(SlotFolderType folderType)
+    public void ChangeFolderType(SlotFolderType folderType)
     {
         slotFolderType = folderType;
+        if (slotFolderType == SlotFolderType.Normal)
+        {
+            objEffectSpawn.SetActive(true);
+            GlobalEventManager.CheckToCallNextSticker?.Invoke();
+        }
         stateMachine.RequestTransition(SlotFolderInitState);
         stateMachine.Run();
     }

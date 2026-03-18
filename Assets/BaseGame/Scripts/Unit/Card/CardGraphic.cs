@@ -29,17 +29,31 @@ public class CardGraphic : MonoBehaviour
 
     [ShowIf("@cardState == CardState.Lock")]
     public TextMeshPro txtCountUnlock;
+    
+    [ShowIf("@cardState == CardState.Lock")] 
+    public LockAnimControl lockAnimControl;
 
     public void SetTextCount(int countRemaining)
     {
         Debug.Log("Cout remaining: " +countRemaining);
-        
         txtCountUnlock.text = countRemaining.ToString();
+    }
+
+    public async UniTask UnLockCard()
+    {
+        lockAnimControl.PlayAnimUnlock();
+        await UniTask.WaitForSeconds(.7f);
+    }
+    
+    public async UniTask UnLockCardHammer()
+    {
+        lockAnimControl.PlayAnimUnlockByBooster();
+        await UniTask.WaitForSeconds(.7f);
     }
 
     #endregion
 
-    #region MyRegion
+    #region Freeze
 
     [ShowIf("@cardState == CardState.Freeze")]
     public GameObject objFreeze;

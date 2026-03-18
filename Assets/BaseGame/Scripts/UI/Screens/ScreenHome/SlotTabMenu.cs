@@ -58,13 +58,13 @@ public class SlotTabMenu : MonoBehaviour
             motionMove.TryCancel();
 
         var currentIconPos = imgIcon.transform.localPosition;
-        motionMove = LMotion.Create(currentIconPos, posIconTarget, 0.15f).Bind(x => imgIcon.transform.localPosition = x)
+        motionMove = LMotion.Create(currentIconPos, posIconTarget, 0.15f).WithEase(Ease.InBack).Bind(x => imgIcon.transform.localPosition = x)
             .AddTo(this);
 
-        layoutElement.flexibleWidth = sizeTabOnChoose;
+        //layoutElement.flexibleWidth = sizeTabOnChoose;
 
         var currentScaleIcon = imgIcon.transform.localScale;
-        motionIconScale = LMotion.Create(currentScaleIcon, Vector3.one, 0.15f)
+        motionIconScale = LMotion.Create(currentScaleIcon, Vector3.one, 0.15f).WithEase(Ease.InBack)
             .Bind(x => imgIcon.transform.localScale = x)
             .AddTo(this);
         
@@ -80,13 +80,13 @@ public class SlotTabMenu : MonoBehaviour
 
         var currentIconPos = imgIcon.transform.localPosition;
 
-        motionMove = LMotion.Create(currentIconPos, posIconDefault, 0.15f).Bind(x => imgIcon.transform.localPosition = x)
+        motionMove = LMotion.Create(currentIconPos, posIconDefault, 0.15f).WithEase(Ease.OutBack).Bind(x => imgIcon.transform.localPosition = x)
             .AddTo(this);
 
-        layoutElement.flexibleWidth = sizeTabDefault;
+        //layoutElement.flexibleWidth = sizeTabDefault;
 
         var currentScaleIcon = imgIcon.transform.localScale;
-        motionIconScale = LMotion.Create(currentScaleIcon, Vector3.one * 0.7f, 0.15f)
+        motionIconScale = LMotion.Create(currentScaleIcon, Vector3.one * 0.7f, 0.15f).WithEase(Ease.OutBack)
             .Bind(x => imgIcon.transform.localScale = x)
             .AddTo(this);
     }

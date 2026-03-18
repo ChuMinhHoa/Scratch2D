@@ -59,9 +59,22 @@ public partial class Card : CardLockState.IHandler
         if (countUnlockSticker == 0)
         {
             GlobalEventManager.OnNoteDoneCallBack -= OnNoteDoneForLock;
-            ChangeCardState(CardState.Normal);
-            _ = WaitForCheckCard();
+            _ = AnimUnlockNormal();
         }
+    }
+
+    private async UniTask AnimUnlockNormal()
+    {
+        await cardGraphic.UnLockCard();
+        ChangeCardState(CardState.Normal);
+        await WaitForCheckCard();
+    }
+    
+    private async UniTask AnimUnlockHammer()
+    {
+        await cardGraphic.UnLockCardHammer();
+        ChangeCardState(CardState.Normal);
+        await WaitForCheckCard();
     }
 
     private async UniTask WaitForCheckCard()
@@ -85,7 +98,6 @@ public partial class Card : CardLockState.IHandler
         countUnlockSticker = 0;
         cardGraphic.SetTextCount(countUnlockSticker);
         GlobalEventManager.OnNoteDoneCallBack -= OnNoteDoneForLock;
-        ChangeCardState(CardState.Normal);
-        _ = WaitForCheckCard();
+        _ = AnimUnlockHammer();
     }
 }

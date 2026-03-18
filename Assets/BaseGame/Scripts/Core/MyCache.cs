@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Cysharp.Text;
 using TMPro;
 using UnityEngine;
 
@@ -8,6 +10,9 @@ public static class MyCache
     public static string strProgress = "{0}/{1}";
     public static string strDefault = "{0}";
     public static string strLevel = "Level {0}";
+    public static string strLock = "lock";
+    public static string strUnlockNormal = "unlock_normal";
+    public static string strUnlockHammer = "unlock_hammer";
     private static Dictionary<GameResource.Type, TMP_Style> resourceStyleCache = new();
     public static GameResource.Type ConvertBoosterToResourceType(BoosterType boosterType)
     {
@@ -19,6 +24,19 @@ public static class MyCache
             _ => GameResource.Type.None
         };
     }
+    
+    public static string ConvertBoosterToResourceType(SlotTabType tabType)
+    {
+        return tabType switch
+        {
+            SlotTabType.None => ZString.Concat("None"),
+            SlotTabType.Shop => ZString.Concat("Shop"),
+            SlotTabType.Home => ZString.Concat("Home"),
+            SlotTabType.ComingSoon => ZString.Concat("Coming Soon"),
+            _ =>""
+        };
+    }
+
 
     public static TMP_Style GetTextResourceStyle(GameResource.Type type)
     {
