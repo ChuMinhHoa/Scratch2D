@@ -25,7 +25,7 @@ public class BoosterAddSlot : BoosterBase
     public override void UsedBooster(SelectAbleOnBooster data)
     {
         base.UsedBooster(data);
-        Debug.Log($"Used Booster with data: {data}");
+            Debug.Log($"Used Booster with data: {data}");
     }
 
     public override void OnChangeBoosterCount(int count)

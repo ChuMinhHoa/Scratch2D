@@ -4,14 +4,13 @@ using TW.UGUI.MVPPattern;
 using UnityEngine;
 using R3;
 using Sirenix.OdinInspector;
-using TW.UGUI.Core.Activities;
-using UnityEngine.UI;
+using TW.UGUI.Core.Modals;
 
-namespace Core.UI.Activities
+namespace Core.UI.Modals
 {
-    public class ActivityUsingBooster : Activity
+    public class ModalSettingInGame : Modal
     {
-        [field: SerializeField] public ActivityUsingBoosterContext.UIPresenter UIPresenter { get; private set; }
+        [field: SerializeField] public ModalSettingInGameContext.UIPresenter UIPresenter { get; private set; }
 
         protected override void Awake()
         {
@@ -27,7 +26,7 @@ namespace Core.UI.Activities
 
 
     [Serializable]
-    public class ActivityUsingBoosterContext
+    public class ModalSettingInGameContext
     {
         public static class Events
         {
@@ -56,8 +55,6 @@ namespace Core.UI.Activities
             [field: SerializeField]
             public CanvasGroup MainView { get; private set; }
 
-            [field: SerializeField] public Button BtnCloseUsingBooster { get; private set; }
-
             public UniTask Initialize(Memory<object> args)
             {
                 return UniTask.CompletedTask;
@@ -66,7 +63,7 @@ namespace Core.UI.Activities
 
         [HideLabel]
         [Serializable]
-        public class UIPresenter : IAPresenter, IActivityLifecycleEventSimple
+        public class UIPresenter : IAPresenter, IModalLifecycleEventSimple
         {
             [field: SerializeField] public UIModel Model { get; private set; } = new();
             [field: SerializeField] public UIView View { get; set; } = new();
@@ -75,25 +72,6 @@ namespace Core.UI.Activities
             {
                 await Model.Initialize(args);
                 await View.Initialize(args);
-                View.BtnCloseUsingBooster.onClick.AddListener(OnCloseActivity);
-                GlobalEventManager.OnBoosterDone += CloseActivity;
-            }
-
-            public UniTask Cleanup(Memory<object> args)
-            {
-                GlobalEventManager.OnBoosterDone -= CloseActivity;
-                return UniTask.CompletedTask;
-            }
-
-            private void OnCloseActivity()
-            {
-                _ = UIAnimManager.Instance.AnimButton(View.BtnCloseUsingBooster.transform);
-                GlobalEventManager.OnBoosterDone?.Invoke();
-            }
-
-            private void CloseActivity()
-            {
-                _ = UIManager.Instance.CloseActivityAsync<ActivityUsingBooster>();
             }
         }
     }

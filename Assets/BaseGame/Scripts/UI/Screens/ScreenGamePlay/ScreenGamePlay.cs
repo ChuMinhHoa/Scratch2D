@@ -1,4 +1,5 @@
 using System;
+using Core.UI.Modals;
 using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using TW.UGUI.MVPPattern;
@@ -66,10 +67,25 @@ namespace Core.UI.Screens
             [field: SerializeField] public Button BtnSetting { get; private set; }
             [field: SerializeField] public TextMeshProUGUI TxtLevel { get; private set; }
             [field: SerializeField] public TextMeshProUGUI TxtCount { get; private set; }
+            [field: SerializeField] public BtnBooster[] BtnBoosters { get; private set; }
+            [field: SerializeField] public GameObject[] ObjDifficult { get; private set; }
 
             public UniTask Initialize(Memory<object> args)
             {
+                var difficult = Level.Instance.GetLevelDifficult();
+                for (var i = 0; i < ObjDifficult.Length; i++)
+                {
+                    ObjDifficult[i].SetActive(i == (int)difficult);
+                }
                 return UniTask.CompletedTask;
+            }
+
+            public void RefreshBtnBooster()
+            {
+                for (var i = 0; i < BtnBoosters.Length; i++)
+                {
+                    BtnBoosters[i].ResetBooster();
+                }
             }
         }
 
@@ -89,7 +105,7 @@ namespace Core.UI.Screens
                 Model.level.Subscribe(ChangeLevel).AddTo(View.MainView);
                 Model.countDone.Subscribe(ChangeTotalCount).AddTo(View.MainView);
                 Model.maxCount.Subscribe(ChangeMaxCount).AddTo(View.MainView);
-
+                View.RefreshBtnBooster();
             }
 
             public void ChangeMaxCount(int maxChange)
@@ -110,6 +126,7 @@ namespace Core.UI.Screens
             private void OnClickSetting()
             {
                 _ = UIAnimManager.Instance.AnimButton(View.BtnSetting.transform, null);
+                _ = UIManager.Instance.OpenModalAsync<ModalSettingInGame>();
             }
         }
     }

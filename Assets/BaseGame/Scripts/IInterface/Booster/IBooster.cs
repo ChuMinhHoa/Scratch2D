@@ -14,6 +14,7 @@ public interface IBooster
     void ActiveBooster(bool active);
     void OnChangeBoosterCount(int count);
     void SetUsedCallBack(Action actionCallback);
+    void SetUsingByAds(BoosterUseType uType);
 }
 
 [Serializable]
@@ -21,15 +22,15 @@ public class BoosterBase : IBooster
 {
     public BoosterType boosterType;
     public TextMeshProUGUI boosterText;
-    public Button boosterButton;
     public Action actionUsedCallBack;
     
     public Reactive<bool> isCanUse = new(false);
     public LayerMask layerCanSelect;
+    public BoosterUseType useType;
     
     public virtual void InitData(UnityAction actionCall)
     {
-        boosterButton.onClick.AddListener(actionCall);
+        
     }
 
     public virtual void UseBooster()
@@ -48,7 +49,7 @@ public class BoosterBase : IBooster
 
     public virtual void ActiveBooster(bool active)
     {
-        boosterButton.interactable = active;
+        
     }
 
     public virtual void OnChangeBoosterCount(int count)
@@ -59,6 +60,11 @@ public class BoosterBase : IBooster
     public void SetUsedCallBack(Action actionCallback)
     {
         actionUsedCallBack = actionCallback;
+    }
+
+    public void SetUsingByAds(BoosterUseType uType)
+    {
+        useType = uType;
     }
 }
 

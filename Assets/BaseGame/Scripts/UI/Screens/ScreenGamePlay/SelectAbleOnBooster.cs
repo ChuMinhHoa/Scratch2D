@@ -56,15 +56,12 @@ public class SelectAbleOnBooster : MonoBehaviour, ISelectAbleOnBooster
         onCanSelect = true;
         var position = transform.localPosition;
         defaultPos = transform.localPosition;
-        Debug.Log(defaultPos);
         position.z = -5;
         transform.localPosition = position;
     }
 
     public void OnSelect()
     {
-        Debug.Log($"Select by booster {gameObject}");
         Booster?.UsedBooster(this);
-        GlobalEventManager.OnBoosterDone?.Invoke();
     }
 }

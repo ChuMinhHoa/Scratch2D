@@ -42,6 +42,6 @@ public class UIResource : MonoBehaviour
 
     private void ChangeValue(BigNumber value)
     {
-        txtAmount.SetTextFormat(MyCache.strDefault, value);
+        txtAmount.SetTextFormat(MyCache.strDefault, value.ToStringUIFloor());
     }
 }

@@ -15,8 +15,10 @@ public partial class FolderHaveSticker : MonoBehaviour
     public UnitAnimation unitAnim;
     public FHSGraphic fhsGraphic;
     public StateMachine stateMachine;
-    public bool readyToMove;
-
+    
+    public SelectAbleOnBooster selectAbleOnBooster;
+    private bool onSlot = false;
+    
     private void Start()
     {
         stateMachine.RequestTransition(FhsWaitState);
@@ -26,6 +28,14 @@ public partial class FolderHaveSticker : MonoBehaviour
         {
             trsStickerPos[i].moveDone.Skip(1).Subscribe(StickerMoveDone).AddTo(this);
         }
+        selectAbleOnBooster.SetConditionToSelect(ConditionToSelect);
+    }
+
+    private bool ConditionToSelect()
+    {
+        if (!onSlot)
+            return false;
+        return stateMachine.CurrentState != FhsDoneState;
     }
 
     private void StickerMoveDone(bool stickerMoveDone)
@@ -58,7 +68,6 @@ public partial class FolderHaveSticker : MonoBehaviour
 
     public void ResetFolderSticker()
     {
-        readyToMove = false;
         for (var i = 0; i < trsStickerPos.Length; i++)
         {
             if (!trsStickerPos[i].obj) continue;
@@ -72,6 +81,8 @@ public partial class FolderHaveSticker : MonoBehaviour
 
     public async UniTask MoveOut(Transform posOut)
     {
+        onSlot = false;
+        stateMachine.RequestTransition(FhsDoneState);
         var id = UnitEventManager.Instance.RegisterEvent();
         var currentPos = transform.position;
         await unitAnim.PlayScaleAnimation();
@@ -85,11 +96,12 @@ public partial class FolderHaveSticker : MonoBehaviour
     {
         var id = UnitEventManager.Instance.RegisterEvent();
         await unitAnim.PlayMoveAnim(target);
-        readyToMove = true;
         UnitEventManager.Instance.RemoveEventId(id);
         await UniTask.WaitForSeconds(0.1f);
         Level.Instance.CheckStickerDone();
         Level.Instance.CheckLoseGame();
+        
+        onSlot = true;
     }
 
     public bool IsHaveStickerOnMove()

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using TW.Utility.DesignPattern;
 using UnityEngine;
 
@@ -7,7 +8,8 @@ public class BoosterManager : Singleton<BoosterManager>
 {
     Dictionary<Collider2D, SelectAbleOnBooster> selectAbleOnBoosters = new Dictionary<Collider2D, SelectAbleOnBooster>();
     public bool onUsingBooster;
-
+    [SerializeField] private BoosterGraphicControl[] boosterGraphicControls;
+    private BoosterType currentBoosterType;
     private void Start()
     {
         GlobalEventManager.OnBoosterUsing += OnUsingBooster;
@@ -23,15 +25,26 @@ public class BoosterManager : Singleton<BoosterManager>
     private void OnUsingBooster(BoosterType arg1, IBooster arg2)
     {
         onUsingBooster = true;
+        currentBoosterType = arg1;
         GamePlayManager.Instance.ChangeGameState(GameState.OnBooster);
     }
-    
-    
 
-    public void ChooseObjOnBooster(Collider2D col)
+    public async UniTask ChooseObjOnBooster(Collider2D col)
     {
         var sBo = GetSelectAbleOnBooster(col);
         if (sBo == null) return;
+       
+        var pos = col.transform;
+        for (var i = 0; i < boosterGraphicControls.Length; i++)
+        {
+            if (boosterGraphicControls[i].bType == currentBoosterType)
+            {
+                await boosterGraphicControls[i].MoveBoosterTo(pos);
+                sBo.OnSelect();
+                return;
+            }
+        }
+        
         sBo.OnSelect();
     }
 

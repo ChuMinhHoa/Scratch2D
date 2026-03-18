@@ -595,7 +595,7 @@ MonoBehaviour:
       EditorValue: 0
   unitAnim: {fileID: 4863756869183477885}
   fhsGraphic: {fileID: 765082307437905535}
-  readyToMove: 0
+  selectAbleOnBooster: {fileID: -6220284649281371386}
   data:
     objID: 0
     stickerId: 0

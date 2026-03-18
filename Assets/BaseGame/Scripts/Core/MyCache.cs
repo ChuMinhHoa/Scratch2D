@@ -6,6 +6,7 @@ using UnityEngine;
 
 public static class MyCache
 {
+    public static string strActive= "animation";
     public static string textFormatFloat = "0:F2";
     public static string strProgress = "{0}/{1}";
     public static string strDefault = "{0}";

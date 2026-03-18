@@ -6,6 +6,7 @@ using TW.Utility.DesignPattern;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum GameState
 {
@@ -27,9 +28,9 @@ public class GamePlayManager : Singleton<GamePlayManager>
     private Dictionary<Collider2D, Card> cardCollection = new();
     private Dictionary<Collider2D, ButtonGameObject> buttonGameObjects = new();
     public Reactive<bool> isFollowing;
-    public Reactive<GameState> gameState = new (GameState.Normal);
-    
-    public Reactive<bool> onPlaying = new (false);
+    public Reactive<GameState> gameState = new(GameState.Normal);
+
+    public Reactive<bool> onPlaying = new(false);
 
     protected override void Awake()
     {
@@ -49,7 +50,6 @@ public class GamePlayManager : Singleton<GamePlayManager>
 
     private void Start()
     {
-        
         if (cam == null)
             cam = Camera.main;
         this.UpdateAsObservable().Subscribe(_ => { UpdateFunction(); }).AddTo(this);
@@ -69,19 +69,19 @@ public class GamePlayManager : Singleton<GamePlayManager>
                 isFollowing.Value = false;
                 eraser.SetActiveGraphic(false);
             }
+
             return;
         }
-        
+
         OnGamePlaying();
-        
     }
 
     private void OnGameUsingBooster()
     {
         if (Input.touchCount > 1)
             return;
-        
-        
+
+
         if (Input.GetMouseButtonUp(0) /*|| Input.GetTouch(0).phase == TouchPhase.Ended*/)
         {
             CheckOverSelectAbleOnBooster();
@@ -92,6 +92,8 @@ public class GamePlayManager : Singleton<GamePlayManager>
     {
         if (Input.touchCount > 1)
             return;
+
+        if (IsMouseOverUI()) return;
         
         if (Input.GetMouseButtonDown(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
@@ -121,13 +123,21 @@ public class GamePlayManager : Singleton<GamePlayManager>
 
         eraser.Move(targetPos);
     }
+
+    private bool IsMouseOverUI()
+    {
+        return Input.touchCount > 0
+            ? EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)
+            : EventSystem.current.IsPointerOverGameObject();
+    }
+
     public LayerMask whatCanSelectOnBooster;
-    
+
     public void SetWhatCanSelectOnBooster(LayerMask layerMask)
     {
         whatCanSelectOnBooster = layerMask;
     }
-    
+
     private void CheckOverSelectAbleOnBooster()
     {
         if (!BoosterManager.Instance.onUsingBooster)

@@ -80,7 +80,7 @@ public partial class Card : CardLockState.IHandler
     private async UniTask WaitForCheckCard()
     {
         await UniTask.WaitUntil(() => stateMachine.CurrentState == CardWaitState);
-        CheckToShow();
+        OnShowMode();
     }
 
     public UniTask OnUpdateLockState()
