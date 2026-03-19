@@ -72,11 +72,6 @@ namespace Core.UI.Screens
 
             public UniTask Initialize(Memory<object> args)
             {
-                var difficult = Level.Instance.GetLevelDifficult();
-                for (var i = 0; i < ObjDifficult.Length; i++)
-                {
-                    ObjDifficult[i].SetActive(i == (int)difficult);
-                }
                 return UniTask.CompletedTask;
             }
 
@@ -85,6 +80,15 @@ namespace Core.UI.Screens
                 for (var i = 0; i < BtnBoosters.Length; i++)
                 {
                     BtnBoosters[i].ResetBooster();
+                }
+            }
+
+            public void OnChangeLevel()
+            {
+                var difficult = Level.Instance.GetLevelDifficult();
+                for (var i = 0; i < ObjDifficult.Length; i++)
+                {
+                    ObjDifficult[i].SetActive(i == (int)difficult);
                 }
             }
         }
@@ -121,6 +125,7 @@ namespace Core.UI.Screens
             public void ChangeLevel(int levelChange)
             {
                 View.TxtLevel.SetTextFormat(MyCache.strLevel, levelChange + 1);
+                View.OnChangeLevel();
             }
 
             private void OnClickSetting()

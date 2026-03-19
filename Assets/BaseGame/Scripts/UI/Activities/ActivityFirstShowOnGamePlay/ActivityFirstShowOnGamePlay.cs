@@ -106,7 +106,7 @@ namespace Core.UI.Activities
                 var totalItems = Level.Instance.oSController.totalCount.Value;
                 await LMotion.Create(0f, 1f, 0.25f).WithEase(View.CurveAnim).Bind(x => View.TrsContent.localScale = Vector3.one * x);
                 await LMotion.Create(0, totalItems, 0.25f).Bind(x=> View.TxtTotalItems.text = $"{x}").AddTo(View.MainView);
-                await UniTask.WaitForSeconds(1f);
+                await UniTask.WaitForSeconds(1.3f);
                 await LMotion.Create(1f, 0f, 0.15f).WithEase(View.CurveAnim).Bind(x => View.MainView.alpha = x);
                 await UIManager.Instance.CloseActivityAsync<ActivityFirstShowOnGamePlay>();
             }

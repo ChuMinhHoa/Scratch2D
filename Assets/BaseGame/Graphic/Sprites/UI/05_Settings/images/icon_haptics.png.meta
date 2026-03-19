@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5ed4198c1973f954ea32f358e5acb31d
+guid: dc61b9e249af529429e61d223c1c6b91
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8904116186837324275
-    second: flames_R_0
+      213: 8826574009339790530
+    second: icon_haptics_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: flames_R_0
+      name: icon_haptics_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 305
-        height: 211
+        y: 4
+        width: 88
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3f19e33fe76c19b70800000000000000
-      internalID: 8904116186837324275
+      spriteID: 2c4c46adb4a4e7a70800000000000000
+      internalID: 8826574009339790530
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      flames_R_0: 8904116186837324275
+      icon_haptics_0: 8826574009339790530
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

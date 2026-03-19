@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: UIGroup
   m_GUID: 909b0a21bb1915b499d12296382d340e
   m_SerializeEntries:
+  - m_GUID: 14b9d37eb0de5f74785fbe1c6fcddaea
+    m_Address: ModalSettingInGame
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 20e9544cb4d66194e931bd7766d329bb
     m_Address: ActivityLoseGame
     m_ReadOnly: 0
@@ -57,6 +62,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a846498dd4b492e4981d206bdfe0dfca
     m_Address: ActivityLoading
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ca8e3e3cc9d8cae4a8f4a5a01c71d6a4
+    m_Address: DefaultModalBackdrop
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

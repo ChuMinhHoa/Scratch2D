@@ -64,10 +64,10 @@ public class UnitAnimation : MonoBehaviour
         var targetX = targetPos.x;
         var targetY = targetPos.y;
         var targetZ = targetPos.z;
-        
-        var mx = Random.Range(magnitudeX.x, magnitudeX.y);
-        var my = Random.Range(magnitudeY.x, magnitudeY.y);
-        var mz = Random.Range(magnitudeZ.x, magnitudeZ.y);
+
+        var mx = Random.Range(magnitudeX.x, magnitudeX.y) * (Random.Range(0, 2) == 0 ? -1 : 1);
+        var my = Random.Range(magnitudeY.x, magnitudeY.y) * (Random.Range(0, 2) == 0 ? -1 : 1);
+        var mz = Random.Range(magnitudeZ.x, magnitudeZ.y) * (Random.Range(0, 2) == 0 ? -1 : 1);
       
         var currentPos = transform.position;
 

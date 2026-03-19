@@ -13,6 +13,8 @@ using Random = UnityEngine.Random;
 public class Level : Singleton<Level>
 {
     public Reactive<int> levelIndex = new(0);
+    public Reactive<int> levelChange = new(-1);
+    public int realLevel;
     public TextAsset levelTextAsset;
     public LevelConfig levelConfig;
     public LevelData LevelData;
@@ -37,6 +39,7 @@ public class Level : Singleton<Level>
         await UniTask.WaitUntil(() => PlayerInfoManager.Instance.loadDone);
         
         levelIndex = PlayerInfoManager.Instance.playerLevel;
+        levelChange = PlayerInfoManager.Instance.levelChange;
         
         GlobalEventManager.CheckToCallNextSticker = () => CallNextObjSticker();
 
@@ -44,6 +47,14 @@ public class Level : Singleton<Level>
 
         GlobalEventManager.OnBoosterUsing += OnUsingBooster;
         GlobalEventManager.OnBoosterDone += OnBoosterDone;
+    }
+
+    private void OnDestroy()
+    {
+        GlobalEventManager.OnRemoveSticker -= OnRemoveSticker;
+
+        GlobalEventManager.OnBoosterUsing -= OnUsingBooster;
+        GlobalEventManager.OnBoosterDone -= OnBoosterDone;
     }
 
     private void OnBoosterDone()
@@ -65,7 +76,7 @@ public class Level : Singleton<Level>
     /// CODE NHƯ CỨT. LÀM VỘI NÊN MỚI PHẢI CHỐNG CHẾ THẾ NÀY
     /// </summary>
     [Button(ButtonSizes.Gigantic)]
-    private void LoadDataClean()
+    public void LoadDataClean()
     {
         var e = FindObjectsByType<ScratchObject>(FindObjectsSortMode.None);
         var e1 = FindObjectsByType<Card>(FindObjectsSortMode.None);
@@ -121,7 +132,17 @@ public class Level : Singleton<Level>
     public async UniTask LoadData()
     {
         GamePlayManager.Instance.ChangeGameState(GameState.Loading);
-        levelConfig = LevelGlobalConfig.Instance.GetLevelConfig(levelIndex.Value);
+        var e = levelIndex.Value > LevelGlobalConfig.Instance.levelConfigs.Length && levelChange.Value == -1;
+        if (e)
+        {
+            levelChange.Value = LevelGlobalConfig.Instance.GetRandomLevel(levelIndex.Value);
+            PlayerInfoDataSave.Instance.SaveData();
+        }
+        
+        realLevel = levelChange.Value != -1 ? levelChange.Value : levelIndex.Value;
+        
+        levelConfig = LevelGlobalConfig.Instance.GetLevelConfig(realLevel);
+        
         levelTextAsset = levelConfig.levelAsset;
         LevelData = DataSerializer.Deserialize<LevelData>(levelTextAsset.text);
         ShuffleID();
@@ -254,6 +275,11 @@ public class Level : Singleton<Level>
     {
         ResetLevel();
         levelIndex.Value++;
+        if (levelChange.Value!= -1)
+        {
+            levelChange.Value = -1;
+            PlayerInfoDataSave.Instance.SaveData();
+        }
         PlayerInfoDataSave.Instance.SaveData();
         GamePlayManager.Instance.ChangeGameState(GameState.Normal);
         _ = UIManager.Instance.OpenActivityAsync<ActivityWinGame>();
@@ -469,6 +495,6 @@ public class Level : Singleton<Level>
 
     public Difficulty GetLevelDifficult()
     {
-        return levelConfig.difficulty;
+        return MyCache.GetDifficultByLevel(realLevel + 1);
     }
 }

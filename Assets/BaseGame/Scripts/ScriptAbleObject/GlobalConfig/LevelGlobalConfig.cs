@@ -15,29 +15,27 @@ public class LevelGlobalConfig : GlobalConfig<LevelGlobalConfig>
 
     public LevelConfig GetLevelConfig(int level)
     {
-        if (level >= levelConfigs.Length)
-        {
-            var levelDifficulty = level % 10 == 0 ? Difficulty.Hard :
-                level % 10 == 5 ? Difficulty.Medium : Difficulty.Easy;
-            return GetRandomLevelConfig(level, levelDifficulty);
-        }
-
         return levelConfigs[level];
     }
-
-    private LevelConfig GetRandomLevelConfig(int currentLevel, Difficulty levelDifficulty)
+    
+    public int GetRandomLevel(int levelIndexValue)
     {
-        var limitMin = Mathf.Clamp(currentLevel - 50, 0, levelConfigs.Length);
-        var limitMax = Mathf.Clamp(currentLevel + 50, 0, levelConfigs.Length);
-        var levelRandom = -1;
+        var realLevel = levelIndexValue + 1;
+        var levelDifficulty = realLevel % 10 == 0 ? Difficulty.Hard :
+            realLevel % 10 == 5 ? Difficulty.Medium : Difficulty.Easy;
+        var limitMin = 10;
+        var limitMax = levelConfigs.Length - 1;
         Span<int> levelCandidates = stackalloc int[100];
         var index = 0;
+        var levelRandom = -1;
         switch (levelDifficulty)
         {
             case Difficulty.Easy:
+                Debug.Log("get random level easy");
                 levelRandom = Random.Range(limitMin, limitMax);
                 break;
             case Difficulty.Medium:
+                Debug.Log("get random level medium");
                 levelCandidates.Clear();
                 for (var i = limitMin; i < limitMax; i++)
                 {
@@ -47,28 +45,29 @@ public class LevelGlobalConfig : GlobalConfig<LevelGlobalConfig>
                         index++;
                     }
                 }
-                levelRandom = levelCandidates.Length > 0
+                levelRandom = index > 0
                     ? levelCandidates[Random.Range(0, index)]
                     : Random.Range(limitMin, limitMax);
                 break;
             case Difficulty.Hard:
+                Debug.Log("get random level hard");
                 for (var i = limitMin; i < limitMax; i++)
                 {
                     if (i % 10 == 0)
                     {
-                        index++;
                         levelCandidates[index] = i;
+                        index++;
                     }
                 }
-                levelRandom = levelCandidates.Length > 0
-                    ? levelCandidates[Random.Range(0, index)]
+
+                var randomIndex = Random.Range(0, index);
+                levelRandom = index > 0
+                    ? levelCandidates[randomIndex]
                     : Random.Range(limitMin, limitMax);
                 break;
-            default:
-                break;
         }
-
-        return levelConfigs[levelRandom];
+        Debug.Log($"levelRandom {levelRandom}");
+        return levelRandom;
     }
 
 #if UNITY_EDITOR
@@ -93,6 +92,7 @@ public class LevelGlobalConfig : GlobalConfig<LevelGlobalConfig>
     }
     
 #endif
+    
 }
 
 [Serializable]

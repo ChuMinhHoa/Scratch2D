@@ -50,4 +50,11 @@ public static class MyCache
         resourceStyleCache.Add(type, tmpStyle);
         return tmpStyle;
     }
+
+    public static Difficulty GetDifficultByLevel(int realLevel)
+    {
+        var levelDifficulty = realLevel % 10 == 0 ? Difficulty.Hard :
+            realLevel % 10 == 5 ? Difficulty.Medium : Difficulty.Easy;
+        return levelDifficulty;
+    }
 }

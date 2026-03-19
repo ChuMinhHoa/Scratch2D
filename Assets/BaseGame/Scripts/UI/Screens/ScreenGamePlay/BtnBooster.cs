@@ -77,12 +77,11 @@ public class BtnBooster : MonoBehaviour
         price = config.price;
         txtPrice.SetTextFormat(MyCache.strDefault, price);
         imgIcon.sprite = config.icon;
-        objWatchAds.SetActive(true);
     }
 
-    private void SetBoosterCanUseByAds(BoosterUseType useType)
+    private void SetBoosterCanUseType(BoosterUseType useType)
     {
-        booster.SetUsingByAds(useType);
+        booster.SetUsingType(useType);
     }
 
     [Button]
@@ -91,16 +90,20 @@ public class BtnBooster : MonoBehaviour
         var isEnough = valueChange > 0;
         var usedByAds = countUsed > 0;
         objPrice.SetActive(!isEnough && usedByAds);
-        objAmount.SetActive(isEnough && usedByAds);
+        objAmount.SetActive(isEnough);
+        objWatchAds.SetActive(!isEnough && !usedByAds);
 
-        switch (isEnough)
+
+        if (isEnough)
         {
-            case true when usedByAds:
-                SetBoosterCanUseByAds(BoosterUseType.GameResource);
-                break;
-            case false when usedByAds:
-                SetBoosterCanUseByAds(BoosterUseType.Price);
-                break;
+            SetBoosterCanUseType(BoosterUseType.GameResource);
+        }else if (usedByAds)
+        {
+            SetBoosterCanUseType(BoosterUseType.Price);
+        }
+        else
+        {
+            SetBoosterCanUseType(BoosterUseType.Ads);
         }
 
         txtAmount.SetTextFormat(MyCache.strDefault, valueChange);
@@ -114,7 +117,6 @@ public class BtnBooster : MonoBehaviour
     
     private void UsedBooster()
     {
-        countUsed++;
         var boosterUseType = ((BoosterBase)booster).useType;
         switch (boosterUseType)
         {
@@ -125,6 +127,7 @@ public class BtnBooster : MonoBehaviour
                 PayByGameResource();
                 break;
             case BoosterUseType.Ads:
+                countUsed++;
                 PayByAds();
                 break;
             case BoosterUseType.None:
@@ -146,11 +149,11 @@ public class BtnBooster : MonoBehaviour
 
     public void ResetBooster()
     {
-        SetBoosterCanUseByAds(BoosterUseType.Ads);
+        SetBoosterCanUseType(BoosterUseType.Ads);
         countUsed = 0;
         objPrice.SetActive(false);
         objAmount.SetActive(false);
-        objWatchAds.SetActive(true);
+        objWatchAds.SetActive(false);
     }
 }
 

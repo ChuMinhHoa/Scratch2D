@@ -6,6 +6,7 @@ public class PlayerInfoManager : Singleton<PlayerInfoManager>
 {
     public Reactive<int> playerLevel = new (0);
     public bool loadDone = false;
+    public Reactive<int> levelChange = new (-1);
 
     private void Start()
     {
@@ -15,6 +16,7 @@ public class PlayerInfoManager : Singleton<PlayerInfoManager>
     private void LoadData()
     {
         playerLevel = PlayerInfoDataSave.Instance.playerLevel;
+        levelChange = PlayerInfoDataSave.Instance.levelChange;
         loadDone = true;
     }
 }

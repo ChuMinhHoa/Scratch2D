@@ -4,7 +4,8 @@ using UnityEngine;
 [Serializable]
 public class PlayerInfoDataSave : IDataSave<PlayerInfoDataSave>
 {
-    public Reactive<int> playerLevel = new(0);  
+    public Reactive<int> playerLevel = new(0);
+    public Reactive<int> levelChange = new(-1);
     public static PlayerInfoDataSave Instance => InGameDataManager.Instance.InGameData.PlayerInfoDataSave;
     public bool IsDirty { get; set; }
     public PlayerInfoDataSave DefaultData()

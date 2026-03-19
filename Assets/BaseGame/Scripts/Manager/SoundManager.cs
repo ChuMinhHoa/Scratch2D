@@ -23,9 +23,27 @@ public class SoundManager : Singleton<SoundManager>
     {
         InitAudio();
         settingData = SettingDataSave.Instance.settingData;
+        var e = Enum.GetValues(typeof(SettingKey));
+        if (settingData.Count < e.Length)
+        {
+            CreateDataSetting((e as SettingKey[]).AsSpan());
+        }
         for (var i = 0; i < settingData.Count; i++)
         {
             settingData[i].ableSetting.Subscribe(ChangeSetting).AddTo(this);
+        }
+    }
+
+    private void CreateDataSetting(Span<SettingKey> settingKeys)
+    {
+        for (var i = settingData.Count; i < settingKeys.Length; i++)
+        {
+            var e = new SettingData
+            {
+                settingKey = settingKeys[i],
+                ableSetting = new Reactive<bool>(true)
+            };
+            settingData.Add(e);
         }
     }
 
@@ -176,6 +194,31 @@ public class SoundManager : Singleton<SoundManager>
     }
 
     #endregion
+
+    public SettingData GetSettingData(SettingKey settingKey)
+    {
+        for (var i = 0; i < settingData.Count; i++)
+        {
+            if (settingData[i].settingKey == settingKey)
+                return settingData[i];
+        }
+
+        return null;
+    }
+
+    public void ChangeSettingData(SettingKey settingKey)
+    {
+        for (var i = 0; i < settingData.Count; i++)
+        {
+            if (settingKey == settingData[i].settingKey)
+            {
+                settingData[i].ableSetting.Value = !settingData[i].ableSetting.Value;
+                break;
+            }
+        }
+        
+        SettingDataSave.Instance.SaveData();
+    }
 }
 
 [Serializable]

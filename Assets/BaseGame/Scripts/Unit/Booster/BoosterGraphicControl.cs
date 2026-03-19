@@ -15,7 +15,7 @@ public class BoosterGraphicControl : MonoBehaviour
         var currentPos = trsBooster.position;
         var targetPos = target.position;
         await LMotion.Create(currentPos, targetPos, 0.15f).Bind(x => trsBooster.position = x).AddTo(trsBooster);
-        PlayAnim().Forget();
+        await PlayAnim();
     }
 
     private async UniTask PlayAnim()

@@ -14,7 +14,7 @@ public interface IBooster
     void ActiveBooster(bool active);
     void OnChangeBoosterCount(int count);
     void SetUsedCallBack(Action actionCallback);
-    void SetUsingByAds(BoosterUseType uType);
+    void SetUsingType(BoosterUseType uType);
 }
 
 [Serializable]
@@ -62,7 +62,7 @@ public class BoosterBase : IBooster
         actionUsedCallBack = actionCallback;
     }
 
-    public void SetUsingByAds(BoosterUseType uType)
+    public void SetUsingType(BoosterUseType uType)
     {
         useType = uType;
     }

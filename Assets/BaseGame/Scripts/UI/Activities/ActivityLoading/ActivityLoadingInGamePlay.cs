@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using TW.UGUI.MVPPattern;
@@ -60,6 +61,8 @@ namespace Core.UI.Activities
 
             [field: SerializeField] public ProgressBar LoadingProgressBar { get; private set; }
 
+            public bool loadToHome;
+
             public UniTask Initialize(Memory<object> args)
             {
                 return UniTask.CompletedTask;
@@ -71,17 +74,22 @@ namespace Core.UI.Activities
                 await LMotion.Create(currentProgress, 50f, 0.5f)
                     .WithEase(Ease.Linear)
                     .Bind(ShowTextProgress).AddTo(MainView);
-                await Level.Instance.LoadData();
+                
+                if (!loadToHome)
+                    await Level.Instance.LoadData();
+                
                 await LMotion.Create(currentProgress, 100f, 0.5f)
                     .WithEase(Ease.Linear)
                     .Bind(ShowTextProgress).AddTo(MainView);
                 await UIManager.Instance.CloseActivityAsync<ActivityLoadingInGamePlay>();
-                await Level.Instance.AnimFirstSpawn();
+                
+                if (!loadToHome)
+                    await Level.Instance.AnimFirstSpawn();
             }
 
             private void ShowTextProgress(float value)
             {
-                LoadingProgressBar.OnlyChangeProgress(value/100f);
+                LoadingProgressBar.OnlyChangeProgress(value / 100f);
                 _ = LoadingProgressBar.ChangeTextProgress(value);
             }
         }
@@ -97,8 +105,9 @@ namespace Core.UI.Activities
             {
                 await Model.Initialize(args);
                 await View.Initialize(args);
+                View.loadToHome = (bool)args.Span[0];
             }
-            
+
             public void DidEnter(Memory<object> args)
             {
                 _ = View.Loading();
