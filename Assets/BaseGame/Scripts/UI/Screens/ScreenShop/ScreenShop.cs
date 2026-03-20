@@ -1,4 +1,3 @@
-
 using System;
 using Cysharp.Threading.Tasks;
 using TW.UGUI.MVPPattern;
@@ -6,6 +5,7 @@ using UnityEngine;
 using R3;
 using Sirenix.OdinInspector;
 using TW.UGUI.Core.Screens;
+using TW.Utility.CustomType;
 using Screen = TW.UGUI.Core.Screens.Screen;
 
 namespace Core.UI.Screens
@@ -57,9 +57,18 @@ namespace Core.UI.Screens
             [field: SerializeField]
             public CanvasGroup MainView { get; private set; }
 
+            [field: SerializeField]
+            public MainContentBase<SlotPack, ShopPackageDataConfig> MainCoinContent { get; private set; }
+
             public UniTask Initialize(Memory<object> args)
             {
                 return UniTask.CompletedTask;
+            }
+
+            public void InitCoinSlot(Action<SlotPack> actionSlotCoinCallBack)
+            {
+                MainCoinContent.SetActionSlotCallBack(actionSlotCoinCallBack);
+                MainCoinContent.SetActionSlotExistCallBack();
             }
         }
 
@@ -74,6 +83,55 @@ namespace Core.UI.Screens
             {
                 await Model.Initialize(args);
                 await View.Initialize(args);
+
+                View.InitCoinSlot(ActionBuyCallback);
+            }
+
+            private void ActionBuyCallback(SlotPack slotPackCallBack)
+            {
+                Debug.Log(slotPackCallBack.slotData.packageName);
+
+
+                switch (slotPackCallBack.slotData.purchaseType)
+                {
+                    case PurchaseType.IAPPay:
+                        var packageId = MyCache.GetPackageIdByPackageName(slotPackCallBack.slotData.packageName);
+                        InGamePurchaseManager.Instance.PurchaseIAPProduct(packageId,
+                            () => OnPurchaseSuccess(slotPackCallBack.slotData),
+                            () => OnPurchaseFailed(slotPackCallBack.slotData));
+                        break;
+                    case PurchaseType.ResourcePay:
+                        OnPurchaseBuyResourcePay(slotPackCallBack.slotData);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            private void OnPurchaseBuyResourcePay(ShopPackageDataConfig packageConfig)
+            {
+                GameResource.Type resourceType = packageConfig.resourcePrice.ResourceType;
+                BigNumber amount = packageConfig.resourcePrice.Amount;
+                if (PlayerResourceManager.Instance.IsEnoughResource(resourceType, amount))
+                {
+                    //_ = UIManager.Instance.OpenModalAsync<ModalConfirmShop>(packageConfig);
+                }
+                else
+                {
+                    //_ = UIManager.Instance.OpenModalAsync<ModalPayResourcePremium>(packageConfig);
+                }
+            }
+
+            private void OnPurchaseSuccess(ShopPackageDataConfig packageConfig)
+            {
+                Debug.Log("Purchase Success: " + packageConfig.packageName);
+                ShopManager.Instance.PurchaseSuccess(packageConfig);
+            }
+
+            private void OnPurchaseFailed(ShopPackageDataConfig packageConfig)
+            {
+                Debug.Log("Purchase Failed: " + packageConfig.packageName);
+                ShopManager.Instance.PurchaseFailed(packageConfig);
             }
         }
     }

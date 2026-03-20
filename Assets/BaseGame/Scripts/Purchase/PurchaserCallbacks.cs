@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Core.UI.Activities;
 using Cysharp.Threading.Tasks;
-//using Manager;
 using SDK;
 using UnityEngine;
 using UnityEngine.Purchasing;
@@ -88,7 +87,7 @@ public class PurchaserCallbacks
         }
         purchaser.m_IAPProduct.OnFail?.Invoke();
         purchaser.m_IAPProduct = null;
-        ActivityBlockContext.Events.WaitForPurchase?.Invoke(false);
+        ActivityBlockContext.Events.WaitForPurchase?.Invoke();
     }
 
     public void OnPurchaseConfirmed(ConfirmedOrder order)
@@ -105,7 +104,7 @@ public class PurchaserCallbacks
         purchaser.m_IAPProduct?.OnSuccess?.Invoke();
         purchaser.m_IAPProduct = null;
         //UserDataManager.Instance.UploadUserDataToServer(false, false).Forget();
-        ActivityBlockContext.Events.WaitForPurchase?.Invoke(false);
+        //ActivityBlockContext.Events.WaitForPurchase?.Invoke();
         
     }
 

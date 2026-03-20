@@ -38,7 +38,7 @@ public class ShopPackageDataConfig
     public string packageDes;
 
     public PurchaseType purchaseType;
-    public ProductType productType;
+    public PackProductType packProductType;
 
     [ShowIf("@this.purchaseType == PurchaseType.IAPPay")]
     public float price;
@@ -61,7 +61,7 @@ public enum PackageName
     coin6 = 105,
 }
 
-public enum ProductType
+public enum PackProductType
 {
     Consumable = 0,
     NonConsumable = 1,

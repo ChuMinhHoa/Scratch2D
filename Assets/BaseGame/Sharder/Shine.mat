@@ -37,7 +37,7 @@ Material:
     - _Loop: 1
     - _ShineAngle: 309
     - _ShineIntensity: 1.5
-    - _ShineSpeed: 4
+    - _ShineSpeed: 5
     - _ShineWidth: 0.375
     - _StartTime: 0
     - _Stencil: 0

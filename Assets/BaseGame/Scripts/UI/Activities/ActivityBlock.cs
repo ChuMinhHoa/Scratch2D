@@ -32,7 +32,7 @@ namespace Core.UI.Activities
         {
             public static Action SampleEvent { get; set; }
 
-            public static Action<bool> WaitForPurchase { get; set; }
+            public static Action WaitForPurchase { get; set; }
         }
 
         [HideLabel]
@@ -74,6 +74,18 @@ namespace Core.UI.Activities
             {
                 await Model.Initialize(args);
                 await View.Initialize(args);
+                Events.WaitForPurchase += WaitForPurchase;
+            }
+            
+            private void WaitForPurchase()
+            {
+                _ = UIManager.Instance.CloseActivityAsync<ActivityBlock>();
+            }
+
+            public UniTask Cleanup(Memory<object> args)
+            {
+                Events.WaitForPurchase = null;
+                return UniTask.CompletedTask;
             }
         }
     }

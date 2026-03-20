@@ -65,8 +65,8 @@ namespace Core.UI.Activities
 
             public UniTask Initialize(Memory<object> args)
             {
-                var currentLevel = Level.Instance.levelIndex;
-                txtLevel.SetTextFormat(MyCache.strLevel, currentLevel);
+                var currentLevel = Level.Instance.levelIndex.Value;
+                txtLevel.SetTextFormat(MyCache.strLevel, currentLevel + 1);
                 return UniTask.CompletedTask;
             }
         }

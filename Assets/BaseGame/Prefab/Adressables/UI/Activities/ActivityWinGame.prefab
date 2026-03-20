@@ -2498,8 +2498,8 @@ MonoBehaviour:
   _fitRect: 1
   _emitOnSurface: 1
   _emitterThickness: 0
-  _loop: 0
-  _duration: 0.3
+  _loop: 1
+  _duration: 2
   _playMode: 1
   _startSize:
     separable: 1
@@ -3614,7 +3614,7 @@ MonoBehaviour:
     m_ConstantMax: 0
   _sheetModule:
     enabled: 1
-  _textureTile: {x: 2, y: 2}
+  _textureTile: {x: 3, y: 3}
   _sheetType: 0
   _frameOverTime:
     m_Mode: 3
@@ -3661,7 +3661,7 @@ MonoBehaviour:
   _bursts:
   - time: 0
     count: 100
-    used: 0
+    used: 1
   _particleTrailRenderer: {fileID: 0}
   _trailModule:
     enabled: 0
@@ -5014,8 +5014,8 @@ MonoBehaviour:
   _fitRect: 1
   _emitOnSurface: 1
   _emitterThickness: 0
-  _loop: 0
-  _duration: 0.3
+  _loop: 1
+  _duration: 2
   _playMode: 1
   _startSize:
     separable: 1
@@ -6177,7 +6177,7 @@ MonoBehaviour:
   _bursts:
   - time: 0
     count: 100
-    used: 1
+    used: 0
   _particleTrailRenderer: {fileID: 0}
   _trailModule:
     enabled: 0

@@ -70,7 +70,7 @@ namespace Core.UI.Activities
             public UniTask Initialize(Memory<object> args)
             {
                 ObjNewFeature.SetActive(false);
-                var currentLevel = Level.Instance.levelIndex;
+                var currentLevel = Level.Instance.levelIndex.Value;
                 TxtLevel.SetTextFormat(MyCache.strLevel, currentLevel);
                 var reward = 10;
                 TxtReward.SetTextFormat(MyCache.strDefault, reward);

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Core.UI.Activities;
 using Cysharp.Threading.Tasks;
 using NUnit.Framework.Internal;
 using UnityEngine;
@@ -52,10 +51,9 @@ public class Purchaser : TW.Utility.DesignPattern.Singleton<Purchaser>
         for (var i = 0; i < shopPackages.Length; i++)
         {
             if (shopPackages[i].purchaseType != PurchaseType.IAPPay) continue;
-            var unityProductType = shopPackages[i].productType == ProductType.NonConsumable
-                ? UnityEngine.Purchasing.ProductType.NonConsumable
-                : UnityEngine.Purchasing.ProductType.Consumable;
-            initialProductsToFetch.Add(new ProductDefinition(shopPackages[i].packageName.ToString(), unityProductType));
+            var e = MyCache.GetPackageIdByPackageName(shopPackages[i].packageName);
+            initialProductsToFetch.Add(new ProductDefinition(e,
+                shopPackages[i].packProductType == PackProductType.NonConsumable ? ProductType.NonConsumable : ProductType.Consumable));
         }
         
         var storeSpecificIdsByProductId = new Dictionary<string, StoreSpecificIds>();
@@ -169,7 +167,7 @@ public class Purchaser : TW.Utility.DesignPattern.Singleton<Purchaser>
         if (IsPurchaseInProgress) return;
         m_IAPProduct = product;
         InitiatePurchase(product);
-        ActivityBlockContext.Events.WaitForPurchase?.Invoke(true);
+        //ActivityBlockContext.Events.WaitForPurchase?.Invoke(true);
     }
     public void InitiatePurchase(IAPProduct iapProduct)
     {

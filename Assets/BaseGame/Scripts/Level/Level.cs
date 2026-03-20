@@ -132,7 +132,7 @@ public class Level : Singleton<Level>
     public async UniTask LoadData()
     {
         GamePlayManager.Instance.ChangeGameState(GameState.Loading);
-        var e = levelIndex.Value > LevelGlobalConfig.Instance.levelConfigs.Length && levelChange.Value == -1;
+        var e = levelIndex.Value >= LevelGlobalConfig.Instance.levelConfigs.Length && levelChange.Value == -1;
         if (e)
         {
             levelChange.Value = LevelGlobalConfig.Instance.GetRandomLevel(levelIndex.Value);
@@ -244,7 +244,7 @@ public class Level : Singleton<Level>
     {
         var posSpawn = sticker.transform.position;
         posSpawn.z = forceScratch ? -2f : posSpawn.z;
-        Debug.Log("Call Spawn Sticker Done ");
+        //Debug.Log("Call Spawn Sticker Done ");
         var stD = PoolManager.Instance.SpawnStickerDone(posSpawn);
         stD.InitStickerMove(sticker.stickerData.stickerID, rot);
         sticker.DisAbleIcon();
@@ -255,7 +255,7 @@ public class Level : Singleton<Level>
     public void ResetLevel()
     {
         LoadDataClean();
-        Debug.Log("Reset Level");
+        //Debug.Log("Reset Level");
         isEndGame = false;
         StickerDoneManager.Instance.Clear();
         oSController.ResetController();
@@ -382,7 +382,7 @@ public class Level : Singleton<Level>
         for (var i = 0; i < slotFolders.Length; i++)
         {
             var noteId = slotFolders[i].GetNoteId();
-            Debug.Log($"id check {noteId}");
+//            Debug.Log($"id check {noteId}");
             if (noteId != -1)
             {
                 for (var j = 0; j < card.Count; j++)
@@ -495,6 +495,6 @@ public class Level : Singleton<Level>
 
     public Difficulty GetLevelDifficult()
     {
-        return MyCache.GetDifficultByLevel(realLevel + 1);
+        return MyCache.GetDifficultByLevel(levelIndex.Value + 1);
     }
 }

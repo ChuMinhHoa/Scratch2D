@@ -115,11 +115,9 @@ public class ObjHaveStickerController : SpaceForSticker
         {
             if (!SlotFolders[i].folderPos.obj) continue;
             if (!SlotFolders[i].folderPos.IsMoveDone()) continue;
-            if (SlotFolders[i].folderPos.obj.IsSameSticker(stickerDone.stickerId, out var stickerPos))
-            {
-                stickerPos.RegisterObj(stickerDone);
-                return stickerPos;
-            }
+            if (!SlotFolders[i].folderPos.obj.IsSameSticker(stickerDone.stickerId, out var stickerPos)) continue;
+            stickerPos.RegisterObj(stickerDone);
+            return stickerPos;
         }
 
         return null;

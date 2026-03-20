@@ -16,6 +16,17 @@ public class MainContentBase<TSlot, TData> where TSlot : SlotBase<TData>
     [HideInInspector] public TSlot currentSlotOnChoose;
 
     [HideInInspector] public int totalSlotUsing;
+    
+    public virtual void SetActionSlotExistCallBack()
+    {
+        for (var i = 0; i < slots.Count; i++)
+        {
+            if (slots[i].gameObject.activeSelf)
+            {
+                slots[i].SetActionChooseCallBack(slotBase => ActionSlotCallBack((TSlot)slotBase));
+            }
+        }
+    }
 
     public virtual void InitData(Span<TData> data)
     {

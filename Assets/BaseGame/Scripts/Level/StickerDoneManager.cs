@@ -22,14 +22,12 @@ public class StickerDoneManager : Singleton<StickerDoneManager>
 
     private void ExecuteNextFrameEvents(Unit _)
     {
-        if (stickerDoneStack.Count > 0)
-        {
-            var stickerDone = stickerDoneStack[0];
-            stickerDoneStack.Remove(stickerDone);
-            var isFromNoWhere = Level.Instance.fSpaceController.IsFromNoWhere(stickerDone);
-            var isFromFreeSpace = Level.Instance.fSpaceController.IsFromFreeSpace(stickerDone);
-            stickerDone.CheckMoveToFolder(isFromNoWhere, isFromFreeSpace);
-        }
+        if (stickerDoneStack.Count <= 0) return;
+        var stickerDone = stickerDoneStack[0];
+        stickerDoneStack.Remove(stickerDone);
+        var isFromNoWhere = Level.Instance.fSpaceController.IsFromNoWhere(stickerDone);
+        var isFromFreeSpace = Level.Instance.fSpaceController.IsFromFreeSpace(stickerDone);
+        stickerDone.CheckMoveToFolder(isFromNoWhere, isFromFreeSpace);
     }
 
     public void Clear()

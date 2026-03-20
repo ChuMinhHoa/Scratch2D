@@ -138,15 +138,15 @@ namespace Core.UI.Screens
                 switch (type)
                 {
                     case SlotTabType.Shop:
-                        Debug.Log("Open shop");
+                        //Debug.Log("Open shop");
                         _ = UIManager.Instance.OpenScreenAsync<ScreenShop>();
                         break;
                     case SlotTabType.Home:
-                        Debug.Log("Open Home");
+                        //Debug.Log("Open Home");
                         _ = UIManager.Instance.OpenScreenAsync<ScreenHome>();
                         break;
                     case SlotTabType.ComingSoon:
-                        Debug.Log("Coming soon");
+                        //Debug.Log("Coming soon");
                         _ = UIManager.Instance.OpenScreenAsync<ScreenHome>();
                         break;
                     default:

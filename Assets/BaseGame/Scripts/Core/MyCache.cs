@@ -14,6 +14,7 @@ public static class MyCache
     public static string strLock = "lock";
     public static string strUnlockNormal = "unlock_normal";
     public static string strUnlockHammer = "unlock_hammer";
+    public static string strBasePackID = "unlock_hammer";
     private static Dictionary<GameResource.Type, TMP_Style> resourceStyleCache = new();
     public static GameResource.Type ConvertBoosterToResourceType(BoosterType boosterType)
     {
@@ -53,8 +54,14 @@ public static class MyCache
 
     public static Difficulty GetDifficultByLevel(int realLevel)
     {
+        Debug.Log("real level: " + realLevel);
         var levelDifficulty = realLevel % 10 == 0 ? Difficulty.Hard :
             realLevel % 10 == 5 ? Difficulty.Medium : Difficulty.Easy;
         return levelDifficulty;
+    }
+
+    public static string GetPackageIdByPackageName(PackageName slotDataPackageName)
+    {
+        return strBasePackID + slotDataPackageName;
     }
 }

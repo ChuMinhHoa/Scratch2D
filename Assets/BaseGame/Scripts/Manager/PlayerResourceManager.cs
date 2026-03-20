@@ -83,7 +83,7 @@ public class PlayerResourceManager : Singleton<PlayerResourceManager>
       PlayerResourceDataSave.Instance.SaveData();
    }
 
-   public bool EnoughResource(GameResource.Type resourceType, BigNumber amount)
+   public bool IsEnoughResource(GameResource.Type resourceType, BigNumber amount)
    {
       var resource = GetGameResource(resourceType);
       if (resource == null) return false;

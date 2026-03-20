@@ -52,13 +52,17 @@ public class BtnBooster : MonoBehaviour
 
     private void UseByPrice()
     {
-        if (!PlayerResourceManager.Instance.EnoughResource(GameResource.Type.Money, price)) return;
+        if (!PlayerResourceManager.Instance.IsEnoughResource(GameResource.Type.Money, price)) return;
         booster.UseBooster();
     }
 
     private void UseByAds()
     {
 #if UNITY_EDITOR
+        UseBooster();
+#endif
+        
+#if !UNITY_EDITOR
         UseBooster();
 #endif
     }

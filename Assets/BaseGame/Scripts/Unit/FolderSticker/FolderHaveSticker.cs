@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using R3;
+using Sirenix.OdinInspector;
 using TW.Utility.DesignPattern.UniTaskState;
 using UniRx;
 using UnityEngine;
@@ -13,14 +14,25 @@ public partial class FolderHaveSticker : MonoBehaviour
     public int objId;
     public StickerPos[] trsStickerPos;
     public UnitAnimation unitAnim;
+
+    public MaterialPropertyBlock propertyBlock;
+    public GameObject effectDone;
+
+    private static readonly int DirectionalAlphaFadeFade = Shader.PropertyToID("_DirectionalAlphaFadeFade");
+
+    public Renderer _renderer;
+
     public FHSGraphic fhsGraphic;
     public StateMachine stateMachine;
-    
+
     public SelectAbleOnBooster selectAbleOnBooster;
     private bool onSlot = false;
-    
+
     private void Start()
     {
+        propertyBlock = new MaterialPropertyBlock();
+        _renderer.GetPropertyBlock(propertyBlock);
+
         stateMachine.RequestTransition(FhsWaitState);
         stateMachine.Run();
 
@@ -28,6 +40,7 @@ public partial class FolderHaveSticker : MonoBehaviour
         {
             trsStickerPos[i].moveDone.Skip(1).Subscribe(StickerMoveDone).AddTo(this);
         }
+
         selectAbleOnBooster.SetConditionToSelect(ConditionToSelect);
     }
 
@@ -79,13 +92,24 @@ public partial class FolderHaveSticker : MonoBehaviour
         PoolManager.Instance.DespawnObjHaveSticker(this);
     }
 
+    [Button]
     public async UniTask MoveOut(Transform posOut)
     {
         onSlot = false;
         stateMachine.RequestTransition(FhsDoneState);
         var id = UnitEventManager.Instance.RegisterEvent();
         var currentPos = transform.position;
+        effectDone.SetActive(true);
+
+        await LMotion.Create(1f, -10f, 0.25f).Bind(x =>
+        {
+            _renderer.GetPropertyBlock(propertyBlock);
+            propertyBlock.SetFloat(DirectionalAlphaFadeFade, x);
+            _renderer.SetPropertyBlock(propertyBlock);
+        }).AddTo(this);
+        
         await unitAnim.PlayScaleAnimation();
+
         await LMotion.Create(currentPos, posOut.position, 0.25f).Bind(x => transform.position = x).AddTo(this);
         UnitEventManager.Instance.RemoveEventId(id);
         ResetFolderSticker();
@@ -100,7 +124,7 @@ public partial class FolderHaveSticker : MonoBehaviour
         await UniTask.WaitForSeconds(0.1f);
         Level.Instance.CheckStickerDone();
         Level.Instance.CheckLoseGame();
-        
+
         onSlot = true;
     }
 
@@ -136,6 +160,38 @@ public class StickerPos : ObjPos<StickerDone>
         id = -1;
         obj = null;
         moveDone.Value = false;
+        lock (_lock)
+        {
+            Owner = null;
+        }
+    }
+
+    private readonly object _lock = new object();
+    public StickerDone Owner { get; private set; }
+
+    public bool IsOccupied => Owner != null;
+
+    public bool TryReserve(StickerDone requester)
+    {
+        lock (_lock)
+        {
+            if (Owner == null)
+            {
+                Owner = requester;
+                return true;
+            }
+
+            return false;
+        }
+    }
+
+    public void Release(StickerDone requester)
+    {
+        lock (_lock)
+        {
+            if (Owner == requester)
+                Owner = null;
+        }
     }
 }
 
