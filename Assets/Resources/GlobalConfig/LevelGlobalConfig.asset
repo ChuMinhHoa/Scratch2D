@@ -64,3 +64,6 @@ MonoBehaviour:
   - level: 16
     difficulty: 0
     levelAsset: {fileID: 4900000, guid: a5427b74eff914d40bd839430151abae, type: 3}
+  - level: 17
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: e5adbd0921bc3a54c88d9edafed57f8a, type: 3}
