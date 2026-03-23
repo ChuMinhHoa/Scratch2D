@@ -121,8 +121,8 @@ public partial class Card : MonoBehaviour
         }
 
         stickers.Clear();
-        Destroy(scratchObject.gameObject);
-        
+        if (scratchObject)
+            Destroy(scratchObject.gameObject);
         stickerSubscriptions.Clear();
         PoolManager.Instance.DespawnCard(this);
         GamePlayManager.Instance.RemoveCurrentCard(this);

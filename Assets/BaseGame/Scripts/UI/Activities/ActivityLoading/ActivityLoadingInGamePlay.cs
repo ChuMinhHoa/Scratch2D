@@ -61,6 +61,9 @@ namespace Core.UI.Activities
 
             [field: SerializeField] public ProgressBar LoadingProgressBar { get; private set; }
 
+            public Func<UniTask> ActionCallBack;
+            public Func<UniTask> ActionCallBack2;
+
             public bool loadToHome;
 
             public UniTask Initialize(Memory<object> args)
@@ -74,17 +77,18 @@ namespace Core.UI.Activities
                 await LMotion.Create(currentProgress, 50f, 0.5f)
                     .WithEase(Ease.Linear)
                     .Bind(ShowTextProgress).AddTo(MainView);
-                
-                if (!loadToHome)
-                    await Level.Instance.LoadData();
+
+                await ActionCallBack();
+               
+                    //await Level.Instance.LoadData();
                 
                 await LMotion.Create(currentProgress, 100f, 0.5f)
                     .WithEase(Ease.Linear)
                     .Bind(ShowTextProgress).AddTo(MainView);
                 await UIManager.Instance.CloseActivityAsync<ActivityLoadingInGamePlay>();
-                
-                if (!loadToHome)
-                    await Level.Instance.AnimFirstSpawn();
+                Debug.Log("Close Activity Loading");
+                await ActionCallBack2();
+                   // await Level.Instance.AnimFirstSpawn();
             }
 
             private void ShowTextProgress(float value)
@@ -105,7 +109,9 @@ namespace Core.UI.Activities
             {
                 await Model.Initialize(args);
                 await View.Initialize(args);
-                View.loadToHome = (bool)args.Span[0];
+                View.ActionCallBack = (Func<UniTask>)args.Span[0];
+                View.ActionCallBack2 = (Func<UniTask>)args.Span[1];
+                //View.loadToHome = (bool)args.Span[0];
             }
 
             public void DidEnter(Memory<object> args)

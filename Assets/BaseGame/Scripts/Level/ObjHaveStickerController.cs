@@ -56,7 +56,7 @@ public class ObjHaveStickerController : SpaceForSticker
 
     public void CallCheckEndGame()
     {
-        if (isEndGame) return;
+        if (isEndGame || !GamePlayManager.Instance.onPlaying) return;
         for (var i = 0; i < SlotFolders.Length; i++)
         {
             if (SlotFolders[i].slotFolderType == SlotFolderType.Ads)

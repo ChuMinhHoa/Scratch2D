@@ -1,3 +1,5 @@
+using Core.UI.Screens;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class UIEnergy : UIResource
@@ -26,5 +28,12 @@ public class ActionCallOnMoney : ActionCallOnResource
     {
         base.ActionCallOnUIResource();
         Debug.Log("Action call on money");
+        _ = GoToShop();
+    }
+
+    private async UniTask GoToShop()
+    {
+        GamePlayManager.Instance.ChangeGameState(GameState.Normal);
+        await UIManager.Instance.OpenScreenDefaultAsync<ScreenShopInGame>();
     }
 }

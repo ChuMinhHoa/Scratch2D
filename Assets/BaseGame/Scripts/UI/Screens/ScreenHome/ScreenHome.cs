@@ -89,8 +89,10 @@ namespace Core.UI.Screens
                     return;
                 }
                 
-                EnergyManager.Instance.UseEnergy(1);
-                await UIManager.Instance.OpenActivityAsync<ActivityLoadingInGamePlay>(false);
+                //EnergyManager.Instance.UseEnergy(1);
+                // var e1 = new Func<UniTask>(Level.Instance.LoadData);
+                // var e2 = new Func<UniTask>(Level.Instance.AnimFirstSpawn);
+                await UIManager.Instance.OpenActivityAsync<ActivityLoadingInGamePlay>((Func<UniTask>)Level.Instance.LoadData, (Func<UniTask>)Level.Instance.AnimFirstSpawn);
                 await UIManager.Instance.CloseScreenDefaultAsync();
                 await UIManager.Instance.OpenScreenAsync<ScreenGamePlay>();
             }

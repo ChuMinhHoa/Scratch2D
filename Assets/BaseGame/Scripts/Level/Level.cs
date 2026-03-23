@@ -154,6 +154,7 @@ public class Level : Singleton<Level>
     [Button]
     public async UniTask AnimFirstSpawn()
     {
+        Debug.Log("Anim First Spawn");
         layerController.AnimFirstSpawn();
         CallNextObjSticker(true);
         var totalTimeWait = 0.75f;
@@ -480,6 +481,7 @@ public class Level : Singleton<Level>
         Debug.Log("game over");
         GamePlayManager.Instance.ChangeGameState(GameState.Normal);
         await UniTask.WaitForSeconds(1f);
+        EnergyManager.Instance.UseEnergy(1);
         await UIManager.Instance.OpenActivityAsync<ActivityLoseGame>();
     }
 

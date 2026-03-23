@@ -29,6 +29,7 @@ public class GamePlayManager : Singleton<GamePlayManager>
     private Dictionary<Collider2D, ButtonGameObject> buttonGameObjects = new();
     public Reactive<bool> isFollowing;
     public Reactive<GameState> gameState = new(GameState.Normal);
+    public GameState lastState;
 
     public Reactive<bool> onPlaying = new(false);
 
@@ -147,7 +148,7 @@ public class GamePlayManager : Singleton<GamePlayManager>
         var r = Physics2D.OverlapCircle(worldPos, radiusCheck, whatCanSelectOnBooster);
         if (r)
         {
-            BoosterManager.Instance.ChooseObjOnBooster(r);
+            _ = BoosterManager.Instance.ChooseObjOnBooster(r);
         }
     }
 
@@ -224,7 +225,13 @@ public class GamePlayManager : Singleton<GamePlayManager>
 
     public void ChangeGameState(GameState state)
     {
+        lastState = gameState.Value;
         gameState.Value = state;
         onPlaying.Value = gameState > GameState.Loading;
+    }
+
+    public void BackToLastState()
+    {
+        ChangeGameState(lastState);
     }
 }

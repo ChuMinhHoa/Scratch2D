@@ -103,7 +103,7 @@ public class CardGraphic : MonoBehaviour
     {
         var currentPoint = transform.position;
         var targetPoint = currentPoint + offSetShadow;
-        LMotion.Create(currentPoint, targetPoint, timeOpen).Bind(x => trsShadow.position = x);
+        LMotion.Create(currentPoint, targetPoint, timeOpen).Bind(x => trsShadow.position = x).AddTo(this);
         await LMotion.Create(colorStartOpen, colorEndOpen, timeOpen).WithEase(Ease.InCubic).Bind(x =>
         {
             for (var i = 0; i < sprAnim.Count; i++)

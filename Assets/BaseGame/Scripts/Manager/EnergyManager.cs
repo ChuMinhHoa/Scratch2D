@@ -131,7 +131,7 @@ public class EnergyManager : Singleton<EnergyManager>
         AddEnergy(1);
     }
 
-    public void AddEnergy(int amount)
+    private void AddEnergy(int amount)
     {
         energyResource.Amount += amount;
         SaveEnergyData();
@@ -143,7 +143,7 @@ public class EnergyManager : Singleton<EnergyManager>
 
         if (energyResource.Amount < DefaultGlobalConfig.Instance.maxEnergy)
         {
-            Debug.Log("save time to add energy");
+            //Debug.Log("save time to add energy");
             SaveTimeToAddOneEnergy();
         }
 

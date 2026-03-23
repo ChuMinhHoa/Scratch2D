@@ -11,9 +11,9 @@ using Screen = TW.UGUI.Core.Screens.Screen;
 
 namespace Core.UI.Screens
 {
-    public class ScreenShop : Screen
+    public class ScreenShopInGame : Screen
     {
-        [field: SerializeField] public ScreenShopContext.UIPresenter UIPresenter { get; private set; }
+        [field: SerializeField] public ScreenShopInGameContext.UIPresenter UIPresenter { get; private set; }
 
         protected override void Awake()
         {
@@ -29,7 +29,7 @@ namespace Core.UI.Screens
 
 
     [Serializable]
-    public class ScreenShopContext
+    public class ScreenShopInGameContext
     {
         public static class Events
         {
@@ -57,9 +57,9 @@ namespace Core.UI.Screens
             [field: Title(nameof(UIView))]
             [field: SerializeField]
             public CanvasGroup MainView { get; private set; }
-
             [field: SerializeField]
             public MainContentBase<SlotPack, ShopPackageDataConfig> MainCoinContent { get; private set; }
+            [field: SerializeField] public Button BtnCloseInGame { get; private set; }
 
             public UniTask Initialize(Memory<object> args)
             {
@@ -84,7 +84,14 @@ namespace Core.UI.Screens
             {
                 await Model.Initialize(args);
                 await View.Initialize(args);
+                View.BtnCloseInGame?.onClick.AddListener(()=>_ = CloseScreen());
+
                 View.InitCoinSlot(ActionBuyCallback);
+            }
+             private async UniTask CloseScreen()
+            {
+                await UIManager.Instance.CloseScreenDefaultAsync();
+                GamePlayManager.Instance.BackToLastState();
             }
 
             private void ActionBuyCallback(SlotPack slotPackCallBack)
@@ -133,6 +140,7 @@ namespace Core.UI.Screens
                 Debug.Log("Purchase Failed: " + packageConfig.packageName);
                 ShopManager.Instance.PurchaseFailed(packageConfig);
             }
+            
         }
     }
 }

@@ -24,7 +24,7 @@ public class UIResource : MonoBehaviour
         btnAdd.onClick.AddListener(actionCallOnResource.ActionCallOnUIResource);
     }
 
-    public void SetResourceType()
+    private void SetResourceType()
     {
         switch (resourceType)
         {
