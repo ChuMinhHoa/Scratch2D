@@ -146,4 +146,29 @@ public class UIManager : Singleton<UIManager>
     }
 
     #endregion
+    #region ActivityInGame
+
+    public async UniTask OpenActivityInGameAsync<T>(params object[] args)
+    {
+        ViewOptions option = new ViewOptions(typeof(T).Name, playAnimation: true);
+        await ActivityContainer.Find(ContainerKey.ActivitiesInGame).ShowAsync(option, args);
+    }
+
+    public void OpenActivityInGame<T>(params object[] args)
+    {
+        ViewOptions option = new ViewOptions(typeof(T).Name, playAnimation: true);
+        ActivityContainer.Find(ContainerKey.ActivitiesInGame).Show(option, args);
+    }
+
+    public async UniTask CloseActivityAsyncInGame<T>()
+    {
+        await ActivityContainer.Find(ContainerKey.ActivitiesInGame).HideAsync(typeof(T).Name, true);
+    }
+
+    public void CloseActivityInGame<T>()
+    {
+        ActivityContainer.Find(ContainerKey.ActivitiesInGame).Hide(typeof(T).Name, true);
+    }
+
+    #endregion
 }

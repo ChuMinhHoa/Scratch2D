@@ -16,6 +16,9 @@ public static class MyCache
     public static string strUnlockHammer = "unlock_hammer";
     public static string strBasePackID = "unlock_hammer";
     private static Dictionary<GameResource.Type, TMP_Style> resourceStyleCache = new();
+    public static string warningPrice = "Not enough currency!";
+    public static string warningSlotAdded = "Slot added!";
+
     public static GameResource.Type ConvertBoosterToResourceType(BoosterType boosterType)
     {
         return boosterType switch

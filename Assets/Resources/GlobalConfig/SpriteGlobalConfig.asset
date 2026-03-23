@@ -369,3 +369,5 @@ MonoBehaviour:
   iconResourceConfigs:
   - tType: 1
     sprite: {fileID: 21300000, guid: 2d47ffc44a9f3614d8142768661a491e, type: 3}
+  - tType: 6
+    sprite: {fileID: 21300000, guid: 4bc418a8aa74e394cae72fa1f7e91f85, type: 3}

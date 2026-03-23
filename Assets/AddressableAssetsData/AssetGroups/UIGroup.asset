@@ -35,6 +35,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84c7a50bea1dc3c40801bd7029fb4b06
+    m_Address: ActivityBlock
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8fc714d86a7cf6247bd871c15f18c3b5
     m_Address: ScreenHome
     m_ReadOnly: 0
@@ -62,6 +67,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a846498dd4b492e4981d206bdfe0dfca
     m_Address: ActivityLoading
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c52afce5164e27e429bb5ac9dedd75f3
+    m_Address: ActivityWarning
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

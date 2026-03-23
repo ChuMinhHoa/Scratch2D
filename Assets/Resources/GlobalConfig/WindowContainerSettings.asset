@@ -37,3 +37,9 @@ MonoBehaviour:
     sortingLayer:
       id: 0
     orderInLayer: 300
+  - name: ActivitiesInGame
+    containerType: 2
+    overrideSorting: 1
+    sortingLayer:
+      id: 0
+    orderInLayer: 500

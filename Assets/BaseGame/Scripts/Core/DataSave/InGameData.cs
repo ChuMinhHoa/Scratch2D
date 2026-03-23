@@ -9,6 +9,8 @@ public class InGameData
     [field: SerializeField] public PlayerResourceDataSave PlayerResourceDataSave { get; set; } = new();
     [field: SerializeField] public SettingDataSave SettingDataSave { get; set; } = new();
     [field: SerializeField] public ShopDataSave ShopDataSave { get; set; } = new();
+    [field: SerializeField] public EnergyDataSave EnergyDataSave { get; set; } = new();
+    [field: SerializeField] public TimeDataSave TimeDataSave { get; set; }
 
     public void LoadData()
     {
@@ -16,6 +18,8 @@ public class InGameData
         PlayerResourceDataSave = DataSerializer.LoadDataFromPrefs<PlayerResourceDataSave>();
         SettingDataSave = DataSerializer.LoadDataFromPrefs<SettingDataSave>();
         ShopDataSave = DataSerializer.LoadDataFromPrefs<ShopDataSave>();
+        EnergyDataSave = DataSerializer.LoadDataFromPrefs<EnergyDataSave>();
+        TimeDataSave = DataSerializer.LoadDataFromPrefs<TimeDataSave>();
     }
 
     public void SaveAllData()
@@ -24,5 +28,7 @@ public class InGameData
         PlayerResourceDataSave.SaveData();
         SettingDataSave.SaveData();
         ShopDataSave.SaveData();
+        EnergyDataSave.SaveData();
+        TimeDataSave.SaveData();
     }
 }

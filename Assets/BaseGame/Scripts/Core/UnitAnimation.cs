@@ -38,6 +38,9 @@ public class UnitAnimation : MonoBehaviour
     public AnimationCurve curveMoveX;
     public AnimationCurve curveMoveY;
     public AnimationCurve curveMoveZ;
+
+    public AnimationCurve curveMove;
+    
     public float timeMove = 1f;
     private MotionHandle motionHandleMoveX;
     private MotionHandle motionHandleMoveY;
@@ -71,7 +74,7 @@ public class UnitAnimation : MonoBehaviour
       
         var currentPos = transform.position;
 
-        motionHandleMoveX = LMotion.Create(0f, 1f, timeMove).Bind(t =>
+        motionHandleMoveX = LMotion.Create(0f, 1f, timeMove).WithEase(curveMove).Bind(t =>
         {
             var x = Mathf.Lerp(currentX, targetX, t);
             var evaluateX = curveMoveX.Evaluate(t) * mx;
@@ -79,7 +82,7 @@ public class UnitAnimation : MonoBehaviour
             transform.position = currentPos;
         }).AddTo(this);
         
-        motionHandleMoveY = LMotion.Create(0f, 1f, timeMove).Bind(t =>
+        motionHandleMoveY = LMotion.Create(0f, 1f, timeMove).WithEase(curveMove).Bind(t =>
         {
             var y = Mathf.Lerp(currentY, targetY, t);
             var evaluateY = curveMoveY.Evaluate(t) * my;
@@ -87,7 +90,7 @@ public class UnitAnimation : MonoBehaviour
             transform.position = currentPos;
         }).AddTo(this);
       
-        motionHandleMoveZ = LMotion.Create(0f, 1f, timeMove).Bind(t =>
+        motionHandleMoveZ = LMotion.Create(0f, 1f, timeMove).WithEase(curveMove).Bind(t =>
         {
             var z = Mathf.Lerp(currentZ, targetZ, t);
             var evaluateZ = curveMoveZ.Evaluate(t) * mz;

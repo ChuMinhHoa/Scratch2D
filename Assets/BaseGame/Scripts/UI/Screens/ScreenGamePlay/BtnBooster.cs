@@ -44,6 +44,7 @@ public class BtnBooster : MonoBehaviour
 
     private void UseByGameResource()
     {
+        UIAnimManager.Instance.AnimButton(imgIcon.transform);
         if (gameResource.Amount > 0)
         {
             booster.UseBooster();
@@ -52,12 +53,18 @@ public class BtnBooster : MonoBehaviour
 
     private void UseByPrice()
     {
-        if (!PlayerResourceManager.Instance.IsEnoughResource(GameResource.Type.Money, price)) return;
+        UIAnimManager.Instance.AnimButton(imgIcon.transform);
+        if (!PlayerResourceManager.Instance.IsEnoughResource(GameResource.Type.Money, price))
+        {
+            GlobalEventManager.OnShowWarning?.Invoke(MyCache.warningPrice);
+            return;
+        }
         booster.UseBooster();
     }
 
     private void UseByAds()
     {
+        UIAnimManager.Instance.AnimButton(imgIcon.transform);
 #if UNITY_EDITOR
         UseBooster();
 #endif
@@ -115,7 +122,7 @@ public class BtnBooster : MonoBehaviour
 
     private void UseBooster()
     {
-        UIAnimManager.Instance.AnimButton(imgIcon.transform);
+        
         booster.UseBooster();
     }
     

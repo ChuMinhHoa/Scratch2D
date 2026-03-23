@@ -46,7 +46,7 @@ public class SlotPack : SlotBase<ShopPackageDataConfig>
         if (data.purchaseType == PurchaseType.IAPPay)
         {
             iAPPackage = InGamePurchaseManager.Instance.GetIAPPackageByID(data.packageName.ToString());
-            Debug.Log($"<color=red> {iAPPackage == null}");
+//            Debug.Log($"<color=red> {iAPPackage == null}");
             txtPrice.SetTextFormat(MyCache.strDefault, iAPPackage?.GetPrice());
         }
         else if (data.purchaseType == PurchaseType.ResourcePay)

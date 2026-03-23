@@ -1,4 +1,5 @@
 using System;
+using Core.UI.Activities;
 using Core.UI.Modals;
 using Cysharp.Text;
 using Cysharp.Threading.Tasks;
@@ -111,6 +112,14 @@ namespace Core.UI.Screens
                 Model.countDone.Subscribe(ChangeTotalCount).AddTo(View.MainView);
                 Model.maxCount.Subscribe(ChangeMaxCount).AddTo(View.MainView);
                 View.RefreshBtnBooster();
+
+                //await OpenUI();
+            }
+
+            private async UniTask OpenUI()
+            {
+                await UIManager.Instance.OpenActivityInGameAsync<ActivityWarning>();
+                
             }
 
             public void ChangeMaxCount(int maxChange)

@@ -4,4 +4,5 @@ public static class ContainerKey
     public const string ScreenDefault = nameof(ScreenDefault);
     public const string Modals = nameof(Modals);
     public const string Activities = nameof(Activities);
+    public const string ActivitiesInGame = nameof(ActivitiesInGame);
 }

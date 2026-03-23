@@ -27,8 +27,8 @@ public class UnitEventManager : Singleton<UnitEventManager>
     {
         if (eventId.Contains(id))
             eventId.Remove(id);
-        if (eventId.Count == 0)
-            Debug.Log("all event is removed");
+        // if (eventId.Count == 0)
+        //     Debug.Log("all event is removed");
     }
 
     public bool IsHaveEvent()

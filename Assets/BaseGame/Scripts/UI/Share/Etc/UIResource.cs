@@ -10,24 +10,30 @@ public class UIResource : MonoBehaviour
 {
     [SerializeField] private Image imgIcon;
     [SerializeField] private TextMeshProUGUI txtAmount;
-    [SerializeField] private GameResource.Type resourceType;
+    public GameResource.Type resourceType;
     [SerializeField] private GameResource resourceValue;
     
     [SerializeField] private Reactive<BigNumber> resourceAmount;
+    public Button btnAdd;
+    [SerializeReference] public ActionCallOnResource actionCallOnResource;
 
-    private void Start()
+    public virtual void Start()
     {
         if (resourceType != GameResource.Type.None)
             SetResourceType();
+        btnAdd.onClick.AddListener(actionCallOnResource.ActionCallOnUIResource);
     }
 
-    private void SetResourceType()
+    public void SetResourceType()
     {
         switch (resourceType)
         {
             case GameResource.Type.Money:
             case GameResource.Type.Gem:
                 resourceValue = PlayerResourceManager.Instance.GetGameResource(resourceType);
+                break;
+            case GameResource.Type.Energy:
+                resourceValue = EnergyManager.Instance.energyResource;
                 break;
             default:
                 Debug.LogError($"UIResource: SetResourceType: {resourceType} not found icon sprite.");

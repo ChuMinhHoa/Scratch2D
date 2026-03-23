@@ -313,13 +313,13 @@ public class Level : Singleton<Level>
         var noteHaveStickerOnSpace = CheckAllNoteHaveStickerOnFreeSpace();
         var noteHaveStickerOnListDone = CheckAllNoteHaveStickerOnListDone();
 
-        Debug.Log($" is free slot {isFreeSlot}");
-        Debug.Log("Is have note move in: " + isHaveNoteMoveIn);
-        Debug.Log("note dont have sticker on move: " + noteDontHaveStickerOnMove);
-        Debug.Log("note have sticker done on wait: " + noteHaveStickerDoneOnWait);
-        Debug.Log("note have sticker done on card: " + noteHaveStickerOnCard);
-        Debug.Log("note have sticker done on free space : " + noteHaveStickerOnSpace);
-        Debug.Log("note have sticker done on list : " + noteHaveStickerOnListDone);
+        // Debug.Log($" is free slot {isFreeSlot}");
+        // Debug.Log("Is have note move in: " + isHaveNoteMoveIn);
+        // Debug.Log("note dont have sticker on move: " + noteDontHaveStickerOnMove);
+        // Debug.Log("note have sticker done on wait: " + noteHaveStickerDoneOnWait);
+        // Debug.Log("note have sticker done on card: " + noteHaveStickerOnCard);
+        // Debug.Log("note have sticker done on free space : " + noteHaveStickerOnSpace);
+        // Debug.Log("note have sticker done on list : " + noteHaveStickerOnListDone);
 
         if (!noteHaveStickerOnListDone && !noteHaveStickerOnSpace && !isFreeSlot && !isHaveNoteMoveIn &&
             noteDontHaveStickerOnMove && !noteHaveStickerDoneOnWait && !noteHaveStickerOnCard)

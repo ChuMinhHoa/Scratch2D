@@ -10,6 +10,7 @@ public class UIPoolManager : Singleton<UIPoolManager>
         {
             slotBasePool[i].SpawnOnInit();
         }
+        warningElementPool.SpawnOnInit();
     }
 
     public UIPool<MonoBehaviour>[] slotBasePool;
@@ -38,6 +39,25 @@ public class UIPoolManager : Singleton<UIPoolManager>
             return;
         }
     }
+
+
+    #region Warning Element
+
+    public UIPool<WarningElement> warningElementPool;
+    
+    public WarningElement SpawnWarningElement(Transform parents)
+    {
+        var s = warningElementPool.Spawn();
+        s.transform.SetParent(parents);
+        return s == null ? null : s;
+    }
+    
+    public void DeSpawnWarningElement(WarningElement elementDeSpawn)
+    {
+        warningElementPool.Despawn(elementDeSpawn);
+    }
+
+    #endregion
 }
 
 [System.Serializable]

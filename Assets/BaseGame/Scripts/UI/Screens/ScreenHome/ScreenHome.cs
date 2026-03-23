@@ -82,10 +82,20 @@ namespace Core.UI.Screens
             private async UniTask PlayGame()
             {
                 _ = UIAnimManager.Instance.AnimButton(View.BtnPlay.transform, null);
+                var e = EnergyManager.Instance.IsEnoughEnergy();
+                if (!e)
+                {
+                    //show buy energy popup
+                    return;
+                }
+                
+                EnergyManager.Instance.UseEnergy(1);
                 await UIManager.Instance.OpenActivityAsync<ActivityLoadingInGamePlay>(false);
                 await UIManager.Instance.CloseScreenDefaultAsync();
                 await UIManager.Instance.OpenScreenAsync<ScreenGamePlay>();
             }
+            
+            
         }
     }
 }

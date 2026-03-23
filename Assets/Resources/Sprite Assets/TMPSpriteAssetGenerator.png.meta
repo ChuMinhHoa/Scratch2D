@@ -127,7 +127,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 512
         width: 512
         height: 512
       alignment: 0
@@ -138,8 +138,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ff27b1c165d7b44e9412c3b16eaf9de
+      spriteID: ce456224cce8ea0499bb965df47a3ffb
       internalID: -1179681607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2.slot_warning
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 263f1afeb79fbeb479c2810c87fb85ec
+      internalID: -1679017158
       vertices: []
       indices: 
       edges: []
@@ -161,6 +183,7 @@ TextureImporter:
       1.Coin: -6653201201113272954
       1.icon_coin: -1179681607
       2.Gem: -1824502301
+      2.slot_warning: -1679017158
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

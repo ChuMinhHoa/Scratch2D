@@ -98,7 +98,7 @@ public class ObjHaveStickerController : SpaceForSticker
         }
         
         var lastNote = Level.Instance.oSController.IsLastNote(folder);
-        Debug.Log($"Last note: {lastNote}");
+        //Debug.Log($"Last note: {lastNote}");
         if (lastNote)
         {
             Level.Instance.oSController.CallCheckEndGame();
