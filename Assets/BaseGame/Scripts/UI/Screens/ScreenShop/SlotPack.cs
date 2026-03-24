@@ -40,12 +40,13 @@ public class SlotPack : SlotBase<ShopPackageDataConfig>
     public override void InitData(ShopPackageDataConfig data)
     {
         base.InitData(data);
+        imgIcon.sprite = data.mainIcon;
         txtName.SetTextFormat(MyCache.strDefault,  data.packageNameToUI);
-        txtDes.SetTextFormat(MyCache.strDefault,  data.packageDes);
+        txtDes?.SetTextFormat(MyCache.strDefault,  data.packageDes);
 
         if (data.purchaseType == PurchaseType.IAPPay)
         {
-            iAPPackage = InGamePurchaseManager.Instance.GetIAPPackageByID(data.packageName.ToString());
+            iAPPackage = InGamePurchaseManager.Instance.GetIAPPackageByID(MyCache.GetPackageIdByPackageName(data.packageName));
 //            Debug.Log($"<color=red> {iAPPackage == null}");
             txtPrice.SetTextFormat(MyCache.strDefault, iAPPackage?.GetPrice());
         }

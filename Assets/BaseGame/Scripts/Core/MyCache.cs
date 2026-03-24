@@ -14,7 +14,7 @@ public static class MyCache
     public static string strLock = "lock";
     public static string strUnlockNormal = "unlock_normal";
     public static string strUnlockHammer = "unlock_hammer";
-    public static string strBasePackID = "unlock_hammer";
+    public static string strBasePackID = "com.abi.vn.";
     private static Dictionary<GameResource.Type, TMP_Style> resourceStyleCache = new();
     public static string warningPrice = "Not enough currency!";
     public static string warningSlotAdded = "Slot added!";

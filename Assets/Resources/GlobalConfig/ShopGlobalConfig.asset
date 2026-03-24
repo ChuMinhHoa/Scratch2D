@@ -15,13 +15,13 @@ MonoBehaviour:
   shopPackage:
   - mainIcon: {fileID: 21300000, guid: f78c95bcc02b9344481d345bd76daa28, type: 3}
     packageName: 100
-    packageNameToUI: 
+    packageNameToUI: Gold Pack 1
     packageSaleOffTag: 
     percentSaleOff: 0
-    packageDes: 100
+    packageDes: 1000
     purchaseType: 2
-    productType: 0
-    price: 9
+    packProductType: 0
+    price: 1.99
     resourcePrice:
       <ResourceType>k__BackingField: 0
       <ReactiveAmount>k__BackingField:
@@ -31,25 +31,21 @@ MonoBehaviour:
         EditorValue:
           coefficient: 0
           exponent: 0
-    gameResources:
-    - <ResourceType>k__BackingField: 1
-      <ReactiveAmount>k__BackingField:
-        value:
-          coefficient: 100
-          exponent: 0
-        EditorValue:
-          coefficient: 100
-          exponent: 0
+    shopRewards:
+    - rewardType: 0
+      amount:
+        coefficient: 1
+        exponent: 1
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: 56510700e0f9999418a4e2a35b8fbb2f, type: 3}
     packageName: 101
-    packageNameToUI: 
+    packageNameToUI: Gold Pack 2
     packageSaleOffTag: 
     percentSaleOff: 0
-    packageDes: 200
+    packageDes: 5000
     purchaseType: 2
-    productType: 0
-    price: 19
+    packProductType: 0
+    price: 8.99
     resourcePrice:
       <ResourceType>k__BackingField: 0
       <ReactiveAmount>k__BackingField:
@@ -59,25 +55,21 @@ MonoBehaviour:
         EditorValue:
           coefficient: 0
           exponent: 0
-    gameResources:
-    - <ResourceType>k__BackingField: 1
-      <ReactiveAmount>k__BackingField:
-        value:
-          coefficient: 200
-          exponent: 0
-        EditorValue:
-          coefficient: 200
-          exponent: 0
+    shopRewards:
+    - rewardType: 0
+      amount:
+        coefficient: 5
+        exponent: 1
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: e92fe7299fbe0e045a895b0bc3eb39b9, type: 3}
     packageName: 102
-    packageNameToUI: 
+    packageNameToUI: Gold Pack 3
     packageSaleOffTag: 
     percentSaleOff: 0
-    packageDes: 300
+    packageDes: 10000
     purchaseType: 2
-    productType: 0
-    price: 29
+    packProductType: 0
+    price: 16.99
     resourcePrice:
       <ResourceType>k__BackingField: 0
       <ReactiveAmount>k__BackingField:
@@ -87,25 +79,21 @@ MonoBehaviour:
         EditorValue:
           coefficient: 0
           exponent: 0
-    gameResources:
-    - <ResourceType>k__BackingField: 1
-      <ReactiveAmount>k__BackingField:
-        value:
-          coefficient: 300
-          exponent: 0
-        EditorValue:
-          coefficient: 300
-          exponent: 0
+    shopRewards:
+    - rewardType: 0
+      amount:
+        coefficient: 10
+        exponent: 1
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: 105514143bc2fba4db7810319c142146, type: 3}
     packageName: 103
-    packageNameToUI: 
+    packageNameToUI: Gold Pack 4
     packageSaleOffTag: 
     percentSaleOff: 0
-    packageDes: 500
+    packageDes: 25000
     purchaseType: 2
-    productType: 0
-    price: 39
+    packProductType: 0
+    price: 32.99
     resourcePrice:
       <ResourceType>k__BackingField: 0
       <ReactiveAmount>k__BackingField:
@@ -115,25 +103,21 @@ MonoBehaviour:
         EditorValue:
           coefficient: 0
           exponent: 0
-    gameResources:
-    - <ResourceType>k__BackingField: 1
-      <ReactiveAmount>k__BackingField:
-        value:
-          coefficient: 500
-          exponent: 0
-        EditorValue:
-          coefficient: 500
-          exponent: 0
+    shopRewards:
+    - rewardType: 0
+      amount:
+        coefficient: 25
+        exponent: 1
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: d884e6e158f11c84eba15e6460ca7e95, type: 3}
     packageName: 104
-    packageNameToUI: 
+    packageNameToUI: Gold Pack 5
     packageSaleOffTag: 
     percentSaleOff: 0
-    packageDes: 1K
+    packageDes: 50000
     purchaseType: 2
-    productType: 0
-    price: 49
+    packProductType: 0
+    price: 59.99
     resourcePrice:
       <ResourceType>k__BackingField: 0
       <ReactiveAmount>k__BackingField:
@@ -143,25 +127,21 @@ MonoBehaviour:
         EditorValue:
           coefficient: 0
           exponent: 0
-    gameResources:
-    - <ResourceType>k__BackingField: 1
-      <ReactiveAmount>k__BackingField:
-        value:
-          coefficient: 1
-          exponent: 1
-        EditorValue:
-          coefficient: 1
-          exponent: 1
+    shopRewards:
+    - rewardType: 0
+      amount:
+        coefficient: 50
+        exponent: 1
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: fd7ebad55fa5a834eaa7cc120c23cd91, type: 3}
     packageName: 105
-    packageNameToUI: 
+    packageNameToUI: Gold Pack 6
     packageSaleOffTag: 
     percentSaleOff: 0
-    packageDes: 10K
+    packageDes: 100000
     purchaseType: 2
-    productType: 0
-    price: 59
+    packProductType: 0
+    price: 99.99
     resourcePrice:
       <ResourceType>k__BackingField: 0
       <ReactiveAmount>k__BackingField:
@@ -171,13 +151,197 @@ MonoBehaviour:
         EditorValue:
           coefficient: 0
           exponent: 0
-    gameResources:
-    - <ResourceType>k__BackingField: 1
+    shopRewards:
+    - rewardType: 0
+      amount:
+        coefficient: 100
+        exponent: 1
+    isAvailable: 1
+  - mainIcon: {fileID: 0}
+    packageName: 0
+    packageNameToUI: No ads
+    packageSaleOffTag: 
+    percentSaleOff: 0
+    packageDes: 
+    purchaseType: 2
+    packProductType: 0
+    price: 7.99
+    resourcePrice:
+      <ResourceType>k__BackingField: 0
       <ReactiveAmount>k__BackingField:
         value:
-          coefficient: 10
-          exponent: 1
+          coefficient: 0
+          exponent: 0
         EditorValue:
-          coefficient: 10
-          exponent: 1
+          coefficient: 0
+          exponent: 0
+    shopRewards:
+    - rewardType: 2
+      amount:
+        coefficient: 1
+        exponent: 0
+    isAvailable: 1
+  - mainIcon: {fileID: 21300000, guid: a12a3c044936d104f94fff9a19fe829d, type: 3}
+    packageName: 1
+    packageNameToUI: No Ads Bundle
+    packageSaleOffTag: 
+    percentSaleOff: 0
+    packageDes: 
+    purchaseType: 2
+    packProductType: 0
+    price: 11.99
+    resourcePrice:
+      <ResourceType>k__BackingField: 0
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 0
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
+    shopRewards:
+    - rewardType: 2
+      amount:
+        coefficient: 1
+        exponent: 0
+    - rewardType: 0
+      amount:
+        coefficient: 1
+        exponent: 1
+    - rewardType: 1
+      amount:
+        coefficient: 2
+        exponent: 0
+    - rewardType: 3
+      amount:
+        coefficient: 1
+        exponent: 0
+    isAvailable: 1
+  - mainIcon: {fileID: 21300000, guid: 6c6b6d00b5fa76e4989ccb8be96c70ea, type: 3}
+    packageName: 2
+    packageNameToUI: Limited Bundle
+    packageSaleOffTag: 
+    percentSaleOff: 0
+    packageDes: 
+    purchaseType: 2
+    packProductType: 0
+    price: 7.99
+    resourcePrice:
+      <ResourceType>k__BackingField: 0
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 0
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
+    shopRewards:
+    - rewardType: 0
+      amount:
+        coefficient: 4
+        exponent: 1
+    - rewardType: 1
+      amount:
+        coefficient: 2
+        exponent: 0
+    - rewardType: 3
+      amount:
+        coefficient: 2
+        exponent: 0
+    isAvailable: 1
+  - mainIcon: {fileID: 21300000, guid: 0691be7517f0f804f94db5f34caebab4, type: 3}
+    packageName: 3
+    packageNameToUI: Small Bundle
+    packageSaleOffTag: 
+    percentSaleOff: 0
+    packageDes: 
+    purchaseType: 2
+    packProductType: 0
+    price: 10.99
+    resourcePrice:
+      <ResourceType>k__BackingField: 0
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 0
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
+    shopRewards:
+    - rewardType: 0
+      amount:
+        coefficient: 5
+        exponent: 1
+    - rewardType: 1
+      amount:
+        coefficient: 2
+        exponent: 0
+    - rewardType: 3
+      amount:
+        coefficient: 1
+        exponent: 0
+    isAvailable: 1
+  - mainIcon: {fileID: 21300000, guid: b556f61de852d9244bef59c07a24a53a, type: 3}
+    packageName: 4
+    packageNameToUI: Medium Bundle
+    packageSaleOffTag: 
+    percentSaleOff: 0
+    packageDes: 
+    purchaseType: 2
+    packProductType: 0
+    price: 19.99
+    resourcePrice:
+      <ResourceType>k__BackingField: 0
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 0
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
+    shopRewards:
+    - rewardType: 0
+      amount:
+        coefficient: 10
+        exponent: 1
+    - rewardType: 1
+      amount:
+        coefficient: 3
+        exponent: 0
+    - rewardType: 3
+      amount:
+        coefficient: 3
+        exponent: 0
+    isAvailable: 1
+  - mainIcon: {fileID: 21300000, guid: 073fc158cbacda9429155379b6ecd27b, type: 3}
+    packageName: 5
+    packageNameToUI: Ultra Bundle
+    packageSaleOffTag: 
+    percentSaleOff: 0
+    packageDes: 
+    purchaseType: 2
+    packProductType: 0
+    price: 39.99
+    resourcePrice:
+      <ResourceType>k__BackingField: 0
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 0
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
+    shopRewards:
+    - rewardType: 0
+      amount:
+        coefficient: 25
+        exponent: 1
+    - rewardType: 1
+      amount:
+        coefficient: 6
+        exponent: 0
+    - rewardType: 3
+      amount:
+        coefficient: 6
+        exponent: 0
     isAvailable: 1

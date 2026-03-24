@@ -91,7 +91,6 @@ namespace Core.UI.Screens
                 }
                 
                 var currentPos = ObjectFocus.position;
-
                 LMotion.Create(currentPos, targetPos, 0.25f).Bind(x => ObjectFocus.position = x).AddTo(MainView);
                 TxtFocus.SetTextFormat(MyCache.strDefault, MyCache.ConvertBoosterToResourceType(type));
             }

@@ -21,7 +21,7 @@ public class InGamePurchaseManager : Singleton<InGamePurchaseManager>
         {
             if (shopPackages[i].purchaseType == PurchaseType.IAPPay)
             {
-                InitIAPPackage(shopPackages[i].packageName.ToString(), shopPackages[i].price.ToString(CultureInfo.InvariantCulture));
+                InitIAPPackage(MyCache.GetPackageIdByPackageName(shopPackages[i].packageName), shopPackages[i].price.ToString(CultureInfo.InvariantCulture));
             }
         }
     }

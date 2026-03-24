@@ -1,8 +1,13 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
+using TW.Utility.CustomType;
+using TW.Utility.Extension;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "ShopGlobalConfig", menuName = "GlobalConfigs/ShopGlobalConfig")]
 [GlobalConfig("Assets/Resources/GlobalConfig/")]
@@ -19,6 +24,73 @@ public class ShopGlobalConfig : GlobalConfig<ShopGlobalConfig>
         }
 
         return null;
+    }
+
+#if UNITY_EDITOR
+    private string linkSheet = "1NFKTM7gS7x6asEz9v1yLLLSAO73L2oM0ljQ6wj5dnqI";
+    private string sheetTab = "ShopConfig";
+    [ShowInInspector]private List<Dictionary<string, string>> tableData;
+    
+    [Button]
+    private async void FetchData()
+    {
+        var listShopPackageDataConfig = new List<ShopPackageDataConfig>();
+        tableData = await ABakingSheet.GetDataTable(linkSheet, sheetTab);
+
+        foreach (var data in tableData)
+        {
+            if (!data["ID"].Equals(""))
+            {
+                var sprIcon = AssetDatabase.LoadAssetAtPath<Sprite>(@"Assets\BaseGame\Graphic\Sprites\UI\08_Shop\images\PackIcon\" + data["Name"] + ".png");
+                var des = "";
+                if (data.ContainsKey("Des") && !data["Des"].Equals("")) des = data["Des"];
+                var newShopConfig = new ShopPackageDataConfig
+                {
+                    mainIcon = sprIcon,
+                    packageName = (PackageName)Enum.Parse(typeof(PackageName), data["ID"]),
+                    packageNameToUI = data["Name"],
+                    packageDes = des,
+                    price = float.Parse(data["Price"]),
+                    purchaseType = PurchaseType.IAPPay,
+                    shopRewards = new List<ShopReward>(),
+                    isAvailable = true
+                };
+                listShopPackageDataConfig.Add(newShopConfig);
+            }
+
+            if (data["RewardType"].Equals("")) continue;
+
+            var rewardType = (RewardType)Enum.Parse(typeof(RewardType), data["RewardType"]);
+            var rewardAmount = float.Parse(data["Amount"]);
+
+            var gameResource = new ShopReward(rewardType, rewardAmount);
+            listShopPackageDataConfig[^1].shopRewards.Add(gameResource);
+            
+        }
+
+        shopPackage = listShopPackageDataConfig.ToArray();
+    }
+#endif
+}
+
+public enum RewardType
+{
+    Coin = 0,
+    Energy = 1,
+    NoAds = 2,
+    AllBooster = 3,
+}
+
+[Serializable]
+public class ShopReward
+{
+    public RewardType rewardType;
+    public BigNumber amount;
+
+    public ShopReward(RewardType rewardType, BigNumber amount)
+    {
+        this.rewardType = rewardType;
+        this.amount = amount;
     }
 }
 
@@ -45,14 +117,20 @@ public class ShopPackageDataConfig
 
     [ShowIf("@this.purchaseType == PurchaseType.ResourcePay")]
     public GameResource resourcePrice;
-
-    public List<GameResource> gameResources;
+    
+    public List<ShopReward> shopRewards;
 
     public bool isAvailable;
 }
 
 public enum PackageName
 {
+    removeAds = 0,
+    removeAdsBundle = 1,
+    limitedBundle = 2,
+    smallBundle = 3,
+    mediumBundle = 4,
+    ultraBundle = 5,
     coin1 = 100,
     coin2 = 101,
     coin3 = 102,

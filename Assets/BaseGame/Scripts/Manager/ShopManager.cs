@@ -26,9 +26,9 @@ public class ShopManager : Singleton<ShopManager>
 
     public void PurchaseSuccess(ShopPackageDataConfig packageConfig)
     {
-        for (var i = 0; i < packageConfig.gameResources.Count; i++)
+        for (var i = 0; i < packageConfig.shopRewards.Count; i++)
         {
-            RewardManager.Instance.AddResourceReward(packageConfig.gameResources[i]);
+            //RewardManager.Instance.AddResourceReward(packageConfig.shopRewards[i]);
         }
 
         _ = DelayPurChaseSuccess();

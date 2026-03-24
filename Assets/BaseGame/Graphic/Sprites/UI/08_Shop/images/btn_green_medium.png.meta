@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: d9dfac042ce87ac4d91f5a535ac4ba5c
+guid: c93e0feda97f27d448401cc2f4471ad8
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 5894216625248161146
-    second: icon_booster_hammer_0
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -42,7 +39,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -52,7 +49,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 68, y: 65, z: 68, w: 65}
   spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -99,7 +96,7 @@ TextureImporter:
   - serializedVersion: 4
     buildTarget: Android
     maxTextureSize: 256
-    resizeAlgorithm: 1
+    resizeAlgorithm: 0
     textureFormat: 47
     textureCompression: 1
     compressionQuality: 100
@@ -124,35 +121,13 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: icon_booster_hammer_0
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 9
-        width: 466
-        height: 496
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a7d4e11bac67cc150800000000000000
-      internalID: 5894216625248161146
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
@@ -160,8 +135,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      icon_booster_hammer_0: 5894216625248161146
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
