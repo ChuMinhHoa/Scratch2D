@@ -56,7 +56,7 @@ public class TimeManager : Singleton<TimeManager>
     
     private void Update()
     {
-        currentTime = currentTime.AddSeconds(Time.deltaTime);
+        currentTime = DateTime.UtcNow;
         ProcessDueEvents();
         if (timeToEndDay > 0)
         {
@@ -111,7 +111,6 @@ public class TimeManager : Singleton<TimeManager>
         scheduledEvents.Insert(idx, se);
     }
     
-    
     private void ProcessDueEvents()
     {
         if (scheduledEvents.Count == 0) return;
@@ -122,6 +121,11 @@ public class TimeManager : Singleton<TimeManager>
             scheduledEvents[i].actionCallBack?.Invoke();
             scheduledEvents.RemoveAt(i);
         }
+    }
+
+    public void ClearScheduledEvents()
+    {
+        scheduledEvents.Clear();
     }
     
 }

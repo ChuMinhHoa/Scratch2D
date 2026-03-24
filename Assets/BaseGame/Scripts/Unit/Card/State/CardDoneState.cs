@@ -61,7 +61,7 @@ public partial class Card : CardDoneState.IHandler
     
     private async UniTask AnimCardDone()
     {
-        await UniTask.WaitForSeconds(0.15f);
+        //await UniTask.WaitForSeconds(0.15f);
         
         await cardGraphic.AnimCardDone(() =>
         {

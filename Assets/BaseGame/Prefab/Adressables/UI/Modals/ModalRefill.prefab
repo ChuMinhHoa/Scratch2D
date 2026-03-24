@@ -30,12 +30,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5564033651995630253}
+  m_Father: {fileID: 2017460592705619592}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0.0005187988, y: 43.90381}
-  m_SizeDelta: {x: 0.001, y: 87.8085}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8871821576220104524
 CanvasRenderer:
@@ -259,6 +259,60 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &2094863596862180718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2017460592705619592}
+  - component: {fileID: 1914688273932839919}
+  m_Layer: 5
+  m_Name: TimeEnergyController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2017460592705619592
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094863596862180718}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4828632334760096563}
+  m_Father: {fileID: 5564033651995630253}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 43.903}
+  m_SizeDelta: {x: 0, y: 87.807}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1914688273932839919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094863596862180718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6a3fb8b1c48854ab7979752b7296c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TimeEnergy
+  timeToAddEnergy:
+    value: 
+    EditorValue: 
+  objShowTimeCooldown: {fileID: 2094863596862180718}
+  txtTimeCooldown: {fileID: 3429131998702717192}
 --- !u!1 &2606756038157012222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,7 +1203,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 32}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2686263678077111353
@@ -1221,7 +1275,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6130579446621581882}
-  - {fileID: 4828632334760096563}
+  - {fileID: 2017460592705619592}
   m_Father: {fileID: 3643413263596563863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
@@ -1689,6 +1743,9 @@ GameObject:
   - component: {fileID: 3073710601351372240}
   - component: {fileID: 836311945361760605}
   - component: {fileID: 7091638623981897281}
+  - component: {fileID: 3170793123922221291}
+  - component: {fileID: 1060305177068594349}
+  - component: {fileID: 1755164367193587187}
   m_Layer: 5
   m_Name: ModalRefill
   m_TagString: Untagged
@@ -1736,6 +1793,73 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &3170793123922221291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8591037417587382727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4beb8e77015becc4aa24ac3eee782e43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ModalRefill
+  <UsePrefabNameAsIdentifier>k__BackingField: 1
+  <Identifier>k__BackingField: 
+  _animationContainer:
+    _enterAnimations:
+    - _partnerModalIdentifierRegex: 
+      _assetType: 0
+      _animationBehaviour: {fileID: 1060305177068594349}
+      _animationObject: {fileID: 0}
+    _exitAnimations:
+    - _partnerModalIdentifierRegex: 
+      _assetType: 0
+      _animationBehaviour: {fileID: 1755164367193587187}
+      _animationObject: {fileID: 0}
+  <UIPresenter>k__BackingField:
+    <Model>k__BackingField:
+      <SampleValue>k__BackingField:
+        value: 0
+      <CurrentEnergy>k__BackingField:
+        value:
+          coefficient: 0
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
+    <View>k__BackingField:
+      <MainView>k__BackingField: {fileID: 7091638623981897281}
+      <BtnClose>k__BackingField: {fileID: 2901469572598740110}
+      <BtnClose2>k__BackingField: {fileID: 8357386001747725103}
+      <BtnRefillAds>k__BackingField: {fileID: 1129118077056787772}
+      <BtnRefillFull>k__BackingField: {fileID: 8379016217151333129}
+      <TxtEnergy>k__BackingField: {fileID: 3186753252242589970}
+--- !u!114 &1060305177068594349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8591037417587382727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d335ad7a286f2e149a0e92804f072141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PopupPushAnim
+--- !u!114 &1755164367193587187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8591037417587382727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fa437cfafba25f42afc743106798f2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PopupPopAnim
 --- !u!1 &9079947546974550339
 GameObject:
   m_ObjectHideFlags: 0

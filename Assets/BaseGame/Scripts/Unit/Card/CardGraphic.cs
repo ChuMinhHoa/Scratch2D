@@ -127,7 +127,6 @@ public class CardGraphic : MonoBehaviour
 
     public async UniTask AnimCardDone(Action callBack = null)
     {
-        await UniTask.WaitForSeconds(1f);
         callBack?.Invoke();
         await LMotion.Create(1f, 0f, 0.25f).WithOnComplete(() => { })
             .Bind(x => transform.localScale = Vector3.one * x)

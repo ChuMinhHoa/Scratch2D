@@ -7,6 +7,7 @@ using UnityEngine;
 using R3;
 using Sirenix.OdinInspector;
 using TW.UGUI.Core.Activities;
+using Random = UnityEngine.Random;
 
 namespace Core.UI.Activities
 {
@@ -74,25 +75,26 @@ namespace Core.UI.Activities
             public async UniTask Loading()
             {
                 currentProgress = 0f;
-                await LMotion.Create(currentProgress, 50f, 0.5f)
+                var targetProgress = Random.Range(50f, 70f);
+                await LMotion.Create(currentProgress, targetProgress, 0.5f)
                     .WithEase(Ease.Linear)
                     .Bind(ShowTextProgress).AddTo(MainView);
 
-                await ActionCallBack();
-               
-                    //await Level.Instance.LoadData();
+                if (ActionCallBack != null)
+                    await ActionCallBack();
                 
-                await LMotion.Create(currentProgress, 100f, 0.5f)
+                await LMotion.Create(targetProgress, 100f, 0.5f)
                     .WithEase(Ease.Linear)
                     .Bind(ShowTextProgress).AddTo(MainView);
                 await UIManager.Instance.CloseActivityAsync<ActivityLoadingInGamePlay>();
-                Debug.Log("Close Activity Loading");
-                await ActionCallBack2();
-                   // await Level.Instance.AnimFirstSpawn();
+                
+                if (ActionCallBack2 != null)
+                    await ActionCallBack2();
             }
 
             private void ShowTextProgress(float value)
             {
+                currentProgress = value;
                 LoadingProgressBar.OnlyChangeProgress(value / 100f);
                 _ = LoadingProgressBar.ChangeTextProgress(value);
             }

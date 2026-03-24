@@ -12,6 +12,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _ENABLEUVSCROLL_ON
   - _SHADERFADING_NONE
   - _SHADERSPACE_UV
   - _TEXTURELAYER1SHEETTOGGLE_ON
@@ -263,7 +264,7 @@ Material:
     - _EnableUVDistort: 0
     - _EnableUVRotate: 0
     - _EnableUVScale: 0
-    - _EnableUVScroll: 0
+    - _EnableUVScroll: 1
     - _EnableVibrate: 0
     - _EnableWiggle: 0
     - _EnableWind: 0
@@ -479,7 +480,7 @@ Material:
     - _ToggleUnscaledTime: 0
     - _UVDistortFade: 1
     - _UVDistortMaskToggle: 0
-    - _UVRotateSpeed: 1
+    - _UVRotateSpeed: 0.22
     - _UVSec: 0
     - _VertexTintFirst: 0
     - _VibrateFade: 1
@@ -641,10 +642,10 @@ Material:
     - _UVDistortNoiseScale: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _UVDistortSpeed: {r: 2, g: 2, b: 0, a: 0}
     - _UVDistortTo: {r: 0.02, g: 0.02, b: 0, a: 0}
-    - _UVRotatePivot: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _UVRotatePivot: {r: 0.5, g: 0, b: 0, a: 0}
     - _UVScalePivot: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _UVScaleScale: {r: 1, g: 1, b: 0, a: 0}
-    - _UVScrollSpeed: {r: 0.2, g: 0, b: 0, a: 0}
+    - _UVScrollSpeed: {r: 0.05, g: 0.05, b: 0, a: 0}
     - _WorldTilingOffset: {r: 0, g: 0, b: 0, a: 0}
     - _WorldTilingScale: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

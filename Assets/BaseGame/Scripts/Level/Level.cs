@@ -78,13 +78,14 @@ public class Level : Singleton<Level>
     [Button(ButtonSizes.Gigantic)]
     public void LoadDataClean()
     {
-        var e = FindObjectsByType<ScratchObject>(FindObjectsSortMode.None);
-        var e1 = FindObjectsByType<Card>(FindObjectsSortMode.None);
-        var e2 = FindObjectsByType<Sticker>(FindObjectsSortMode.None);
-        var e3 = FindObjectsByType<StickerDone>(FindObjectsSortMode.None);
-        var e4 = FindObjectsByType<FolderHaveSticker>(FindObjectsSortMode.None);
-        var e5 = FindObjectsByType<SlotFolder>(FindObjectsSortMode.None);
-        var e6 = FindObjectsByType<SpaceSticker>(FindObjectsSortMode.None);
+        Debug.Log("Clean Data");
+        var e  = FindObjectsByType<ScratchObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        var e1 = FindObjectsByType<Card>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        var e2 = FindObjectsByType<Sticker>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        var e3 = FindObjectsByType<StickerDone>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        var e4 = FindObjectsByType<FolderHaveSticker>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        var e5 = FindObjectsByType<SlotFolder>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        var e6 = FindObjectsByType<SpaceSticker>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
         for (var i = 0; i < e.Length; i++)
         {
@@ -245,8 +246,9 @@ public class Level : Singleton<Level>
     {
         var posSpawn = sticker.transform.position;
         posSpawn.z = forceScratch ? -2f : posSpawn.z;
-        //Debug.Log("Call Spawn Sticker Done ");
+        Debug.Log("Call Spawn Sticker Done ");
         var stD = PoolManager.Instance.SpawnStickerDone(posSpawn);
+        stD.SetActionCallBackOnMoveToNote(sticker.SetStickerIsDone);
         stD.InitStickerMove(sticker.stickerData.stickerID, rot);
         sticker.DisAbleIcon();
         stickerDone.Add(stD);

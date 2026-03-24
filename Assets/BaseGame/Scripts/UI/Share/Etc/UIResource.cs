@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Text;
 using R3;
 using TMPro;
@@ -15,13 +16,16 @@ public class UIResource : MonoBehaviour
     
     [SerializeField] private Reactive<BigNumber> resourceAmount;
     public Button btnAdd;
+    public GameObject objAdd;
     [SerializeReference] public ActionCallOnResource actionCallOnResource;
+    [SerializeReference] public UIResourceActiveButton conditionActiveAddButton;
 
     public virtual void Start()
     {
         if (resourceType != GameResource.Type.None)
             SetResourceType();
         btnAdd.onClick.AddListener(actionCallOnResource.ActionCallOnUIResource);
+        conditionActiveAddButton ??= new UIResourceActiveButton();
     }
 
     private void SetResourceType()
@@ -48,6 +52,29 @@ public class UIResource : MonoBehaviour
 
     private void ChangeValue(BigNumber value)
     {
+        Debug.Log("Change value " + value);
         txtAmount.SetTextFormat(MyCache.strDefault, value.ToStringUIFloor());
+        Debug.Log($"Condition active add button {conditionActiveAddButton.GetConditionActive()}");
+        var e = conditionActiveAddButton.GetConditionActive();
+        btnAdd.interactable = e;
+        objAdd.SetActive(e);
+    }
+}
+
+[Serializable]
+public class UIResourceActiveButton
+{
+    public virtual bool GetConditionActive()
+    {
+        return true;
+    }
+}
+
+[Serializable]
+public class EnergyResourceConditionActiveAddButton : UIResourceActiveButton
+{
+    public override bool GetConditionActive()
+    {
+        return EnergyManager.Instance.IsCanRefillEnergy();
     }
 }

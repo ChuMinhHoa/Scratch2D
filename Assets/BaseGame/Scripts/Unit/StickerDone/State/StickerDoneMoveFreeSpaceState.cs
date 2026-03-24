@@ -40,8 +40,10 @@ public partial class StickerDone : StickerDoneMoveFreeSpaceState.IHandler
 {
     private StickerDoneMoveFreeSpaceState StickerDoneMoveFreeSpaceStateCache { get; set; }
     public StickerDoneMoveFreeSpaceState StickerDoneMoveFreeSpaceState => StickerDoneMoveFreeSpaceStateCache ??= new StickerDoneMoveFreeSpaceState(this);
+    
     public async UniTask OnEnterMoveFreeSpace()
     {
+        actionCallBackOnMoveToNote?.Invoke();
         var id = UnitEventManager.Instance.RegisterEvent();
         stickerPos.RegisterObj(this);
         stickerDoneAnim.enabled = false;

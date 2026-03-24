@@ -96,6 +96,12 @@ namespace Core.UI.Modals
 
             private async UniTask OnClickBtnReplay()
             {
+                await UIManager.Instance.OpenActivityAsync<ActivityWarningLoseEnergy>((Func<UniTask>)ConfirmReplay);
+            }
+            
+            private async UniTask ConfirmReplay()
+            {
+                EnergyManager.Instance.UseEnergy(1);
                 Level.Instance.ResetLevel();
                 await UIManager.Instance.OpenActivityAsync<ActivityLoadingInGamePlay>((Func<UniTask>)Level.Instance.LoadData, (Func<UniTask>)Level.Instance.AnimFirstSpawn);  
                 await UIManager.Instance.CloseModalAsync();
@@ -103,6 +109,12 @@ namespace Core.UI.Modals
 
             private async UniTask OnClickBtnHome()
             {
+                await UIManager.Instance.OpenActivityAsync<ActivityWarningLoseEnergy>((Func<UniTask>)ConfirmBackToHome);
+            }
+
+            public async UniTask ConfirmBackToHome()
+            {
+                EnergyManager.Instance.UseEnergy(1);
                 await UIManager.Instance.OpenActivityAsync<ActivityLoadingInGamePlay>(null, null);
                 Level.Instance.ResetLevel();
                 await UIManager.Instance.CloseScreenAsync();
@@ -112,7 +124,7 @@ namespace Core.UI.Modals
 
             private void OnClickBtnClose()
             {
-                _ = UIAnimManager.Instance.AnimButton(View.BtnClose.transform);
+                UIAnimManager.Instance.AnimButton(View.BtnClose.transform);
                 _ = UIManager.Instance.CloseModalAsync();
             }
         }

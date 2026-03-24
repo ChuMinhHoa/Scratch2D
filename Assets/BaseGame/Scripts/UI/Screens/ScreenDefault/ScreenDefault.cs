@@ -147,7 +147,7 @@ namespace Core.UI.Screens
                         break;
                     case SlotTabType.ComingSoon:
                         //Debug.Log("Coming soon");
-                        _ = UIManager.Instance.OpenScreenAsync<ScreenHome>();
+                        _ = UIManager.Instance.OpenScreenAsync<ScreenSetting>();
                         break;
                     default:
                         break;

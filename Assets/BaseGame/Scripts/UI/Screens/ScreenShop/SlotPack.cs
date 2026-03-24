@@ -65,6 +65,6 @@ public class SlotPack : SlotBase<ShopPackageDataConfig>
 
     private void AnimChoose()
     {
-        
+        UIAnimManager.Instance.AnimButton(trsContent);
     }
 }

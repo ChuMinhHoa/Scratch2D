@@ -25,3 +25,9 @@ MonoBehaviour:
     m_ClosingDefinition: 
     m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d000000300000003e000000
     m_ClosingTagArray: 
+  - m_Name: Warning
+    m_HashCode: -1088480854
+    m_OpeningDefinition: <sprite=1>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d000000310000003e000000
+    m_ClosingTagArray: 

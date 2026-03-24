@@ -1052,11 +1052,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3895829235631367523, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: actionCallOnResource
-      value: 5138881482208313480
+      value: 5138881499719270507
+      objectReference: {fileID: 0}
+    - target: {fileID: 3895829235631367523, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
+      propertyPath: 'managedReferences[-2]'
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3895829235631367523, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: 'managedReferences[5138881482208313480]'
       value: Assembly-CSharp ActionCallOnMoney
+      objectReference: {fileID: 0}
+    - target: {fileID: 3895829235631367523, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
+      propertyPath: 'managedReferences[5138881499719270507]'
+      value: Assembly-CSharp ActionCallOnMoneyHome
       objectReference: {fileID: 0}
     - target: {fileID: 5220070912082830013, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: m_Name
@@ -1532,8 +1540,16 @@ PrefabInstance:
       value: 5138881482208313481
       objectReference: {fileID: 0}
     - target: {fileID: 3895829235631367523, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
+      propertyPath: conditionActiveAddButton
+      value: 5138881499719270499
+      objectReference: {fileID: 0}
+    - target: {fileID: 3895829235631367523, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: 'managedReferences[5138881482208313481]'
       value: Assembly-CSharp ActionCallOnEnergy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3895829235631367523, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
+      propertyPath: 'managedReferences[5138881499719270499]'
+      value: Assembly-CSharp EnergyResourceConditionActiveAddButton
       objectReference: {fileID: 0}
     - target: {fileID: 5220070912082830013, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: m_Name

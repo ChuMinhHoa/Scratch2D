@@ -31,7 +31,7 @@ public class RewardManager : Singleton<RewardManager>
     {
         if (resourceRewardList.Count > 0)
         {
-            //_ = UIManager.Instance.OpenModalAsync<ModalRewardResource>();
+            _ = UIManager.Instance.OpenModalAsync<ModalRewardResource>();
         }
 
         if (boosterRewardList.Count > 0)

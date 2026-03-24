@@ -2362,7 +2362,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3895829235631367523, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: actionCallOnResource
-      value: 2849848910885683325
+      value: 5138881499719270508
+      objectReference: {fileID: 0}
+    - target: {fileID: 3895829235631367523, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
+      propertyPath: 'managedReferences[-2]'
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3895829235631367523, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: 'managedReferences[2849848910885683285]'
@@ -2371,6 +2375,10 @@ PrefabInstance:
     - target: {fileID: 3895829235631367523, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: 'managedReferences[2849848910885683325]'
       value: Assembly-CSharp ActionCallOnMoney
+      objectReference: {fileID: 0}
+    - target: {fileID: 3895829235631367523, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
+      propertyPath: 'managedReferences[5138881499719270508]'
+      value: Assembly-CSharp ActionCallOnMoneyInGame
       objectReference: {fileID: 0}
     - target: {fileID: 5220070912082830013, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: m_Name

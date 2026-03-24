@@ -443,13 +443,20 @@ MonoBehaviour:
       coefficient: 0
       exponent: 0
   btnAdd: {fileID: 7566462478947786036}
+  objAdd: {fileID: 498658631940482161}
   actionCallOnResource:
-    rid: -2
+    rid: 5138881499719270503
+  conditionActiveAddButton:
+    rid: 5138881499719270504
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 5138881499719270503
+      type: {class: ActionCallOnResource, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 5138881499719270504
+      type: {class: UIResourceActiveButton, ns: , asm: Assembly-CSharp}
+      data: 
 --- !u!1 &5283735309790403463
 GameObject:
   m_ObjectHideFlags: 0

@@ -81,6 +81,7 @@ namespace Core.UI.Screens
 
             private async UniTask PlayGame()
             {
+                Level.Instance.LoadDataClean();
                 _ = UIAnimManager.Instance.AnimButton(View.BtnPlay.transform, null);
                 var e = EnergyManager.Instance.IsEnoughEnergy();
                 if (!e)

@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using LitMotion;
@@ -43,8 +44,12 @@ public partial class StickerDone : StickerDoneMoveToObjHaveStickerState.IHandler
     public StickerDoneMoveToObjHaveStickerState StickerDoneMoveToObjHaveStickerState =>
         StickerDoneMoveToObjHaveStickerStateCache ??= new StickerDoneMoveToObjHaveStickerState(this);
 
+    
+    private Action actionCallBackOnMoveToNote;
+    
     public async UniTask OnEnterMoveToObjHaveStickerState()
     {
+        actionCallBackOnMoveToNote?.Invoke();
         var ct = this.GetCancellationTokenOnDestroy();
         
         var idRegister = UnitEventManager.Instance.RegisterEvent();

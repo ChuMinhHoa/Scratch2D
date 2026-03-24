@@ -1,11 +1,15 @@
 using System;
 using Core.UI.Activities;
 using Core.UI.Screens;
+using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using R3;
 using Sirenix.OdinInspector;
+using TMPro;
 using TW.UGUI.Core.Modals;
 using TW.UGUI.MVPPattern;
+using TW.Utility.CustomType;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,6 +43,8 @@ public class ModalRefill : Modal
             [field: SerializeField]
             public SerializableReactiveProperty<int> SampleValue { get; private set; }
 
+            [field: SerializeField] public Reactive<BigNumber> CurrentEnergy { get; set; }
+
             public UniTask Initialize(Memory<object> args)
             {
                 return UniTask.CompletedTask;
@@ -58,6 +64,7 @@ public class ModalRefill : Modal
             [field: SerializeField] public Button BtnClose2 { get; private set; }
             [field: SerializeField] public Button BtnRefillAds { get; private set; }
             [field: SerializeField] public Button BtnRefillFull { get; private set; }
+            [field: SerializeField] public TextMeshProUGUI TxtEnergy { get; private set; }
 
             public UniTask Initialize(Memory<object> args)
             {
@@ -76,34 +83,38 @@ public class ModalRefill : Modal
             {
                 await Model.Initialize(args);
                 await View.Initialize(args);
-                
+
                 View.BtnClose.onClick.AddListener(OnClickBtnClose);
                 View.BtnClose2.onClick.AddListener(OnClickBtnClose);
-                View.BtnContinue.onClick.AddListener(OnClickBtnClose);
-                View.BtnHome.onClick.AddListener(() => _ = OnClickBtnHome());
-                View.BtnReplay.onClick.AddListener(() => _ = OnClickBtnReplay());
+                View.BtnRefillAds.onClick.AddListener(OnClickBtnRefillADS);
+                View.BtnRefillFull.onClick.AddListener(OnClickBtnRefillFull);
+
+                Model.CurrentEnergy = EnergyManager.Instance.energyResource.ReactiveAmount;
+                Model.CurrentEnergy.Subscribe(ChangeEnergy).AddTo(View.MainView);
             }
 
-            private async UniTask OnClickBtnReplay()
+            public void ChangeEnergy(BigNumber energy)
             {
-                Level.Instance.ResetLevel();
-                await UIManager.Instance.OpenActivityAsync<ActivityLoadingInGamePlay>((Func<UniTask>)Level.Instance.LoadData, (Func<UniTask>)Level.Instance.AnimFirstSpawn);  
-                await UIManager.Instance.CloseModalAsync();
-            }
-
-            private async UniTask OnClickBtnHome()
-            {
-                await UIManager.Instance.OpenActivityAsync<ActivityLoadingInGamePlay>(null, null);
-                Level.Instance.ResetLevel();
-                await UIManager.Instance.CloseScreenAsync();
-                await UIManager.Instance.OpenScreenDefaultAsync<ScreenDefault>();
-                await UIManager.Instance.CloseModalAsync();
+                var e = energy < DefaultGlobalConfig.Instance.maxEnergy;
+                View.TxtEnergy.SetTextFormat(MyCache.strDefault, energy.ToInt());
+                View.BtnRefillFull.interactable = e;
+                View.BtnRefillAds.interactable = e;
             }
 
             private void OnClickBtnClose()
             {
                 _ = UIAnimManager.Instance.AnimButton(View.BtnClose.transform);
                 _ = UIManager.Instance.CloseModalAsync();
+            }
+
+            private void OnClickBtnRefillADS()
+            {
+                EnergyManager.Instance.AddOneEnergy();
+            }
+
+            private void OnClickBtnRefillFull()
+            {
+                EnergyManager.Instance.RefillFullEnergy();
             }
         }
     }

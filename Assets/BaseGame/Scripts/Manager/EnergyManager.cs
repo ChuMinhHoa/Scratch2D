@@ -126,7 +126,7 @@ public class EnergyManager : Singleton<EnergyManager>
         EnergyDataSave.Instance.SaveData();
     }
 
-    private void AddOneEnergy()
+    public void AddOneEnergy()
     {
         AddEnergy(1);
     }
@@ -153,5 +153,19 @@ public class EnergyManager : Singleton<EnergyManager>
     public bool IsEnoughEnergy()
     {
         return energyResource.Amount > 0;
+    }
+
+    public void RefillFullEnergy()
+    {
+        energyResource.Amount = DefaultGlobalConfig.Instance.maxEnergy;
+        ResetTimeToAddEnergy();
+        ResetTimeToAddOneEnergy();
+        TimeManager.Instance.ClearScheduledEvents();
+        SaveEnergyData();
+    }
+
+    public bool IsCanRefillEnergy()
+    {
+        return energyResource.Amount < DefaultGlobalConfig.Instance.maxEnergy;
     }
 }

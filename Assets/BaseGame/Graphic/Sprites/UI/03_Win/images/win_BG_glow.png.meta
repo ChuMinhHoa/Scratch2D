@@ -1,0 +1,728 @@
+fileFormatVersion: 2
+guid: 9a7345a2c80a82746b7efa7339ce09ef
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4742360609517877824
+    second: win_BG_glow_0
+  - first:
+      213: -5572841599354516697
+    second: win_BG_glow_1
+  - first:
+      213: -7249181542325049454
+    second: win_BG_glow_2
+  - first:
+      213: 6824731949656396256
+    second: win_BG_glow_3
+  - first:
+      213: 8234832994084515004
+    second: win_BG_glow_4
+  - first:
+      213: -2449660917218049925
+    second: win_BG_glow_5
+  - first:
+      213: 4831038473704916370
+    second: win_BG_glow_6
+  - first:
+      213: -3115748584170222373
+    second: win_BG_glow_7
+  - first:
+      213: 262041194441742758
+    second: win_BG_glow_8
+  - first:
+      213: -716611941782352628
+    second: win_BG_glow_9
+  - first:
+      213: -5935863633319450403
+    second: win_BG_glow_10
+  - first:
+      213: 442503185076435777
+    second: win_BG_glow_11
+  - first:
+      213: 2675273440462674769
+    second: win_BG_glow_12
+  - first:
+      213: 2864729369886917744
+    second: win_BG_glow_13
+  - first:
+      213: -6425428855715384803
+    second: win_BG_glow_14
+  - first:
+      213: 3854535914846248875
+    second: win_BG_glow_15
+  - first:
+      213: 799311906236969248
+    second: win_BG_glow_16
+  - first:
+      213: 8539567969967362109
+    second: win_BG_glow_17
+  - first:
+      213: 5617616730850679678
+    second: win_BG_glow_18
+  - first:
+      213: 4402622320972095070
+    second: win_BG_glow_19
+  - first:
+      213: -2899248197509405972
+    second: win_BG_glow_20
+  - first:
+      213: 1783595227210479888
+    second: win_BG_glow_21
+  - first:
+      213: -6438012558115442448
+    second: win_BG_glow_22
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: win_BG_glow_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1604
+        height: 2457
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c5c1e8d620cf2eb0800000000000000
+      internalID: -4742360609517877824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_1
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 2426
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72b44f0771a49a2b0800000000000000
+      internalID: -5572841599354516697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_2
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 2422
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 297a5698bcbb56b90800000000000000
+      internalID: -7249181542325049454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_3
+      rect:
+        serializedVersion: 2
+        x: 1583
+        y: 1282
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e1578a9c8156be50800000000000000
+      internalID: 6824731949656396256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_4
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 1289
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbce2156af0084270800000000000000
+      internalID: 8234832994084515004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_5
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1276
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b708f09ef5e010ed0800000000000000
+      internalID: -2449660917218049925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_6
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 1224
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2954d6955eb4b0340800000000000000
+      internalID: 4831038473704916370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_7
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 1214
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdc8b1fab23a2c4d0800000000000000
+      internalID: -3115748584170222373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_8
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 1206
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a91837f315f2a300800000000000000
+      internalID: 262041194441742758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_9
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 1201
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0d82485c351e06f0800000000000000
+      internalID: -716611941782352628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_10
+      rect:
+        serializedVersion: 2
+        x: 1589
+        y: 1197
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd8a5dc99739f9da0800000000000000
+      internalID: -5935863633319450403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_11
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 1132
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14bb5766d46142600800000000000000
+      internalID: 442503185076435777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_12
+      rect:
+        serializedVersion: 2
+        x: 1582
+        y: 1128
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15b90d7150b702520800000000000000
+      internalID: 2675273440462674769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_13
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 20
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0740db51f2091c720800000000000000
+      internalID: 2864729369886917744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_14
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 15
+        width: 11
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d123a85cf7a44d6a0800000000000000
+      internalID: -6425428855715384803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_15
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 15
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baf556a0eff0e7530800000000000000
+      internalID: 3854535914846248875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_16
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 11
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 021befb91f9b71b00800000000000000
+      internalID: 799311906236969248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_17
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 10
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d305539f2d3a28670800000000000000
+      internalID: 8539567969967362109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_18
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 14
+        width: 19
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7b55ae37a8c5fd40800000000000000
+      internalID: 5617616730850679678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_19
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 22
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5e5fb1cca1491d30800000000000000
+      internalID: 4402622320972095070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_20
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 19
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce2a2cf002dc3c7d0800000000000000
+      internalID: -2899248197509405972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_21
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 15
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01976f4c86a90c810800000000000000
+      internalID: 1783595227210479888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_BG_glow_22
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 15
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f0760e30b597a6a0800000000000000
+      internalID: -6438012558115442448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      win_BG_glow_0: -4742360609517877824
+      win_BG_glow_1: -5572841599354516697
+      win_BG_glow_10: -5935863633319450403
+      win_BG_glow_11: 442503185076435777
+      win_BG_glow_12: 2675273440462674769
+      win_BG_glow_13: 2864729369886917744
+      win_BG_glow_14: -6425428855715384803
+      win_BG_glow_15: 3854535914846248875
+      win_BG_glow_16: 799311906236969248
+      win_BG_glow_17: 8539567969967362109
+      win_BG_glow_18: 5617616730850679678
+      win_BG_glow_19: 4402622320972095070
+      win_BG_glow_2: -7249181542325049454
+      win_BG_glow_20: -2899248197509405972
+      win_BG_glow_21: 1783595227210479888
+      win_BG_glow_22: -6438012558115442448
+      win_BG_glow_3: 6824731949656396256
+      win_BG_glow_4: 8234832994084515004
+      win_BG_glow_5: -2449660917218049925
+      win_BG_glow_6: 4831038473704916370
+      win_BG_glow_7: -3115748584170222373
+      win_BG_glow_8: 262041194441742758
+      win_BG_glow_9: -716611941782352628
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

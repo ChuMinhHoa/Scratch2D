@@ -120,6 +120,7 @@ namespace Core.UI.Activities
 
             private async UniTask UIControl()
             {
+                Level.Instance.ResetLevel();
                 await UIManager.Instance.CloseScreenAsync();
                 await UIManager.Instance.OpenScreenDefaultAsync<ScreenDefault>();
                 await UIManager.Instance.CloseActivityAsync<ActivityWinGame>();

@@ -21,7 +21,6 @@ public class TimeEnergy : MonoBehaviour
     {
         timeToAddEnergy = EnergyManager.Instance.timeToAddOneEnergy;
         timeToAddEnergy.Subscribe(ChangeTimeAddOneEnergy).AddTo(this);
-        
     }
 
     private void ChangeTime()
@@ -45,5 +44,10 @@ public class TimeEnergy : MonoBehaviour
         {
             TimeManager.OnTimeChange -= ChangeTime;
         }
+    }
+
+    private void OnDestroy()
+    {
+        TimeManager.OnTimeChange -= ChangeTime;
     }
 }

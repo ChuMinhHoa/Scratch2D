@@ -43,7 +43,7 @@ public partial class Sticker : StickerDoneState.IHandler
     public virtual async UniTask OnEnterDoneState()
     {
         await stickerGraphic.OnDoneMode();
-        isDone.Value = true;
+        Debug.Log("Sticker Done State");
         StickerMoveToTarget();
     }
 
@@ -55,5 +55,11 @@ public partial class Sticker : StickerDoneState.IHandler
     public UniTask OnExitDoneState()
     {
         return UniTask.CompletedTask;
+    }
+
+    public void SetStickerIsDone()
+    {
+        Debug.Log("sticker call back done");
+        isDone.Value = true;
     }
 }

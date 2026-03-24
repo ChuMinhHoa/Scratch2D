@@ -19,10 +19,16 @@ public class ActionCallOnEnergy : ActionCallOnResource
     {
         base.ActionCallOnUIResource();
         Debug.Log("Action call on energy");
+        _ = OpenModalEnergy();
+    }
+
+    private async UniTask OpenModalEnergy()
+    {
+        await UIManager.Instance.OpenModalAsync<ModalRefill>();
     }
 }
 
-public class ActionCallOnMoney : ActionCallOnResource
+public class ActionCallOnMoneyInGame : ActionCallOnResource
 {
     public override void ActionCallOnUIResource()
     {
@@ -35,5 +41,20 @@ public class ActionCallOnMoney : ActionCallOnResource
     {
         GamePlayManager.Instance.ChangeGameState(GameState.Normal);
         await UIManager.Instance.OpenScreenDefaultAsync<ScreenShopInGame>();
+    }
+}
+
+public class ActionCallOnMoneyHome : ActionCallOnResource
+{
+    public override void ActionCallOnUIResource()
+    {
+        base.ActionCallOnUIResource();
+        Debug.Log("Action call on money");
+        _ = GoToShop();
+    }
+
+    private async UniTask GoToShop()
+    {
+        await UIManager.Instance.OpenScreenAsync<ScreenShop>();
     }
 }

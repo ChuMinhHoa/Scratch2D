@@ -238,6 +238,8 @@ GameObject:
   - component: {fileID: 9176785430077759898}
   - component: {fileID: 2765377696485572199}
   - component: {fileID: 1876260551827994752}
+  - component: {fileID: 132600511423639652}
+  - component: {fileID: 1564839729739148844}
   m_Layer: 5
   m_Name: ModalSettingInGame
   m_TagString: Untagged
@@ -300,8 +302,16 @@ MonoBehaviour:
   <UsePrefabNameAsIdentifier>k__BackingField: 1
   <Identifier>k__BackingField: 
   _animationContainer:
-    _enterAnimations: []
-    _exitAnimations: []
+    _enterAnimations:
+    - _partnerModalIdentifierRegex: 
+      _assetType: 0
+      _animationBehaviour: {fileID: 1564839729739148844}
+      _animationObject: {fileID: 0}
+    _exitAnimations:
+    - _partnerModalIdentifierRegex: 
+      _assetType: 0
+      _animationBehaviour: {fileID: 132600511423639652}
+      _animationObject: {fileID: 0}
   <UIPresenter>k__BackingField:
     <Model>k__BackingField:
       <SampleValue>k__BackingField:
@@ -313,6 +323,30 @@ MonoBehaviour:
       <BtnContinue>k__BackingField: {fileID: 1410977635463627186}
       <BtnHome>k__BackingField: {fileID: 4680101473266232621}
       <BtnReplay>k__BackingField: {fileID: 5133730355295885130}
+--- !u!114 &132600511423639652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176224183949858421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fa437cfafba25f42afc743106798f2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PopupPopAnim
+--- !u!114 &1564839729739148844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176224183949858421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d335ad7a286f2e149a0e92804f072141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PopupPushAnim
 --- !u!1 &2944147382795862041
 GameObject:
   m_ObjectHideFlags: 0

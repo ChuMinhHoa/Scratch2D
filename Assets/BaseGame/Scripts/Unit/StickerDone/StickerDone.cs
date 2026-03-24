@@ -75,4 +75,9 @@ public partial class StickerDone : MonoBehaviour
     {
         return noteId == stickerId;
     }
+    
+    public void SetActionCallBackOnMoveToNote(Action actionCallBack)
+    {
+        actionCallBackOnMoveToNote = actionCallBack;
+    }
 }
