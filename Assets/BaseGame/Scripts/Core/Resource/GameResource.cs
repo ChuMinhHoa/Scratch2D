@@ -14,7 +14,8 @@ public class GameResource
         BoosterMagnet = 3,
         BoosterAddSlot = 4,
         BoosterHammer = 5,
-        Energy = 6
+        Energy = 6,
+        NoAds = 7,
     }
     
     [field: HideLabel, HorizontalGroup(nameof(GameResource), 100)]

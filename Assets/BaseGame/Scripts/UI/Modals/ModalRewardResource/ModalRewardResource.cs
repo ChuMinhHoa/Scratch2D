@@ -44,7 +44,7 @@ namespace Core.UI.Modals
             public SerializableReactiveProperty<int> SampleValue { get; private set; }
 
             public List<GameResource> resourceRewardList = new();
-            
+
             public UniTask Initialize(Memory<object> args)
             {
                 resourceRewardList = RewardManager.Instance.resourceRewardList;
@@ -61,9 +61,10 @@ namespace Core.UI.Modals
             public CanvasGroup MainView { get; private set; }
 
             public MainContentBase<SlotReward, GameResource> resourceRewardContent;
-            
-            [field: SerializeField] public Button BtnClaim { get; private set; }    
-            
+
+            [field: SerializeField] public Button BtnClaim { get; private set; }
+            [field: SerializeField] public ScrollRect MyScroll { get; set; }
+
             public UniTask Initialize(Memory<object> args)
             {
                 return UniTask.CompletedTask;
@@ -72,6 +73,25 @@ namespace Core.UI.Modals
             public void InitData(List<GameResource> modelResourceRewardList)
             {
                 resourceRewardContent.InitData(modelResourceRewardList.ToArray());
+            }
+
+            public void HideAllSlot()
+            {
+                for (var i = 0; i < resourceRewardContent.slots.Count; i++)
+                {
+                    resourceRewardContent.slots[i].SetUpAnimShow();
+                }
+            }
+
+            public async UniTask AnimShow()
+            {
+                for (var i = 0; i < resourceRewardContent.slots.Count; i++)
+                {
+                    await UniTask.WaitForSeconds(0.05f * i);
+                    resourceRewardContent.slots[i].AnimShow();
+                    Debug.Log( (float)i / resourceRewardContent.slots.Count);
+                    MyScroll.horizontalNormalizedPosition = (float)i / (resourceRewardContent.slots.Count-1);
+                }
             }
         }
 
@@ -88,7 +108,13 @@ namespace Core.UI.Modals
                 await View.Initialize(args);
 
                 View.InitData(Model.resourceRewardList);
+                View.HideAllSlot();
                 View.BtnClaim.onClick.AddListener(ClaimReward);
+            }
+
+            public void DidPushEnter(Memory<object> args)
+            {
+                _ = View.AnimShow();
             }
 
             private void ClaimReward()

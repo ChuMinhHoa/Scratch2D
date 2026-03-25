@@ -78,7 +78,7 @@ public class Level : Singleton<Level>
     [Button(ButtonSizes.Gigantic)]
     public void LoadDataClean()
     {
-        Debug.Log("Clean Data");
+        //Debug.Log("Clean Data");
         var e  = FindObjectsByType<ScratchObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         var e1 = FindObjectsByType<Card>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         var e2 = FindObjectsByType<Sticker>(FindObjectsInactive.Include, FindObjectsSortMode.None);
@@ -155,12 +155,13 @@ public class Level : Singleton<Level>
     [Button]
     public async UniTask AnimFirstSpawn()
     {
-        Debug.Log("Anim First Spawn");
+        //Debug.Log("Anim First Spawn");
         layerController.AnimFirstSpawn();
         CallNextObjSticker(true);
         var totalTimeWait = 0.75f;
         await UniTask.WaitForSeconds(totalTimeWait);
         await UIManager.Instance.OpenActivityAsync<ActivityFirstShowOnGamePlay>();
+        await UniTask.WaitForSeconds(1.5f);
         GamePlayManager.Instance.ChangeGameState(GameState.Playing);
         GlobalEventManager.OnHaveCardDone?.Invoke();
     }

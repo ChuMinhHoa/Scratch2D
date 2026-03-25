@@ -15,6 +15,7 @@ MonoBehaviour:
   appOpenAdsMediationType: 0
   bannerAdsMediationType: 0
   maxBannerAdsPosition: 0
+  admobBannerAdsPosition: 0
   isBannerShowingOnStart: 0
   isAutoRefreshBannerByCode: 0
   collapsibleBannerAdsMediationType: 0
@@ -39,9 +40,9 @@ MonoBehaviour:
     sdkKey:
       AndroidID: ZoNyqu_piUmpl33-qkoIfRp6MTZGW9M5xk1mb1ZIWK6FN9EBu0TXSHeprC3LMPQI7S3kTc1-x7DJGSV8S-gvFJ
     interstitialAdUnitID:
-      AndroidID: 5c9e07082b33188d
+      AndroidID: 994b7d968852e180
     rewardedAdUnitID:
-      AndroidID: 666b4379cfce8b8d
+      AndroidID: c6e6dc9a7a86553e
     bannerAdUnitID:
       AndroidID: 0d164c03b32d859a
     collapsibleBannerAdUnitID:

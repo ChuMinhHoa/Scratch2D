@@ -35,6 +35,7 @@ namespace Core.UI.Screens
         public static class Events
         {
             public static Action SampleEvent { get; set; }
+            public static Action<SlotTabType> GoToTabEvent { get; set; }
         }
 
         [HideLabel]
@@ -108,13 +109,22 @@ namespace Core.UI.Screens
                 await Model.Initialize(args);
                 await View.Initialize(args);
 
+                Events.GoToTabEvent += ActionSlotTabCallback;
                 View.InitSlotTabMenu(ActionSlotTabCallback);
+                
                 await View.OpenScreenHome();
+                
             }
 
             public void DidPushEnter(Memory<object> args)
             {
                 ActionSlotTabCallback(SlotTabType.Home);
+            }
+
+            public UniTask Cleanup(Memory<object> args)
+            {
+                Events.GoToTabEvent = null;
+                return UniTask.CompletedTask;
             }
 
             private SlotTabType currentTabType = SlotTabType.None;

@@ -34,6 +34,8 @@ namespace Core.UI.Screens
         public static class Events
         {
             public static Action SampleEvent { get; set; }
+            
+            //public static Action ActionGoToShop { get; set; }
         }
 
         [HideLabel]
@@ -59,6 +61,9 @@ namespace Core.UI.Screens
             public CanvasGroup MainView { get; private set; }
 
             [field: SerializeField]
+            public MainContentBase<SlotPack, ShopPackageDataConfig> MainDealContent { get; private set; }
+            
+            [field: SerializeField]
             public MainContentBase<SlotPack, ShopPackageDataConfig> MainCoinContent { get; private set; }
 
             public UniTask Initialize(Memory<object> args)
@@ -70,6 +75,12 @@ namespace Core.UI.Screens
             {
                 MainCoinContent.SetActionSlotCallBack(actionSlotCoinCallBack);
                 MainCoinContent.SetActionSlotExistCallBack();
+            }
+            
+            public void InitDealSlot(Action<SlotPack> actionSlotCoinCallBack)
+            {
+                MainDealContent.SetActionSlotCallBack(actionSlotCoinCallBack);
+                MainDealContent.SetActionSlotExistCallBack();
             }
         }
 
@@ -85,13 +96,13 @@ namespace Core.UI.Screens
                 await Model.Initialize(args);
                 await View.Initialize(args);
                 View.InitCoinSlot(ActionBuyCallback);
+                View.InitDealSlot(ActionBuyCallback);
             }
 
             private void ActionBuyCallback(SlotPack slotPackCallBack)
             {
                 Debug.Log(slotPackCallBack.slotData.packageName);
-
-
+                
                 switch (slotPackCallBack.slotData.purchaseType)
                 {
                     case PurchaseType.IAPPay:

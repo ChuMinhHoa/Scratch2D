@@ -31,3 +31,9 @@ MonoBehaviour:
     m_ClosingDefinition: 
     m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d000000310000003e000000
     m_ClosingTagArray: 
+  - m_Name: ADS
+    m_HashCode: 68758
+    m_OpeningDefinition: <sprite=5>
+    m_ClosingDefinition: 
+    m_OpeningTagArray: 3c0000007300000070000000720000006900000074000000650000003d000000350000003e000000
+    m_ClosingTagArray: 

@@ -50,11 +50,7 @@ public class ActionCallOnMoneyHome : ActionCallOnResource
     {
         base.ActionCallOnUIResource();
         Debug.Log("Action call on money");
-        _ = GoToShop();
-    }
-
-    private async UniTask GoToShop()
-    {
-        await UIManager.Instance.OpenScreenAsync<ScreenShop>();
+        ScreenDefaultContext.Events.GoToTabEvent?.Invoke(SlotTabType.Shop);
+        //_ = GoToShop();
     }
 }

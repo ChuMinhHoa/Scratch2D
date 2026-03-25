@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using TW.Utility.CustomType;
@@ -10,6 +11,8 @@ public class EnergyManager : Singleton<EnergyManager>
     public GameResource energyResource;
     public Reactive<string> timeToAddAllEnergy = new("");
     public Reactive<string> timeToAddOneEnergy = new("");
+
+    public List<int> listID;
 
     private void Start()
     {
@@ -44,11 +47,11 @@ public class EnergyManager : Singleton<EnergyManager>
 
         if (nextEnergyAddTime.Subtract(currentTime).TotalSeconds > 0)
         {
-            TimeManager.Instance.RegisterEventTime(nextEnergyAddTime, AddOneEnergy);
+            TimeManager.Instance.RegisterEventTime(nextEnergyAddTime, AddOneEnergy, GetId());
             return;
         }
 
-        AddOneEnergy();
+        AddOneEnergy(-1);
     }
 
     private void CheckTimeAddAllEnergy()
@@ -101,15 +104,15 @@ public class EnergyManager : Singleton<EnergyManager>
         }
     }
 
-    private void SaveTimeToAddOneEnergy()
+    private void SaveTimeToAddOneEnergy(bool addByAds = false)
     {
         var currentTime = TimeManager.Instance.GetCurrentTime();
         var defaultMinutesForEnergy = DefaultGlobalConfig.Instance.defaultMinutesForEnergy;
-        var timeAddEnergyString = timeToAddOneEnergy.Value.Equals("")
-            ? currentTime.AddMinutes(defaultMinutesForEnergy).ToEnUsString() :
-        timeToAddOneEnergy.Value.ToDateTime().AddMinutes(defaultMinutesForEnergy).ToEnUsString();
+        var timeAddEnergyString = timeToAddOneEnergy.Value.Equals("") || addByAds
+            ? currentTime.AddMinutes(defaultMinutesForEnergy).ToEnUsString()
+            : timeToAddOneEnergy.Value.ToDateTime().AddMinutes(defaultMinutesForEnergy).ToEnUsString();
         timeToAddOneEnergy.Value = timeAddEnergyString;
-        TimeManager.Instance.RegisterEventTime(timeAddEnergyString.ToDateTime(), AddOneEnergy);
+        TimeManager.Instance.RegisterEventTime(timeAddEnergyString.ToDateTime(), AddOneEnergy, GetId());
         EnergyDataSave.Instance.SaveData();
     }
 
@@ -126,12 +129,14 @@ public class EnergyManager : Singleton<EnergyManager>
         EnergyDataSave.Instance.SaveData();
     }
 
-    public void AddOneEnergy()
+    public void AddOneEnergy(int idCallBack, bool addByAds = false)
     {
-        AddEnergy(1);
+        AddEnergy(1, addByAds);
+        if (listID.Contains(idCallBack))
+            listID.Remove(idCallBack);
     }
 
-    private void AddEnergy(int amount)
+    private void AddEnergy(int amount, bool addByAds = false)
     {
         energyResource.Amount += amount;
         SaveEnergyData();
@@ -144,7 +149,7 @@ public class EnergyManager : Singleton<EnergyManager>
         if (energyResource.Amount < DefaultGlobalConfig.Instance.maxEnergy)
         {
             //Debug.Log("save time to add energy");
-            SaveTimeToAddOneEnergy();
+            SaveTimeToAddOneEnergy(addByAds);
         }
 
         EnergyDataSave.Instance.SaveData();
@@ -153,6 +158,16 @@ public class EnergyManager : Singleton<EnergyManager>
     public bool IsEnoughEnergy()
     {
         return energyResource.Amount > 0;
+    }
+
+    public void RefillAddOnEnergy()
+    {
+        for (var i = listID.Count - 1; i >= 0; i--)
+        {
+            TimeManager.Instance.RemoveEvent(listID[i]);
+            listID.RemoveAt(i);
+        }
+        AddOneEnergy(-1, true);
     }
 
     public void RefillFullEnergy()
@@ -167,5 +182,17 @@ public class EnergyManager : Singleton<EnergyManager>
     public bool IsCanRefillEnergy()
     {
         return energyResource.Amount < DefaultGlobalConfig.Instance.maxEnergy;
+    }
+
+    private int GetId()
+    {
+        var idReturn = 0;
+        while (listID.Contains(idReturn))
+        {
+            idReturn++;
+        }
+
+        listID.Add(idReturn);
+        return idReturn;
     }
 }

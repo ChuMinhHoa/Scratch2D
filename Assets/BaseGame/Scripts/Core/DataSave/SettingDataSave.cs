@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
+[Serializable]
 public class SettingDataSave: IDataSave<SettingDataSave>
 {
     public static SettingDataSave Instance => InGameDataManager.Instance.InGameData.SettingDataSave;
@@ -10,7 +12,7 @@ public class SettingDataSave: IDataSave<SettingDataSave>
         return this;
     }
     
-    public List<SettingData> settingData { get; set; } = new();
+    [field: SerializeField] public List<SettingData> settingData { get; set; } = new();
 }
 
 [Serializable]

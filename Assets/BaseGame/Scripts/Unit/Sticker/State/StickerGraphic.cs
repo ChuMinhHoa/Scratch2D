@@ -56,7 +56,7 @@ public partial class StickerGraphic : MonoBehaviour
         var pos = transform.position;
         pos.z -= 0.02f;
         transform.position = pos;
-        await LMotion.Create(0f, 1f, 0.5f).WithOnComplete(() =>
+        await LMotion.Create(0f, 1f, 0.25f).WithOnComplete(() =>
         {
             objGlow.SetActive(false);
         }).RunWithoutBinding().AddTo(this);

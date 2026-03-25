@@ -179,6 +179,18 @@ public class SpriteGlobalConfig : GlobalConfig<SpriteGlobalConfig>
 
         return null;
     }
+
+    public SpriteConfig<GameResource.Type>[] iconShopRewardConfigs;
+    public Sprite GetShopRewardIcon(GameResource.Type dataRewardType)
+    {
+        for (var i = 0; i < iconShopRewardConfigs.Length; i++)
+        {
+            if(iconShopRewardConfigs[i].tType == dataRewardType)
+                return iconShopRewardConfigs[i].sprite;
+        }
+
+        return null;
+    }
 }
 
 [System.Serializable]

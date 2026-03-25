@@ -4,6 +4,7 @@ using Core.UI.Screens;
 using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using R3;
+using SDK;
 using Sirenix.OdinInspector;
 using TMPro;
 using TW.UGUI.Core.Modals;
@@ -14,7 +15,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ModalRefill : Modal
-{ 
+{
     [field: SerializeField] public ModalRefillContext.UIPresenter UIPresenter { get; private set; }
 
     protected override void Awake()
@@ -27,6 +28,7 @@ public class ModalRefill : Modal
     {
         await base.Initialize(args);
     }
+
     [Serializable]
     public class ModalRefillContext
     {
@@ -58,9 +60,8 @@ public class ModalRefill : Modal
             [field: Title(nameof(UIView))]
             [field: SerializeField]
             public CanvasGroup MainView { get; private set; }
-            
-            [field: SerializeField]
-            public Button BtnClose { get; private set; }
+
+            [field: SerializeField] public Button BtnClose { get; private set; }
             [field: SerializeField] public Button BtnClose2 { get; private set; }
             [field: SerializeField] public Button BtnRefillAds { get; private set; }
             [field: SerializeField] public Button BtnRefillFull { get; private set; }
@@ -91,13 +92,24 @@ public class ModalRefill : Modal
 
                 Model.CurrentEnergy = EnergyManager.Instance.energyResource.ReactiveAmount;
                 Model.CurrentEnergy.Subscribe(ChangeEnergy).AddTo(View.MainView);
+
+                var coin = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.Money).ReactiveAmount;
+                coin.Subscribe(ChangeCoin).AddTo(View.MainView);
+            }
+
+            public void ChangeCoin(BigNumber coinChange)
+            {
+                var e = coinChange > 50;
+                var c = Model.CurrentEnergy.Value < DefaultGlobalConfig.Instance.maxEnergy;
+                View.BtnRefillFull.interactable = e && c;
             }
 
             public void ChangeEnergy(BigNumber energy)
             {
                 var e = energy < DefaultGlobalConfig.Instance.maxEnergy;
+                var c = PlayerResourceManager.Instance.IsEnoughResource(GameResource.Type.Money, 50);
                 View.TxtEnergy.SetTextFormat(MyCache.strDefault, energy.ToInt());
-                View.BtnRefillFull.interactable = e;
+                View.BtnRefillFull.interactable = e && c;
                 View.BtnRefillAds.interactable = e;
             }
 
@@ -109,15 +121,20 @@ public class ModalRefill : Modal
 
             private void OnClickBtnRefillADS()
             {
-                EnergyManager.Instance.AddOneEnergy();
+#if UNITY_EDITOR
+                EnergyManager.Instance.RefillAddOnEnergy();
+#endif
+                
+#if!UNITY_EDITOR
+                AdsManager.Instance.ShowRewardVideo("AddOneEnergy", () => EnergyManager.Instance.RefillAddOnEnergy());
+#endif
             }
 
             private void OnClickBtnRefillFull()
             {
+                PlayerResourceManager.Instance.ChangeResource(GameResource.Type.Money, -50);
                 EnergyManager.Instance.RefillFullEnergy();
             }
         }
     }
 }
-
-

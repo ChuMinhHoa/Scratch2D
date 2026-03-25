@@ -103,9 +103,9 @@ public class TimeManager : Singleton<TimeManager>
         TimeDataSave.Instance.SaveData();
     }
     
-    public void RegisterEventTime(DateTime eventTime, Action action)
+    public void RegisterEventTime(DateTime eventTime, Action<int, bool> action, int id)
     {
-        var se = new ScheduledEvent(eventTime, action);
+        var se = new ScheduledEvent(eventTime, action, id);
         var idx = scheduledEvents.BinarySearch(se, ScheduledEventComparer.Instance);
         if (idx < 0) idx = ~idx;
         scheduledEvents.Insert(idx, se);
@@ -118,7 +118,7 @@ public class TimeManager : Singleton<TimeManager>
         for (var i = scheduledEvents.Count - 1; i >= 0; i--)
         {
             if (scheduledEvents[i].Time > currentTime) continue;
-            scheduledEvents[i].actionCallBack?.Invoke();
+            scheduledEvents[i].actionCallBack?.Invoke(scheduledEvents[i].id, false);
             scheduledEvents.RemoveAt(i);
         }
     }
@@ -127,7 +127,17 @@ public class TimeManager : Singleton<TimeManager>
     {
         scheduledEvents.Clear();
     }
-    
+
+    public void RemoveEvent(int id)
+    {
+        for (var i = scheduledEvents.Count - 1; i >= 0; i--)
+        {
+            if (id == scheduledEvents[i].id)
+            {
+                scheduledEvents.RemoveAt(i);
+            }
+        }
+    }
 }
 
 public static class TimeExtension
@@ -157,15 +167,17 @@ public static class TimeExtension
 // small holder for a scheduled action
 public class ScheduledEvent
 {
+    public int id;
     public DateTime Time;
-    public Action actionCallBack;
+    public Action<int, bool> actionCallBack;
     public string strTime;
 
-    public ScheduledEvent(DateTime time, Action actionCallBack)
+    public ScheduledEvent(DateTime time, Action<int, bool> actionCallBack, int id)
     {
         Time = time; 
         this.actionCallBack = actionCallBack;
         strTime = time.ToEnUsString();
+        this.id = id;
     }
 }
 

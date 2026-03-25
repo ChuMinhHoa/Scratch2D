@@ -52,10 +52,10 @@ public class UIResource : MonoBehaviour
 
     private void ChangeValue(BigNumber value)
     {
-        Debug.Log("Change value " + value);
+        //Debug.Log("Change value " + value);
         txtAmount.SetTextFormat(MyCache.strDefault, value.ToStringUIFloor());
-        Debug.Log($"Condition active add button {conditionActiveAddButton.GetConditionActive()}");
-        var e = conditionActiveAddButton.GetConditionActive();
+        //Debug.Log($"Condition active add button {conditionActiveAddButton.GetConditionActive()}");
+        var e = conditionActiveAddButton?.GetConditionActive() ?? false;
         btnAdd.interactable = e;
         objAdd.SetActive(e);
     }

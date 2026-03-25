@@ -45,7 +45,7 @@ public partial class StickerDone : StickerDoneOpenState.IHandler
         CheckToAbleStickerAnimAgain();
         stickerDoneAnim.Play("StickerRemove");
         StickerDoneManager.Instance.AddStickerDone(this);
-        await UniTask.WaitForSeconds(1f);
+        await UniTask.WaitForSeconds(0.5f);
         //GetPosMoveTo();
         //return UniTask.CompletedTask;
     }

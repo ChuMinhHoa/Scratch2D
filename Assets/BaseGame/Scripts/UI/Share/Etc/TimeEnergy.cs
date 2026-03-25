@@ -9,8 +9,9 @@ public class TimeEnergy : MonoBehaviour
 {
     public Reactive<string> timeToAddEnergy = new("");
     public DateTime dTimeToAddEnergy;
-    public GameObject objShowTimeCooldown;
+    //public GameObject objShowTimeCooldown;
     public TextMeshProUGUI txtTimeCooldown;
+    private bool addEvent;
 
     private void Start()
     {
@@ -34,15 +35,20 @@ public class TimeEnergy : MonoBehaviour
     private void ChangeTimeAddOneEnergy(string timeChange)
     {
         var activeTime = !timeChange.Equals("");
+        Debug.Log(timeChange.Equals(""));
         dTimeToAddEnergy = timeToAddEnergy.Value.ToDateTime();
-        objShowTimeCooldown.SetActive(activeTime);
-        if (activeTime)
+        //objShowTimeCooldown.SetActive(activeTime);
+        if (activeTime && !addEvent)
         {
+            addEvent = true;
             TimeManager.OnTimeChange += ChangeTime;
         }
-        else
+
+        if (!activeTime)
         {
+            txtTimeCooldown.SetTextFormat(MyCache.strDefault, "Full");
             TimeManager.OnTimeChange -= ChangeTime;
+            addEvent = false;
         }
     }
 

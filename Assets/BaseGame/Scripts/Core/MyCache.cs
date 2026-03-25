@@ -6,10 +6,13 @@ using UnityEngine;
 
 public static class MyCache
 {
-    public static string strActive= "animation";
+    public static string strActive = "animation";
     public static string textFormatFloat = "0:F2";
     public static string strProgress = "{0}/{1}";
     public static string strDefault = "{0}";
+    public static string strAdd = "+{0}";
+    public static string strMultiple = "x{0}";
+    public static string strEnergy = "+{0}h";
     public static string strLevel = "Level {0}";
     public static string strLock = "lock";
     public static string strUnlockNormal = "unlock_normal";
@@ -29,7 +32,7 @@ public static class MyCache
             _ => GameResource.Type.None
         };
     }
-    
+
     public static string ConvertBoosterToResourceType(SlotTabType tabType)
     {
         return tabType switch
@@ -38,7 +41,7 @@ public static class MyCache
             SlotTabType.Shop => ZString.Concat("Shop"),
             SlotTabType.Home => ZString.Concat("Home"),
             SlotTabType.ComingSoon => ZString.Concat("Coming Soon"),
-            _ =>""
+            _ => ""
         };
     }
 
@@ -57,7 +60,7 @@ public static class MyCache
 
     public static Difficulty GetDifficultByLevel(int realLevel)
     {
-        Debug.Log("real level: " + realLevel);
+        //Debug.Log("real level: " + realLevel);
         var levelDifficulty = realLevel % 10 == 0 ? Difficulty.Hard :
             realLevel % 10 == 5 ? Difficulty.Medium : Difficulty.Easy;
         return levelDifficulty;
@@ -67,4 +70,22 @@ public static class MyCache
     {
         return strBasePackID + slotDataPackageName;
     }
-}
+
+    public static string GetFormat(GameResource.Type dataResourceType)
+    {
+        switch (dataResourceType)
+        {
+            case GameResource.Type.BoosterAddSlot:
+            case GameResource.Type.BoosterHammer:
+            case GameResource.Type.BoosterMagnet:
+                return strMultiple;
+            case GameResource.Type.Gem:
+            case GameResource.Type.Money:
+                return strAdd;
+            case GameResource.Type.Energy:
+                return strEnergy;
+            default:
+                return strAdd;
+            }
+        }
+    }

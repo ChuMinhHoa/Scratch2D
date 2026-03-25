@@ -30,6 +30,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79b3a49319a8c774e9e2c02ea95bfdaa
+    m_Address: ScreenShopInGame
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7be2d0a6e7099c949b980faba0b0676f
+    m_Address: ModalRewardResource
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8294d2ffb97e1db4f9a96df7be31eaa9
+    m_Address: ScreenSetting
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8484f492c27207e4da46d246d16ee370
     m_Address: ActivityLoadingFake
     m_ReadOnly: 0
@@ -77,6 +92,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ca8e3e3cc9d8cae4a8f4a5a01c71d6a4
     m_Address: DefaultModalBackdrop
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d4484e316b14b2b4e9bd653c64dc3711
+    m_Address: ActivityWarningLoseEnergy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e0ce35a44095c684688e06df511ef5d3
+    m_Address: ModalRefill
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

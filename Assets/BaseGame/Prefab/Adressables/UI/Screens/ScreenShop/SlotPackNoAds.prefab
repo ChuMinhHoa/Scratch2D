@@ -245,7 +245,7 @@ MonoBehaviour:
         EditorValue:
           coefficient: 0
           exponent: 0
-    gameResources: []
+    shopRewards: []
     isAvailable: 0
   imgIcon: {fileID: 3233979894869554303}
   btnChoose: {fileID: 6735595020620143225}
@@ -558,9 +558,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a12a3c044936d104f94fff9a19fe829d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 059098556b0eb9b458dda0eec3324ac9, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

@@ -1,4 +1,5 @@
 using System;
+using SDK;
 using TW.Utility.DesignPattern.UniTaskState;
 using UnityEngine;
 
@@ -28,7 +29,14 @@ public partial class SlotFolder : MonoBehaviour
 
     private void CallWatchAds()
     {
+#if UNITY_EDITOR
         ChangeFolderType(SlotFolderType.Normal);
+#endif
+
+#if !UNITY_EDITOR
+        AdsManager.Instance.ShowRewardVideo("AddSlotNote", ()=> ChangeFolderType(SlotFolderType.Normal));
+#endif
+       
     }
 
     public bool IsHaveObject()

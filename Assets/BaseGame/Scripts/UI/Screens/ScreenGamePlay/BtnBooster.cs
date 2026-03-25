@@ -1,6 +1,7 @@
 using System;
 using Cysharp.Text;
 using R3;
+using SDK;
 using Sirenix.OdinInspector;
 using TMPro;
 using TW.Utility.CustomType;
@@ -66,11 +67,11 @@ public class BtnBooster : MonoBehaviour
     {
         UIAnimManager.Instance.AnimButton(imgIcon.transform);
 #if UNITY_EDITOR
-        UseBooster();
+        //UseBooster();
 #endif
-        
+        AdsManager.Instance.ShowRewardVideo("BoosterReward", UseBooster);
 #if !UNITY_EDITOR
-        UseBooster();
+        //UseBooster();
 #endif
     }
 

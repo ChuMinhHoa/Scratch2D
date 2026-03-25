@@ -28,7 +28,7 @@ public class ShopManager : Singleton<ShopManager>
     {
         for (var i = 0; i < packageConfig.shopRewards.Count; i++)
         {
-            //RewardManager.Instance.AddResourceReward(packageConfig.shopRewards[i]);
+            RewardManager.Instance.AddResourceReward(packageConfig.shopRewards[i]);
         }
 
         _ = DelayPurChaseSuccess();

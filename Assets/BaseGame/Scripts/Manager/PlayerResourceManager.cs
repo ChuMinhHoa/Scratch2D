@@ -45,7 +45,9 @@ public class PlayerResourceManager : Singleton<PlayerResourceManager>
       {
          if (i < gameResourceData.Count) continue;
          if (i <= 0) continue;
-         
+#if UNITY_EDITOR
+         Debug.Log("Create new resource: " + (GameResource.Type)i);
+#endif
          var newGameResource = new GameResource((GameResource.Type)i, new BigNumber(0));
          gameResource.Add(newGameResource);
          gameResourceData.Add(newGameResource.ToGameResourceData());

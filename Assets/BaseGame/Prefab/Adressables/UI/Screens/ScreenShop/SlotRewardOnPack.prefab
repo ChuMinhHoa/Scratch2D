@@ -59,9 +59,10 @@ MonoBehaviour:
       EditorValue:
         coefficient: 0
         exponent: 0
-  imgIcon: {fileID: 0}
+  imgIcon: {fileID: 5156078754966955663}
   btnChoose: {fileID: 0}
-  trsContent: {fileID: 0}
+  trsContent: {fileID: 279536363893986272}
+  txtAmount: {fileID: 3145177032521836590}
 --- !u!1 &5106864379349685993
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,14 +155,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.25
+  m_fontSize: 42
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 48
+  m_fontSizeMax: 42
   m_fontStyle: 0
-  m_HorizontalAlignment: 4
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0

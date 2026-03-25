@@ -87,7 +87,7 @@ namespace Core.UI.Screens
             public void OnChangeLevel()
             {
                 var difficult = Level.Instance.GetLevelDifficult();
-                Debug.Log(difficult);
+                //Debug.Log(difficult);
                 for (var i = 0; i < ObjDifficult.Length; i++)
                 {
                     ObjDifficult[i].SetActive(i == (int)difficult);

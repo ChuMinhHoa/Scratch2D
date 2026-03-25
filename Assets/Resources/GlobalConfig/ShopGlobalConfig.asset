@@ -32,10 +32,14 @@ MonoBehaviour:
           coefficient: 0
           exponent: 0
     shopRewards:
-    - rewardType: 0
-      amount:
-        coefficient: 1
-        exponent: 1
+    - <ResourceType>k__BackingField: 1
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 1000
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: 56510700e0f9999418a4e2a35b8fbb2f, type: 3}
     packageName: 101
@@ -56,10 +60,14 @@ MonoBehaviour:
           coefficient: 0
           exponent: 0
     shopRewards:
-    - rewardType: 0
-      amount:
-        coefficient: 5
-        exponent: 1
+    - <ResourceType>k__BackingField: 1
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 5000
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: e92fe7299fbe0e045a895b0bc3eb39b9, type: 3}
     packageName: 102
@@ -80,10 +88,14 @@ MonoBehaviour:
           coefficient: 0
           exponent: 0
     shopRewards:
-    - rewardType: 0
-      amount:
-        coefficient: 10
-        exponent: 1
+    - <ResourceType>k__BackingField: 1
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 10000
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: 105514143bc2fba4db7810319c142146, type: 3}
     packageName: 103
@@ -104,10 +116,14 @@ MonoBehaviour:
           coefficient: 0
           exponent: 0
     shopRewards:
-    - rewardType: 0
-      amount:
-        coefficient: 25
-        exponent: 1
+    - <ResourceType>k__BackingField: 1
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 25000
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: d884e6e158f11c84eba15e6460ca7e95, type: 3}
     packageName: 104
@@ -128,10 +144,14 @@ MonoBehaviour:
           coefficient: 0
           exponent: 0
     shopRewards:
-    - rewardType: 0
-      amount:
-        coefficient: 50
-        exponent: 1
+    - <ResourceType>k__BackingField: 1
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 50000
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: fd7ebad55fa5a834eaa7cc120c23cd91, type: 3}
     packageName: 105
@@ -152,14 +172,18 @@ MonoBehaviour:
           coefficient: 0
           exponent: 0
     shopRewards:
-    - rewardType: 0
-      amount:
-        coefficient: 100
-        exponent: 1
+    - <ResourceType>k__BackingField: 1
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 100000
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
     isAvailable: 1
-  - mainIcon: {fileID: 0}
+  - mainIcon: {fileID: 21300000, guid: 059098556b0eb9b458dda0eec3324ac9, type: 3}
     packageName: 0
-    packageNameToUI: No ads
+    packageNameToUI: No Ads
     packageSaleOffTag: 
     percentSaleOff: 0
     packageDes: 
@@ -176,10 +200,14 @@ MonoBehaviour:
           coefficient: 0
           exponent: 0
     shopRewards:
-    - rewardType: 2
-      amount:
-        coefficient: 1
-        exponent: 0
+    - <ResourceType>k__BackingField: 7
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 1
+          exponent: 0
+        EditorValue:
+          coefficient: 1
+          exponent: 0
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: a12a3c044936d104f94fff9a19fe829d, type: 3}
     packageName: 1
@@ -200,22 +228,54 @@ MonoBehaviour:
           coefficient: 0
           exponent: 0
     shopRewards:
-    - rewardType: 2
-      amount:
-        coefficient: 1
-        exponent: 0
-    - rewardType: 0
-      amount:
-        coefficient: 1
-        exponent: 1
-    - rewardType: 1
-      amount:
-        coefficient: 2
-        exponent: 0
-    - rewardType: 3
-      amount:
-        coefficient: 1
-        exponent: 0
+    - <ResourceType>k__BackingField: 7
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 1
+          exponent: 0
+        EditorValue:
+          coefficient: 1
+          exponent: 0
+    - <ResourceType>k__BackingField: 1
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 1
+          exponent: 1
+        EditorValue:
+          coefficient: 1
+          exponent: 1
+    - <ResourceType>k__BackingField: 6
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 2
+          exponent: 0
+        EditorValue:
+          coefficient: 2
+          exponent: 0
+    - <ResourceType>k__BackingField: 3
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 1
+          exponent: 0
+        EditorValue:
+          coefficient: 1
+          exponent: 0
+    - <ResourceType>k__BackingField: 4
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 1
+          exponent: 0
+        EditorValue:
+          coefficient: 1
+          exponent: 0
+    - <ResourceType>k__BackingField: 5
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 1
+          exponent: 0
+        EditorValue:
+          coefficient: 1
+          exponent: 0
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: 6c6b6d00b5fa76e4989ccb8be96c70ea, type: 3}
     packageName: 2
@@ -236,18 +296,46 @@ MonoBehaviour:
           coefficient: 0
           exponent: 0
     shopRewards:
-    - rewardType: 0
-      amount:
-        coefficient: 4
-        exponent: 1
-    - rewardType: 1
-      amount:
-        coefficient: 2
-        exponent: 0
-    - rewardType: 3
-      amount:
-        coefficient: 2
-        exponent: 0
+    - <ResourceType>k__BackingField: 1
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 4000
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
+    - <ResourceType>k__BackingField: 6
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 2
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
+    - <ResourceType>k__BackingField: 3
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 2
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
+    - <ResourceType>k__BackingField: 4
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 2
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
+    - <ResourceType>k__BackingField: 5
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 2
+          exponent: 0
+        EditorValue:
+          coefficient: 0
+          exponent: 0
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: 0691be7517f0f804f94db5f34caebab4, type: 3}
     packageName: 3
@@ -268,18 +356,46 @@ MonoBehaviour:
           coefficient: 0
           exponent: 0
     shopRewards:
-    - rewardType: 0
-      amount:
-        coefficient: 5
-        exponent: 1
-    - rewardType: 1
-      amount:
-        coefficient: 2
-        exponent: 0
-    - rewardType: 3
-      amount:
-        coefficient: 1
-        exponent: 0
+    - <ResourceType>k__BackingField: 1
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 5
+          exponent: 1
+        EditorValue:
+          coefficient: 5
+          exponent: 1
+    - <ResourceType>k__BackingField: 6
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 2
+          exponent: 0
+        EditorValue:
+          coefficient: 2
+          exponent: 0
+    - <ResourceType>k__BackingField: 3
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 1
+          exponent: 0
+        EditorValue:
+          coefficient: 1
+          exponent: 0
+    - <ResourceType>k__BackingField: 4
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 1
+          exponent: 0
+        EditorValue:
+          coefficient: 1
+          exponent: 0
+    - <ResourceType>k__BackingField: 5
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 1
+          exponent: 0
+        EditorValue:
+          coefficient: 1
+          exponent: 0
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: b556f61de852d9244bef59c07a24a53a, type: 3}
     packageName: 4
@@ -300,18 +416,46 @@ MonoBehaviour:
           coefficient: 0
           exponent: 0
     shopRewards:
-    - rewardType: 0
-      amount:
-        coefficient: 10
-        exponent: 1
-    - rewardType: 1
-      amount:
-        coefficient: 3
-        exponent: 0
-    - rewardType: 3
-      amount:
-        coefficient: 3
-        exponent: 0
+    - <ResourceType>k__BackingField: 1
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 10
+          exponent: 1
+        EditorValue:
+          coefficient: 10
+          exponent: 1
+    - <ResourceType>k__BackingField: 6
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 3
+          exponent: 0
+        EditorValue:
+          coefficient: 3
+          exponent: 0
+    - <ResourceType>k__BackingField: 3
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 3
+          exponent: 0
+        EditorValue:
+          coefficient: 3
+          exponent: 0
+    - <ResourceType>k__BackingField: 4
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 3
+          exponent: 0
+        EditorValue:
+          coefficient: 3
+          exponent: 0
+    - <ResourceType>k__BackingField: 5
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 3
+          exponent: 0
+        EditorValue:
+          coefficient: 3
+          exponent: 0
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: 073fc158cbacda9429155379b6ecd27b, type: 3}
     packageName: 5
@@ -332,16 +476,44 @@ MonoBehaviour:
           coefficient: 0
           exponent: 0
     shopRewards:
-    - rewardType: 0
-      amount:
-        coefficient: 25
-        exponent: 1
-    - rewardType: 1
-      amount:
-        coefficient: 6
-        exponent: 0
-    - rewardType: 3
-      amount:
-        coefficient: 6
-        exponent: 0
+    - <ResourceType>k__BackingField: 1
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 25
+          exponent: 1
+        EditorValue:
+          coefficient: 25
+          exponent: 1
+    - <ResourceType>k__BackingField: 6
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 6
+          exponent: 0
+        EditorValue:
+          coefficient: 6
+          exponent: 0
+    - <ResourceType>k__BackingField: 3
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 6
+          exponent: 0
+        EditorValue:
+          coefficient: 6
+          exponent: 0
+    - <ResourceType>k__BackingField: 4
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 6
+          exponent: 0
+        EditorValue:
+          coefficient: 6
+          exponent: 0
+    - <ResourceType>k__BackingField: 5
+      <ReactiveAmount>k__BackingField:
+        value:
+          coefficient: 6
+          exponent: 0
+        EditorValue:
+          coefficient: 6
+          exponent: 0
     isAvailable: 1
