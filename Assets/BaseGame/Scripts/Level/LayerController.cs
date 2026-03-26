@@ -81,4 +81,18 @@ public class LayerController
         }
         return false;
     }
+
+    public Sticker GetRandomStickerTransform()
+    {
+        for (var i = 0; i < cards.Count; i++)
+        {
+            if (!cards[i].isShowed) continue;
+            for (var j = 0; j < cards[i].stickers.Count; j++)
+            {
+                if (!cards[i].stickers[j].isDone)
+                    return cards[i].stickers[j];
+            }
+        }
+        return null;
+    }
 }

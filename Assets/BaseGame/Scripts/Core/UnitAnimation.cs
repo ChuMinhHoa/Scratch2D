@@ -100,6 +100,57 @@ public class UnitAnimation : MonoBehaviour
 
         await motionHandleMoveZ;
     }
+    
+    
+    public async UniTask PlayMoveAnimLocal(Vector3 targetPos)
+    {
+        if (motionHandleMoveZ.IsActive())
+        {
+            motionHandleMoveX.TryCancel();
+            motionHandleMoveY.TryCancel();
+            motionHandleMoveZ.TryCancel();
+        }
+        
+        var currentX = transform.localPosition.x;
+        var currentY = transform.localPosition.y;
+        var currentZ = transform.localPosition.z;
+      
+        var targetX = targetPos.x;
+        var targetY = targetPos.y;
+        var targetZ = targetPos.z;
+
+        var mx = Random.Range(magnitudeX.x, magnitudeX.y) * (Random.Range(0, 2) == 0 ? -1 : 1);
+        var my = Random.Range(magnitudeY.x, magnitudeY.y) * (Random.Range(0, 2) == 0 ? -1 : 1);
+        var mz = Random.Range(magnitudeZ.x, magnitudeZ.y) * (Random.Range(0, 2) == 0 ? -1 : 1);
+      
+        var currentPos = transform.position;
+
+        motionHandleMoveX = LMotion.Create(0f, 1f, timeMove).WithEase(curveMove).Bind(t =>
+        {
+            var x = Mathf.Lerp(currentX, targetX, t);
+            var evaluateX = curveMoveX.Evaluate(t) * mx;
+            currentPos.x = x + evaluateX;
+            transform.localPosition = currentPos;
+        }).AddTo(this);
+        
+        motionHandleMoveY = LMotion.Create(0f, 1f, timeMove).WithEase(curveMove).Bind(t =>
+        {
+            var y = Mathf.Lerp(currentY, targetY, t);
+            var evaluateY = curveMoveY.Evaluate(t) * my;
+            currentPos.y = y + evaluateY;
+            transform.localPosition = currentPos;
+        }).AddTo(this);
+      
+        motionHandleMoveZ = LMotion.Create(0f, 1f, timeMove).WithEase(curveMove).Bind(t =>
+        {
+            var z = Mathf.Lerp(currentZ, targetZ, t);
+            var evaluateZ = curveMoveZ.Evaluate(t) * mz;
+            currentPos.z = z + evaluateZ;
+            transform.localPosition = currentPos;
+        }).AddTo(this);
+
+        await motionHandleMoveZ;
+    }
 
     #endregion
 

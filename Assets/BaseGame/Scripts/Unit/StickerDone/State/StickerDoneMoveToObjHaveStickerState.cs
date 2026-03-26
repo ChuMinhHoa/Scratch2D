@@ -54,15 +54,15 @@ public partial class StickerDone : StickerDoneMoveToObjHaveStickerState.IHandler
         
         var idRegister = UnitEventManager.Instance.RegisterEvent();
         CheckToAbleStickerAnimAgain();
+        transform.SetParent(stickerPos.trsPos);
         var currentScale = transform.localScale;
         var currentEulerAngle = transform.eulerAngles;
-        LMotion.Create(currentScale, stickerPos.trsPos.localScale, .25f).Bind(x => transform.localScale = x).AddTo(this);
+        LMotion.Create(currentScale, Vector3.one, .25f).Bind(x => transform.localScale = x).AddTo(this);
         LMotion.Create(currentEulerAngle, stickerPos.trsPos.eulerAngles, .25f).Bind(x => transform.eulerAngles = x).AddTo(this);
-        await unitAnim.PlayMoveAnim(stickerPos.trsPos.position);
+        await unitAnim.PlayMoveAnimLocal(Vector3.zero);
         stickerDoneAnim.Play("StickerAdd");
         await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
         stickerGlow?.gameObject.SetActive(true);
-        transform.SetParent(stickerPos.trsPos);
         stickerPos.MoveDone();
         UnitEventManager.Instance.RemoveEventId(idRegister);
         await UniTask.WaitForSeconds(0.25f, cancellationToken: ct);

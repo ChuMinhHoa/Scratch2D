@@ -13,7 +13,7 @@ public enum GameState
     None = 0,
     Normal = 1,
     Loading = 2,
-    WaitingCheckLoseGame = 3,
+    LoseGame = 3,
     Playing = 10,
     OnBooster = 20,
 }
@@ -233,5 +233,6 @@ public class GamePlayManager : Singleton<GamePlayManager>
     public void BackToLastState()
     {
         ChangeGameState(lastState);
+        Level.Instance.oSController.CallCheckEndGame();
     }
 }

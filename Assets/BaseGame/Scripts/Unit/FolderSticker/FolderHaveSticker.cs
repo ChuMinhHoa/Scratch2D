@@ -48,7 +48,20 @@ public partial class FolderHaveSticker : MonoBehaviour
     {
         if (!onSlot)
             return false;
+        var e = IsAllSlotNotNull();
+        if (e)
+            return false;
         return stateMachine.CurrentState != FhsDoneState;
+    }
+
+    private bool IsAllSlotNotNull()
+    {
+        for (var i = 0; i < trsStickerPos.Length; i++)
+        {
+            if (!trsStickerPos[i].IsHaveObj()) return false;
+        }
+
+        return true;
     }
 
     private void StickerMoveDone(bool stickerMoveDone)
@@ -126,6 +139,10 @@ public partial class FolderHaveSticker : MonoBehaviour
         Level.Instance.CheckLoseGame();
 
         onSlot = true;
+
+        if (GamePlayManager.Instance.gameState == GameState.OnBooster)
+            if(selectAbleOnBooster.CheckCondition)
+                selectAbleOnBooster.OnBoosterUsing(BoosterManager.Instance.currentBoosterType, BoosterManager.Instance.currentIBooster);
     }
 
     public bool IsHaveStickerOnMove()

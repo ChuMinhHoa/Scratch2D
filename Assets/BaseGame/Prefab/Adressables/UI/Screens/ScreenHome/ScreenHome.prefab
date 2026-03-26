@@ -1101,6 +1101,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3972695114530354312, guid: d494a7c603d8220439508d53a19edb2f, type: 3}
+      propertyPath: objAdd
+      value: 
+      objectReference: {fileID: 1067888767089653691}
     - target: {fileID: 6615476854967340347, guid: d494a7c603d8220439508d53a19edb2f, type: 3}
       propertyPath: m_Name
       value: UIResourceEnergy
@@ -1113,6 +1117,11 @@ PrefabInstance:
 --- !u!224 &426543445332166835 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2192862410440275199, guid: d494a7c603d8220439508d53a19edb2f, type: 3}
+  m_PrefabInstance: {fileID: 1983272405049736268}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1067888767089653691 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1536880389892656119, guid: d494a7c603d8220439508d53a19edb2f, type: 3}
   m_PrefabInstance: {fileID: 1983272405049736268}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5639898874607381238

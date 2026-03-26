@@ -9,7 +9,8 @@ public class BoosterManager : Singleton<BoosterManager>
     Dictionary<Collider2D, SelectAbleOnBooster> selectAbleOnBoosters = new Dictionary<Collider2D, SelectAbleOnBooster>();
     public bool onUsingBooster;
     [SerializeField] private BoosterGraphicControl[] boosterGraphicControls;
-    private BoosterType currentBoosterType;
+    public BoosterType currentBoosterType;
+    public IBooster currentIBooster;
     private void Start()
     {
         GlobalEventManager.OnBoosterUsing += OnUsingBooster;
@@ -26,6 +27,7 @@ public class BoosterManager : Singleton<BoosterManager>
     {
         onUsingBooster = true;
         currentBoosterType = arg1;
+        currentIBooster = arg2;
         GamePlayManager.Instance.ChangeGameState(GameState.OnBooster);
     }
 
@@ -40,6 +42,7 @@ public class BoosterManager : Singleton<BoosterManager>
         {
             if (boosterGraphicControls[i].bType == currentBoosterType)
             {
+                GlobalEventManager.OnBoosterDone?.Invoke();
                 await boosterGraphicControls[i].MoveBoosterTo(pos);
                 sBo.OnSelect();
                 return;

@@ -11,7 +11,7 @@ public class UIManager : Singleton<UIManager>
 {
     private void Start()
     {
-        Application.targetFrameRate = 60; 
+        Application.targetFrameRate = 60;
     }
 
     protected override void Awake()
@@ -51,7 +51,7 @@ public class UIManager : Singleton<UIManager>
     }
 
     #endregion
-    
+
     #region Screen Default
 
     public async UniTask OpenScreenDefaultAsync<T>(bool stackChange, params object[] args)
@@ -82,8 +82,13 @@ public class UIManager : Singleton<UIManager>
         ScreenContainer.Find(ContainerKey.ScreenDefault).Pop(playAnimation);
     }
 
+    public bool IsHaveScreenDefaultOpen()
+    {
+        return ScreenContainer.Find(ContainerKey.ScreenDefault).Screens.Count > 0;
+    }
+
     #endregion
-    
+
     #region Modal
 
     public async UniTask OpenModalAsync<T>(bool anim, params object[] args)
@@ -119,8 +124,13 @@ public class UIManager : Singleton<UIManager>
         ModalContainer.Find(ContainerKey.Modals).Pop(anim);
     }
 
+    public bool IsHaveModalOpen()
+    {
+        return ModalContainer.Find(ContainerKey.Modals).Modals.Count > 0;
+    }
+
     #endregion
-    
+
     #region Activity
 
     public async UniTask OpenActivityAsync<T>(params object[] args)
@@ -145,7 +155,18 @@ public class UIManager : Singleton<UIManager>
         ActivityContainer.Find(ContainerKey.Activities).Hide(typeof(T).Name, true);
     }
 
+    public bool IsHaveActivityOpen()
+    {
+        return ActivityContainer.Find(ContainerKey.Activities).Activities.Count > 0;
+    }
+
+    public async UniTask CloseAllActivity()
+    {
+        await ActivityContainer.Find(ContainerKey.Activities).HideAllAsync(true);
+    }
+
     #endregion
+
     #region ActivityInGame
 
     public async UniTask OpenActivityInGameAsync<T>(params object[] args)

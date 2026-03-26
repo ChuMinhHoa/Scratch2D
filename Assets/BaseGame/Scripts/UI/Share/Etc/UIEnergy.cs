@@ -18,7 +18,7 @@ public class ActionCallOnEnergy : ActionCallOnResource
     public override void ActionCallOnUIResource()
     {
         base.ActionCallOnUIResource();
-        Debug.Log("Action call on energy");
+        //Debug.Log("Action call on energy");
         _ = OpenModalEnergy();
     }
 
@@ -33,7 +33,7 @@ public class ActionCallOnMoneyInGame : ActionCallOnResource
     public override void ActionCallOnUIResource()
     {
         base.ActionCallOnUIResource();
-        Debug.Log("Action call on money");
+        //Debug.Log("Action call on money");
         _ = GoToShop();
     }
 
@@ -49,7 +49,7 @@ public class ActionCallOnMoneyHome : ActionCallOnResource
     public override void ActionCallOnUIResource()
     {
         base.ActionCallOnUIResource();
-        Debug.Log("Action call on money");
+        //Debug.Log("Action call on money");
         ScreenDefaultContext.Events.GoToTabEvent?.Invoke(SlotTabType.Shop);
         //_ = GoToShop();
     }

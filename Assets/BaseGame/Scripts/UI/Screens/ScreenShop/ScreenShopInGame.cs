@@ -59,6 +59,10 @@ namespace Core.UI.Screens
             public CanvasGroup MainView { get; private set; }
             [field: SerializeField]
             public MainContentBase<SlotPack, ShopPackageDataConfig> MainCoinContent { get; private set; }
+                
+            [field: SerializeField]
+            public MainContentBase<SlotPack, ShopPackageDataConfig> MainDealContent { get; private set; }
+            
             [field: SerializeField] public Button BtnCloseInGame { get; private set; }
 
             public UniTask Initialize(Memory<object> args)
@@ -70,6 +74,12 @@ namespace Core.UI.Screens
             {
                 MainCoinContent.SetActionSlotCallBack(actionSlotCoinCallBack);
                 MainCoinContent.SetActionSlotExistCallBack();
+            }
+            
+            public void InitDealSlot(Action<SlotPack> actionSlotCoinCallBack)
+            {
+                MainDealContent.SetActionSlotCallBack(actionSlotCoinCallBack);
+                MainDealContent.SetActionSlotExistCallBack();
             }
         }
 
@@ -87,6 +97,7 @@ namespace Core.UI.Screens
                 View.BtnCloseInGame?.onClick.AddListener(()=>_ = CloseScreen());
 
                 View.InitCoinSlot(ActionBuyCallback);
+                View.InitDealSlot(ActionBuyCallback);
             }
              private async UniTask CloseScreen()
             {
@@ -96,7 +107,7 @@ namespace Core.UI.Screens
 
             private void ActionBuyCallback(SlotPack slotPackCallBack)
             {
-                Debug.Log(slotPackCallBack.slotData.packageName);
+                //Debug.Log(slotPackCallBack.slotData.packageName);
 
                 switch (slotPackCallBack.slotData.purchaseType)
                 {

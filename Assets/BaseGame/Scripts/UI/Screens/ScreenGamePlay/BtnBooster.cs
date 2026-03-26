@@ -76,18 +76,26 @@ public class BtnBooster : MonoBehaviour
     private void UseByAds()
     {
         UIAnimManager.Instance.AnimButton(imgIcon.transform);
-        if (!booster.CheckCanUseBooster())
-        {
-            booster.ShowWarning();
-            return;
-        }
+        // if (!booster.CheckCanUseBooster())
+        // {
+        //     booster.ShowWarning();
+        //     return;
+        // }
 #if UNITY_EDITOR || Cheat_Android
-        UseBooster();
+        //UseBooster();
+        AddBooster();
 #endif
-        
+
 #if !UNITY_EDITOR
-        AdsManager.Instance.ShowRewardVideo("BoosterReward", UseBooster);
+        AdsManager.Instance.ShowRewardVideo("BoosterReward", AddBooster);
 #endif
+    }
+
+    private void AddBooster()
+    {
+        PlayerResourceManager.Instance.ChangeResource(gameResource.ResourceType, 1);
+        countUsed++;
+        PayByAds();
     }
 
     private void Start()

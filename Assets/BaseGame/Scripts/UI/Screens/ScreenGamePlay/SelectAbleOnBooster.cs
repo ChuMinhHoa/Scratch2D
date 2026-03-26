@@ -38,7 +38,7 @@ public class SelectAbleOnBooster : MonoBehaviour, ISelectAbleOnBooster
         transform.localPosition = defaultPos;
     }
 
-    private void OnBoosterUsing(BoosterType bType, IBooster booster)
+    public void OnBoosterUsing(BoosterType bType, IBooster booster)
     {
         if (bType != boosterActive)
             return;

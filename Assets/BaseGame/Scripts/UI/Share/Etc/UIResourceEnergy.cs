@@ -2,6 +2,7 @@ using Cysharp.Text;
 using R3;
 using TW.Utility.CustomType;
 using UniRx;
+using UnityEngine;
 
 public class UIResourceEnergy : UIResource
 {
@@ -27,6 +28,7 @@ public class UIResourceEnergy : UIResource
         if (!e)
             txtAmount.SetTextFormat(MyCache.strDefault, value.ToStringUIFloor());
         var e1 = conditionActiveAddButton?.GetConditionActive() ?? false;
+           // Debug.Log(e1);
         btnAdd.interactable = e1;
         objAdd.SetActive(e1);
     }

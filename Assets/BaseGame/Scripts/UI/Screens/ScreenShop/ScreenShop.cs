@@ -101,7 +101,7 @@ namespace Core.UI.Screens
 
             private void ActionBuyCallback(SlotPack slotPackCallBack)
             {
-                Debug.Log(slotPackCallBack.slotData.packageName);
+                //Debug.Log(slotPackCallBack.slotData.packageName);
                 
                 switch (slotPackCallBack.slotData.purchaseType)
                 {
@@ -135,13 +135,13 @@ namespace Core.UI.Screens
 
             private void OnPurchaseSuccess(ShopPackageDataConfig packageConfig)
             {
-                Debug.Log("Purchase Success: " + packageConfig.packageName);
+                //Debug.Log("Purchase Success: " + packageConfig.packageName);
                 ShopManager.Instance.PurchaseSuccess(packageConfig);
             }
 
             private void OnPurchaseFailed(ShopPackageDataConfig packageConfig)
             {
-                Debug.Log("Purchase Failed: " + packageConfig.packageName);
+                //Debug.Log("Purchase Failed: " + packageConfig.packageName);
                 ShopManager.Instance.PurchaseFailed(packageConfig);
             }
         }

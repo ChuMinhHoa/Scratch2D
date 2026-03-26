@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced47fb0e78789f4b89c20ffbf304d3d, type: 3}
+  m_Name: TutorialGlobalConfig
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialGlobalConfig
+  listTutorialConfig:
+  - levelShow: 0
+    tutorialName: 
+    tutorialDes: 
+    spriteIcon: {fileID: 0}
+    handAction:
+      rid: 2849848982217949319
+  references:
+    version: 2
+    RefIds:
+    - rid: 2849848982217949319
+      type: {class: TutorialHandScratchAction, ns: , asm: Assembly-CSharp}
+      data:
+        trsHand: {fileID: 0}
+        srHand: {fileID: 0}
+        handAnim: {fileID: 0}
+        sprHands: []

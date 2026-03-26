@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Core.UI.Activities;
+using Core.UI.Modals;
+using Core.UI.Screens;
 using CoreData;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
@@ -277,6 +279,7 @@ public class Level : Singleton<Level>
 
     public void LevelUp()
     {
+        CheckToCloseAllUI();
         ResetLevel();
         levelIndex.Value++;
         if (levelChange.Value!= -1)
@@ -287,6 +290,19 @@ public class Level : Singleton<Level>
         PlayerInfoDataSave.Instance.SaveData();
         GamePlayManager.Instance.ChangeGameState(GameState.Normal);
         _ = UIManager.Instance.OpenActivityAsync<ActivityWinGame>();
+    }
+
+    private void CheckToCloseAllUI()
+    {
+        if(UIManager.Instance.IsHaveScreenDefaultOpen())
+            _ = UIManager.Instance.CloseScreenDefaultAsync();
+
+        if (UIManager.Instance.IsHaveModalOpen())
+             _ = UIManager.Instance.CloseModalAsync();
+
+        if (UIManager.Instance.IsHaveActivityOpen())
+            _ = UIManager.Instance.CloseAllActivity();
+
     }
 
     public void MoveFolderOut(FolderHaveSticker folder)
@@ -477,12 +493,12 @@ public class Level : Singleton<Level>
 
     private async UniTask EndGame()
     {
+        GamePlayManager.Instance.ChangeGameState(GameState.LoseGame);
         await UniTask.WaitForFixedUpdate();
         if (isEndGame)
             return;
         isEndGame = true;
         Debug.Log("game over");
-        GamePlayManager.Instance.ChangeGameState(GameState.Normal);
         await UniTask.WaitForSeconds(1f);
         await UIManager.Instance.OpenActivityAsync<ActivityLoseGame>();
     }
@@ -516,4 +532,9 @@ public class Level : Singleton<Level>
     private bool CheckCanUsingHammer() => layerController.CheckCanUsingHammer();
     private bool CheckCanUsingAddSlot() => fSpaceController.IsCanAddSlot();
     private bool CheckCanUsingMagnet() => oSController.IsHaveNoteMoveIn();
+
+    public Sticker GetRandomStickerTransform()
+    {
+        return layerController.GetRandomStickerTransform();
+    }
 }

@@ -83,18 +83,19 @@ namespace Core.UI.Activities
             public UniTask Cleanup(Memory<object> args)
             {
                 GlobalEventManager.OnBoosterDone -= CloseActivity;
+                ScreenGamePlayContext.Events.OnActiveInteractable?.Invoke(true);
+                GlobalEventManager.OnBoosterDone?.Invoke();
                 return UniTask.CompletedTask;
             }
 
             private void OnCloseActivity()
             {
                 _ = UIAnimManager.Instance.AnimButton(View.BtnCloseUsingBooster.transform);
-                GlobalEventManager.OnBoosterDone?.Invoke();
+                CloseActivity();
             }
 
             private void CloseActivity()
             {
-                ScreenGamePlayContext.Events.OnActiveInteractable?.Invoke(true);
                 _ = UIManager.Instance.CloseActivityAsync<ActivityUsingBooster>();
             }
         }
