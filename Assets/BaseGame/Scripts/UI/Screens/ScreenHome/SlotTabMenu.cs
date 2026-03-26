@@ -8,7 +8,7 @@ public enum SlotTabType
     None = -1,
     Shop,
     Home,
-    ComingSoon
+    Settings
 }
 
 public class SlotTabMenu : MonoBehaviour

@@ -1,4 +1,5 @@
 using System;
+using Core.UI.Screens;
 using Cysharp.Threading.Tasks;
 using TW.UGUI.MVPPattern;
 using UnityEngine;
@@ -93,6 +94,7 @@ namespace Core.UI.Activities
 
             private void CloseActivity()
             {
+                ScreenGamePlayContext.Events.OnActiveInteractable?.Invoke(true);
                 _ = UIManager.Instance.CloseActivityAsync<ActivityUsingBooster>();
             }
         }

@@ -38,7 +38,10 @@ public class TimeManager : Singleton<TimeManager>
     {
         lastDay = TimeDataSave.Instance.TimeLastDay;
         if (lastDay.Value.Equals(""))
+        {
             lastDay.Value = currentTime.ToEnUsString();
+            TimeDataSave.Instance.SaveData();
+        }
         var dateOfLastDay = lastDay.Value.ToDateTime();
         if (dateOfLastDay.Date < currentTime.Date)
         {
@@ -63,7 +66,7 @@ public class TimeManager : Singleton<TimeManager>
             timeToEndDay = (nextMidnight - currentTime).TotalSeconds;
             if (timeToEndDay <= 0)
             {
-                Debug.Log("Call end day");
+                //Debug.Log("Call end day");
                 OnDayEnd?.Invoke();
                 SaveLastDay();
                 UpdateTime();
@@ -76,30 +79,30 @@ public class TimeManager : Singleton<TimeManager>
     
     private void UpdateTime()
     {
-        FetchServerTime();
+        currentTime = DateTime.UtcNow;
         nextMidnight = currentTime.Date.AddDays(1);
         timeToEndDay = (nextMidnight - currentTime).TotalSeconds;
     }
     
     private void FetchServerTime()
     {
-        try
-        {
-            WebRequest request = WebRequest.Create($"http://www.google.com");
-            request.Timeout = 5000;
-            using WebResponse response = request.GetResponse();
-            currentTime = DateTime.Parse(response.Headers["date"]);
-            //Debug.Log($"Google time: {currentTime}");
-        }
-        catch
-        {
-            currentTime = DateTime.Now;
-        }
+        // try
+        // {
+        //     WebRequest request = WebRequest.Create($"http://www.google.com");
+        //     request.Timeout = 5000;
+        //     using WebResponse response = request.GetResponse();
+        //     currentTime = DateTime.Parse(response.Headers["date"]);
+        //     //Debug.Log($"Google time: {currentTime}");
+        // }
+        // catch
+        // {
+        //     currentTime = DateTime.UtcNow;
+        // }
     }
     
     private void SaveLastDay()
     {
-        lastDay.Value = DateTime.Now.ToEnUsString();
+        lastDay.Value = DateTime.UtcNow.ToEnUsString();
         TimeDataSave.Instance.SaveData();
     }
     

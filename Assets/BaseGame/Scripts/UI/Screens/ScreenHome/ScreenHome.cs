@@ -89,7 +89,12 @@ namespace Core.UI.Screens
                     //show buy energy popup
                     return;
                 }
-                
+
+                var e1 = EnergyManager.Instance.isOnInfiniteEnergy;
+                if (!e1)
+                {
+                    EnergyManager.Instance.UseEnergy(1);
+                }
                 //EnergyManager.Instance.UseEnergy(1);
                 // var e1 = new Func<UniTask>(Level.Instance.LoadData);
                 // var e2 = new Func<UniTask>(Level.Instance.AnimFirstSpawn);

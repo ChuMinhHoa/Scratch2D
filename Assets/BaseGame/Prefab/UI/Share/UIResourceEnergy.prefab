@@ -87,8 +87,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 22.133, y: 0.00004196167}
-  m_SizeDelta: {x: -44.266403, y: -0.4952011}
+  m_AnchoredPosition: {x: 19.2, y: 1.0462}
+  m_SizeDelta: {x: -44.2664, y: -3.0826}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8054572736981983538
 CanvasRenderer:
@@ -118,17 +118,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 20m:20s
+  m_text: 20:20
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74c5e3044675fc04a97ba44bd60deefd, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: cf6b215f13c6fcf449e0ae7c9a586aba, type: 2}
+  m_sharedMaterial: {fileID: 9114318834683303741, guid: 74c5e3044675fc04a97ba44bd60deefd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4288304412
+  m_fontColor: {r: 0.10980393, g: 0.33333334, b: 0.6039216, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.15
+  m_fontSize: 40
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -260,7 +260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 995598219137719161, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 540
+      value: 175.52
       objectReference: {fileID: 0}
     - target: {fileID: 995598219137719161, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -280,6 +280,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4664197502450227386, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: m_text
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4664197502450227386, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
+      propertyPath: m_fontSize
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4664197502450227386, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
@@ -293,6 +297,10 @@ PrefabInstance:
     - target: {fileID: 4664197502450227386, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: m_fontColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4664197502450227386, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4664197502450227386, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: m_sharedMaterial
@@ -320,7 +328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6724360977944125624, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 67.309
       objectReference: {fileID: 0}
     - target: {fileID: 6724360977944125624, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: m_SizeDelta.y
@@ -328,7 +336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6724360977944125624, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.0000076293945
       objectReference: {fileID: 0}
     - target: {fileID: 6724360977944125624, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -338,16 +346,112 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 75d496061a3355340b58d1622755ee0f, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3895829235631367523, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 995598219137719161, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       insertIndex: 0
       addedObject: {fileID: 2793731718319983019}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5220070912082830013, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3972695114530354312}
   m_SourcePrefab: {fileID: 100100000, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
+--- !u!1 &1612399538541996175 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 423315439442118409, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
+  m_PrefabInstance: {fileID: 1423014269723504518}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2192862410440275199 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 995598219137719161, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
   m_PrefabInstance: {fileID: 1423014269723504518}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5982188894548997948 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4664197502450227386, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
+  m_PrefabInstance: {fileID: 1423014269723504518}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &6615476854967340347 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5220070912082830013, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
+  m_PrefabInstance: {fileID: 1423014269723504518}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3972695114530354312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6615476854967340347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a41a636a1322944d8ef652846838fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIResourceEnergy
+  imgIcon: {fileID: 8133954096448632404}
+  txtAmount: {fileID: 5982188894548997948}
+  resourceType: 6
+  resourceValue:
+    <ResourceType>k__BackingField: 0
+    <ReactiveAmount>k__BackingField:
+      value:
+        coefficient: 0
+        exponent: 0
+      EditorValue:
+        coefficient: 0
+        exponent: 0
+  resourceAmount:
+    value:
+      coefficient: 0
+      exponent: 0
+    EditorValue:
+      coefficient: 0
+      exponent: 0
+  btnAdd: {fileID: 8844777719652643506}
+  objAdd: {fileID: 1612399538541996175}
+  actionCallOnResource:
+    rid: 5138881544481931451
+  conditionActiveAddButton:
+    rid: 5138881544481931452
+  energyInfinite:
+    value: 0
+    EditorValue: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 5138881544481931451
+      type: {class: ActionCallOnEnergy, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 5138881544481931452
+      type: {class: EnergyResourceConditionActiveAddButton, ns: , asm: Assembly-CSharp}
+      data: 
+--- !u!114 &8133954096448632404 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7160182275513588178, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
+  m_PrefabInstance: {fileID: 1423014269723504518}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!114 &8844777719652643506 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7566462478947786036, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
+  m_PrefabInstance: {fileID: 1423014269723504518}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612399538541996175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button

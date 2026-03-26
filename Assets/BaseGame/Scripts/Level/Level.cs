@@ -247,7 +247,7 @@ public class Level : Singleton<Level>
     {
         var posSpawn = sticker.transform.position;
         posSpawn.z = forceScratch ? -2f : posSpawn.z;
-        Debug.Log("Call Spawn Sticker Done ");
+        //Debug.Log("Call Spawn Sticker Done ");
         var stD = PoolManager.Instance.SpawnStickerDone(posSpawn);
         stD.SetActionCallBackOnMoveToNote(sticker.SetStickerIsDone);
         stD.InitStickerMove(sticker.stickerData.stickerID, rot);
@@ -344,7 +344,7 @@ public class Level : Singleton<Level>
                 {
                     if (stickerDone[j].IsHaveSticker(noteId))
                     {
-                        Debug.Log(noteId + $" is have sticker done {stickerDone[j]} {j}");
+                        //Debug.Log(noteId + $" is have sticker done {stickerDone[j]} {j}");
                         return true;
                     }
                 }
@@ -484,7 +484,6 @@ public class Level : Singleton<Level>
         Debug.Log("game over");
         GamePlayManager.Instance.ChangeGameState(GameState.Normal);
         await UniTask.WaitForSeconds(1f);
-        EnergyManager.Instance.UseEnergy(1);
         await UIManager.Instance.OpenActivityAsync<ActivityLoseGame>();
     }
 
@@ -502,4 +501,19 @@ public class Level : Singleton<Level>
     {
         return MyCache.GetDifficultByLevel(levelIndex.Value + 1);
     }
+
+    public bool CheckCanUsingBooster(BoosterType boosterType)
+    {
+        return boosterType switch
+        {
+            BoosterType.Magnet => CheckCanUsingMagnet(),
+            BoosterType.AddSlot => CheckCanUsingAddSlot(),
+            BoosterType.Hammer => CheckCanUsingHammer(),
+            _ => false
+        };
+    }
+
+    private bool CheckCanUsingHammer() => layerController.CheckCanUsingHammer();
+    private bool CheckCanUsingAddSlot() => fSpaceController.IsCanAddSlot();
+    private bool CheckCanUsingMagnet() => oSController.IsHaveNoteMoveIn();
 }

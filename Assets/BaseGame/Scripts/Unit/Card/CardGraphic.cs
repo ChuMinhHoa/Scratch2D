@@ -81,6 +81,7 @@ public class CardGraphic : MonoBehaviour
 
     public void OnFreezeDone()
     {
+        Debug.Log("Anim");
         objFreeze.SetActive(false);
         freezeParticle.SetActive(true);
     }

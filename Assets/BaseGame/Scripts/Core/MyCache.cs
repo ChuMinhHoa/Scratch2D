@@ -20,7 +20,9 @@ public static class MyCache
     public static string strBasePackID = "com.abi.vn.";
     private static Dictionary<GameResource.Type, TMP_Style> resourceStyleCache = new();
     public static string warningPrice = "Not enough currency!";
-    public static string warningSlotAdded = "Slot added!";
+    public static string warningSlotAdded = "Slots has reached its limit!";
+    public static string warningNoteOnMove = "Wait note move!";
+    public static string warningHammer = "No cards are locked or frozen!";
 
     public static GameResource.Type ConvertBoosterToResourceType(BoosterType boosterType)
     {
@@ -40,7 +42,7 @@ public static class MyCache
             SlotTabType.None => ZString.Concat("None"),
             SlotTabType.Shop => ZString.Concat("Shop"),
             SlotTabType.Home => ZString.Concat("Home"),
-            SlotTabType.ComingSoon => ZString.Concat("Coming Soon"),
+            SlotTabType.Settings => ZString.Concat("Settings"),
             _ => ""
         };
     }

@@ -7,6 +7,7 @@ public class ShopDataSave : IDataSave<ShopDataSave>
 {
     public static ShopDataSave Instance => InGameDataManager.Instance.InGameData.ShopDataSave;
     [field: SerializeField] public Reactive<bool> IsFirstPurchase { get; set; } = new(true);
+    [field: SerializeField] public Reactive<bool> NoAds { get; set; } = new(true);
     public bool IsDirty { get; set; }
 
     public ShopDataSave DefaultData()

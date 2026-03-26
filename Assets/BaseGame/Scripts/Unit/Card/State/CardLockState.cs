@@ -11,15 +11,15 @@ public class CardLockState : IState
         UniTask OnEnterLockState();
         UniTask OnUpdateLockState();
         UniTask OnExitLockState();
-    } 
-    
+    }
+
     private IHandler handler;
 
     public CardLockState(IHandler owner)
     {
         handler = owner;
     }
-    
+
     public UniTask OnEnter(CancellationToken ct)
     {
         return handler.OnEnterLockState();
@@ -69,7 +69,7 @@ public partial class Card : CardLockState.IHandler
         ChangeCardState(CardState.Normal);
         await WaitForCheckCard();
     }
-    
+
     private async UniTask AnimUnlockHammer()
     {
         await cardGraphic.UnLockCardHammer();
@@ -96,8 +96,18 @@ public partial class Card : CardLockState.IHandler
     public void OnUnlockCardByBooster()
     {
         countUnlockSticker = 0;
-        cardGraphic.SetTextCount(countUnlockSticker);
-        GlobalEventManager.OnNoteDoneCallBack -= OnNoteDoneForLock;
-        _ = AnimUnlockHammer();
+        if (stateMachine.CurrentState == CardFreezeState)
+        {
+            cardGraphic.OnFreezeDone();
+            GlobalEventManager.OnNoteDoneCallBack -= OnNoteDoneForFreeze;
+            ChangeCardState(CardState.Normal);
+            _ = WaitForEnableInput();
+        }
+        else
+        {
+            cardGraphic.SetTextCount(countUnlockSticker);
+            GlobalEventManager.OnNoteDoneCallBack -= OnNoteDoneForLock;
+            _ = AnimUnlockHammer();
+        }
     }
 }

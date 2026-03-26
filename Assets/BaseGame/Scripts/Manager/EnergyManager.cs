@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using TW.Utility.CustomType;
 using TW.Utility.DesignPattern;
@@ -11,7 +9,8 @@ public class EnergyManager : Singleton<EnergyManager>
     public GameResource energyResource;
     public Reactive<string> timeToAddAllEnergy = new("");
     public Reactive<string> timeToAddOneEnergy = new("");
-
+    public Reactive<string> timeToEndInfiniteEnergy = new("");
+    public Reactive<bool> isOnInfiniteEnergy;
     public List<int> listID;
 
     private void Start()
@@ -24,9 +23,16 @@ public class EnergyManager : Singleton<EnergyManager>
         energyResource = new GameResource(GameResource.Type.Energy, EnergyDataSave.Instance.currentEnergy);
         timeToAddAllEnergy = EnergyDataSave.Instance.timeToAddEnergy;
         timeToAddOneEnergy = EnergyDataSave.Instance.timeToAddOneEnergy;
+        timeToEndInfiniteEnergy = EnergyDataSave.Instance.timeToEndInfiniteEnergy;
+        
         if (energyResource.Amount == -1)
         {
             FirstTimeInit();
+        }
+
+        if (!timeToEndInfiniteEnergy.Value.Equals(""))
+        {
+            CheckTimeEndInfiniteEnergy();
         }
 
         if (!timeToAddAllEnergy.Value.Equals(""))
@@ -38,6 +44,23 @@ public class EnergyManager : Singleton<EnergyManager>
         {
             CheckTimeAddOneEnergy();
         }
+    }
+
+    private void CheckTimeEndInfiniteEnergy()
+    {
+        var currentTime = TimeManager.Instance.GetCurrentTime();
+        var timeEndInfiniteEnergy = timeToEndInfiniteEnergy.Value.ToDateTime();
+        Debug.Log("str current time: " + currentTime);
+        Debug.Log("str time: " + timeToEndInfiniteEnergy.Value);
+        Debug.Log("date time: " + timeEndInfiniteEnergy);
+        if (timeEndInfiniteEnergy.Subtract(currentTime).TotalSeconds > 0)
+        {
+            isOnInfiniteEnergy.Value = true;
+            TimeManager.Instance.RegisterEventTime(timeEndInfiniteEnergy, ResetTimeInfiniteEnergy, GetId());
+            return;
+        }
+
+        ResetTimeInfiniteEnergy(-1);
     }
 
     private void CheckTimeAddOneEnergy()
@@ -66,14 +89,24 @@ public class EnergyManager : Singleton<EnergyManager>
         ResetTimeToAddOneEnergy();
     }
 
+    private void ResetTimeInfiniteEnergy(int idCallBack, bool ads = false)
+    {
+        //Debug.Log("End infinite energy time");
+        timeToEndInfiniteEnergy.Value = "";
+        isOnInfiniteEnergy.Value = false;
+        EnergyDataSave.Instance.SaveData();
+    }
+
     private void ResetTimeToAddEnergy()
     {
+        //Debug.Log("End energy time");
         timeToAddAllEnergy.Value = "";
         EnergyDataSave.Instance.SaveData();
     }
 
     private void ResetTimeToAddOneEnergy()
     {
+        //Debug.Log("End add one energy time");
         timeToAddOneEnergy.Value = "";
         EnergyDataSave.Instance.SaveData();
     }
@@ -129,7 +162,7 @@ public class EnergyManager : Singleton<EnergyManager>
         EnergyDataSave.Instance.SaveData();
     }
 
-    public void AddOneEnergy(int idCallBack, bool addByAds = false)
+    private void AddOneEnergy(int idCallBack, bool addByAds = false)
     {
         AddEnergy(1, addByAds);
         if (listID.Contains(idCallBack))
@@ -176,6 +209,7 @@ public class EnergyManager : Singleton<EnergyManager>
         ResetTimeToAddEnergy();
         ResetTimeToAddOneEnergy();
         TimeManager.Instance.ClearScheduledEvents();
+        //listID.Clear();
         SaveEnergyData();
     }
 
@@ -194,5 +228,27 @@ public class EnergyManager : Singleton<EnergyManager>
 
         listID.Add(idReturn);
         return idReturn;
+    }
+
+    public void AddEnergyInfiniteTime(BigNumber rewardAmount)
+    {
+        RefillFullEnergy();
+        SetTimeInfinite(rewardAmount);
+    }
+
+    private void SetTimeInfinite(BigNumber rewardAmount)
+    {
+        isOnInfiniteEnergy.Value = true;
+        var timeInfinite = TimeManager.Instance.GetCurrentTime();
+        //Debug.Log(timeInfinite);
+        if (!timeToEndInfiniteEnergy.Value.Equals(""))
+        {
+            timeInfinite = timeToEndInfiniteEnergy.Value.ToDateTime();
+        }
+        var timeEnd = timeInfinite.AddHours(rewardAmount.ToFloat());
+       // Debug.Log(timeInfinite);
+        timeToEndInfiniteEnergy.Value = timeEnd.ToEnUsString();
+        TimeManager.Instance.RegisterEventTime(timeEnd, ResetTimeInfiniteEnergy, GetId());
+        EnergyDataSave.Instance.SaveData();
     }
 }

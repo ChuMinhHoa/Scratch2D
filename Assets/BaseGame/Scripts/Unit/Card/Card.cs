@@ -186,8 +186,13 @@ public partial class Card : MonoBehaviour
         if (IsDone()) return false;
         if (selectAbleOnBooster.boosterActive == BoosterType.Hammer)
         {
-            return stateMachine.CurrentState == CardLockState;
+            return IsCanUsingHammer();
         }
-        return true;
+        return false;
+    }
+
+    public bool IsCanUsingHammer()
+    {
+        return stateMachine.CurrentState == CardLockState || stateMachine.CurrentState == CardFreezeState;
     }
 }

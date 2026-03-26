@@ -1,5 +1,6 @@
 using System;
 using Core.UI.Activities;
+using Core.UI.Screens;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,6 +16,8 @@ public interface IBooster
     void OnChangeBoosterCount(int count);
     void SetUsedCallBack(Action actionCallback);
     void SetUsingType(BoosterUseType uType);
+    bool CheckCanUseBooster();
+    void ShowWarning();
 }
 
 [Serializable]
@@ -33,10 +36,21 @@ public class BoosterBase : IBooster
         
     }
 
+    public virtual bool CheckCanUseBooster()
+    {
+        return true;
+    }
+
+    public virtual void ShowWarning()
+    {
+        
+    }
+
     public virtual void UseBooster()
     {
         if (GamePlayManager.Instance.gameState != GameState.Playing)
             return;
+        ScreenGamePlayContext.Events.OnActiveInteractable?.Invoke(false);
         GamePlayManager.Instance.SetWhatCanSelectOnBooster(layerCanSelect);
         _ = UIManager.Instance.OpenActivityAsync<ActivityUsingBooster>();
         GlobalEventManager.OnBoosterUsing?.Invoke(boosterType, this);

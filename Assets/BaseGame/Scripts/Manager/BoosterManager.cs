@@ -33,6 +33,7 @@ public class BoosterManager : Singleton<BoosterManager>
     {
         var sBo = GetSelectAbleOnBooster(col);
         if (sBo == null) return;
+        if (!sBo.CheckCondition) return;
        
         var pos = col.transform;
         for (var i = 0; i < boosterGraphicControls.Length; i++)

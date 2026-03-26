@@ -17,12 +17,10 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
 
     public void TrackAdsRewardShow(string placement)
     {
-        throw new System.NotImplementedException();
     }
 
     public void TrackAdsInterShow()
     {
-        throw new System.NotImplementedException();
     }
     #endregion
 

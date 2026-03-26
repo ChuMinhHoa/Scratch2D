@@ -98,7 +98,6 @@ namespace Core.UI.Screens
             {
                 Debug.Log(slotPackCallBack.slotData.packageName);
 
-
                 switch (slotPackCallBack.slotData.purchaseType)
                 {
                     case PurchaseType.IAPPay:

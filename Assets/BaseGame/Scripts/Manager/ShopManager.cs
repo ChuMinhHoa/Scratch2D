@@ -8,7 +8,9 @@ using UnityEngine;
 
 public class ShopManager : Singleton<ShopManager>
 {
-    public Reactive<bool> IsFirstPurchase = new (false);
+    public Reactive<bool> IsFirstPurchase = new(false);
+    public Reactive<bool> NoAds = new(false);
+
     public void Start()
     {
         LoadData();
@@ -17,6 +19,7 @@ public class ShopManager : Singleton<ShopManager>
     private void LoadData()
     {
         IsFirstPurchase = ShopDataSave.Instance.IsFirstPurchase;
+        NoAds = ShopDataSave.Instance.NoAds;
     }
 
     public Span<ShopPackageDataConfig> GetPackageShopConfigs()
@@ -28,12 +31,13 @@ public class ShopManager : Singleton<ShopManager>
     {
         for (var i = 0; i < packageConfig.shopRewards.Count; i++)
         {
-            RewardManager.Instance.AddResourceReward(packageConfig.shopRewards[i]);
+           
+                RewardManager.Instance.AddResourceReward(packageConfig.shopRewards[i]);
         }
 
         _ = DelayPurChaseSuccess();
     }
-    
+
     private async UniTask DelayPurChaseSuccess()
     {
         await UniTask.Delay(1000);
@@ -45,11 +49,20 @@ public class ShopManager : Singleton<ShopManager>
     {
         _ = DelayPurChaseFailed();
     }
-    
+
     private async UniTask DelayPurChaseFailed()
     {
         await UniTask.Delay(1000);
         await UIManager.Instance.CloseActivityAsync<ActivityBlock>();
         //await UIManager.Instance.OpenModalAsync<ModalPurchaseFail>();
+    }
+
+    public bool SetNoAds()
+    {
+        if (NoAds.Value)
+            return false;
+        NoAds.Value = true;
+        ShopDataSave.Instance.SaveData();
+        return true;
     }
 }

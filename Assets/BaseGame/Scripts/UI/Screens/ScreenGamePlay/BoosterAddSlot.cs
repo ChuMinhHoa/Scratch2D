@@ -8,22 +8,22 @@ public class BoosterAddSlot : BoosterBase
     {
         if (GamePlayManager.Instance.gameState != GameState.Playing)
             return;
-        if (!Level.Instance.fSpaceController.IsCanAddSlot())
-        {
-            GlobalEventManager.OnShowWarning?.Invoke(MyCache.warningSlotAdded);
-            return;
-        }
+        
         //GlobalEventManager.OnBoosterUsing?.Invoke(boosterType, this);
         Level.Instance.AddSlot();
         Debug.Log("Use Booster Magnet");
         UsedBooster(null);
     }
 
+    public override void ShowWarning()
+    {
+        GlobalEventManager.OnShowWarning?.Invoke(MyCache.warningSlotAdded);
+    }
+
     public override void ActiveBooster(bool active)
     {
         base.ActiveBooster(active);
         Debug.Log($"Active Booster {active}");
-        CheckActiveAddSlot();
     }
 
     public override void UsedBooster(SelectAbleOnBooster data)
@@ -38,10 +38,10 @@ public class BoosterAddSlot : BoosterBase
         Debug.Log($"Change Booster count: {count}");
     }
 
-    public void CheckActiveAddSlot()
+    public override bool CheckCanUseBooster()
     {
         var e = Level.Instance.fSpaceController.spaceStickers.Count < 5;
-        ActiveBooster(e);
+        return e;
     }
 
 }

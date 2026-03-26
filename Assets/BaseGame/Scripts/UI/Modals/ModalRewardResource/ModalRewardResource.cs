@@ -89,7 +89,7 @@ namespace Core.UI.Modals
                 {
                     await UniTask.WaitForSeconds(0.05f * i);
                     resourceRewardContent.slots[i].AnimShow();
-                    Debug.Log( (float)i / resourceRewardContent.slots.Count);
+                    //Debug.Log( (float)i / resourceRewardContent.slots.Count);
                     MyScroll.horizontalNormalizedPosition = (float)i / (resourceRewardContent.slots.Count-1);
                 }
             }

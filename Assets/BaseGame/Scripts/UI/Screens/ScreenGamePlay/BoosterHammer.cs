@@ -30,4 +30,15 @@ public class BoosterHammer : BoosterBase
         base.OnChangeBoosterCount(count);
         Debug.Log($"Change Booster count: {count}");
     }
+
+    public override bool CheckCanUseBooster()
+    {
+        var e = Level.Instance.CheckCanUsingBooster(boosterType);
+        return e;
+    }
+    
+    public override void ShowWarning()
+    {
+        GlobalEventManager.OnShowWarning?.Invoke(MyCache.warningHammer);
+    }
 }

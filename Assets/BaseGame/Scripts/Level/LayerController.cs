@@ -50,7 +50,6 @@ public class LayerController
 
     public void ResetController()
     {
-        Debug.Log("reset layer controller");
         loadDone = false;
         for (var i = 0; i < cards.Count; i++)
         {
@@ -70,5 +69,16 @@ public class LayerController
                 break;
 
         }
+    }
+
+    public bool CheckCanUsingHammer()
+    {
+        for (var i = 0; i < cards.Count; i++)
+        {
+            if (!cards[i].isShowed) continue;
+            if(cards[i].IsCanUsingHammer())
+                return true;
+        }
+        return false;
     }
 }

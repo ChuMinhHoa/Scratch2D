@@ -12,6 +12,11 @@ public class BoosterMagnet : BoosterBase
         base.UseBooster();
         Debug.Log("Use Booster Magnet");
     }
+    
+    public override void ShowWarning()
+    {
+        GlobalEventManager.OnShowWarning?.Invoke(MyCache.warningNoteOnMove);
+    }
 
     public override void ActiveBooster(bool active)
     {

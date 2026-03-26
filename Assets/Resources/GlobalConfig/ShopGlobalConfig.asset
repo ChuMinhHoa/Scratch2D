@@ -183,7 +183,7 @@ MonoBehaviour:
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: 059098556b0eb9b458dda0eec3324ac9, type: 3}
     packageName: 0
-    packageNameToUI: No Ads
+    packageNameToUI: Remove Ads
     packageSaleOffTag: 
     percentSaleOff: 0
     packageDes: 

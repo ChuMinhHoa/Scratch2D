@@ -59,7 +59,7 @@ namespace Core.UI.Activities
             [field: Title(nameof(UIView))]
             [field: SerializeField]
             public CanvasGroup MainView { get; private set; }
-            
+
             [field: SerializeField] public CanvasGroup WrapInfo { get; set; }
             [field: SerializeField] public GameObject ObjNewFeature { get; set; }
             [field: SerializeField] public Button BtnClaim { get; set; }
@@ -76,7 +76,7 @@ namespace Core.UI.Activities
                 TxtReward.SetTextFormat(MyCache.strDefault, reward);
                 return UniTask.CompletedTask;
             }
-            
+
             public async UniTask AnimWrapInfo()
             {
                 await UniTask.WaitForSeconds(0.5f);
@@ -98,6 +98,20 @@ namespace Core.UI.Activities
                 View.WrapInfo.alpha = 0f;
                 View.BtnClaim.onClick.AddListener(ClaimReward);
                 View.BtnClaimX2.onClick.AddListener(ClaimRewardX2);
+            }
+
+            public UniTask Cleanup(Memory<object> args)
+            {
+                if (!EnergyManager.Instance.isOnInfiniteEnergy)
+                {
+                    var e = EnergyManager.Instance.energyResource.Amount == DefaultGlobalConfig.Instance.maxEnergy;
+                    if (!e)
+                    {
+                        EnergyManager.Instance.RefillAddOnEnergy();
+                    }
+                }
+
+                return UniTask.CompletedTask;
             }
 
             private void ClaimRewardX2()

@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class UIResource : MonoBehaviour
 {
     [SerializeField] private Image imgIcon;
-    [SerializeField] private TextMeshProUGUI txtAmount;
+    public TextMeshProUGUI txtAmount;
     public GameResource.Type resourceType;
     [SerializeField] private GameResource resourceValue;
     
@@ -50,7 +50,7 @@ public class UIResource : MonoBehaviour
         resourceAmount.Subscribe(ChangeValue).AddTo(this);
     }
 
-    private void ChangeValue(BigNumber value)
+    public virtual void ChangeValue(BigNumber value)
     {
         //Debug.Log("Change value " + value);
         txtAmount.SetTextFormat(MyCache.strDefault, value.ToStringUIFloor());

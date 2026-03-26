@@ -30,7 +30,7 @@ public class PlayerResourceManager : Singleton<PlayerResourceManager>
    {
       for (var i = 0; i < gameResourceData.Count; i++)
       {
-         Debug.Log(gameResourceData[i].ResourceType + " " + gameResourceData[i].C + " " + gameResourceData[i].E);
+        // Debug.Log(gameResourceData[i].ResourceType + " " + gameResourceData[i].C + " " + gameResourceData[i].E);
          var c = gameResourceData[i].C;
          var e = gameResourceData[i].E;
          var oldResource = new GameResource(gameResourceData[i].ResourceType, new BigNumber(c, e));

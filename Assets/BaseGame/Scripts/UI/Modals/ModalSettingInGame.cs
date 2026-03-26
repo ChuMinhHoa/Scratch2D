@@ -8,6 +8,7 @@ using R3;
 using Sirenix.OdinInspector;
 using TW.UGUI.Core.Modals;
 using UnityEngine.UI;
+using Screen = Unity.Android.Gradle.Manifest.Screen;
 
 namespace Core.UI.Modals
 {
@@ -96,12 +97,22 @@ namespace Core.UI.Modals
 
             private async UniTask OnClickBtnReplay()
             {
-                await UIManager.Instance.OpenActivityAsync<ActivityWarningLoseEnergy>((Func<UniTask>)ConfirmReplay);
+                if (EnergyManager.Instance.isOnInfiniteEnergy)
+                {
+                    await Replay();
+                }
+                else
+                    await UIManager.Instance.OpenActivityAsync<ActivityWarningLoseEnergy>((Func<UniTask>)ConfirmReplay); 
             }
             
             private async UniTask ConfirmReplay()
             {
                 EnergyManager.Instance.UseEnergy(1);
+                await Replay();
+            }
+
+            private async UniTask Replay()
+            {
                 Level.Instance.ResetLevel();
                 await UIManager.Instance.OpenActivityAsync<ActivityLoadingInGamePlay>((Func<UniTask>)Level.Instance.LoadData, (Func<UniTask>)Level.Instance.AnimFirstSpawn);  
                 await UIManager.Instance.CloseModalAsync();
@@ -109,12 +120,11 @@ namespace Core.UI.Modals
 
             private async UniTask OnClickBtnHome()
             {
-                await UIManager.Instance.OpenActivityAsync<ActivityWarningLoseEnergy>((Func<UniTask>)ConfirmBackToHome);
+                await BackToHome();
             }
 
-            public async UniTask ConfirmBackToHome()
+            private async UniTask BackToHome()
             {
-                EnergyManager.Instance.UseEnergy(1);
                 await UIManager.Instance.OpenActivityAsync<ActivityLoadingInGamePlay>(null, null);
                 Level.Instance.ResetLevel();
                 await UIManager.Instance.CloseScreenAsync();
@@ -126,6 +136,7 @@ namespace Core.UI.Modals
             {
                 UIAnimManager.Instance.AnimButton(View.BtnClose.transform);
                 _ = UIManager.Instance.CloseModalAsync();
+                ScreenGamePlayContext.Events.OnActiveInteractable?.Invoke(true);
             }
         }
     }

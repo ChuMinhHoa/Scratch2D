@@ -11,6 +11,8 @@ public class SelectAbleOnBooster : MonoBehaviour, ISelectAbleOnBooster
 
     private Func<bool> conditionToSelect;
     
+    public bool CheckCondition => conditionToSelect();
+
     public void SetConditionToSelect(Func<bool> condition)
     {
         conditionToSelect = condition;

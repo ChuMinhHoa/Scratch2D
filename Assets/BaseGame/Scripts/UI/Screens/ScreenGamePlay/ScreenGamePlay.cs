@@ -38,6 +38,7 @@ namespace Core.UI.Screens
         public static class Events
         {
             public static Action SampleEvent { get; set; }
+            public static Action<bool> OnActiveInteractable { get; set; }
         }
 
         [HideLabel]
@@ -114,6 +115,20 @@ namespace Core.UI.Screens
                 View.RefreshBtnBooster();
 
                 //await OpenUI();
+
+                View.MainView.interactable = false;
+                Events.OnActiveInteractable += CallInteractable;
+            }
+            
+            private void CallInteractable(bool active)
+            {
+                View.MainView.interactable = active;
+            }
+
+            public UniTask Cleanup(Memory<object> args)
+            {
+                Events.OnActiveInteractable = null;
+                return UniTask.CompletedTask;
             }
 
             private async UniTask OpenUI()
@@ -140,6 +155,7 @@ namespace Core.UI.Screens
 
             private void OnClickSetting()
             {
+                Events.OnActiveInteractable?.Invoke(false);
                 _ = UIAnimManager.Instance.AnimButton(View.BtnSetting.transform, null);
                 _ = UIManager.Instance.OpenModalAsync<ModalSettingInGame>();
             }

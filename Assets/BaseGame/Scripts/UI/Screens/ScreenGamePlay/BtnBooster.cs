@@ -46,6 +46,11 @@ public class BtnBooster : MonoBehaviour
     private void UseByGameResource()
     {
         UIAnimManager.Instance.AnimButton(imgIcon.transform);
+        if (!booster.CheckCanUseBooster())
+        {
+            booster.ShowWarning();
+            return;
+        }
         if (gameResource.Amount > 0)
         {
             booster.UseBooster();
@@ -55,6 +60,11 @@ public class BtnBooster : MonoBehaviour
     private void UseByPrice()
     {
         UIAnimManager.Instance.AnimButton(imgIcon.transform);
+        if (!booster.CheckCanUseBooster())
+        {
+            booster.ShowWarning();
+            return;
+        }
         if (!PlayerResourceManager.Instance.IsEnoughResource(GameResource.Type.Money, price))
         {
             GlobalEventManager.OnShowWarning?.Invoke(MyCache.warningPrice);
@@ -66,12 +76,17 @@ public class BtnBooster : MonoBehaviour
     private void UseByAds()
     {
         UIAnimManager.Instance.AnimButton(imgIcon.transform);
-#if UNITY_EDITOR
-        //UseBooster();
+        if (!booster.CheckCanUseBooster())
+        {
+            booster.ShowWarning();
+            return;
+        }
+#if UNITY_EDITOR || Cheat_Android
+        UseBooster();
 #endif
-        AdsManager.Instance.ShowRewardVideo("BoosterReward", UseBooster);
+        
 #if !UNITY_EDITOR
-        //UseBooster();
+        AdsManager.Instance.ShowRewardVideo("BoosterReward", UseBooster);
 #endif
     }
 

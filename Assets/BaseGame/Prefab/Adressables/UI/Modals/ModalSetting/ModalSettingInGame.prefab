@@ -1608,7 +1608,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9078231560310742498, guid: 0705b72a0899631499cd668df1b7cced, type: 3}
       propertyPath: m_text
-      value: Haptic
+      value: Haptics
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1722,7 +1722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9078231560310742498, guid: 0705b72a0899631499cd668df1b7cced, type: 3}
       propertyPath: m_text
-      value: Sound
+      value: Sound FX
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
