@@ -18,7 +18,7 @@ public partial class Sticker : MonoBehaviour
     public float progressDone;
 
     [field: SerializeField] public Reactive<bool> isDone { get; set; } = new(false);
-    private bool isCallDone = false;
+    public Reactive<bool> isCallDone = new(false);
     
     [SerializeReference] public IRequireDoneSticker requireDoneSticker;
     public bool IsOnDoneState => stateMachine.CurrentState == StickerDoneState;
@@ -40,7 +40,7 @@ public partial class Sticker : MonoBehaviour
             return;
         if (!(progressChange >= progressDone)) return;
         
-        isCallDone = true;
+        isCallDone.Value = true;
         
         OnDoneProgress();
         stickerGraphic.FillAllScratch();
@@ -62,7 +62,7 @@ public partial class Sticker : MonoBehaviour
         pos.z = 0;
         transform.position = pos;
         forceScratch = false;
-        isCallDone = false;
+        isCallDone.Value = false;
     }
 
     protected void StickerMoveToTarget()

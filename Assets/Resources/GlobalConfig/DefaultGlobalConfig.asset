@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DefaultGlobalConfig
   m_EditorClassIdentifier: Assembly-CSharp::DefaultGlobalConfig
   maxEnergy: 5
-  defaultMinutesForEnergy: 0.5
+  defaultMinutesForEnergy: 10

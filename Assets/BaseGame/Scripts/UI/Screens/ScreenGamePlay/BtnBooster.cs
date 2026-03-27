@@ -11,10 +11,12 @@ using UnityEngine.UI;
 
 public class BtnBooster : MonoBehaviour
 {
+    //public int levelUnlock;
+    public Reactive<int> levelIndex = new(0);
     [SerializeReference] public IBooster booster;
-    
+
     public GameResource gameResource;
-    
+
     [SerializeField] private Image imgIcon;
     [SerializeField] private GameObject objPrice;
     [SerializeField] private GameObject objAmount;
@@ -25,22 +27,55 @@ public class BtnBooster : MonoBehaviour
     [SerializeField] private Button btnUseByPrice;
     [SerializeField] private Button btnUseByAds;
     [SerializeField] private Button btnUseByGameResource;
-    
+
     [SerializeField] private GameResource coinResource;
-    
+    [SerializeField] private GameObject handTutorial;
+    [SerializeField] private GameObject objContent;
+
     private BoosterConfig config;
 
     public int countUsed = 0;
-    
+
     private void Awake()
     {
         //booster.InitData(UseBooster);
-        
+
+
         btnUseByAds.onClick.AddListener(UseByAds);
         btnUseByPrice.onClick.AddListener(UseByPrice);
         btnUseByGameResource.onClick.AddListener(UseByGameResource);
-        
+
         booster.SetUsedCallBack(UsedBooster);
+
+
+        GlobalEventManager.OnUnlockBooster += UnLockBooster;
+    }
+
+    private void OnDestroy()
+    {
+        GlobalEventManager.OnUnlockBooster -= UnLockBooster;
+    }
+
+    private void ChangeLevel(int levelChange)
+    {
+        var e = TutorialManager.Instance.IsUnLockBooster(config.boosterType);
+        objContent.SetActive(e);
+    }
+
+    private void UnLockBooster(BoosterType type)
+    {
+        if (type != config.boosterType) return;
+        var e = TutorialManager.Instance.IsUnLockBooster(config.boosterType);
+        if (e) return;
+        var eResourceType = MyCache.ConvertBoosterToResourceType(config.boosterType);
+        PlayerResourceManager.Instance.ChangeResource(eResourceType, 1);
+        objContent.SetActive(true);
+        ShowHandTutorial();
+    }
+
+    private void ShowHandTutorial()
+    {
+        handTutorial.SetActive(true);
     }
 
     private void UseByGameResource()
@@ -51,9 +86,10 @@ public class BtnBooster : MonoBehaviour
             booster.ShowWarning();
             return;
         }
+
         if (gameResource.Amount > 0)
         {
-            booster.UseBooster();
+            UseBooster();
         }
     }
 
@@ -65,12 +101,14 @@ public class BtnBooster : MonoBehaviour
             booster.ShowWarning();
             return;
         }
+
         if (!PlayerResourceManager.Instance.IsEnoughResource(GameResource.Type.Money, price))
         {
             GlobalEventManager.OnShowWarning?.Invoke(MyCache.warningPrice);
             return;
         }
-        booster.UseBooster();
+
+        UseBooster();
     }
 
     private void UseByAds()
@@ -87,7 +125,9 @@ public class BtnBooster : MonoBehaviour
 #endif
 
 #if !UNITY_EDITOR
-        AdsManager.Instance.ShowRewardVideo("BoosterReward", AddBooster);
+        if (ShopManager.Instance.NoAds.Value) AddBooster();
+        else
+            AdsManager.Instance.ShowRewardVideo("BoosterReward", AddBooster);
 #endif
     }
 
@@ -100,7 +140,7 @@ public class BtnBooster : MonoBehaviour
 
     private void Start()
     {
-       LoadData();
+        LoadData();
     }
 
     private void LoadData()
@@ -112,6 +152,9 @@ public class BtnBooster : MonoBehaviour
         price = config.price;
         txtPrice.SetTextFormat(MyCache.strDefault, price);
         imgIcon.sprite = config.icon;
+
+        levelIndex = Level.Instance.levelIndex;
+        levelIndex.Subscribe(ChangeLevel).AddTo(this);
     }
 
     private void SetBoosterCanUseType(BoosterUseType useType)
@@ -132,7 +175,8 @@ public class BtnBooster : MonoBehaviour
         if (isEnough)
         {
             SetBoosterCanUseType(BoosterUseType.GameResource);
-        }else if (usedByAds)
+        }
+        else if (usedByAds)
         {
             SetBoosterCanUseType(BoosterUseType.Price);
         }
@@ -146,10 +190,11 @@ public class BtnBooster : MonoBehaviour
 
     private void UseBooster()
     {
-        
+        if (handTutorial.activeSelf)
+            handTutorial.SetActive(false);
         booster.UseBooster();
     }
-    
+
     private void UsedBooster()
     {
         var boosterUseType = ((BoosterBase)booster).useType;
@@ -169,6 +214,7 @@ public class BtnBooster : MonoBehaviour
             default:
                 return;
         }
+
         ChangeValueBooster(gameResource.Amount);
         GlobalEventManager.OnBoosterDone?.Invoke();
     }

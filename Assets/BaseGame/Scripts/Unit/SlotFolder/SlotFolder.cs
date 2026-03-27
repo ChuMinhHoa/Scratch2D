@@ -5,7 +5,7 @@ using UnityEngine;
 
 public partial class SlotFolder : MonoBehaviour
 {
-    public SlotFolderType slotFolderType;
+    public Reactive<SlotFolderType> slotFolderType;
     public FolderPos folderPos;
     public StateMachine stateMachine;
     public SlotFolderGraphic slotFolderGraphic;
@@ -29,19 +29,20 @@ public partial class SlotFolder : MonoBehaviour
 
     private void CallWatchAds()
     {
-#if UNITY_EDITOR
+#if UNITY_EDITOR || Cheat_Android
         ChangeFolderType(SlotFolderType.Normal);
 #endif
 
 #if !UNITY_EDITOR
-        AdsManager.Instance.ShowRewardVideo("AddSlotNote", ()=> ChangeFolderType(SlotFolderType.Normal));
+        if (ShopManager.Instance.NoAds.Value) ChangeFolderType(SlotFolderType.Normal);
+        else
+            AdsManager.Instance.ShowRewardVideo("AddSlotNote", () => ChangeFolderType(SlotFolderType.Normal));
 #endif
-       
     }
 
     public bool IsHaveObject()
     {
-        if (slotFolderType == SlotFolderType.Ads)
+        if (slotFolderType.Value == SlotFolderType.Ads)
             return true;
         return folderPos.IsHaveObj();
     }
@@ -53,19 +54,20 @@ public partial class SlotFolder : MonoBehaviour
 
     public void ChangeFolderType(SlotFolderType folderType)
     {
-        slotFolderType = folderType;
-        if (slotFolderType == SlotFolderType.Normal)
+        slotFolderType.Value = folderType;
+        if (slotFolderType.Value == SlotFolderType.Normal)
         {
             objEffectSpawn.SetActive(true);
             GlobalEventManager.CheckToCallNextSticker?.Invoke();
         }
+
         stateMachine.RequestTransition(SlotFolderInitState);
         stateMachine.Run();
     }
 
     public bool IsAbleFolder()
     {
-        return slotFolderType == SlotFolderType.Normal && !IsHaveObject();
+        return slotFolderType.Value == SlotFolderType.Normal && !IsHaveObject();
     }
 
     public void ResetSlotFolder()
@@ -88,7 +90,7 @@ public partial class SlotFolder : MonoBehaviour
     public int GetNoteId()
     {
         if (!IsHaveObject()) return -1;
-        if (slotFolderType != SlotFolderType.Normal) return -1;
+        if (slotFolderType.Value != SlotFolderType.Normal) return -1;
         return folderPos.obj.data.stickerId;
     }
 }

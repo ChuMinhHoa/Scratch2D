@@ -89,7 +89,7 @@ public class LayerController
             if (!cards[i].isShowed) continue;
             for (var j = 0; j < cards[i].stickers.Count; j++)
             {
-                if (!cards[i].stickers[j].isDone)
+                if (!cards[i].stickers[j].isCallDone)
                     return cards[i].stickers[j];
             }
         }

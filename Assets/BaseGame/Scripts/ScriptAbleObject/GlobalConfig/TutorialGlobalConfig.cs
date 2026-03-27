@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Sirenix.Utilities;
 using Spine;
@@ -14,7 +15,7 @@ public class TutorialGlobalConfig : GlobalConfig<TutorialGlobalConfig>
     {
         for (var i = 0; i < listTutorialConfig.Length; i++)
         {
-            var e = TutorialManager.Instance.IsShowThatTutorial(listTutorialConfig[i].levelShow);
+            var e = TutorialManager.Instance.IsShowedThatTutorial(listTutorialConfig[i].id);
             if (!e && listTutorialConfig[i].levelShow <= level)
             {
                 return listTutorialConfig[i];
@@ -28,10 +29,25 @@ public class TutorialGlobalConfig : GlobalConfig<TutorialGlobalConfig>
 [Serializable]
 public class TutorialConfig
 {
+    [PreviewField, HideLabel]
+    public Sprite spriteIcon;
+    public TutorialType tutorialType;
+    public Sprite[] sprSubIcon;
+    public int id;
     public int levelShow;
     public string tutorialName;
+    [TextArea]
     public string tutorialDes;
-    public Sprite spriteIcon;
     public SkeletonData skeletonData;
     [SerializeReference] public TutorialHandAction handAction;
+}
+
+public enum TutorialType
+{
+    None,
+    Scratch,
+    BoosterAddSlot,
+    BoosterAddNote,
+    BoosterHammer,
+    BoosterMagnet,
 }

@@ -110,6 +110,7 @@ namespace Core.UI.Activities
                 await UniTask.WaitForSeconds(1.3f);
                 await LMotion.Create(1f, 0f, 0.15f).WithEase(View.CurveAnim).Bind(x => View.MainView.alpha = x);
                 await UIManager.Instance.CloseActivityAsync<ActivityFirstShowOnGamePlay>();
+                TutorialManager.Instance.OnCheckShowLevel();
                 ScreenGamePlayContext.Events.OnActiveInteractable?.Invoke(true);
             }
         }

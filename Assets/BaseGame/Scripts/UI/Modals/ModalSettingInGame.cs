@@ -2,13 +2,14 @@ using System;
 using Core.UI.Activities;
 using Core.UI.Screens;
 using Cysharp.Threading.Tasks;
+using R3;
 using TW.UGUI.MVPPattern;
 using UnityEngine;
-using R3;
 using Sirenix.OdinInspector;
 using TW.UGUI.Core.Modals;
+using TW.Utility.CustomType;
+using UniRx;
 using UnityEngine.UI;
-using Screen = Unity.Android.Gradle.Manifest.Screen;
 
 namespace Core.UI.Modals
 {
@@ -45,8 +46,11 @@ namespace Core.UI.Modals
             [field: SerializeField]
             public SerializableReactiveProperty<int> SampleValue { get; private set; }
 
+            public Reactive<BigNumber> energy = new(0); 
+
             public UniTask Initialize(Memory<object> args)
             {
+                energy = EnergyManager.Instance.energyResource.ReactiveAmount;
                 return UniTask.CompletedTask;
             }
         }
@@ -93,6 +97,13 @@ namespace Core.UI.Modals
                 View.BtnContinue.onClick.AddListener(OnClickBtnClose);
                 View.BtnHome.onClick.AddListener(() => _ = OnClickBtnHome());
                 View.BtnReplay.onClick.AddListener(() => _ = OnClickBtnReplay());
+
+                Model.energy.Subscribe(ChangeEnergy).AddTo(View.MainView);
+            }
+
+            public void ChangeEnergy(BigNumber energyChange)
+            {
+                View.BtnReplay.interactable = energyChange > 0 || EnergyManager.Instance.isOnInfiniteEnergy;
             }
 
             private async UniTask OnClickBtnReplay()

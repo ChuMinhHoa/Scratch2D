@@ -6,6 +6,7 @@ using LitMotion;
 using TW.UGUI.MVPPattern;
 using UnityEngine;
 using R3;
+using SDK;
 using Sirenix.OdinInspector;
 using TMPro;
 using TW.UGUI.Core.Activities;
@@ -117,7 +118,15 @@ namespace Core.UI.Activities
             private void ClaimRewardX2()
             {
                 UIAnimManager.Instance.AnimButton(View.BtnClaimX2.transform);
+#if UNITY_EDITOR || Cheat_Android
                 Claim(true);
+#endif
+                
+#if !UNITY_EDITOR
+                if (ShopManager.Instance.NoAds.Value) Claim(true);
+                else
+                    AdsManager.Instance.ShowRewardVideo("X2_Reward_WinGame", () => Claim(true));
+#endif
             }
 
             private void ClaimReward()
