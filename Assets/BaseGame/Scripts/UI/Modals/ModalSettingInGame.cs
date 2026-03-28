@@ -124,6 +124,10 @@ namespace Core.UI.Modals
 
             private async UniTask Replay()
             {
+                IngameFirebaseAnalystic.Instance.SetLoseType(LoseType.Replay);
+                IngameFirebaseAnalystic.Instance.SetNoteFail(Level.Instance.GetNoteFail());
+                IngameFirebaseAnalystic.Instance.TrackLevelFail();
+                
                 Level.Instance.ResetLevel();
                 await UIManager.Instance.OpenActivityAsync<ActivityLoadingInGamePlay>((Func<UniTask>)Level.Instance.LoadData, (Func<UniTask>)Level.Instance.AnimFirstSpawn);  
                 await UIManager.Instance.CloseModalAsync();
@@ -136,6 +140,9 @@ namespace Core.UI.Modals
 
             private async UniTask BackToHome()
             {
+                IngameFirebaseAnalystic.Instance.SetLoseType(LoseType.BackHome);
+                IngameFirebaseAnalystic.Instance.SetNoteFail(Level.Instance.GetNoteFail());
+                IngameFirebaseAnalystic.Instance.TrackLevelFail();
                 await UIManager.Instance.OpenActivityAsync<ActivityLoadingInGamePlay>(null, null);
                 Level.Instance.ResetLevel();
                 await UIManager.Instance.CloseScreenAsync();

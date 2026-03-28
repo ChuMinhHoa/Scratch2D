@@ -152,6 +152,11 @@ public class Level : Singleton<Level>
         oSController.LoadData(LevelData.objHaveStickers);
         await layerController.LoadData(LevelData.layerCards);
         await UniTask.WaitUntil(() => oSController.loadDone && layerController.loadDone);
+        
+        IngameFirebaseAnalystic.Instance.StartTimePlayLevel();
+        IngameFirebaseAnalystic.Instance.SetLevel(levelIndex.Value);
+        IngameFirebaseAnalystic.Instance.TrackLevelStart();
+      
     }
 
     [Button]
@@ -289,6 +294,7 @@ public class Level : Singleton<Level>
         }
         PlayerInfoDataSave.Instance.SaveData();
         GamePlayManager.Instance.ChangeGameState(GameState.Normal);
+        IngameFirebaseAnalystic.Instance.TrackLevelComplete();
         _ = UIManager.Instance.OpenActivityAsync<ActivityWinGame>();
     }
 
@@ -500,6 +506,9 @@ public class Level : Singleton<Level>
         isEndGame = true;
         Debug.Log("game over");
         await UniTask.WaitForSeconds(1f);
+        IngameFirebaseAnalystic.Instance.SetNoteFail(GetNoteFail());
+        IngameFirebaseAnalystic.Instance.SetLoseType(LoseType.OutSlot);
+        IngameFirebaseAnalystic.Instance.TrackLevelFail();
         await UIManager.Instance.OpenActivityAsync<ActivityLoseGame>();
     }
 
@@ -522,9 +531,9 @@ public class Level : Singleton<Level>
     {
         return boosterType switch
         {
-            BoosterType.Magnet => CheckCanUsingMagnet(),
-            BoosterType.AddSlot => CheckCanUsingAddSlot(),
-            BoosterType.Hammer => CheckCanUsingHammer(),
+            BoosterType.BoosterMagnet => CheckCanUsingMagnet(),
+            BoosterType.BoosterAddSlot => CheckCanUsingAddSlot(),
+            BoosterType.BoosterHammer => CheckCanUsingHammer(),
             _ => false
         };
     }
@@ -536,5 +545,10 @@ public class Level : Singleton<Level>
     public Sticker GetRandomStickerTransform()
     {
         return layerController.GetRandomStickerTransform();
+    }
+
+    public int GetNoteFail()
+    {
+        return oSController.objHaveStickers.Count;
     }
 }

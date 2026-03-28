@@ -28,9 +28,9 @@ public static class MyCache
     {
         return boosterType switch
         {
-            BoosterType.Magnet => GameResource.Type.BoosterMagnet,
-            BoosterType.AddSlot => GameResource.Type.BoosterAddSlot,
-            BoosterType.Hammer => GameResource.Type.BoosterHammer,
+            BoosterType.BoosterMagnet => GameResource.Type.BoosterMagnet,
+            BoosterType.BoosterAddSlot => GameResource.Type.BoosterAddSlot,
+            BoosterType.BoosterHammer => GameResource.Type.BoosterHammer,
             _ => GameResource.Type.None
         };
     }

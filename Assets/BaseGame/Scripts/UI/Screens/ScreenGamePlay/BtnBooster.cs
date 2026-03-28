@@ -127,13 +127,19 @@ public class BtnBooster : MonoBehaviour
 #if !UNITY_EDITOR
         if (ShopManager.Instance.NoAds.Value) AddBooster();
         else
-            AdsManager.Instance.ShowRewardVideo("BoosterReward", AddBooster);
+        {
+            IngameFirebaseAnalystic.Instance.SetAdsRewardInfo(config.boosterType.ToString(), 1);
+            AdsManager.Instance.ShowRewardVideo(PlacementType.InGame.ToString(), config.boosterType.ToString(), AddBooster);
+        }
 #endif
     }
 
     private void AddBooster()
     {
         PlayerResourceManager.Instance.ChangeResource(gameResource.ResourceType, 1);
+        // IngameFirebaseAnalystic.Instance.SetClaimCurrencyType(ClaimCurrencyType.AdsReward);
+        // IngameFirebaseAnalystic.Instance.SetCurrencyPlacement(PlacementType.InGame);
+        // IngameFirebaseAnalystic.Instance.TrackCurrencyEarn(gameResource.ResourceType, 1);
         countUsed++;
         PayByAds();
     }
@@ -226,7 +232,20 @@ public class BtnBooster : MonoBehaviour
 
     private void PayByGameResource() => PlayerResourceManager.Instance.ChangeResource(gameResource.ResourceType, -1);
 
-    private void PayByPrice() => PlayerResourceManager.Instance.ChangeResource(GameResource.Type.Money, -price);
+    private void PayByPrice()
+    {
+        PlayerResourceManager.Instance.ChangeResource(GameResource.Type.Money, -price);
+        var spendType = config.boosterType switch
+        {
+            BoosterType.BoosterMagnet => SpendType.UseBoosterMagnet,
+            BoosterType.BoosterAddSlot => SpendType.UseBoosterAddSlot,
+            BoosterType.BoosterHammer => SpendType.UseBoosterHammer,
+            _ => SpendType.UseBoosterAddSlot
+        };
+        IngameFirebaseAnalystic.Instance.SetSpendType(spendType);
+        IngameFirebaseAnalystic.Instance.SetCurrencyPlacement(PlacementType.InGame);
+        IngameFirebaseAnalystic.Instance.TrackCurrencySpend(gameResource.ResourceType, price.ToInt());
+    }
 
     public void ResetBooster()
     {
@@ -248,7 +267,7 @@ public enum BoosterUseType
 
 public enum BoosterType
 {
-    Magnet,
-    AddSlot,
-    Hammer
+    BoosterMagnet,
+    BoosterAddSlot,
+    BoosterHammer
 }

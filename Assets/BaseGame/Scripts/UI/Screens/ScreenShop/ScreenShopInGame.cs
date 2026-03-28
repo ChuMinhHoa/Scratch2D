@@ -112,6 +112,7 @@ namespace Core.UI.Screens
                 switch (slotPackCallBack.slotData.purchaseType)
                 {
                     case PurchaseType.IAPPay:
+                        IngameFirebaseAnalystic.Instance.SetPlacementPurchase(PlacementType.ShopInGame);
                         var packageId = MyCache.GetPackageIdByPackageName(slotPackCallBack.slotData.packageName);
                         InGamePurchaseManager.Instance.PurchaseIAPProduct(packageId,
                             () => OnPurchaseSuccess(slotPackCallBack.slotData),

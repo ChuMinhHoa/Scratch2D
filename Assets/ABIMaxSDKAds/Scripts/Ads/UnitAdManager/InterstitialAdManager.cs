@@ -89,10 +89,10 @@ namespace SDK.AdsManagers
           }
           public void ResetCooldown()
           {
-               DebugAds.Log("Restarting Interstitial Ad Cooldown");
+               //DebugAds.Log("Restarting Interstitial Ad Cooldown");
                //CooldownSystem.ResetCooldown();
-               var timeAdd = 120f; //DefaultGlobalConfig.Instance.rewardTimeAddCapping;
-               CooldownSystem.AddCooldown(timeAdd);
+               var remoteConfigValue = FirebaseManager.Instance.GetConfigValue(Keys.key_interstitial_add_capping_time);
+               CooldownSystem.AddCooldown((float)remoteConfigValue.DoubleValue);
           }
 
           public override void RequestAd()
@@ -209,7 +209,7 @@ namespace SDK.AdsManagers
           {
                DebugAds.Log("OnAdShowSuccess Interstitial");
                base.OnAdShowSuccess();
-               AdsTracker.Instance.TrackAdsInterstitial_ShowSuccess();
+               AdsTracker.Instance.TrackAdsInterstitial_ShowSuccess(Placement);
           }
           public override void OnAdShowFailed()
           {

@@ -184,7 +184,7 @@ public partial class Card : MonoBehaviour
     {
         if (!isShowed) return false;
         if (IsDone()) return false;
-        if (selectAbleOnBooster.boosterActive == BoosterType.Hammer)
+        if (selectAbleOnBooster.boosterActive == BoosterType.BoosterHammer)
         {
             return IsCanUsingHammer();
         }

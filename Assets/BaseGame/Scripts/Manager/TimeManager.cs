@@ -13,6 +13,7 @@ public class TimeManager : Singleton<TimeManager>
     private DateTime nextMidnight;
     [SerializeField] private double timeToEndDay;
     public Reactive<string> lastDay;
+    public string timeInstall;
     public static Reactive<bool> LoadDone = new (false);
     
     public static Action OnDayEnd;
@@ -37,6 +38,7 @@ public class TimeManager : Singleton<TimeManager>
     private void LoadData()
     {
         lastDay = TimeDataSave.Instance.TimeLastDay;
+        timeInstall = TimeDataSave.Instance.timeInstall;
         if (lastDay.Value.Equals(""))
         {
             lastDay.Value = currentTime.ToEnUsString();
@@ -47,6 +49,25 @@ public class TimeManager : Singleton<TimeManager>
         {
             _ = CallResetDailyData();
         }
+
+        if (timeInstall.Equals(""))
+        {
+            timeInstall = currentTime.ToEnUsString();
+            PlayerInfoDataSave.Instance.SaveData();
+        }
+      
+        _ = CallSetUserProperty();
+    }
+
+    private async UniTask CallSetUserProperty()
+    {
+        await UniTask.WaitForSeconds(5f);
+        IngameFirebaseAnalystic.Instance.SetUserProperty();
+    }
+
+    public double GetDayRetention()
+    {
+        return currentTime.Subtract(timeInstall.ToDateTime()).TotalDays;
     }
     
     private async UniTask CallResetDailyData()

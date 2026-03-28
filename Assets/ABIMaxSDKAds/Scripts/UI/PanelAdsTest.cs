@@ -137,7 +137,7 @@ public class PanelAdsTest : MonoBehaviour
 
     public void ShowReward()
     {
-        AdsManager.Instance.ShowRewardVideo(null,null);
+        AdsManager.Instance.ShowRewardVideo("","", null, null);
     }
     public void ShowMRec()
     {

@@ -167,9 +167,9 @@ public class Purchaser : TW.Utility.DesignPattern.Singleton<Purchaser>
         if (IsPurchaseInProgress) return;
         m_IAPProduct = product;
         InitiatePurchase(product);
-        //ActivityBlockContext.Events.WaitForPurchase?.Invoke(true);
     }
-    public void InitiatePurchase(IAPProduct iapProduct)
+
+    private void InitiatePurchase(IAPProduct iapProduct)
     {
         Product product = FindProduct(iapProduct.ProductId);
         if (product != null)
@@ -178,9 +178,7 @@ public class Purchaser : TW.Utility.DesignPattern.Singleton<Purchaser>
         }
         else
         {
-            //PurchaserLogger.Log($"The product service has no product with the ID {iapProduct.ProductId}");
             m_IAPProduct = null;
-            //ActivityBlockContext.Events.WaitForPurchase?.Invoke(false);
         }
     }
 

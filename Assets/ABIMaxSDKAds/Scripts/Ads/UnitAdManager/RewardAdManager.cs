@@ -8,6 +8,7 @@ namespace SDK.AdsManagers
 {
      public class RewardAdManager : UnitAdManager, IAutoLoad
      {
+          public string button_name;
           [field: SerializeField] public bool IsLinkRewardWithRemoveAds { get; set; } = true;
           [field: SerializeField] public bool IsActiveInterruptReward { get; set; }
           [field: SerializeField] public UnitAdManager InterruptAdManager { get; set; }
@@ -78,10 +79,11 @@ namespace SDK.AdsManagers
                }
           }
 
-          public void CallToShowRewardAd(string placementName = "", UnityAction<bool> closedCallback = null,
+          public void CallToShowRewardAd(string placementName = "", string buttonName ="", UnityAction<bool> closedCallback = null,
                UnityAction showSuccessCallback = null, UnityAction showFailCallback = null, 
                bool isTracking = true, bool isSkipCapping = false)
           {
+               button_name = buttonName;
                IsWatchedSuccess = false;
                AdRewardClosedCallback = closedCallback;
                CallToShowAd(placementName, null, showSuccessCallback, showFailCallback, isTracking, isSkipCapping);
@@ -149,7 +151,7 @@ namespace SDK.AdsManagers
                DebugAds.Log("On RewardAdManager Earn Success");
                AdShowSuccessCallback?.Invoke();
                InterruptCount++;
-               AdsTracker.Instance.TrackAdsReward_ShowCompleted(Placement);
+               AdsTracker.Instance.TrackAdsReward_ShowCompleted(Placement, button_name);
                AdShowSuccessCallback = null;
           }
 

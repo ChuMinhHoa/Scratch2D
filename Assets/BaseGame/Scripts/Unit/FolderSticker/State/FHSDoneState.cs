@@ -42,6 +42,7 @@ public partial class FolderHaveSticker : FHSDoneState.IHandler
 
     public UniTask OnEnterDoneState()
     {
+        IngameFirebaseAnalystic.Instance.AddNoteComplete();
         return UniTask.CompletedTask;
     }
 

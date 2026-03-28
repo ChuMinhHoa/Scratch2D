@@ -10,6 +10,7 @@ public class ShopManager : Singleton<ShopManager>
 {
     public Reactive<bool> IsFirstPurchase = new(false);
     public Reactive<bool> NoAds = new(false);
+    public Reactive<int> iapCount = new(0);
 
     public void Start()
     {
@@ -19,6 +20,7 @@ public class ShopManager : Singleton<ShopManager>
     private void LoadData()
     {
         IsFirstPurchase = ShopDataSave.Instance.IsFirstPurchase;
+        iapCount = ShopDataSave.Instance.iapCount;
         NoAds = ShopDataSave.Instance.NoAds;
     }
 
@@ -29,10 +31,38 @@ public class ShopManager : Singleton<ShopManager>
 
     public void PurchaseSuccess(ShopPackageDataConfig packageConfig)
     {
+        if (!IsFirstPurchase.Value)
+        {
+            IsFirstPurchase.Value = true;
+            ShopDataSave.Instance.SaveData();
+        }
+
+        iapCount.Value++;
+        ShopDataSave.Instance.SaveData();
+        
         for (var i = 0; i < packageConfig.shopRewards.Count; i++)
         {
-           
-                RewardManager.Instance.AddResourceReward(packageConfig.shopRewards[i]);
+            RewardManager.Instance.AddResourceReward(packageConfig.shopRewards[i]);
+            var reward = packageConfig.shopRewards[i];
+            var rewardType = reward.ResourceType;
+
+            if (rewardType is GameResource.Type.BoosterAddSlot or GameResource.Type.BoosterHammer or GameResource.Type.BoosterMagnet)
+                continue;
+            
+            var isNoAds = packageConfig.shopRewards[i].ResourceType == GameResource.Type.NoAds;
+            var currentNoAds = NoAds.Value;
+          
+            var amount = reward.Amount;
+            IngameFirebaseAnalystic.Instance.SetClaimCurrencyType(ClaimCurrencyType.IAP);
+            IngameFirebaseAnalystic.Instance.SetCurrencyPlacement(PlacementType.Shop);
+            if (isNoAds && currentNoAds)
+            {
+                IngameFirebaseAnalystic.Instance.TrackCurrencyEarn(GameResource.Type.Money, 5000);
+            }
+            else
+            {
+                IngameFirebaseAnalystic.Instance.TrackCurrencyEarn(rewardType, amount.ToInt());
+            }
         }
 
         _ = DelayPurChaseSuccess();

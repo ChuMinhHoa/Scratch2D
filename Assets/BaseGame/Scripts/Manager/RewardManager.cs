@@ -34,6 +34,7 @@ public class RewardManager : Singleton<RewardManager>
                 Debug.Log("add energy!");
                 EnergyManager.Instance.AddEnergyInfiniteTime(reward.Amount);
                 break;
+            
             default:
                 PlayerResourceManager.Instance.ChangeResource(reward.ResourceType, reward.Amount);
                 break;

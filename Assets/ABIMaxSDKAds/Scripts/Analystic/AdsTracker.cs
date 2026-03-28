@@ -114,12 +114,13 @@ namespace SDK {
         public void TrackAdsReward_ShowFail() {
             FirebaseManager.Instance.LogFirebaseEvent(ads_reward_fail);
         }
-        public void TrackAdsReward_ShowCompleted(string placement) {
+        public void TrackAdsReward_ShowCompleted(string placement, string buttonName) {
             // var parameters = new [] {
             //     new Parameter("placement", placement)
             // };
             // FirebaseManager.Instance.LogFirebaseEvent(ads_reward_complete, parameters);
-            IngameFirebaseAnalystic.Instance.TrackAdsRewardShow(placement);
+            PlayerInfoManager.Instance.AddAdsReward();
+            IngameFirebaseAnalystic.Instance.TrackAdsRewardShow(placement, buttonName);
 #if UNITY_APPSFLYER
             AppsflyerManager.TrackRewarded_Displayed();
             EventManager.AddEventNextFrame(() =>
@@ -170,9 +171,10 @@ namespace SDK {
             };
             FirebaseManager.Instance.LogFirebaseEvent(ad_inter_load_fail, parameters);
         }
-        public void TrackAdsInterstitial_ShowSuccess() {
+        public void TrackAdsInterstitial_ShowSuccess(string placement) {
             //FirebaseManager.Instance.LogFirebaseEvent(ad_inter_show);
-            IngameFirebaseAnalystic.Instance.TrackAdsInterShow();
+            PlayerInfoManager.Instance.AddAdsInter();
+            IngameFirebaseAnalystic.Instance.TrackAdsInterShow(placement);
 #if UNITY_APPSFLYER
             AppsflyerManager.TrackInterstitial_Displayed();
             EventManager.AddEventNextFrame(() =>

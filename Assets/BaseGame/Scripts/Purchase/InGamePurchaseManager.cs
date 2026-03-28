@@ -57,6 +57,7 @@ public class InGamePurchaseManager : Singleton<InGamePurchaseManager>
     {
         //Debug.Log("OnBuyIAP: " + productId);
         var product = new IAPProduct(productId, onBuySuccess, onBuyFailed);
+        IngameFirebaseAnalystic.Instance.TrackEventPurchaseClick(productId);
         Purchaser.Instance.BuyIAPProduct(product);
     }
 }

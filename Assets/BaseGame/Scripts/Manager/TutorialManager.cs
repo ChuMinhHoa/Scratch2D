@@ -93,16 +93,16 @@ public class TutorialManager : Singleton<TutorialManager>
         switch (tutorialType)
         {
             case TutorialType.BoosterAddSlot:
-                GlobalEventManager.OnUnlockBooster?.Invoke(BoosterType.AddSlot);
-                AddBooster(BoosterType.AddSlot);
+                GlobalEventManager.OnUnlockBooster?.Invoke(BoosterType.BoosterAddSlot);
+                AddBooster(BoosterType.BoosterAddSlot);
                 return;
             case TutorialType.BoosterHammer:
-                GlobalEventManager.OnUnlockBooster?.Invoke(BoosterType.Hammer);
-                AddBooster(BoosterType.Hammer);
+                GlobalEventManager.OnUnlockBooster?.Invoke(BoosterType.BoosterHammer);
+                AddBooster(BoosterType.BoosterHammer);
                 return;
             case TutorialType.BoosterMagnet:
-                GlobalEventManager.OnUnlockBooster?.Invoke(BoosterType.Magnet);
-                AddBooster(BoosterType.Magnet);
+                GlobalEventManager.OnUnlockBooster?.Invoke(BoosterType.BoosterMagnet);
+                AddBooster(BoosterType.BoosterMagnet);
                 return;
             case TutorialType.None:
             case TutorialType.Scratch:

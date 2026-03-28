@@ -30,13 +30,13 @@ namespace SDK
                DebugAds.Log("Setup Interstitial Done");
           }
 
-          public void ShowInterstitial(
+          public void ShowInterstitial(string placementName = "",
                UnityAction closedCallback = null,
                UnityAction showSuccessCallback = null,
                UnityAction showFailCallback = null,
                bool isTracking = true, bool isSkipCapping = false)
           {
-               InterstitialAdManager.CallToShowAd("", closedCallback, showSuccessCallback, showFailCallback, isTracking,
+               InterstitialAdManager.CallToShowAd(placementName, closedCallback, showSuccessCallback, showFailCallback, isTracking,
                     isSkipCapping);
           }
 

@@ -135,13 +135,15 @@ public class PurchaserCallbacks
     private void OnBuyIAPSuccess(Product product)
     {
         string productID = product.definition.id;
+        //if(GameManager.Instance.BuildType == BuildType.Release)
+#if !UNITY_EDITOR
         decimal num = product.metadata.localizedPrice;
         string currencyCode = product.metadata.isoCurrencyCode;
-        //if(GameManager.Instance.BuildType == BuildType.Release)
         AppsflyerManager.TrackAppflyerPurchase(productID, num, currencyCode);
+#endif
         //EventManager.TriggerEvent("BuyIAPSuccess");
         //InGameDataManager.Instance.InGameData.UserProfileDataSave.OnBuyIAP();
-        IngameFirebaseAnalystic.Instance.TrackEventPurchase(product.metadata.localizedTitle, productID, "shop");
+        IngameFirebaseAnalystic.Instance.TrackEventPurchase(product.metadata.localizedTitle, productID);
 
     }
 }

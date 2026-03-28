@@ -73,7 +73,7 @@ namespace Core.UI.Activities
                 ObjNewFeature.SetActive(false);
                 var currentLevel = Level.Instance.levelIndex.Value;
                 TxtLevel.SetTextFormat(MyCache.strLevel, currentLevel);
-                var reward = 10;
+                var reward = DefaultGlobalConfig.Instance.defaultCoinWinGame;
                 TxtReward.SetTextFormat(MyCache.strDefault, reward);
                 return UniTask.CompletedTask;
             }
@@ -121,11 +121,14 @@ namespace Core.UI.Activities
 #if UNITY_EDITOR || Cheat_Android
                 Claim(true);
 #endif
-                
+
 #if !UNITY_EDITOR
                 if (ShopManager.Instance.NoAds.Value) Claim(true);
                 else
-                    AdsManager.Instance.ShowRewardVideo("X2_Reward_WinGame", () => Claim(true));
+                {
+                    IngameFirebaseAnalystic.Instance.SetAdsRewardInfo(GameResource.Type.Money.ToString(), DefaultGlobalConfig.Instance.defaultCoinWinGame * 2);
+                    AdsManager.Instance.ShowRewardVideo(PlacementType.WinGame.ToString(), "X2_Reward_WinGame", () => Claim(true));
+                }
 #endif
             }
 
@@ -137,7 +140,14 @@ namespace Core.UI.Activities
 
             private void Claim(bool isX2 = false)
             {
-                PlayerResourceManager.Instance.ChangeResource(GameResource.Type.Money, 10 * (isX2 ? 2 : 1));
+                PlayerResourceManager.Instance.ChangeResource(GameResource.Type.Money,
+                    DefaultGlobalConfig.Instance.defaultCoinWinGame * (isX2 ? 2 : 1));
+                IngameFirebaseAnalystic.Instance.SetClaimCurrencyType(isX2
+                    ? ClaimCurrencyType.AdsReward
+                    : ClaimCurrencyType.WinGame);
+                IngameFirebaseAnalystic.Instance.SetCurrencyPlacement(PlacementType.WinGame);
+                IngameFirebaseAnalystic.Instance.TrackCurrencyEarn(GameResource.Type.Money,
+                    DefaultGlobalConfig.Instance.defaultCoinWinGame * (isX2 ? 2 : 1));
                 UIControl().Forget();
             }
 
