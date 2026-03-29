@@ -542,13 +542,9 @@ public class Level : Singleton<Level>
     private bool CheckCanUsingAddSlot() => fSpaceController.IsCanAddSlot();
     private bool CheckCanUsingMagnet() => oSController.IsHaveNoteMoveIn();
 
-    public Sticker GetRandomStickerTransform()
-    {
-        return layerController.GetRandomStickerTransform();
-    }
+    public Sticker GetRandomStickerTransform() => layerController.GetRandomStickerTransform();
 
-    public int GetNoteFail()
-    {
-        return oSController.objHaveStickers.Count;
-    }
+    public int GetNoteFail() => oSController.objHaveStickers.Count;
+
+    public void AddSlotNote() => oSController.AddSlotNote();
 }

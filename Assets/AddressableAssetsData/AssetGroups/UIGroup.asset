@@ -25,6 +25,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 52a81221fe6dc874ab37e7a8a01c1d37
+    m_Address: ModalRevive
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 568a32e4ea7b6804b925adf54e752508
     m_Address: ModalTutorial
     m_ReadOnly: 0

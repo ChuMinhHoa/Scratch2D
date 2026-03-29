@@ -39,6 +39,8 @@ namespace Core.UI.Screens
         {
             public static Action SampleEvent { get; set; }
             public static Action<bool> OnActiveInteractable { get; set; }
+
+            public static Action<BoosterType> UseBooster { get; set; }
         }
 
         [HideLabel]
@@ -94,6 +96,17 @@ namespace Core.UI.Screens
                     ObjDifficult[i].SetActive(i == (int)difficult);
                 }
             }
+
+            public void OnUserBoosterMagnet(BoosterType boosterType)
+            {
+                for (var i = 0; i < BtnBoosters.Length; i++)
+                {
+                    if (BtnBoosters[i].IsSameBooster(boosterType))
+                    {
+                        BtnBoosters[i].UseBooster();
+                    }
+                }
+            }
         }
 
         [HideLabel]
@@ -118,8 +131,14 @@ namespace Core.UI.Screens
 
                 View.MainView.interactable = false;
                 Events.OnActiveInteractable += CallInteractable;
+                Events.UseBooster += UseBoosterMagnet;
             }
-            
+
+            private void UseBoosterMagnet(BoosterType boosterType)
+            {
+                View.OnUserBoosterMagnet(boosterType);
+            }
+
             private void CallInteractable(bool active)
             {
                 View.MainView.interactable = active;
@@ -128,6 +147,7 @@ namespace Core.UI.Screens
             public UniTask Cleanup(Memory<object> args)
             {
                 Events.OnActiveInteractable = null;
+                Events.UseBooster = null;
                 return UniTask.CompletedTask;
             }
 

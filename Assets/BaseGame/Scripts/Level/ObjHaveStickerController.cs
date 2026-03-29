@@ -162,4 +162,9 @@ public class ObjHaveStickerController : SpaceForSticker
         GlobalEventManager.OnNoteDoneCallBack?.Invoke();
         countDone.Value++;
     }
+
+    public void AddSlotNote()
+    {
+        SlotFolders[^1].ChangeFolderType(SlotFolderType.Normal);
+    }
 }

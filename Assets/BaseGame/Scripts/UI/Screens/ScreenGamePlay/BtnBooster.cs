@@ -194,7 +194,7 @@ public class BtnBooster : MonoBehaviour
         txtAmount.SetTextFormat(MyCache.strDefault, valueChange);
     }
 
-    private void UseBooster()
+    public void UseBooster()
     {
         if (handTutorial.activeSelf)
             handTutorial.SetActive(false);
@@ -254,6 +254,11 @@ public class BtnBooster : MonoBehaviour
         objPrice.SetActive(false);
         objAmount.SetActive(false);
         objWatchAds.SetActive(false);
+    }
+
+    public bool IsSameBooster(BoosterType boosterType)
+    {
+        return ((BoosterBase)booster).boosterType == boosterType;
     }
 }
 

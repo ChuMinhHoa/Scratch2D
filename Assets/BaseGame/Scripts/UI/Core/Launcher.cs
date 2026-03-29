@@ -1,5 +1,7 @@
+using Core.UI.Modals;
 using Core.UI.Screens;
 using Cysharp.Threading.Tasks;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using ZBase.UnityScreenNavigator.Core;
 
@@ -25,5 +27,11 @@ public class Launcher : UnityScreenNavigatorLauncher
     {
         await UIManager.Instance.OpenActivityAsync<ActivityLoading>();
         objFakeLoading.SetActive(false);
+    }
+    
+    [Button]
+    private void OpenModalRevive()
+    {
+        _ = UIManager.Instance.OpenModalAsync<ModalRevive>();
     }
 }
