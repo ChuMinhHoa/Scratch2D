@@ -68,6 +68,8 @@ namespace Core.UI.Screens
             private float currentProgress;
             public async UniTask AnimLoadBar()
             {
+                // if(SoundManager.Instance)
+                //     SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_LoadingStart);
                 currentProgress = 0f;
                 await LMotion.Create(currentProgress, 50f, 0.5f)
                     .WithEase(Ease.Linear)
@@ -83,6 +85,8 @@ namespace Core.UI.Screens
                     .Bind(ShowTextProgress).AddTo(MainView);
                 await UIManager.Instance.OpenScreenDefaultAsync<ScreenDefault>();
                 await UIManager.Instance.CloseActivityAsync<ActivityLoading>();
+                // if(SoundManager.Instance)
+                //     SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_LoadingNormal);
             }
 
             private void CloseActivity()

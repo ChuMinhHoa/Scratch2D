@@ -26,6 +26,7 @@ public class ButtonToggle : MonoBehaviour
 
     private void ChangeSetting()
     {
+        SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_ButtonClick);
         SoundManager.Instance.ChangeSettingData(settingKey);
     }
 

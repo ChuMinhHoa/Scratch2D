@@ -127,9 +127,10 @@ public class GamePlayManager : Singleton<GamePlayManager>
 
     private bool IsMouseOverUI()
     {
-        return Input.touchCount > 0
-            ? EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)
-            : EventSystem.current.IsPointerOverGameObject();
+        for (var i = 0; i < Input.touchCount; i++)
+            if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(i).fingerId))
+                return true;
+        return EventSystem.current.IsPointerOverGameObject();
     }
 
     public LayerMask whatCanSelectOnBooster;

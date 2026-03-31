@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 [Serializable]
 public class FreeSpaceController : SpaceForSticker
@@ -11,6 +12,7 @@ public class FreeSpaceController : SpaceForSticker
     public SpaceSticker spaceStickerPitch;
     [ShowInInspector] public List<StickerDone> stickerDoneWait = new();
     public GameObject objEffectSpawn;
+    public GameObject prefEffectSpawn;
     public bool IsHaveStickerWait()
     {
         return stickerDoneWait.Count > 0;
@@ -76,7 +78,14 @@ public class FreeSpaceController : SpaceForSticker
         spaceStickers.Add(spaceStickerPitch);
         spaceStickerPitch.gameObject.SetActive(true);
         SetPositionSpaceSticker();
+        if (!objEffectSpawn)
+        {
+            objEffectSpawn = Object.Instantiate(prefEffectSpawn);
+            objEffectSpawn.transform.position = spaceStickerPitch.transform.position;
+        }
         objEffectSpawn.SetActive(true);
+        //if(!UnitEventManager.Instance.IsHaveEvent())
+            CheckStickerDone();
     }
 
     public override void ResetController()
@@ -139,4 +148,10 @@ public class FreeSpaceController : SpaceForSticker
 
         return false;
     }
+
+    public bool IsCanUseBoosterAddSlot()
+    {
+        return spaceStickers.Count < 5;
+    }
+    
 }

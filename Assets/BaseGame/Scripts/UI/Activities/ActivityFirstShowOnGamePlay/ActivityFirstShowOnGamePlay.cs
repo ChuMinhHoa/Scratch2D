@@ -99,6 +99,11 @@ namespace Core.UI.Activities
 
             public void DidEnter(Memory<object> args)
             {
+                var difficult = Level.Instance.GetLevelDifficult();
+                if (difficult == Difficulty.Hard)
+                {
+                    SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_SupperHard);
+                }
                 AnimOpen().Forget();
             }
 

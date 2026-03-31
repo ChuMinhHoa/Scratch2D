@@ -11,7 +11,8 @@ public class BoosterAddSlot : BoosterBase
         
         //GlobalEventManager.OnBoosterUsing?.Invoke(boosterType, this);
         Level.Instance.AddSlot();
-        Debug.Log("Use Booster Magnet");
+        SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_BoosterAddSlot);
+        Debug.Log("Use Booster Add Slot");
         UsedBooster(null);
     }
 
@@ -40,7 +41,7 @@ public class BoosterAddSlot : BoosterBase
 
     public override bool CheckCanUseBooster()
     {
-        var e = Level.Instance.fSpaceController.spaceStickers.Count < 5;
+        var e = Level.Instance.fSpaceController.IsCanUseBoosterAddSlot();
         return e;
     }
 

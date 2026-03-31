@@ -32,6 +32,8 @@ public class SoundManager : Singleton<SoundManager>
         {
             settingData[i].ableSetting.Subscribe(ChangeSetting).AddTo(this);
         }
+        
+        PlayBgSound(AudioKey.Bg_MainMenu);
     }
 
     private void CreateDataSetting(Span<SettingKey> settingKeys)
@@ -76,6 +78,14 @@ public class SoundManager : Singleton<SoundManager>
             var source = gameObject.AddComponent<AudioSource>();
             e.InitData(sfxConfig[i].AudioKey, sfxConfig[i].AudioClip, source, 1, false);
             sfxData.Add(e);
+        }
+        
+        for (var i = 0; i < bgConfig.Count; i++)
+        {
+            var e = new SoundData();
+            var source = gameObject.AddComponent<AudioSource>();
+            e.InitData(bgConfig[i].AudioKey, bgConfig[i].AudioClip, source, 1, false);
+            bgData.Add(e);
         }
 
         isLoadDone = true;
@@ -294,6 +304,20 @@ public enum SettingKey
 
 public enum AudioKey
 {
-    ButtonClick,
-    Sfx_Scratch
+    Bg_MainMenu = 0,
+    Bg_Ingame = 1,
+    Sfx_ButtonClick = 100,
+    Sfx_Scratch = 101,
+    Sfx_StickerDone = 102,
+    Sfx_NoteDone = 103,
+    Sfx_LoadingStart = 104,
+    Sfx_LoadingNormal = 105,
+    Sfx_SupperHard = 106,
+    Sfx_Pop = 107,
+    Sfx_FireWork  = 108,
+    Sfx_Win = 109,
+    Sfx_Lose = 110,
+    Sfx_BoosterHamerMove = 111,
+    Sfx_BoosterHamerHit = 112,
+    Sfx_BoosterAddSlot = 113,
 }

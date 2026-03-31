@@ -65,6 +65,8 @@ namespace Core.UI.Screens
             
             [field: SerializeField] public Button BtnCloseInGame { get; private set; }
 
+            public Action actionCallBackOnClose;
+
             public UniTask Initialize(Memory<object> args)
             {
                 return UniTask.CompletedTask;
@@ -98,11 +100,13 @@ namespace Core.UI.Screens
 
                 View.InitCoinSlot(ActionBuyCallback);
                 View.InitDealSlot(ActionBuyCallback);
+                View.actionCallBackOnClose = args.Span[0] as Action;
             }
              private async UniTask CloseScreen()
             {
+                SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_ButtonClick);
                 await UIManager.Instance.CloseScreenDefaultAsync();
-                GamePlayManager.Instance.BackToLastState();
+                View.actionCallBackOnClose?.Invoke();
             }
 
             private void ActionBuyCallback(SlotPack slotPackCallBack)

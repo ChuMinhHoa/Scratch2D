@@ -15,6 +15,16 @@ public class ShopManager : Singleton<ShopManager>
     public void Start()
     {
         LoadData();
+        _ = WaitForSetAds();
+    }
+
+    private async UniTask WaitForSetAds()
+    {
+        await UniTask.WaitForSeconds(1f);
+        if (PlayerResourceManager.Instance.gameBuildType == GameBuildType.Cheat)
+        {
+            NoAds.Value = true;
+        }
     }
 
     private void LoadData()
@@ -38,6 +48,7 @@ public class ShopManager : Singleton<ShopManager>
         }
 
         iapCount.Value++;
+        IngameFirebaseAnalystic.Instance.SetUserPropertyIapCount();
         ShopDataSave.Instance.SaveData();
         
         for (var i = 0; i < packageConfig.shopRewards.Count; i++)
@@ -91,6 +102,7 @@ public class ShopManager : Singleton<ShopManager>
     {
         if (NoAds.Value)
             return false;
+        Debug.Log("set no ads");
         NoAds.Value = true;
         ShopDataSave.Instance.SaveData();
         return true;

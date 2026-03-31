@@ -1,11 +1,15 @@
 using System;
+using Core.UI.Activities;
 using Core.UI.Screens;
 using Cysharp.Threading.Tasks;
 using TW.UGUI.MVPPattern;
 using UnityEngine;
 using R3;
+using SDK;
 using Sirenix.OdinInspector;
 using TW.UGUI.Core.Modals;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Core.UI.Modals
 {
@@ -55,8 +59,11 @@ namespace Core.UI.Modals
             [field: Title(nameof(UIView))]
             [field: SerializeField]
             public CanvasGroup MainView { get; private set; }
-            
-            [field: SerializeField] public MainContentBase<SlotRevive, ReviveType> MainContentRevive { get; private set; }
+
+            [field: SerializeField]
+            public MainContentBase<SlotRevive, ReviveType> MainContentRevive { get; private set; }
+
+            [field: SerializeField] public Button BtnClose { get; private set; }
 
             public UniTask Initialize(Memory<object> args)
             {
@@ -90,42 +97,97 @@ namespace Core.UI.Modals
 
                 View.SetActionCallBack(SlotReviveCallBack);
                 View.InitData();
+                View.BtnClose.onClick.AddListener(() => _ = QuitGame());
             }
+
+            private async UniTask QuitGame()
+            {
+                CloseModal();
+                await UIManager.Instance.OpenActivityAsync<ActivityLoseGame>();
+            }
+
+            private UnityAction actionCallBack;
 
             private void SlotReviveCallBack(SlotRevive slotRevive)
             {
+                var useAds = slotRevive.useByAds;
+
                 switch (slotRevive.slotData)
                 {
                     case ReviveType.AddNote:
-                        AddNote();
+                        IngameFirebaseAnalystic.Instance.SetAdsRewardInfo("ads_reward_slot_folder", 1);
+                        actionCallBack = AddNote;
                         break;
                     case ReviveType.AddSlot:
-                        AddSlot();
+                        IngameFirebaseAnalystic.Instance.SetAdsRewardInfo("ads_reward_reviveAddSlot", 1);
+                        actionCallBack = AddSlot;
                         break;
                     case ReviveType.BoosterMagnet:
-                        UseBoosterMagnet();
+                        IngameFirebaseAnalystic.Instance.SetAdsRewardInfo("ads_reward_reviveMagnet", 1);
+                        actionCallBack = UseBoosterMagnet;
                         break;
                     default:
                         return;
+                }
+
+                if (useAds)
+                {
+#if UNITY_EDITOR
+                    actionCallBack?.Invoke();
+#endif
+                   
+#if !UNITY_EDITOR
+                    if (!ShopManager.Instance.NoAds.Value)
+                    {
+                        AdsManager.Instance.ShowRewardVideo(nameof(PlacementType.InGame),$"Revive{actionCallBack}", actionCallBack); 
+                    }else
+                    {
+                        actionCallBack?.Invoke();
+                    }
+#endif
+                }
+                else
+                {
+                    var e = PlayerResourceManager.Instance.IsEnoughResource(GameResource.Type.Money, slotRevive.price);
+                    if (!e)
+                    {
+                        GlobalEventManager.OnShowWarning?.Invoke(MyCache.warningPrice);
+                        return;
+                    }
+                    actionCallBack?.Invoke();
+                    PlayerResourceManager.Instance.ChangeResource(GameResource.Type.Money, -slotRevive.price);
                 }
             }
 
             private void UseBoosterMagnet()
             {
+                ActionReviveDone();
+                PlayerResourceManager.Instance.ChangeResource(GameResource.Type.BoosterMagnet, 1);
                 ScreenGamePlayContext.Events.UseBooster?.Invoke(BoosterType.BoosterMagnet);
                 CloseModal();
+                GamePlayManager.Instance.ChangeGameState(GameState.OnBooster);
             }
 
             private void AddSlot()
             {
+                ActionReviveDone();
+                PlayerResourceManager.Instance.ChangeResource(GameResource.Type.BoosterMagnet, 1);
                 ScreenGamePlayContext.Events.UseBooster?.Invoke(BoosterType.BoosterAddSlot);
                 CloseModal();
-            } 
+            }
 
             private void AddNote()
             {
+                ActionReviveDone();
                 Level.Instance.AddSlotNote();
                 CloseModal();
+            }
+
+            private void ActionReviveDone()
+            {
+                IngameFirebaseAnalystic.Instance.AddUseRevive();
+                GamePlayManager.Instance.ChangeGameState(GameState.Playing);
+                Level.Instance.isEndGame = false;
             }
 
             private void CloseModal() => _ = UIManager.Instance.CloseModalAsync();

@@ -51,6 +51,7 @@ public class SlotTabMenu : MonoBehaviour
 
     public void OnSelect()
     {
+        SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_ButtonClick);
         if (motionIconScale.IsPlaying())
             motionIconScale.TryCancel();
 

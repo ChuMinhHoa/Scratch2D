@@ -81,6 +81,7 @@ namespace Core.UI.Screens
 
             private async UniTask PlayGame()
             {
+                SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_ButtonClick);
                 Level.Instance.LoadDataClean();
                 _ = UIAnimManager.Instance.AnimButton(View.BtnPlay.transform, null);
                 var e = EnergyManager.Instance.IsEnoughEnergy();

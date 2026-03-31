@@ -124,9 +124,16 @@ public class ModalRefill : Modal
 #if UNITY_EDITOR
                 EnergyManager.Instance.RefillAddOnEnergy();
 #endif
-                
+               
 #if!UNITY_EDITOR
-                AdsManager.Instance.ShowRewardVideo("AddOneEnergy", () => EnergyManager.Instance.RefillAddOnEnergy());
+                if (!ShopManager.Instance.NoAds.Value)
+                {
+                    AdsManager.Instance.ShowRewardVideo(nameof(PlacementType.Home),"AddOneEnergy", () => EnergyManager.Instance.RefillAddOnEnergy());
+                }
+                else
+                {
+                    EnergyManager.Instance.RefillAddOnEnergy();
+                }
 #endif
             }
 

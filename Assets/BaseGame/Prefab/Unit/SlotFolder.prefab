@@ -5331,7 +5331,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e2b6b72e10e0645ac1a23de82136be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlotFolder
-  slotFolderType: 2
+  slotFolderType:
+    value: 0
+    EditorValue: 0
   folderPos:
     trsPos: {fileID: 9221067795383488257}
     obj: {fileID: 0}
@@ -5341,6 +5343,7 @@ MonoBehaviour:
   btnWatchAds: {fileID: 2235179096868202259}
   btnBuy: {fileID: 7882492355587095747}
   objEffectSpawn: {fileID: 3866812168087343449}
+  prefabEffectSpawn: {fileID: 9015409059214852550, guid: 9497cf9988b27c14ca8d082870a6ce13, type: 3}
 --- !u!114 &7014638272350248256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5630,6 +5633,10 @@ PrefabInstance:
     - target: {fileID: 641754113845371738, guid: 9497cf9988b27c14ca8d082870a6ce13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225751287495704174, guid: 9497cf9988b27c14ca8d082870a6ce13, type: 3}
+      propertyPath: clearBehavior
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8086633257259960554, guid: 9497cf9988b27c14ca8d082870a6ce13, type: 3}
       propertyPath: stopAction

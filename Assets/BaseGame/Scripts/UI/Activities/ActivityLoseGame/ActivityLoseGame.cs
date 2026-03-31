@@ -6,9 +6,11 @@ using LitMotion;
 using TW.UGUI.MVPPattern;
 using UnityEngine;
 using R3;
+using SDK;
 using Sirenix.OdinInspector;
 using TMPro;
 using TW.UGUI.Core.Activities;
+using Unity.XR.OpenVR;
 using UnityEngine.UI;
 
 namespace Core.UI.Activities
@@ -61,6 +63,7 @@ namespace Core.UI.Activities
             public CanvasGroup MainView { get; private set; }
 
             [field: SerializeField] public Button btnClose;
+            [field: SerializeField] public Button btnRetry;
             [field: SerializeField] public TextMeshProUGUI txtLevel;
 
             public UniTask Initialize(Memory<object> args)
@@ -83,6 +86,25 @@ namespace Core.UI.Activities
                 await Model.Initialize(args);
                 await View.Initialize(args);
                 View.btnClose.onClick.AddListener(CloseActivity);
+                View.btnRetry.gameObject.SetActive(EnergyManager.Instance.IsEnoughEnergy());
+                View.btnRetry.onClick.AddListener(RetryGame);
+            }
+
+            private void RetryGame()
+            {
+                EnergyManager.Instance.UseEnergy(1);
+                _ = Replay();
+            }
+
+            private async UniTask Replay()
+            {
+                IngameFirebaseAnalystic.Instance.SetLoseType(LoseType.Replay);
+                IngameFirebaseAnalystic.Instance.SetNoteFail(Level.Instance.GetNoteFail());
+                IngameFirebaseAnalystic.Instance.TrackLevelFail();
+                
+                Level.Instance.ResetLevel();
+                await UIManager.Instance.OpenActivityAsync<ActivityLoadingInGamePlay>((Func<UniTask>)Level.Instance.LoadData, (Func<UniTask>)Level.Instance.AnimFirstSpawn);  
+                await UIManager.Instance.CloseActivityAsync<ActivityLoseGame>();
             }
 
             private void CloseActivity()
@@ -96,6 +118,10 @@ namespace Core.UI.Activities
                 await UIManager.Instance.CloseScreenAsync();
                 await UIManager.Instance.OpenScreenDefaultAsync<ScreenDefault>();
                 await UIManager.Instance.CloseActivityAsync<ActivityLoseGame>();
+                if (!ShopManager.Instance.NoAds.Value && PlayerInfoManager.Instance.playerLevel.Value >= 9)
+                {
+                    AdsManager.Instance.ShowInterstitial();
+                }
             }
         }
     }

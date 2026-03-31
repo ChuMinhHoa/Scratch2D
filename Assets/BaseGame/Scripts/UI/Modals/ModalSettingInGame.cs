@@ -108,6 +108,7 @@ namespace Core.UI.Modals
 
             private async UniTask OnClickBtnReplay()
             {
+                SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_ButtonClick);
                 if (EnergyManager.Instance.isOnInfiniteEnergy)
                 {
                     await Replay();
@@ -140,6 +141,7 @@ namespace Core.UI.Modals
 
             private async UniTask BackToHome()
             {
+                //SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_ButtonClick);
                 IngameFirebaseAnalystic.Instance.SetLoseType(LoseType.BackHome);
                 IngameFirebaseAnalystic.Instance.SetNoteFail(Level.Instance.GetNoteFail());
                 IngameFirebaseAnalystic.Instance.TrackLevelFail();
@@ -152,9 +154,11 @@ namespace Core.UI.Modals
 
             private void OnClickBtnClose()
             {
+                SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_ButtonClick);
                 UIAnimManager.Instance.AnimButton(View.BtnClose.transform);
                 _ = UIManager.Instance.CloseModalAsync();
                 ScreenGamePlayContext.Events.OnActiveInteractable?.Invoke(true);
+                SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_Pop);
             }
         }
     }

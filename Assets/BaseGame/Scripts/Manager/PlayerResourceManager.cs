@@ -4,9 +4,15 @@ using Sirenix.OdinInspector;
 using TW.Utility.CustomType;
 using TW.Utility.DesignPattern;
 using UnityEngine;
-
+public enum GameBuildType
+{
+   Release,
+   Cheat
+}
 public class PlayerResourceManager : Singleton<PlayerResourceManager>
 {
+   public GameBuildType gameBuildType;
+   
    public List<GameResourceData> gameResourceData;
    public List<GameResource> gameResource;
 
@@ -23,6 +29,11 @@ public class PlayerResourceManager : Singleton<PlayerResourceManager>
       if (gameResourceData.Count < typeCount)
       {
          CreateNewResource();
+      }
+
+      if (gameBuildType == GameBuildType.Cheat)
+      {
+         UICheat.Instance.CallInit();
       }
    }
 
@@ -72,6 +83,7 @@ public class PlayerResourceManager : Singleton<PlayerResourceManager>
    [Button]
    public void ChangeResource(GameResource.Type resourceType, BigNumber amount)
    {
+      Debug.Log("CHANGE RESOURCE: " + resourceType + " " + amount);
       var resource = GetGameResource(resourceType);
       if (resource == null) return;
       resource.Amount += amount;

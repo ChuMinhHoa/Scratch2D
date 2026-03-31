@@ -9,7 +9,7 @@ using UnityEngine;
 public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
 {
     #region Gameplay
-    
+
     public void StartTimePlayLevel()
     {
         TimeManager.OnTimeChange += OnTimeChange;
@@ -35,28 +35,31 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
     public int lastLevel = -1;
 
     public int retry;
-    
+    public int useRevive;
+
     public int winStreak;
     public int reviveUsed;
-    
+
     public int noteFail;
     public int noteComplete;
-    
+
     public double timePlayLevelDuration;
-    
+
     public LoseType loseType;
 
     public void SetNoteFail(int value) => noteFail = value;
-    
+
     public void AddNoteComplete() => noteComplete++;
 
     private void AddWinStreak() => winStreak++;
     private void ResetWinStreak() => winStreak = 0;
-    
+
     public void AddReviveUsed() => reviveUsed++;
 
     private void AddRetry() => retry++;
     
+    public void AddUseRevive() => useRevive++;
+
     public void SetLoseType(LoseType value) => loseType = value;
 
     public void SetLevel(int level)
@@ -66,11 +69,13 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
         {
             AddRetry();
             winStreak = 0;
+            useRevive = 0;
         }
         else
         {
             lastLevel = level;
             retry = 0;
+            useRevive = 0;
             noteFail = 0;
             noteComplete = 0;
             reviveUsed = 0;
@@ -81,27 +86,39 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
     {
         var level = PlayerInfoManager.Instance.playerLevel.Value;
         var remainingCoins = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.Money).Amount;
+
+        var remainingBoosterAddSlot = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.BoosterAddSlot)
+            .Amount.ToInt();
+        var remainingBoosterHammer = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.BoosterHammer)
+            .Amount.ToInt();
+        var remainingBoosterMagnet = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.BoosterMagnet)
+            .Amount.ToInt();
+        var remainingBooster = remainingBoosterMagnet + remainingBoosterHammer + remainingBoosterAddSlot;
+
         var parameters = new Parameter[]
         {
             new("level", level),
             new("retry", retry),
             new("remaining_coins", remainingCoins.ToInt()),
-            new("remaining_coins", remainingCoins.ToInt()),
+            new("remaining_booster", remainingBooster),
         };
         FirebaseManager.Instance.LogFirebaseEvent("level_start", parameters);
     }
-    
+
     public void TrackLevelComplete()
     {
         AddWinStreak();
         var level = PlayerInfoManager.Instance.playerLevel.Value;
-        var remainingBoosterAddSlot = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.BoosterAddSlot).Amount.ToInt();
-        var remainingBoosterHammer = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.BoosterHammer).Amount.ToInt();
-        var remainingBoosterMagnet = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.BoosterMagnet).Amount.ToInt();
+        var remainingBoosterAddSlot = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.BoosterAddSlot)
+            .Amount.ToInt();
+        var remainingBoosterHammer = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.BoosterHammer)
+            .Amount.ToInt();
+        var remainingBoosterMagnet = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.BoosterMagnet)
+            .Amount.ToInt();
         var remainingBooster = remainingBoosterMagnet + remainingBoosterHammer + remainingBoosterAddSlot;
-        
+
         var remainingCoins = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.Money).Amount.ToInt();
-        
+
         var parameters = new Parameter[]
         {
             new("level", level),
@@ -114,19 +131,22 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
         };
         FirebaseManager.Instance.LogFirebaseEvent("level_complete", parameters);
     }
-    
+
     public void TrackLevelFail()
     {
         ResetWinStreak();
         var level = PlayerInfoManager.Instance.playerLevel.Value;
-        
-        var remainingBoosterAddSlot = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.BoosterAddSlot).Amount.ToInt();
-        var remainingBoosterHammer = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.BoosterHammer).Amount.ToInt();
-        var remainingBoosterMagnet = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.BoosterMagnet).Amount.ToInt();
+
+        var remainingBoosterAddSlot = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.BoosterAddSlot)
+            .Amount.ToInt();
+        var remainingBoosterHammer = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.BoosterHammer)
+            .Amount.ToInt();
+        var remainingBoosterMagnet = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.BoosterMagnet)
+            .Amount.ToInt();
         var remainingBooster = remainingBoosterMagnet + remainingBoosterHammer + remainingBoosterAddSlot;
-        
+
         var remainingCoins = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.Money).Amount.ToInt();
-        
+
         var parameters = new Parameter[]
         {
             new("level", level),
@@ -142,16 +162,18 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
         };
         FirebaseManager.Instance.LogFirebaseEvent("level_fail", parameters);
     }
+
     #endregion
 
     #region ADS
 
-    public string currentADSRewardType;
+    public string currentAdsRewardType;
     public int adsRewardValue;
 
     public void SetAdsRewardInfo(string rewardType, int rewardValue)
     {
-        currentADSRewardType = rewardType;
+        Debug.Log("set ads reward info " + rewardType + " value " + rewardValue);
+        currentAdsRewardType = rewardType;
         adsRewardValue = rewardValue;
     }
 
@@ -162,7 +184,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
         {
             new("level", level),
             new("button_name", buttonName),
-            new("reward_name", currentADSRewardType),
+            new("reward_name", currentAdsRewardType),
             new("value", adsRewardValue),
             new("placement", placement)
         };
@@ -256,17 +278,33 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
 
     #region UserProperty
 
-    public void SetUserProperty()
+    public void SetLevelUserProperty()
     {
-        var totalDay =  (int)TimeManager.Instance.GetDayRetention();
         var level = PlayerInfoManager.Instance.playerLevel.Value;
-        var iapCount = ShopManager.Instance.iapCount.Value;
-        var adsRewardCount = PlayerInfoManager.Instance.adsRewardCount;
-        var adsInterCount = PlayerInfoManager.Instance.adsInterCount;
-        FirebaseAnalytics.SetUserProperty("day_retention", totalDay.ToString());
         FirebaseAnalytics.SetUserProperty("Level", level.ToString());
+    }
+
+    public void SetUserRetention()
+    {
+        var totalDay = (int)TimeManager.Instance.GetDayRetention();
+        FirebaseAnalytics.SetUserProperty("day_retention", totalDay.ToString());
+    }
+
+    public void SetUserPropertyIapCount()
+    {
+        var iapCount = ShopManager.Instance.iapCount.Value;
         FirebaseAnalytics.SetUserProperty("iap_count", iapCount.ToString());
+    }
+
+    public void SetUserPropertyAdsRewardCount()
+    {
+        var adsRewardCount = PlayerInfoManager.Instance.adsRewardCount;
         FirebaseAnalytics.SetUserProperty("ads_reward_count", adsRewardCount.ToString());
+    }
+    
+    public void SetUserPropertyAdsInterCount()
+    {
+        var adsInterCount = PlayerInfoManager.Instance.adsInterCount;
         FirebaseAnalytics.SetUserProperty("ads_inter_count", adsInterCount.ToString());
     }
 
@@ -278,7 +316,8 @@ public enum PlacementType
     InGame,
     Shop,
     ShopInGame,
-    WinGame
+    WinGame,
+    Home
 }
 
 public enum ClaimCurrencyType

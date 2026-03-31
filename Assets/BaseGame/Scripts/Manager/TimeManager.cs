@@ -62,7 +62,7 @@ public class TimeManager : Singleton<TimeManager>
     private async UniTask CallSetUserProperty()
     {
         await UniTask.WaitForSeconds(5f);
-        IngameFirebaseAnalystic.Instance.SetUserProperty();
+        IngameFirebaseAnalystic.Instance.SetUserRetention();
     }
 
     public double GetDayRetention()

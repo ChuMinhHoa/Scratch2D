@@ -90,6 +90,7 @@ namespace Core.UI.Activities
 
             private void OnCloseActivity()
             {
+                SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_ButtonClick);
                 _ = UIAnimManager.Instance.AnimButton(View.BtnCloseUsingBooster.transform);
                 CloseActivity();
             }

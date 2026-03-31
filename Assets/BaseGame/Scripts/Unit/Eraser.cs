@@ -38,12 +38,14 @@ public class Eraser : MonoBehaviour
             currentCard.SetActionCallbackChangeProgress(OnChangeProgress);
     }
 
+    public float timeSoundScratch = 1.5f;
+
     private void OnChangeProgress(float progress)
     {
         if (lastProgress != progress && coolDown <= 0f)
         {
             var e = PoolManager.Instance.SpawnEraserEffect(transform);
-            SoundManager.Instance.PlaySoundAtTimeSfx(AudioKey.Sfx_Scratch, 0.3f);
+            SoundManager.Instance.PlaySoundAtTimeSfx(AudioKey.Sfx_Scratch, timeSoundScratch);
             SoundManager.Instance.PlayVibrate(HapticPatterns.PresetType.LightImpact);
             LMotion.Create(0, 1, 0.5f).WithOnComplete(() =>
             {

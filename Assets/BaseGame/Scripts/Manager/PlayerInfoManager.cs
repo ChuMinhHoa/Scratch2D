@@ -29,12 +29,14 @@ public class PlayerInfoManager : Singleton<PlayerInfoManager>
     public void AddAdsReward()
     {
         adsRewardCount++;
+        IngameFirebaseAnalystic.Instance.SetUserPropertyAdsRewardCount();
         PlayerInfoDataSave.Instance.SaveData();
     }
 
     public void AddAdsInter()
     {
         adsInterCount++;
+        IngameFirebaseAnalystic.Instance.SetUserPropertyAdsInterCount();
         PlayerInfoDataSave.Instance.SaveData();
     }
 }

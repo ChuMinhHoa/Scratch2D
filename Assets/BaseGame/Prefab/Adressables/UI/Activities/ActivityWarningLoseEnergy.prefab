@@ -1190,7 +1190,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'You will lose a lifre!
 
-    Are you sure you want to return home?'
+    Are you sure you want to replay?'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74c5e3044675fc04a97ba44bd60deefd, type: 2}
   m_sharedMaterial: {fileID: 9114318834683303741, guid: 74c5e3044675fc04a97ba44bd60deefd, type: 2}

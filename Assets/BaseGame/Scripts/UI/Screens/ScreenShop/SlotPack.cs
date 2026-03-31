@@ -60,7 +60,6 @@ public class SlotPack : SlotBase<ShopPackageDataConfig>
 
     public override void OnChoose()
     {
-        //AnimChoose();
         base.OnChoose();
     }
 

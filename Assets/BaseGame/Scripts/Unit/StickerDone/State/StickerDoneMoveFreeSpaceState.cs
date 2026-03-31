@@ -60,6 +60,13 @@ public partial class StickerDone : StickerDoneMoveFreeSpaceState.IHandler
         stickerPos.MoveDone();
         Level.Instance.CheckStickerDone();
         UnitEventManager.Instance.RemoveEventId(id);
+
+        if (UnitEventManager.Instance.IsHaveEvent())
+        {
+            return;
+        }
+        
+        Level.Instance.CheckLoseGame();
     }
 
     public UniTask OnUpdateMoveFreeSpace()

@@ -51,6 +51,12 @@ public class BtnBooster : MonoBehaviour
         GlobalEventManager.OnUnlockBooster += UnLockBooster;
     }
 
+    private void UseBoosterAnimSound()
+    {
+        UIAnimManager.Instance.AnimButton(imgIcon.transform);
+        SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_ButtonClick);
+    }
+
     private void OnDestroy()
     {
         GlobalEventManager.OnUnlockBooster -= UnLockBooster;
@@ -80,7 +86,7 @@ public class BtnBooster : MonoBehaviour
 
     private void UseByGameResource()
     {
-        UIAnimManager.Instance.AnimButton(imgIcon.transform);
+        UseBoosterAnimSound();
         if (!booster.CheckCanUseBooster())
         {
             booster.ShowWarning();
@@ -95,7 +101,7 @@ public class BtnBooster : MonoBehaviour
 
     private void UseByPrice()
     {
-        UIAnimManager.Instance.AnimButton(imgIcon.transform);
+        UseBoosterAnimSound();
         if (!booster.CheckCanUseBooster())
         {
             booster.ShowWarning();
@@ -113,13 +119,13 @@ public class BtnBooster : MonoBehaviour
 
     private void UseByAds()
     {
-        UIAnimManager.Instance.AnimButton(imgIcon.transform);
+   
         // if (!booster.CheckCanUseBooster())
         // {
         //     booster.ShowWarning();
         //     return;
         // }
-#if UNITY_EDITOR || Cheat_Android
+#if UNITY_EDITOR
         //UseBooster();
         AddBooster();
 #endif

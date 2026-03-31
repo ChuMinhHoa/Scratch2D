@@ -113,7 +113,7 @@ public partial class FolderHaveSticker : MonoBehaviour
         var id = UnitEventManager.Instance.RegisterEvent();
         var currentPos = transform.position;
         effectDone.SetActive(true);
-
+        SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_NoteDone);
         await LMotion.Create(1f, -10f, 0.25f).Bind(x =>
         {
             _renderer.GetPropertyBlock(propertyBlock);
@@ -136,6 +136,7 @@ public partial class FolderHaveSticker : MonoBehaviour
         UnitEventManager.Instance.RemoveEventId(id);
         await UniTask.WaitForSeconds(0.1f);
         Level.Instance.CheckStickerDone();
+        
         Level.Instance.CheckLoseGame();
 
         onSlot = true;

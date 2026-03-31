@@ -11,4 +11,5 @@ public static class GlobalEventManager
     public static Action OnNoteDoneCallBack { get; set; }
     public static Action<string> OnShowWarning { get; set; }
     public static Action<BoosterType> OnUnlockBooster { get; set; }
+    public static Action HideUI { get; set; }
 }

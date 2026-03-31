@@ -167,4 +167,9 @@ public class ObjHaveStickerController : SpaceForSticker
     {
         SlotFolders[^1].ChangeFolderType(SlotFolderType.Normal);
     }
+
+    public bool IsCanAddNote()
+    {
+        return SlotFolders[^1].slotFolderType == SlotFolderType.Ads;
+    }
 }

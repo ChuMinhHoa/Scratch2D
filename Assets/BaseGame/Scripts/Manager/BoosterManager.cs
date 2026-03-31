@@ -43,13 +43,46 @@ public class BoosterManager : Singleton<BoosterManager>
             if (boosterGraphicControls[i].bType == currentBoosterType)
             {
                 GlobalEventManager.OnBoosterDone?.Invoke();
+                SoundControlStart();
                 await boosterGraphicControls[i].MoveBoosterTo(pos);
                 sBo.OnSelect();
+                SoundControlEnd();
                 return;
             }
         }
-        
         sBo.OnSelect();
+    }
+
+    private void SoundControlStart()
+    {
+        switch (currentBoosterType)
+        {
+            case BoosterType.BoosterMagnet:
+                return;
+            case BoosterType.BoosterAddSlot:
+                Debug.Log("play add slot sound");
+                SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_BoosterAddSlot);
+                break;
+            case BoosterType.BoosterHammer:
+                SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_BoosterHamerMove);
+                break;
+            default:
+                return;
+        }
+    }
+
+    private void SoundControlEnd()
+    {
+        switch (currentBoosterType)
+        {
+            case BoosterType.BoosterHammer:
+                SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_BoosterHamerHit);
+                break;
+            case BoosterType.BoosterMagnet:
+            case BoosterType.BoosterAddSlot:
+            default:
+                return;
+        }
     }
 
     private SelectAbleOnBooster GetSelectAbleOnBooster(Collider2D col)

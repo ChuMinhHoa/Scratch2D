@@ -42,6 +42,7 @@ public partial class StickerDone : StickerDoneOpenState.IHandler
 
     public async UniTask OnEnterOpenState()
     {
+        SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_StickerDone);
         CheckToAbleStickerAnimAgain();
         stickerDoneAnim.Play("StickerRemove");
         StickerDoneManager.Instance.AddStickerDone(this);

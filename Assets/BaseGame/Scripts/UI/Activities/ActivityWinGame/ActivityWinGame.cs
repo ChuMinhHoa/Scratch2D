@@ -117,8 +117,9 @@ namespace Core.UI.Activities
 
             private void ClaimRewardX2()
             {
+                SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_ButtonClick);
                 UIAnimManager.Instance.AnimButton(View.BtnClaimX2.transform);
-#if UNITY_EDITOR || Cheat_Android
+#if UNITY_EDITOR
                 Claim(true);
 #endif
 
@@ -134,6 +135,7 @@ namespace Core.UI.Activities
 
             private void ClaimReward()
             {
+                SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_ButtonClick);
                 UIAnimManager.Instance.AnimButton(View.BtnClaim.transform);
                 Claim();
             }
@@ -157,11 +159,18 @@ namespace Core.UI.Activities
                 await UIManager.Instance.CloseScreenAsync();
                 await UIManager.Instance.OpenScreenDefaultAsync<ScreenDefault>();
                 await UIManager.Instance.CloseActivityAsync<ActivityWinGame>();
+
+                if (!ShopManager.Instance.NoAds.Value && PlayerInfoManager.Instance.playerLevel.Value >= 9)
+                {
+                    AdsManager.Instance.ShowInterstitial();
+                }
             }
 
             public void DidEnter(Memory<object> args)
             {
                 _ = View.AnimWrapInfo();
+                SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_Win);
+                SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_FireWork);
             }
         }
     }

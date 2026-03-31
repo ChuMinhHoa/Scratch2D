@@ -8,4 +8,5 @@ public class DefaultGlobalConfig : GlobalConfig<DefaultGlobalConfig>
     public int maxEnergy = 5;
     public float defaultMinutesForEnergy = 5; // 5 minutes for 1 energy
     public int defaultCoinWinGame = 10;
+    public int priceRevive = 200;
 }

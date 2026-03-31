@@ -355,6 +355,384 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75070715be8c620488251867e5658fff, type: 3}
+--- !u!1 &72878755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 72878756}
+  - component: {fileID: 72878758}
+  - component: {fileID: 72878757}
+  - component: {fileID: 72878759}
+  m_Layer: 5
+  m_Name: btnCheat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &72878756
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72878755}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1140137487}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -46, y: -269}
+  m_SizeDelta: {x: 115.9695, y: 106.7129}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &72878757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72878755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: fa0a3dd31f670b342bbfaf7e5b04a277, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &72878758
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72878755}
+  m_CullTransparentMesh: 1
+--- !u!114 &72878759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72878755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 72878757}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &101103925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 101103926}
+  - component: {fileID: 101103928}
+  - component: {fileID: 101103927}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &101103926
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101103925}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1425507705}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &101103927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101103925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "\u200B"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 74c5e3044675fc04a97ba44bd60deefd, type: 2}
+  m_sharedMaterial: {fileID: 9114318834683303741, guid: 74c5e3044675fc04a97ba44bd60deefd, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 55
+  m_fontSizeBase: 55
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 3
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 1
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &101103928
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101103925}
+  m_CullTransparentMesh: 1
+--- !u!1 &137399891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 137399892}
+  - component: {fileID: 137399894}
+  - component: {fileID: 137399893}
+  - component: {fileID: 137399895}
+  m_Layer: 5
+  m_Name: btnHideUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &137399892
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137399891}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2077590652}
+  m_Father: {fileID: 320469402}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -340.2007, y: -56.82007}
+  m_SizeDelta: {x: 266.6775, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &137399893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137399891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 48f45df383b4f0c4f93c2dac9a4ef753, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &137399894
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137399891}
+  m_CullTransparentMesh: 1
+--- !u!114 &137399895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137399891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 137399893}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &193693540
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,13 +946,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IngameFirebaseAnalystic
   lastLevel: -1
   retry: 0
+  useRevive: 0
   winStreak: 0
   reviveUsed: 0
   noteFail: 0
   noteComplete: 0
   timePlayLevelDuration: 0
   loseType: 0
-  currentADSRewardType: 
+  currentAdsRewardType: 
   adsRewardValue: 0
   currencyPlacement: 0
   claimCurrencyType: 0
@@ -656,6 +1035,182 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee2e0b1069e4b848ab848f29b0ca334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpaceSticker
+--- !u!1 &320469401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 320469402}
+  m_Layer: 5
+  m_Name: ObjCheat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &320469402
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320469401}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1218887073}
+  - {fileID: 1174108637}
+  - {fileID: 1126051097}
+  - {fileID: 137399892}
+  m_Father: {fileID: 1140137487}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0.000016212, y: 103.63989}
+  m_SizeDelta: {x: 947.08, y: 207.2776}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &410958023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 410958024}
+  - component: {fileID: 410958026}
+  - component: {fileID: 410958025}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &410958024
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410958023}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1126051097}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &410958025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410958023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Add 100K
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 74c5e3044675fc04a97ba44bd60deefd, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: cf6b215f13c6fcf449e0ae7c9a586aba, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 45
+  m_fontSizeBase: 45
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &410958026
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410958023}
+  m_CullTransparentMesh: 1
 --- !u!1001 &493415539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1066,10 +1621,10 @@ MonoBehaviour:
         EditorValue: 0
       <IsFirstPurchase>k__BackingField:
         value: 1
-        EditorValue: 0
+        EditorValue: 1
       <NoAds>k__BackingField:
         value: 1
-        EditorValue: 0
+        EditorValue: 1
     <EnergyDataSave>k__BackingField:
       currentEnergy: -1
       timeToAddEnergy:
@@ -1217,6 +1772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4ccf0d307ad4834ea8d1d5bf23946a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerResourceManager
+  gameBuildType: 1
   gameResourceData: []
   gameResource: []
 --- !u!1001 &751864541
@@ -1517,9 +2073,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
   settingData: []
-  sfxConfig: []
+  sfxConfig:
+  - <AudioKey>k__BackingField: 101
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 76fa4d1e03d9bfa46af7f834509de216, type: 3}
+  - <AudioKey>k__BackingField: 100
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 26f29fca650e3e34980207c3fdcdae0e, type: 3}
+  - <AudioKey>k__BackingField: 102
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 090decbb400c2bb4ca696c5ad2498308, type: 3}
+  - <AudioKey>k__BackingField: 103
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: c07643897d626964fb6ff6fbd75494ca, type: 3}
+  - <AudioKey>k__BackingField: 104
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: a22f7868df9c76443a5acbbe01b7e9ce, type: 3}
+  - <AudioKey>k__BackingField: 105
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: d5e2cef5ba34e4740916f320196acd74, type: 3}
+  - <AudioKey>k__BackingField: 106
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 25817b7a03969ba4d841d6c1671f7a87, type: 3}
+  - <AudioKey>k__BackingField: 107
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 65efb4c2cfd9d8f43a2392ab3a498334, type: 3}
+  - <AudioKey>k__BackingField: 108
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 99d052470240e5245bdc5f4590a3bb62, type: 3}
+  - <AudioKey>k__BackingField: 109
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: e6ca6fc25939abb4c8aa8aba602a4998, type: 3}
+  - <AudioKey>k__BackingField: 110
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: d8c7dbddf52599a4ca4ba9cb8f61c71b, type: 3}
+  - <AudioKey>k__BackingField: 111
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 10d9d2e347bcffa43adcad9ab655b71e, type: 3}
+  - <AudioKey>k__BackingField: 112
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 8651dc1fea3daaa4b8789683a62851e6, type: 3}
+  - <AudioKey>k__BackingField: 113
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 9cbff76cfb002b349b249cc25194d8f8, type: 3}
   sfxData: []
-  bgConfig: []
+  bgConfig:
+  - <AudioKey>k__BackingField: 0
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 7d8eb9bb21802c844a7a922bf561da8d, type: 3}
   bgData: []
 --- !u!4 &789975108
 Transform:
@@ -1536,6 +2122,164 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1495419256}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &799327336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 799327337}
+  - component: {fileID: 799327340}
+  - component: {fileID: 799327339}
+  - component: {fileID: 799327338}
+  m_Layer: 5
+  m_Name: Placeholder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &799327337
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799327336}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1425507705}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &799327338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799327336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
+  m_IgnoreLayout: 1
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
+--- !u!114 &799327339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799327336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Enter text...
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 74c5e3044675fc04a97ba44bd60deefd, type: 2}
+  m_sharedMaterial: {fileID: 9114318834683303741, guid: 74c5e3044675fc04a97ba44bd60deefd, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 2150773298
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0.5}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 55
+  m_fontSizeBase: 55
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 2
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 0
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 1
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &799327340
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799327336}
+  m_CullTransparentMesh: 1
 --- !u!1 &809477997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1840,6 +2584,7 @@ MonoBehaviour:
     spaceStickerPitch: {fileID: 769870601}
     stickerDoneWait: []
     objEffectSpawn: {fileID: 1978092452899057675}
+    prefEffectSpawn: {fileID: 9015409059214852550, guid: 9497cf9988b27c14ca8d082870a6ce13, type: 3}
   layerController:
     trsLayerParents: {fileID: 0}
     cards: []
@@ -2311,107 +3056,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RewardManager
   resourceRewardList: []
   boosterRewardList: []
---- !u!1 &1122910677
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1122910681}
-  - component: {fileID: 1122910680}
-  - component: {fileID: 1122910679}
-  - component: {fileID: 1122910678}
-  m_Layer: 5
-  m_Name: Canvas
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1122910678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1122910677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 503
---- !u!114 &1122910679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1122910677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1080, y: 1920}
-  m_ScreenMatchMode: 1
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
---- !u!223 &1122910680
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1122910677}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
---- !u!224 &1122910681
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1122910677}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
 --- !u!1 &1125280222
 GameObject:
   m_ObjectHideFlags: 0
@@ -2459,8 +3103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelGenerateText
   level: {fileID: 1125280225}
-  levelIndex: 16
-  <LevelDataTextAsset>k__BackingField: {fileID: 4900000, guid: a5427b74eff914d40bd839430151abae, type: 3}
+  levelIndex: 26
+  <LevelDataTextAsset>k__BackingField: {fileID: 4900000, guid: da23302c558ee534da75b4f66f598bb3, type: 3}
   stickers: []
 --- !u!114 &1125280225
 MonoBehaviour:
@@ -2475,8 +3119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Level
   levelIndex:
-    value: 16
-    EditorValue: 16
+    value: 26
+    EditorValue: 26
   levelChange:
     value: -1
     EditorValue: -1
@@ -2490,77 +3134,100 @@ MonoBehaviour:
     level: 0
     objHaveStickers:
     - objID: 0
-      stickerId: 29
-    - objID: 0
-      stickerId: 48
-    - objID: 0
-      stickerId: 54
-    - objID: 0
-      stickerId: 14
-    - objID: 0
-      stickerId: 37
-    - objID: 0
-      stickerId: 34
-    - objID: 0
       stickerId: 31
-    - objID: 0
-      stickerId: 44
-    - objID: 0
-      stickerId: 48
-    - objID: 0
-      stickerId: 27
-    - objID: 0
-      stickerId: 4
-    - objID: 0
-      stickerId: 13
-    - objID: 0
-      stickerId: 47
-    - objID: 0
-      stickerId: 13
-    - objID: 0
-      stickerId: 42
-    - objID: 0
-      stickerId: 34
-    - objID: 0
-      stickerId: 16
-    - objID: 0
-      stickerId: 30
-    - objID: 0
-      stickerId: 10
-    - objID: 0
-      stickerId: 38
-    - objID: 0
-      stickerId: 24
-    - objID: 0
-      stickerId: 4
-    - objID: 0
-      stickerId: 0
-    - objID: 0
-      stickerId: 13
-    - objID: 0
-      stickerId: 39
-    - objID: 0
-      stickerId: 24
-    - objID: 0
-      stickerId: 41
     - objID: 0
       stickerId: 49
     - objID: 0
-      stickerId: 6
+      stickerId: 13
     - objID: 0
-      stickerId: 0
+      stickerId: 54
+    - objID: 0
+      stickerId: 27
+    - objID: 0
+      stickerId: 3
+    - objID: 0
+      stickerId: 46
+    - objID: 0
+      stickerId: 16
+    - objID: 0
+      stickerId: 16
+    - objID: 0
+      stickerId: 37
+    - objID: 0
+      stickerId: 39
+    - objID: 0
+      stickerId: 50
+    - objID: 0
+      stickerId: 35
+    - objID: 0
+      stickerId: 8
+    - objID: 0
+      stickerId: 34
+    - objID: 0
+      stickerId: 39
+    - objID: 0
+      stickerId: 31
+    - objID: 0
+      stickerId: 31
+    - objID: 0
+      stickerId: 21
+    - objID: 0
+      stickerId: 22
+    - objID: 0
+      stickerId: 28
+    - objID: 0
+      stickerId: 24
+    - objID: 0
+      stickerId: 22
+    - objID: 0
+      stickerId: 11
+    - objID: 0
+      stickerId: 1
+    - objID: 0
+      stickerId: 46
+    - objID: 0
+      stickerId: 25
+    - objID: 0
+      stickerId: 22
+    - objID: 0
+      stickerId: 20
+    - objID: 0
+      stickerId: 21
+    - objID: 0
+      stickerId: 39
+    - objID: 0
+      stickerId: 15
+    - objID: 0
+      stickerId: 17
+    - objID: 0
+      stickerId: 29
+    - objID: 0
+      stickerId: 33
+    - objID: 0
+      stickerId: 29
+    - objID: 0
+      stickerId: 16
+    - objID: 0
+      stickerId: 54
+    - objID: 0
+      stickerId: 20
+    - objID: 0
+      stickerId: 21
     layerCards:
     - layerIndex: 0
       cards:
-      - cardType: 0
+      - cardType: 100
         cardState: 0
         stickers:
-        - stickerID: 29
+        - stickerID: 31
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 31
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: -2.5
-          y: 1.1
+          x: -1.9
+          y: 0
           z: 0
         rotation:
           x: 0
@@ -2570,7 +3237,587 @@ MonoBehaviour:
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 29
+        - stickerID: 31
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -1.9
+          y: -2.6
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 100
+        cardState: 0
+        stickers:
+        - stickerID: 49
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 49
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 1.9
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 49
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 1.9
+          y: -2.6
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 13
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: -1.9
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 13
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: -3.8
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 13
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -3.7
+          y: -3.5
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 100
+        cardState: 0
+        stickers:
+        - stickerID: 54
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 54
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 1.9
+          y: 3.5
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 54
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 3.7
+          y: 0.8
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 200
+        cardState: 0
+        stickers:
+        - stickerID: 27
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 27
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 27
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -3.7
+          y: -0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 200
+        cardState: 0
+        stickers:
+        - stickerID: 3
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 3
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 3
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: 1.7
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 46
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 3.7
+          y: -1
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 46
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 3.7
+          y: -2.8
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 46
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 3.7
+          y: 2.6
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+    - layerIndex: 1
+      cards:
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 16
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -0.1
+          y: 1.9
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 16
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 3.5
+          y: -1.7
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 16
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 1.7
+          y: 0.1
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 16
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -1.9
+          y: 3.7
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 16
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -3.7
+          y: -3.4
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 16
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 3.5
+          y: 0.1
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 200
+        cardState: 0
+        stickers:
+        - stickerID: 37
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 37
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 37
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -3.7
+          y: 1.8
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 200
+        cardState: 0
+        stickers:
+        - stickerID: 39
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 39
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 39
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -1.9
+          y: 0.1
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 200
+        cardState: 0
+        stickers:
+        - stickerID: 50
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 50
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 50
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -0.1
+          y: -1.6
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 35
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 1.7
+          y: 1.9
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 35
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -0.1
+          y: 3.7
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 35
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 3.5
+          y: -3.5
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 200
+        cardState: 0
+        stickers:
+        - stickerID: 8
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 8
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 8
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 1.7
+          y: -3.3
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+    - layerIndex: 2
+      cards:
+      - cardType: 100
+        cardState: 0
+        stickers:
+        - stickerID: 34
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 34
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0.5
+          y: 0.6
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 34
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -1.3
+          y: -0.5
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 200
+        cardState: 0
+        stickers:
+        - stickerID: 39
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 39
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 39
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 2.4
+          y: 1.5
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 31
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -1.3
+          y: 3.5
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 31
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -3.1
+          y: -2.1
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 31
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 2.4
+          y: -2
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 31
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 4.2
+          y: -0.4
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 31
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0.5
+          y: -2
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 31
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: -1.3
+          y: -4.5
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 21
           stickerType: 0
           stickerIndexChain: 0
         position:
@@ -2585,453 +3832,11 @@ MonoBehaviour:
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 14
+        - stickerID: 21
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: -3.2
-          y: 2.9
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 200
-        cardState: 0
-        stickers:
-        - stickerID: 48
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 48
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 37
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -0.8
-          y: 2.4
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 15
-        totalSUnlock: 0
-      - cardType: 200
-        cardState: 0
-        stickers:
-        - stickerID: 48
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 37
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 54
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 1
-          y: 2.5
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 15
-        totalSUnlock: 0
-      - cardType: 200
-        cardState: 0
-        stickers:
-        - stickerID: 29
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 14
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 14
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 2.9
-          y: 2.5
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 15
-        totalSUnlock: 0
-      - cardType: 100
-        cardState: 0
-        stickers:
-        - stickerID: 37
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 54
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 1.4
-          y: -2.3
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: -20
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 54
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -2
-          y: -0.7
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-    - layerIndex: 1
-      cards:
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 34
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -1.8
-          y: -1.4
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 31
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 3.6
-          y: -1.9
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 31
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -3.6
-          y: -3.6
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 31
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -3.6
-          y: -1.8
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 34
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 0
-          y: -2.8
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 34
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 0
-          y: -4.6
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 100
-        cardState: 0
-        stickers:
-        - stickerID: 44
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 44
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 2
-          y: 2.7
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: -15
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 44
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 1.8
-          y: -0.6
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 48
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 3.6
-          y: -0.1
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 48
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 0
-          y: -1
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 48
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 1.8
-          y: -2.4
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 100
-        cardState: 0
-        stickers:
-        - stickerID: 27
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 27
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 0.1
-          y: 2.8
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: -15
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 27
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -1.8
-          y: -3.2
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-    - layerIndex: 2
-      cards:
-      - cardType: 200
-        cardState: 0
-        stickers:
-        - stickerID: 4
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 4
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 13
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -0.1
-          y: 3
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 55
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 13
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -3.6
-          y: -0.1
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 13
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -1.8
-          y: -0.6
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 4
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -3.6
-          y: -1.9
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 47
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -1.8
-          y: -2.4
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 47
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -0
-          y: -2.9
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 47
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 1.8
-          y: -3.4
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 42
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 1.8
-          y: -1.6
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 13
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 3.6
+          x: 2.4
           y: -3.9
           z: 0
         rotation:
@@ -3042,12 +3847,33 @@ MonoBehaviour:
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 13
+        - stickerID: 21
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: 3.6
-          y: -2.1
+          x: 0.5
+          y: -3.9
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 200
+        cardState: 0
+        stickers:
+        - stickerID: 22
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 22
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 22
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 4.2
+          y: 3.1
           z: 0
         rotation:
           x: 0
@@ -3057,12 +3883,12 @@ MonoBehaviour:
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 13
+        - stickerID: 28
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: -1.8
-          y: 1.2
+          x: -3.1
+          y: 1.8
           z: 0
         rotation:
           x: 0
@@ -3072,12 +3898,12 @@ MonoBehaviour:
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 42
+        - stickerID: 28
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: 2.8
-          y: 3.8
+          x: -3.1
+          y: -0.2
           z: 0
         rotation:
           x: 0
@@ -3087,12 +3913,12 @@ MonoBehaviour:
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 42
+        - stickerID: 28
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: 0
-          y: -1.1
+          x: -1.3
+          y: 1.5
           z: 0
         rotation:
           x: 0
@@ -3101,33 +3927,90 @@ MonoBehaviour:
         totalSUnlock: 0
     - layerIndex: 3
       cards:
-      - cardType: 100
+      - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 34
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 30
+        - stickerID: 24
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: 0.8
+          x: 0
           y: 0
           z: 0
         rotation:
           x: 0
           y: 0
-          z: 990
+          z: 0
         totalSUnlock: 0
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 34
+        - stickerID: 24
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: -1.8
-          y: 1.8
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 24
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 22
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 22
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 22
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: 0
           z: 0
         rotation:
           x: 0
@@ -3137,117 +4020,126 @@ MonoBehaviour:
       - cardType: 200
         cardState: 0
         stickers:
-        - stickerID: 16
+        - stickerID: 11
           stickerType: 0
           stickerIndexChain: 0
-        - stickerID: 10
+        - stickerID: 11
           stickerType: 0
           stickerIndexChain: 0
-        - stickerID: 16
+        - stickerID: 11
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: 2.3
-          y: -3.5
+          x: 0
+          y: 0
           z: 0
         rotation:
           x: 0
           y: 0
           z: 0
-        totalSUnlock: 0
-      - cardType: 100
-        cardState: 0
-        stickers:
-        - stickerID: 30
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 34
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -0.8
-          y: 3.6
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 90
         totalSUnlock: 0
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 30
+        - stickerID: 1
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: -1.8
+          x: 0
           y: 0
           z: 0
         rotation:
           x: 0
           y: 0
           z: 0
-        totalSUnlock: 0
-      - cardType: 100
-        cardState: 0
-        stickers:
-        - stickerID: 24
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 16
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -0.7
-          y: -3.6
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 90
         totalSUnlock: 0
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 10
+        - stickerID: 1
           stickerType: 0
           stickerIndexChain: 0
         position:
           x: 0
-          y: 1.8
+          y: 0
           z: 0
         rotation:
           x: 0
           y: 0
           z: 0
-        totalSUnlock: 0
-      - cardType: 100
-        cardState: 0
-        stickers:
-        - stickerID: 38
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 24
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -1
-          y: -1.8
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 90
         totalSUnlock: 0
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 38
+        - stickerID: 1
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: 1.8
-          y: 1.8
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 200
+        cardState: 0
+        stickers:
+        - stickerID: 46
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 46
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 46
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 200
+        cardState: 0
+        stickers:
+        - stickerID: 25
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 25
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 25
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 200
+        cardState: 0
+        stickers:
+        - stickerID: 22
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 22
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 22
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: 0
           z: 0
         rotation:
           x: 0
@@ -3256,39 +4148,15 @@ MonoBehaviour:
         totalSUnlock: 0
     - layerIndex: 4
       cards:
-      - cardType: 200
+      - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 6
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 24
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 24
+        - stickerID: 20
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: -3.1
-          y: -0
-          z: 0
-        rotation:
           x: 0
           y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 100
-        cardState: 0
-        stickers:
-        - stickerID: 10
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 38
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 0.5
-          y: -1.4
           z: 0
         rotation:
           x: 0
@@ -3298,12 +4166,27 @@ MonoBehaviour:
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 13
+        - stickerID: 20
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: 2.3
-          y: -1.4
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 20
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: 0
           z: 0
         rotation:
           x: 0
@@ -3313,18 +4196,84 @@ MonoBehaviour:
       - cardType: 200
         cardState: 0
         stickers:
-        - stickerID: 0
+        - stickerID: 21
           stickerType: 0
           stickerIndexChain: 0
-        - stickerID: 49
+        - stickerID: 21
           stickerType: 0
           stickerIndexChain: 0
-        - stickerID: 0
+        - stickerID: 21
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: -1.3
-          y: -1.3
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 39
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 39
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 39
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 200
+        cardState: 0
+        stickers:
+        - stickerID: 15
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 15
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 15
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: 0
           z: 0
         rotation:
           x: 0
@@ -3334,15 +4283,15 @@ MonoBehaviour:
       - cardType: 100
         cardState: 0
         stickers:
-        - stickerID: 0
+        - stickerID: 17
           stickerType: 0
           stickerIndexChain: 0
-        - stickerID: 41
+        - stickerID: 17
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: 1.1
-          y: 2.2
+          x: 0
+          y: 0
           z: 0
         rotation:
           x: 0
@@ -3352,12 +4301,30 @@ MonoBehaviour:
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 24
+        - stickerID: 17
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: -0.9
-          y: 2.5
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 100
+        cardState: 0
+        stickers:
+        - stickerID: 29
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 29
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: 0
           z: 0
         rotation:
           x: 0
@@ -3367,12 +4334,30 @@ MonoBehaviour:
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 13
+        - stickerID: 29
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: 3.3
-          y: 2.6
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 100
+        cardState: 0
+        stickers:
+        - stickerID: 33
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 33
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: 0
           z: 0
         rotation:
           x: 0
@@ -3382,27 +4367,12 @@ MonoBehaviour:
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 24
+        - stickerID: 33
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: 2.4
-          y: -3.2
-          z: 0
-        rotation:
           x: 0
           y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 4
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 0.5
-          y: -4.1
           z: 0
         rotation:
           x: 0
@@ -3411,66 +4381,21 @@ MonoBehaviour:
         totalSUnlock: 0
     - layerIndex: 5
       cards:
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 39
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -1.8
-          y: -1.4
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 41
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -1.8
-          y: -3.2
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 0
-        cardState: 0
-        stickers:
-        - stickerID: 49
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: -1.8
-          y: 0.4
-          z: 0
-        rotation:
-          x: 0
-          y: 0
-          z: 0
-        totalSUnlock: 0
       - cardType: 200
         cardState: 0
         stickers:
-        - stickerID: 49
+        - stickerID: 29
           stickerType: 0
           stickerIndexChain: 0
-        - stickerID: 39
+        - stickerID: 29
           stickerType: 0
           stickerIndexChain: 0
-        - stickerID: 4
+        - stickerID: 29
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: -0
-          y: 0.2
+          x: 0
+          y: 0
           z: 0
         rotation:
           x: 0
@@ -3480,12 +4405,12 @@ MonoBehaviour:
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 4
+        - stickerID: 16
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: -1.8
-          y: 2.2
+          x: 0
+          y: 0
           z: 0
         rotation:
           x: 0
@@ -3495,12 +4420,12 @@ MonoBehaviour:
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 0
+        - stickerID: 16
           stickerType: 0
           stickerIndexChain: 0
         position:
           x: 0
-          y: 3.7
+          y: 0
           z: 0
         rotation:
           x: 0
@@ -3510,33 +4435,12 @@ MonoBehaviour:
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 0
+        - stickerID: 16
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: 0
-          y: -4
-          z: 0
-        rotation:
           x: 0
           y: 0
-          z: 0
-        totalSUnlock: 0
-      - cardType: 200
-        cardState: 0
-        stickers:
-        - stickerID: 41
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 6
-          stickerType: 0
-          stickerIndexChain: 0
-        - stickerID: 39
-          stickerType: 0
-          stickerIndexChain: 0
-        position:
-          x: 1.8
-          y: 0.3
           z: 0
         rotation:
           x: 0
@@ -3546,15 +4450,15 @@ MonoBehaviour:
       - cardType: 100
         cardState: 0
         stickers:
-        - stickerID: 6
+        - stickerID: 54
           stickerType: 0
           stickerIndexChain: 0
-        - stickerID: 13
+        - stickerID: 54
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: 3.6
-          y: 1.1
+          x: 0
+          y: 0
           z: 0
         rotation:
           x: 0
@@ -3564,12 +4468,78 @@ MonoBehaviour:
       - cardType: 0
         cardState: 0
         stickers:
-        - stickerID: 0
+        - stickerID: 54
           stickerType: 0
           stickerIndexChain: 0
         position:
-          x: 1.8
-          y: -3.2
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 20
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 20
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 0
+        cardState: 0
+        stickers:
+        - stickerID: 20
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: 0
+          z: 0
+        rotation:
+          x: 0
+          y: 0
+          z: 0
+        totalSUnlock: 0
+      - cardType: 200
+        cardState: 0
+        stickers:
+        - stickerID: 21
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 21
+          stickerType: 0
+          stickerIndexChain: 0
+        - stickerID: 21
+          stickerType: 0
+          stickerIndexChain: 0
+        position:
+          x: 0
+          y: 0
           z: 0
         rotation:
           x: 0
@@ -3592,6 +4562,7 @@ MonoBehaviour:
     spaceStickerPitch: {fileID: 0}
     stickerDoneWait: []
     objEffectSpawn: {fileID: 0}
+    prefEffectSpawn: {fileID: 0}
   layerController:
     trsLayerParents: {fileID: 0}
     cards: []
@@ -3612,11 +4583,392 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelGenerateFunction
   levelGenerateText: {fileID: 1125280224}
-  totalSticker: 30
+  totalSticker: 40
   totalCardAdd: 1
   layerIndex: 2
-  shuffleLayerIndexStart: 4
-  shuffleLayerIndexEnd: 5
+  shuffleLayerIndexStart: 3
+  shuffleLayerIndexEnd: 4
+--- !u!1 &1126051096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1126051097}
+  - component: {fileID: 1126051100}
+  - component: {fileID: 1126051099}
+  - component: {fileID: 1126051098}
+  m_Layer: 5
+  m_Name: btnAddGold
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1126051097
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126051096}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 410958024}
+  m_Father: {fileID: 320469402}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 340.2, y: -156.82}
+  m_SizeDelta: {x: 266.6775, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1126051098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126051096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1126051099}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1126051099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126051096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 48f45df383b4f0c4f93c2dac9a4ef753, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1126051100
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126051096}
+  m_CullTransparentMesh: 1
+--- !u!1 &1140137483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1140137487}
+  - component: {fileID: 1140137486}
+  - component: {fileID: 1140137485}
+  - component: {fileID: 1140137484}
+  - component: {fileID: 1140137488}
+  - component: {fileID: 1140137489}
+  m_Layer: 5
+  m_Name: CanvasCheat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1140137484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140137483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 503
+--- !u!114 &1140137485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140137483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 1080, y: 1920}
+  m_ScreenMatchMode: 1
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &1140137486
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140137483}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1000
+  m_TargetDisplay: 0
+--- !u!224 &1140137487
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140137483}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 320469402}
+  - {fileID: 72878756}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &1140137488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140137483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3816b01208559bd4693e7047a138d068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICheat
+  btnCheat: {fileID: 72878759}
+  btnHideUI: {fileID: 137399895}
+  inputField: {fileID: 1218887074}
+  btnLoadLevel: {fileID: 1174108640}
+  btnAddMoney: {fileID: 1126051098}
+  objCheatPanel: {fileID: 1140137483}
+  trsCheat: {fileID: 320469402}
+  CanvasGroup: {fileID: 1140137489}
+  posYOffset: 414
+  hideUI: 0
+--- !u!225 &1140137489
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140137483}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!1 &1174108636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1174108637}
+  - component: {fileID: 1174108639}
+  - component: {fileID: 1174108638}
+  - component: {fileID: 1174108640}
+  m_Layer: 5
+  m_Name: btnLoadLevel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1174108637
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174108636}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1384849297}
+  m_Father: {fileID: 320469402}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 340.19714, y: -56.82007}
+  m_SizeDelta: {x: 266.6775, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1174108638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174108636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 48f45df383b4f0c4f93c2dac9a4ef753, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1174108639
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174108636}
+  m_CullTransparentMesh: 1
+--- !u!114 &1174108640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174108636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1174108638}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1174623189
 GameObject:
   m_ObjectHideFlags: 0
@@ -3671,6 +5023,184 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 841702862512134950, guid: db420098106ea5f4797dff58561cc14d, type: 3}
   m_PrefabInstance: {fileID: 201297783}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1218887072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1218887073}
+  - component: {fileID: 1218887076}
+  - component: {fileID: 1218887075}
+  - component: {fileID: 1218887074}
+  m_Layer: 5
+  m_Name: InputFieldLevel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1218887073
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218887072}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1425507705}
+  m_Father: {fileID: 320469402}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 5.799301, y: -53.409912}
+  m_SizeDelta: {x: 368.1599, y: 106.8208}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1218887074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218887072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1218887075}
+  m_TextViewport: {fileID: 1425507705}
+  m_TextComponent: {fileID: 101103927}
+  m_Placeholder: {fileID: 799327339}
+  m_VerticalScrollbar: {fileID: 0}
+  m_VerticalScrollbarEventHandler: {fileID: 0}
+  m_LayoutGroup: {fileID: 0}
+  m_ScrollSensitivity: 1
+  m_ContentType: 0
+  m_InputType: 0
+  m_AsteriskChar: 42
+  m_KeyboardType: 0
+  m_LineType: 0
+  m_HideMobileInput: 0
+  m_HideSoftKeyboard: 0
+  m_CharacterValidation: 0
+  m_RegexValue: 
+  m_GlobalPointSize: 55
+  m_CharacterLimit: 0
+  m_OnEndEdit:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSubmit:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelect:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnDeselect:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnTextSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnEndTextSelection:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnTouchScreenKeyboardStatusChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_CustomCaretColor: 0
+  m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
+  m_Text: 
+  m_CaretBlinkRate: 0.85
+  m_CaretWidth: 1
+  m_ReadOnly: 0
+  m_RichText: 1
+  m_GlobalFontAsset: {fileID: 11400000, guid: 74c5e3044675fc04a97ba44bd60deefd, type: 2}
+  m_OnFocusSelectAll: 1
+  m_ResetOnDeActivation: 1
+  m_KeepTextSelectionVisible: 0
+  m_RestoreOriginalTextOnEscape: 1
+  m_isRichTextEditingAllowed: 0
+  m_LineLimit: 0
+  isAlert: 0
+  m_InputValidator: {fileID: 0}
+  m_ShouldActivateOnSelect: 1
+--- !u!114 &1218887075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218887072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1218887076
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218887072}
+  m_CullTransparentMesh: 1
 --- !u!1 &1245329644
 GameObject:
   m_ObjectHideFlags: 0
@@ -3682,7 +5212,7 @@ GameObject:
   - component: {fileID: 1245329645}
   - component: {fileID: 1245329646}
   m_Layer: 0
-  m_Name: ShopManager
+  m_Name: InGamePurchaseManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3868,6 +5398,143 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1384849296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1384849297}
+  - component: {fileID: 1384849299}
+  - component: {fileID: 1384849298}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1384849297
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384849296}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1174108637}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1384849298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384849296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Load Level
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 74c5e3044675fc04a97ba44bd60deefd, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: cf6b215f13c6fcf449e0ae7c9a586aba, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 45
+  m_fontSizeBase: 45
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1384849299
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384849296}
+  m_CullTransparentMesh: 1
 --- !u!1 &1389703319
 GameObject:
   m_ObjectHideFlags: 0
@@ -3923,6 +5590,58 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1425507704
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1425507705}
+  - component: {fileID: 1425507706}
+  m_Layer: 5
+  m_Name: Text Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1425507705
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425507704}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 799327337}
+  - {fileID: 101103926}
+  m_Father: {fileID: 1218887073}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -0.5}
+  m_SizeDelta: {x: -20, y: -13}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1425507706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425507704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RectMask2D
+  m_Padding: {x: -8, y: -5, z: -8, w: -5}
+  m_Softness: {x: 0, y: 0}
 --- !u!1 &1430164515
 GameObject:
   m_ObjectHideFlags: 0
@@ -4033,6 +5752,7 @@ Transform:
   - {fileID: 1855469087}
   - {fileID: 263861115}
   - {fileID: 1089591033}
+  - {fileID: 1881599554}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1511064817
@@ -4085,7 +5805,7 @@ MonoBehaviour:
   loadDone: 0
   levelChange:
     value: -1
-    EditorValue: 0
+    EditorValue: -1
   adsRewardCount: 0
   adsInterCount: 0
 --- !u!1 &1513406125
@@ -5034,6 +6754,7 @@ MonoBehaviour:
   graphic: {fileID: 1066175348}
   currentCard: {fileID: 0}
   coolDownTimeSetting: 0.05
+  timeSoundScratch: 0.3
 --- !u!1 &1881599553
 GameObject:
   m_ObjectHideFlags: 0
@@ -5059,13 +6780,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1881599553}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1389703321}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1495419256}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1881599555
 MonoBehaviour:
@@ -5264,7 +6985,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22426080, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.78070176
+      value: 0.9436937
       objectReference: {fileID: 0}
     - target: {fileID: 22428984, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchorMax.y
@@ -5276,7 +6997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22428984, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 37.644997
+      value: 138
       objectReference: {fileID: 0}
     - target: {fileID: 22428984, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5284,7 +7005,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22428984, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 145.40248
+      value: 597
       objectReference: {fileID: 0}
     - target: {fileID: 22428984, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5300,7 +7021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22455554, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 37.644997
+      value: 138
       objectReference: {fileID: 0}
     - target: {fileID: 22455554, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5308,7 +7029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22455554, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 183.04747
+      value: 735
       objectReference: {fileID: 0}
     - target: {fileID: 22455554, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5404,7 +7125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22468896, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 37.644997
+      value: 138
       objectReference: {fileID: 0}
     - target: {fileID: 22468896, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5412,7 +7133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22468896, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 258.33746
+      value: 1011
       objectReference: {fileID: 0}
     - target: {fileID: 22468896, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5440,7 +7161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22488670, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 37.644997
+      value: 138
       objectReference: {fileID: 0}
     - target: {fileID: 22488670, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5448,7 +7169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22488670, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 56.467495
+      value: 207
       objectReference: {fileID: 0}
     - target: {fileID: 22488670, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5464,7 +7185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22495692, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 37.644997
+      value: 138
       objectReference: {fileID: 0}
     - target: {fileID: 22495692, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5472,7 +7193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22495692, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 220.69246
+      value: 873
       objectReference: {fileID: 0}
     - target: {fileID: 22495692, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5488,7 +7209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224619367409363176, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 51.289993
+      value: 252
       objectReference: {fileID: 0}
     - target: {fileID: 224619367409363176, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5496,7 +7217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224619367409363176, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 100.93499
+      value: 402
       objectReference: {fileID: 0}
     - target: {fileID: 224619367409363176, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5512,7 +7233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224856348943071238, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 37.644997
+      value: 138
       objectReference: {fileID: 0}
     - target: {fileID: 224856348943071238, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5520,7 +7241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224856348943071238, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 18.822498
+      value: 69
       objectReference: {fileID: 0}
     - target: {fileID: 224856348943071238, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5532,7 +7253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2369662702609791303, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_fontSize
-      value: 4.8
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 2369662702609791303, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
@@ -5568,7 +7289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8949468901311314302, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_fontSize
-      value: 13.75
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8949468901311314302, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
@@ -5696,18 +7417,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 641754113845371738, guid: 9497cf9988b27c14ca8d082870a6ce13, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 641754113845371738, guid: 9497cf9988b27c14ca8d082870a6ce13, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 641754113845371738, guid: 9497cf9988b27c14ca8d082870a6ce13, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 641754113845371738, guid: 9497cf9988b27c14ca8d082870a6ce13, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.85
       objectReference: {fileID: 0}
@@ -5826,6 +7535,143 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9221067795383488257, guid: 508dfe4e67f879d43ae208c9713a53de, type: 3}
   m_PrefabInstance: {fileID: 1815571192}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2077590651
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2077590652}
+  - component: {fileID: 2077590654}
+  - component: {fileID: 2077590653}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2077590652
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077590651}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 137399892}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2077590653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077590651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: HideUi
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 74c5e3044675fc04a97ba44bd60deefd, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: cf6b215f13c6fcf449e0ae7c9a586aba, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 45
+  m_fontSizeBase: 45
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &2077590654
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077590651}
+  m_CullTransparentMesh: 1
 --- !u!1001 &1978092452899057673
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5873,6 +7719,10 @@ PrefabInstance:
     - target: {fileID: 641754113845371738, guid: 9497cf9988b27c14ca8d082870a6ce13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225751287495704174, guid: 9497cf9988b27c14ca8d082870a6ce13, type: 3}
+      propertyPath: clearBehavior
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8086633257259960554, guid: 9497cf9988b27c14ca8d082870a6ce13, type: 3}
       propertyPath: stopAction
@@ -6053,7 +7903,6 @@ SceneRoots:
   - {fileID: 1559898565}
   - {fileID: 1495419256}
   - {fileID: 870909172}
-  - {fileID: 1122910681}
   - {fileID: 751864541}
   - {fileID: 2018031714}
   - {fileID: 1296483745}
@@ -6063,4 +7912,4 @@ SceneRoots:
   - {fileID: 1515053779}
   - {fileID: 493415539}
   - {fileID: 1917349690}
-  - {fileID: 1881599554}
+  - {fileID: 1140137487}

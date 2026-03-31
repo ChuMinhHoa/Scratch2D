@@ -1,3 +1,4 @@
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Sirenix.Utilities;
@@ -18,6 +19,32 @@ public class BoosterGlobalConfig : GlobalConfig<BoosterGlobalConfig>
         }
 
         return null;
+    }
+
+    public BigNumber GetPriceBoosterByReviveType(ReviveType slotData)
+    {
+        var boosterType = BoosterType.BoosterMagnet;
+        switch (slotData)
+        {
+           
+            case ReviveType.AddSlot:
+                boosterType = BoosterType.BoosterAddSlot;
+                break;
+            case ReviveType.BoosterMagnet:
+                boosterType = BoosterType.BoosterMagnet;
+                break;
+            case ReviveType.AddNote:
+            default:
+                return 0;
+        }
+
+        for (var i = 0; i < boosterConfigs.Length; i++)
+        {
+            if(boosterConfigs[i].boosterType == boosterType)
+                return boosterConfigs[i].price;
+        }
+
+        return 0;
     }
 }
 

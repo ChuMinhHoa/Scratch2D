@@ -131,10 +131,10 @@ namespace Core.UI.Screens
 
                 View.MainView.interactable = false;
                 Events.OnActiveInteractable += CallInteractable;
-                Events.UseBooster += UseBoosterMagnet;
+                Events.UseBooster += UseBooster;
             }
 
-            private void UseBoosterMagnet(BoosterType boosterType)
+            private void UseBooster(BoosterType boosterType)
             {
                 View.OnUserBoosterMagnet(boosterType);
             }
@@ -175,6 +175,7 @@ namespace Core.UI.Screens
 
             private void OnClickSetting()
             {
+                SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_ButtonClick);
                 Events.OnActiveInteractable?.Invoke(false);
                 _ = UIAnimManager.Instance.AnimButton(View.BtnSetting.transform, null);
                 _ = UIManager.Instance.OpenModalAsync<ModalSettingInGame>();

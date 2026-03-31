@@ -45,7 +45,10 @@ public class TutorialManager : Singleton<TutorialManager>
         if (e != null)
         {
             Debug.Log($"Show tutorial {level}");
-            ShowTutorial(e);
+            if (PlayerResourceManager.Instance.gameBuildType != GameBuildType.Cheat)
+            {
+                ShowTutorial(e);
+            }
         }
     }
 

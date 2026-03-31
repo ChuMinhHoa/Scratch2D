@@ -32,6 +32,7 @@ public class SlotBase<TData> : MonoBehaviour
 
     public virtual void OnChoose()
     {
+        SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_ButtonClick);
         actionChooseCallBack?.Invoke(this);
     }
 

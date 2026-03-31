@@ -287,6 +287,7 @@ public class Level : Singleton<Level>
         CheckToCloseAllUI();
         ResetLevel();
         levelIndex.Value++;
+        IngameFirebaseAnalystic.Instance.SetLevelUserProperty();
         if (levelChange.Value!= -1)
         {
             levelChange.Value = -1;
@@ -509,7 +510,9 @@ public class Level : Singleton<Level>
         IngameFirebaseAnalystic.Instance.SetNoteFail(GetNoteFail());
         IngameFirebaseAnalystic.Instance.SetLoseType(LoseType.OutSlot);
         IngameFirebaseAnalystic.Instance.TrackLevelFail();
-        await UIManager.Instance.OpenActivityAsync<ActivityLoseGame>();
+
+        await UIManager.Instance.OpenModalAsync<ModalRevive>();
+        //await UIManager.Instance.OpenActivityAsync<ActivityLoseGame>();
     }
 
     public void RemoveStickerDone(StickerDone stD)
