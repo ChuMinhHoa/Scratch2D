@@ -54,6 +54,7 @@ public partial class Card : CardLockState.IHandler
 
     private void OnNoteDoneForLock()
     {
+        if (!isShowed) return;
         countUnlockSticker--;
         cardGraphic.SetTextCount(countUnlockSticker);
         if (countUnlockSticker == 0)

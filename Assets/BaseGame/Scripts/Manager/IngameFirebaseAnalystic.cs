@@ -57,7 +57,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
     public void AddReviveUsed() => reviveUsed++;
 
     private void AddRetry() => retry++;
-    
+
     public void AddUseRevive() => useRevive++;
 
     public void SetLoseType(LoseType value) => loseType = value;
@@ -84,7 +84,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
 
     public void TrackLevelStart()
     {
-        var level = PlayerInfoManager.Instance.playerLevel.Value;
+        var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
         var remainingCoins = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.Money).Amount;
 
         var remainingBoosterAddSlot = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.BoosterAddSlot)
@@ -108,7 +108,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
     public void TrackLevelComplete()
     {
         AddWinStreak();
-        var level = PlayerInfoManager.Instance.playerLevel.Value;
+        var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
         var remainingBoosterAddSlot = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.BoosterAddSlot)
             .Amount.ToInt();
         var remainingBoosterHammer = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.BoosterHammer)
@@ -135,7 +135,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
     public void TrackLevelFail()
     {
         ResetWinStreak();
-        var level = PlayerInfoManager.Instance.playerLevel.Value;
+        var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
 
         var remainingBoosterAddSlot = PlayerResourceManager.Instance.GetGameResource(GameResource.Type.BoosterAddSlot)
             .Amount.ToInt();
@@ -179,7 +179,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
 
     public void TrackAdsRewardShow(string placement, string buttonName)
     {
-        var level = PlayerInfoManager.Instance.playerLevel.Value;
+        var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
         var parameters = new Parameter[]
         {
             new("level", level),
@@ -193,7 +193,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
 
     public void TrackAdsInterShow(string placement)
     {
-        var level = PlayerInfoManager.Instance.playerLevel.Value;
+        var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
         var parameters = new Parameter[]
         {
             new("level", level),
@@ -215,7 +215,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
 
     public void TrackCurrencyEarn(GameResource.Type currencyType, int amount)
     {
-        var level = PlayerInfoManager.Instance.playerLevel.Value;
+        var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
         var parameters = new Parameter[]
         {
             new("level", level),
@@ -229,7 +229,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
 
     public void TrackCurrencySpend(GameResource.Type currencyType, int amount)
     {
-        var level = PlayerInfoManager.Instance.playerLevel.Value;
+        var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
         var parameters = new Parameter[]
         {
             new("level", level),
@@ -250,7 +250,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
 
     public void TrackEventPurchase(string packageName, string productID)
     {
-        var level = PlayerInfoManager.Instance.playerLevel.Value;
+        var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
         var isFirstOrder = ShopManager.Instance.IsFirstPurchase.Value;
         var parameters = new Parameter[]
         {
@@ -264,7 +264,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
 
     public void TrackEventPurchaseClick(string productID)
     {
-        var level = PlayerInfoManager.Instance.playerLevel.Value;
+        var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
         var parameters = new Parameter[]
         {
             new("level", level),
@@ -280,7 +280,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
 
     public void SetLevelUserProperty()
     {
-        var level = PlayerInfoManager.Instance.playerLevel.Value;
+        var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
         FirebaseAnalytics.SetUserProperty("Level", level.ToString());
     }
 
@@ -301,7 +301,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
         var adsRewardCount = PlayerInfoManager.Instance.adsRewardCount;
         FirebaseAnalytics.SetUserProperty("ads_reward_count", adsRewardCount.ToString());
     }
-    
+
     public void SetUserPropertyAdsInterCount()
     {
         var adsInterCount = PlayerInfoManager.Instance.adsInterCount;

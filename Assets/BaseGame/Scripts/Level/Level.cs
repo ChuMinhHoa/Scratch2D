@@ -39,10 +39,10 @@ public class Level : Singleton<Level>
     private async UniTask InitData()
     {
         await UniTask.WaitUntil(() => PlayerInfoManager.Instance.loadDone);
-        
+
         levelIndex = PlayerInfoManager.Instance.playerLevel;
         levelChange = PlayerInfoManager.Instance.levelChange;
-        
+
         GlobalEventManager.CheckToCallNextSticker = () => CallNextObjSticker();
 
         GlobalEventManager.OnRemoveSticker = OnRemoveSticker;
@@ -81,7 +81,7 @@ public class Level : Singleton<Level>
     public void LoadDataClean()
     {
         //Debug.Log("Clean Data");
-        var e  = FindObjectsByType<ScratchObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        var e = FindObjectsByType<ScratchObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         var e1 = FindObjectsByType<Card>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         var e2 = FindObjectsByType<Sticker>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         var e3 = FindObjectsByType<StickerDone>(FindObjectsInactive.Include, FindObjectsSortMode.None);
@@ -141,22 +141,21 @@ public class Level : Singleton<Level>
             levelChange.Value = LevelGlobalConfig.Instance.GetRandomLevel(levelIndex.Value);
             PlayerInfoDataSave.Instance.SaveData();
         }
-        
+
         realLevel = levelChange.Value != -1 ? levelChange.Value : levelIndex.Value;
-        
+
         levelConfig = LevelGlobalConfig.Instance.GetLevelConfig(realLevel);
-        
+
         levelTextAsset = levelConfig.levelAsset;
         LevelData = DataSerializer.Deserialize<LevelData>(levelTextAsset.text);
         ShuffleID();
         oSController.LoadData(LevelData.objHaveStickers);
         await layerController.LoadData(LevelData.layerCards);
         await UniTask.WaitUntil(() => oSController.loadDone && layerController.loadDone);
-        
+
         IngameFirebaseAnalystic.Instance.StartTimePlayLevel();
         IngameFirebaseAnalystic.Instance.SetLevel(levelIndex.Value);
         IngameFirebaseAnalystic.Instance.TrackLevelStart();
-      
     }
 
     [Button]
@@ -288,11 +287,12 @@ public class Level : Singleton<Level>
         ResetLevel();
         levelIndex.Value++;
         IngameFirebaseAnalystic.Instance.SetLevelUserProperty();
-        if (levelChange.Value!= -1)
+        if (levelChange.Value != -1)
         {
             levelChange.Value = -1;
             PlayerInfoDataSave.Instance.SaveData();
         }
+
         PlayerInfoDataSave.Instance.SaveData();
         GamePlayManager.Instance.ChangeGameState(GameState.Normal);
         IngameFirebaseAnalystic.Instance.TrackLevelComplete();
@@ -301,15 +301,14 @@ public class Level : Singleton<Level>
 
     private void CheckToCloseAllUI()
     {
-        if(UIManager.Instance.IsHaveScreenDefaultOpen())
+        if (UIManager.Instance.IsHaveScreenDefaultOpen())
             _ = UIManager.Instance.CloseScreenDefaultAsync();
 
         if (UIManager.Instance.IsHaveModalOpen())
-             _ = UIManager.Instance.CloseModalAsync();
+            _ = UIManager.Instance.CloseModalAsync();
 
         if (UIManager.Instance.IsHaveActivityOpen())
             _ = UIManager.Instance.CloseAllActivity();
-
     }
 
     public void MoveFolderOut(FolderHaveSticker folder)
@@ -328,10 +327,22 @@ public class Level : Singleton<Level>
     }
 
     [Button]
-    public void CheckLoseGame()
+    public async UniTask CheckLoseGame()
     {
         if (UnitEventManager.Instance.IsHaveEvent())
+        {
+            Debug.Log("have event, wait to check lose game!");
+            await UniTask.WaitUntil(() => !UnitEventManager.Instance.IsHaveEvent());
+        }
+
+        if (UnitEventManager.Instance.IsHaveCheckLoseEvent())
+        {
+            Debug.Log($"have check lose event Return: {UnitEventManager.Instance.actionCheckLoseGame}");
             return;
+        }
+
+        UnitEventManager.Instance.AddActionCheckLoseGame(1);
+
         var isFreeSlot = fSpaceController.IsHaveFreeSlot();
         var isHaveNoteMoveIn = oSController.IsHaveNoteMoveIn();
         var noteDontHaveStickerOnMove = CheckAllNoteDontHaveStickerOnMove();
@@ -353,6 +364,8 @@ public class Level : Singleton<Level>
         {
             _ = EndGame();
         }
+
+        UnitEventManager.Instance.RemoveActionCheckLoseGame(0);
     }
 
     private bool CheckAllNoteHaveStickerOnListDone()

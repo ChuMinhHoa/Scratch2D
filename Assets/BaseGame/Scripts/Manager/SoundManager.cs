@@ -22,6 +22,7 @@ public class SoundManager : Singleton<SoundManager>
     private void Start()
     {
         InitAudio();
+        InitBgSound();
         settingData = SettingDataSave.Instance.settingData;
         var e = Enum.GetValues(typeof(SettingKey));
         if (settingData.Count < e.Length)
@@ -79,15 +80,6 @@ public class SoundManager : Singleton<SoundManager>
             e.InitData(sfxConfig[i].AudioKey, sfxConfig[i].AudioClip, source, 1, false);
             sfxData.Add(e);
         }
-        
-        for (var i = 0; i < bgConfig.Count; i++)
-        {
-            var e = new SoundData();
-            var source = gameObject.AddComponent<AudioSource>();
-            e.InitData(bgConfig[i].AudioKey, bgConfig[i].AudioClip, source, 1, false);
-            bgData.Add(e);
-        }
-
         isLoadDone = true;
     }
     
@@ -153,13 +145,13 @@ public class SoundManager : Singleton<SoundManager>
     public List<AudioConfig> bgConfig;
     public List<SoundData> bgData;
 
-    public void InitBgSound()
+    private void InitBgSound()
     {
         for (var i = 0; i < bgConfig.Count; i++)
         {
             var e = new SoundData();
             var source = gameObject.AddComponent<AudioSource>();
-            e.InitData(sfxConfig[i].AudioKey, sfxConfig[i].AudioClip, source, 1, true);
+            e.InitData(bgConfig[i].AudioKey, bgConfig[i].AudioClip, source, 1, true);
             bgData.Add(e);
         }
     }
@@ -320,4 +312,6 @@ public enum AudioKey
     Sfx_BoosterHamerMove = 111,
     Sfx_BoosterHamerHit = 112,
     Sfx_BoosterAddSlot = 113,
+    Sfx_StickerDoneIn = 114,
+    Sfx_StickerDoneFSpace = 115
 }

@@ -56,6 +56,7 @@ public partial class StickerDone : StickerDoneMoveFreeSpaceState.IHandler
         LMotion.Create(currentEulerAngle, stickerPos.trsPos.eulerAngles, .25f).Bind(x => transform.eulerAngles = x).AddTo(this);
         
         await unitAnim.PlayMoveAnim(stickerPos.trsPos.position);
+        SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_StickerDoneFSpace);
         CheckToAbleStickerAnimAgain();
         stickerPos.MoveDone();
         Level.Instance.CheckStickerDone();

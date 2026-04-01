@@ -1188,7 +1188,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You will lose a lifre!
+  m_text: 'You will lose a life!
 
     Are you sure you want to replay?'
   m_isRightToLeft: 0

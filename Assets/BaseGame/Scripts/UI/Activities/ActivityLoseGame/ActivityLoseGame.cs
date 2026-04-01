@@ -90,6 +90,11 @@ namespace Core.UI.Activities
                 View.btnRetry.onClick.AddListener(RetryGame);
             }
 
+            public void DidEnter(Memory<object> args)
+            {
+                SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_Lose);
+            }
+
             private void RetryGame()
             {
                 EnergyManager.Instance.UseEnergy(1);

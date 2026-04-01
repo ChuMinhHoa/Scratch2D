@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TW.Utility.DesignPattern;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class UnitEventManager : Singleton<UnitEventManager>
 {
     public List<int> eventId = new();
+    public int actionCheckLoseGame;
 
     public int RegisterEvent()
     {
@@ -34,5 +36,20 @@ public class UnitEventManager : Singleton<UnitEventManager>
     public bool IsHaveEvent()
     {
         return eventId.Count > 0;
+    }
+
+    public void AddActionCheckLoseGame(int action)
+    {
+        actionCheckLoseGame = action;
+    }
+    
+    public void RemoveActionCheckLoseGame(int action)
+    {
+        actionCheckLoseGame = action;
+    }
+
+    public bool IsHaveCheckLoseEvent()
+    {
+        return actionCheckLoseGame != 0;
     }
 }

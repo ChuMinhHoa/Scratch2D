@@ -132,7 +132,10 @@ public partial class FolderHaveSticker : MonoBehaviour
     public async UniTask MoveToTarget(Vector3 target)
     {
         var id = UnitEventManager.Instance.RegisterEvent();
-        await unitAnim.PlayMoveAnim(target);
+        //await unitAnim.PlayMoveAnim(target);
+        transform.position = target;
+        transform.localScale = Vector3.zero;
+        await LMotion.Create(0f, 1f, 0.25f).WithEase(Ease.OutBack).Bind(x => transform.localScale = Vector3.one * x).AddTo(this);
         UnitEventManager.Instance.RemoveEventId(id);
         await UniTask.WaitForSeconds(0.1f);
         Level.Instance.CheckStickerDone();

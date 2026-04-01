@@ -664,7 +664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5707ca3a3ecd694d95084da73e135ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardGraphic
-  cardState: 0
+  cardState: 2
   objDisable: {fileID: 664377655630795629}
   sprAnim:
   - {fileID: 996963301119101435}

@@ -88,6 +88,7 @@ namespace Core.UI.Screens
                 if (!e)
                 {
                     //show buy energy popup
+                    await UIManager.Instance.OpenModalAsync<ModalRefill>();
                     return;
                 }
 

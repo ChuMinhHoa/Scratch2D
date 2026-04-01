@@ -102,6 +102,7 @@ namespace Core.UI.Activities
                 var difficult = Level.Instance.GetLevelDifficult();
                 if (difficult == Difficulty.Hard)
                 {
+                    SoundManager.Instance.StopBgSound(AudioKey.Bg_MainMenu);
                     SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_SupperHard);
                 }
                 AnimOpen().Forget();
@@ -117,6 +118,7 @@ namespace Core.UI.Activities
                 await UIManager.Instance.CloseActivityAsync<ActivityFirstShowOnGamePlay>();
                 TutorialManager.Instance.OnCheckShowLevel();
                 ScreenGamePlayContext.Events.OnActiveInteractable?.Invoke(true);
+                SoundManager.Instance.PlayBgSound(AudioKey.Bg_MainMenu);
             }
         }
     }

@@ -1,11 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using LitMotion;
-using R3;
 using Sirenix.OdinInspector;
 using TW.Utility.DesignPattern.UniTaskState;
-using UniRx;
 using UnityEngine;
 using CompositeDisposable = R3.CompositeDisposable;
 
@@ -47,6 +44,7 @@ public partial class Card : MonoBehaviour
     {
         GlobalEventManager.OnHaveCardDone -= CheckToShow;
         GlobalEventManager.OnNoteDoneCallBack -= OnNoteDoneForLock;
+        GlobalEventManager.OnNoteDoneCallBack -= OnNoteDoneForFreeze;
     }
 
     [Button]
@@ -55,6 +53,8 @@ public partial class Card : MonoBehaviour
         //if (!stateMachine.IsCurrentState(CardWaitState)) return;
         
         if (IsDone()) return;
+
+        if (GamePlayManager.Instance.gameState == GameState.LoseGame) return;
         
         if(Level.Instance.IsHaveStickerWait()) return;
 
