@@ -110,7 +110,7 @@ public partial class FolderHaveSticker : MonoBehaviour
     {
         onSlot = false;
         stateMachine.RequestTransition(FhsDoneState);
-        var id = UnitEventManager.Instance.RegisterEvent();
+        UnitEventManager.Instance.RegisterEvent(gameObject);
         var currentPos = transform.position;
         effectDone.SetActive(true);
         SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_NoteDone);
@@ -124,19 +124,19 @@ public partial class FolderHaveSticker : MonoBehaviour
         await unitAnim.PlayScaleAnimation();
 
         await LMotion.Create(currentPos, posOut.position, 0.25f).Bind(x => transform.position = x).AddTo(this);
-        UnitEventManager.Instance.RemoveEventId(id);
+        UnitEventManager.Instance.RemoveEventId(gameObject);
         ResetFolderSticker();
         Level.Instance.oSController.OnNoteDone();
     }
 
     public async UniTask MoveToTarget(Vector3 target)
     {
-        var id = UnitEventManager.Instance.RegisterEvent();
+        UnitEventManager.Instance.RegisterEvent(gameObject);
         //await unitAnim.PlayMoveAnim(target);
         transform.position = target;
         transform.localScale = Vector3.zero;
         await LMotion.Create(0f, 1f, 0.25f).WithEase(Ease.OutBack).Bind(x => transform.localScale = Vector3.one * x).AddTo(this);
-        UnitEventManager.Instance.RemoveEventId(id);
+        UnitEventManager.Instance.RemoveEventId(gameObject);
         await UniTask.WaitForSeconds(0.1f);
         Level.Instance.CheckStickerDone();
         

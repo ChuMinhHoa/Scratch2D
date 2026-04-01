@@ -228,6 +228,7 @@ public class BtnBooster : MonoBehaviour
         }
 
         ChangeValueBooster(gameResource.Amount);
+        Debug.Log("used booster");
         GlobalEventManager.OnBoosterDone?.Invoke();
     }
 
@@ -280,5 +281,6 @@ public enum BoosterType
 {
     BoosterMagnet,
     BoosterAddSlot,
-    BoosterHammer
+    BoosterHammer,
+    BoosterCart
 }

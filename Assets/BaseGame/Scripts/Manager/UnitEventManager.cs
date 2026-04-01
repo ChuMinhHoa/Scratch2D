@@ -5,30 +5,18 @@ using UnityEngine;
 
 public class UnitEventManager : Singleton<UnitEventManager>
 {
-    public List<int> eventId = new();
-    public int actionCheckLoseGame;
+    public List<GameObject> eventId = new();
+    public List<Action> actions = new();
 
-    public int RegisterEvent()
+    public void RegisterEvent(GameObject gameObj)
     {
-        var id = -1;
-        var indexEventCheck = 0;
-        while (id == -1 && indexEventCheck < eventId.Count)
-        {
-            if (!eventId.Contains(indexEventCheck))
-                id = indexEventCheck;
-            indexEventCheck++;
-        }
-
-        if (id == -1)
-            id = eventId.Count;
-        eventId.Add(id);
-        return id;
+        eventId.Add(gameObj);
     }
 
-    public void RemoveEventId(int id)
+    public void RemoveEventId(GameObject gameObj)
     {
-        if (eventId.Contains(id))
-            eventId.Remove(id);
+        if (eventId.Contains(gameObj))
+            eventId.Remove(gameObj);
         // if (eventId.Count == 0)
         //     Debug.Log("all event is removed");
     }
@@ -36,20 +24,5 @@ public class UnitEventManager : Singleton<UnitEventManager>
     public bool IsHaveEvent()
     {
         return eventId.Count > 0;
-    }
-
-    public void AddActionCheckLoseGame(int action)
-    {
-        actionCheckLoseGame = action;
-    }
-    
-    public void RemoveActionCheckLoseGame(int action)
-    {
-        actionCheckLoseGame = action;
-    }
-
-    public bool IsHaveCheckLoseEvent()
-    {
-        return actionCheckLoseGame != 0;
     }
 }

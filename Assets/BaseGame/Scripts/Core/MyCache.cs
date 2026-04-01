@@ -31,6 +31,7 @@ public static class MyCache
             BoosterType.BoosterMagnet => GameResource.Type.BoosterMagnet,
             BoosterType.BoosterAddSlot => GameResource.Type.BoosterAddSlot,
             BoosterType.BoosterHammer => GameResource.Type.BoosterHammer,
+            BoosterType.BoosterCart => GameResource.Type.BoosterCart,
             _ => GameResource.Type.None
         };
     }

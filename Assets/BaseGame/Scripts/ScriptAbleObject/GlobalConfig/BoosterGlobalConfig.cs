@@ -12,6 +12,7 @@ public class BoosterGlobalConfig : GlobalConfig<BoosterGlobalConfig>
     
     public BoosterConfig GetBoosterConfig(BoosterType boosterType)
     {
+        Debug.Log(boosterType);
         for (var i = 0; i < boosterConfigs.Length; i++)
         {
             if(boosterConfigs[i].boosterType == boosterType)

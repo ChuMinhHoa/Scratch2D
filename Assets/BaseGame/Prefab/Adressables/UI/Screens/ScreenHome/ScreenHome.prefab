@@ -1105,6 +1105,10 @@ PrefabInstance:
       propertyPath: objAdd
       value: 
       objectReference: {fileID: 1067888767089653691}
+    - target: {fileID: 3972695114530354312, guid: d494a7c603d8220439508d53a19edb2f, type: 3}
+      propertyPath: resourceType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6615476854967340347, guid: d494a7c603d8220439508d53a19edb2f, type: 3}
       propertyPath: m_Name
       value: UIResourceEnergy

@@ -44,6 +44,7 @@ public partial class StickerDone : MonoBehaviour
             {
                 Level.Instance.fSpaceController.RemoveStickerDoneFromNoWhere(this);
                 Level.Instance.RemoveStickerDone(this);
+                Level.Instance.fSpaceController.RemoveStickerDoneFromCart(this);
                 stickerPos?.ResetPos();
                 stickerPos = e;
                 stateMachine.RequestTransition(StickerDoneMoveToObjHaveStickerState);
@@ -51,7 +52,7 @@ public partial class StickerDone : MonoBehaviour
             }
         }
 
-        if (!fromFreeSpace)
+        if (!fromFreeSpace && stateMachine.CurrentState != StickerDoneWaitOnCartState)
         {
             e = Level.Instance.fSpaceController.GetFreeSpacePos(this);
             if (e != null)
@@ -67,7 +68,7 @@ public partial class StickerDone : MonoBehaviour
             }
         }
 
-        if (!fromNoWhere && !fromFreeSpace)
+        if (!fromNoWhere && !fromFreeSpace && stateMachine.CurrentState != StickerDoneWaitOnCartState)
             stateMachine.RequestTransition(StickerDoneMoveAround);
     }
 

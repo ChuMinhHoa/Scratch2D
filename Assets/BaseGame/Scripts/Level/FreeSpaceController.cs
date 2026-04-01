@@ -13,6 +13,7 @@ public class FreeSpaceController : SpaceForSticker
     [ShowInInspector] public List<StickerDone> stickerDoneWait = new();
     public GameObject objEffectSpawn;
     public GameObject prefEffectSpawn;
+    public CartObjBooster cartBooster;
     public bool IsHaveStickerWait()
     {
         return stickerDoneWait.Count > 0;
@@ -32,6 +33,7 @@ public class FreeSpaceController : SpaceForSticker
         return null;
     }
 
+    [Button]
     public void CheckStickerDone()
     {
         for (var i = 0; i < spaceStickers.Count; i++)
@@ -51,6 +53,8 @@ public class FreeSpaceController : SpaceForSticker
             if (i >= stickerDoneWait.Count) continue;
             StickerDoneManager.Instance.AddStickerDone(stickerDoneWait[i]);
         }
+
+        cartBooster.CheckStickerDone();
     }
 
     public void RegisterStickerDoneWait(StickerDone stickerDone)
@@ -104,6 +108,7 @@ public class FreeSpaceController : SpaceForSticker
         }
 
         stickerDoneWait.Clear();
+        cartBooster.ResetCart();
     }
 
     private float spaceWidth = 1.5f;
@@ -153,5 +158,23 @@ public class FreeSpaceController : SpaceForSticker
     {
         return spaceStickers.Count < 5;
     }
-    
+
+    public void UseBoosterCart()
+    {
+        for (var i = 0; i < spaceStickers.Count; i++)
+        {
+            if (spaceStickers[i].stickerPos.IsHaveObj())
+            {
+                var stickerDone = spaceStickers[i].stickerPos.obj;
+                //RegisterStickerDoneWait(stickerDone);
+                //spaceStickers[i].stickerPos.ResetPos();
+                cartBooster.AddStickerDone(stickerDone);
+            }
+        }
+    }
+
+    public void RemoveStickerDoneFromCart(StickerDone stickerDone)
+    {
+        cartBooster.RemoveStickerDoneFromCart(stickerDone);
+    }
 }

@@ -285,8 +285,12 @@ public class Level : Singleton<Level>
     {
         CheckToCloseAllUI();
         ResetLevel();
+        isEndGame = true;
         levelIndex.Value++;
+#if !UNITY_EDITOR
+        
         IngameFirebaseAnalystic.Instance.SetLevelUserProperty();
+#endif
         if (levelChange.Value != -1)
         {
             levelChange.Value = -1;
@@ -295,8 +299,10 @@ public class Level : Singleton<Level>
 
         PlayerInfoDataSave.Instance.SaveData();
         GamePlayManager.Instance.ChangeGameState(GameState.Normal);
-        IngameFirebaseAnalystic.Instance.TrackLevelComplete();
-        _ = UIManager.Instance.OpenActivityAsync<ActivityWinGame>();
+#if !UNITY_EDITOR
+        IngameFirebaseAnalystic.Instance.TrackLevelComplete(); 
+#endif
+        UIManager.Instance.OpenActivity<ActivityWinGame>();
     }
 
     private void CheckToCloseAllUI()
@@ -329,20 +335,17 @@ public class Level : Singleton<Level>
     [Button]
     public async UniTask CheckLoseGame()
     {
+        
         if (UnitEventManager.Instance.IsHaveEvent())
         {
             Debug.Log("have event, wait to check lose game!");
             await UniTask.WaitUntil(() => !UnitEventManager.Instance.IsHaveEvent());
         }
 
-        if (UnitEventManager.Instance.IsHaveCheckLoseEvent())
-        {
-            Debug.Log($"have check lose event Return: {UnitEventManager.Instance.actionCheckLoseGame}");
+        if (isEndGame)
             return;
-        }
-
-        UnitEventManager.Instance.AddActionCheckLoseGame(1);
-
+        Debug.Log("Check lose game!");
+        
         var isFreeSlot = fSpaceController.IsHaveFreeSlot();
         var isHaveNoteMoveIn = oSController.IsHaveNoteMoveIn();
         var noteDontHaveStickerOnMove = CheckAllNoteDontHaveStickerOnMove();
@@ -364,8 +367,6 @@ public class Level : Singleton<Level>
         {
             _ = EndGame();
         }
-
-        UnitEventManager.Instance.RemoveActionCheckLoseGame(0);
     }
 
     private bool CheckAllNoteHaveStickerOnListDone()

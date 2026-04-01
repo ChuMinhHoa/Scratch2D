@@ -94,7 +94,7 @@ public class ShopManager : Singleton<ShopManager>
     private async UniTask DelayPurChaseFailed()
     {
         await UniTask.Delay(1000);
-        await UIManager.Instance.CloseActivityAsync<ActivityBlock>();
+        //await UIManager.Instance.CloseActivityAsync<ActivityBlock>();
         //await UIManager.Instance.OpenModalAsync<ModalPurchaseFail>();
     }
 

@@ -52,8 +52,14 @@ public partial class StickerDone : StickerDoneMoveToObjHaveStickerState.IHandler
         actionCallBackOnMoveToNote?.Invoke();
         var ct = this.GetCancellationTokenOnDestroy();
         
-        var idRegister = UnitEventManager.Instance.RegisterEvent();
+        UnitEventManager.Instance.RegisterEvent(gameObject);
         CheckToAbleStickerAnimAgain();
+        if (stickerPos == null)
+        {
+//            Debug.LogError("StickerDoneMoveToObjHaveStickerState: stickerPos is null");
+            Level.Instance.fSpaceController.RegisterStickerDoneWait(this);
+            return;
+        }
         transform.SetParent(stickerPos.trsPos);
         var currentScale = transform.localScale;
         var currentEulerAngle = transform.eulerAngles;
@@ -65,7 +71,7 @@ public partial class StickerDone : StickerDoneMoveToObjHaveStickerState.IHandler
         await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
         stickerGlow?.gameObject.SetActive(true);
         stickerPos.MoveDone();
-        UnitEventManager.Instance.RemoveEventId(idRegister);
+        UnitEventManager.Instance.RemoveEventId(gameObject);
         await UniTask.WaitForSeconds(0.25f, cancellationToken: ct);
         Level.Instance.CheckLoseGame();
     }

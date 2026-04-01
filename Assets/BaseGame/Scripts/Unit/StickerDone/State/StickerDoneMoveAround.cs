@@ -46,7 +46,7 @@ public partial class StickerDone : StickerDoneMoveAround.IHandler
     
     public async UniTask OnEnterMoveAroundState()
     {
-        var id = UnitEventManager.Instance.RegisterEvent();
+        UnitEventManager.Instance.RegisterEvent(gameObject);
         Level.Instance.fSpaceController.RegisterStickerDoneWait(this);
         centerPosition = transform.position;
         orbitMotionHandle = LMotion.Create(0f, Mathf.PI * 2f, 1f)
@@ -59,7 +59,7 @@ public partial class StickerDone : StickerDoneMoveAround.IHandler
                 transform.position = new Vector3(x, y, centerPosition.z);
             }).AddTo(this);
         await UniTask.WaitForSeconds(0.1f);
-        UnitEventManager.Instance.RemoveEventId(id);
+        UnitEventManager.Instance.RemoveEventId(gameObject);
         Level.Instance.CheckLoseGame();
     }
 

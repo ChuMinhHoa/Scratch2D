@@ -43,8 +43,8 @@ public partial class StickerDone : StickerDoneMoveFreeSpaceState.IHandler
     
     public async UniTask OnEnterMoveFreeSpace()
     {
-        actionCallBackOnMoveToNote?.Invoke();
-        var id = UnitEventManager.Instance.RegisterEvent();
+        actionCallBackOnMoveToNote?.Invoke(); 
+        UnitEventManager.Instance.RegisterEvent(gameObject);
         stickerPos.RegisterObj(this);
         stickerDoneAnim.enabled = false;
         var currentScale = sprIcon.transform.localScale;
@@ -60,7 +60,7 @@ public partial class StickerDone : StickerDoneMoveFreeSpaceState.IHandler
         CheckToAbleStickerAnimAgain();
         stickerPos.MoveDone();
         Level.Instance.CheckStickerDone();
-        UnitEventManager.Instance.RemoveEventId(id);
+        UnitEventManager.Instance.RemoveEventId(gameObject);
 
         if (UnitEventManager.Instance.IsHaveEvent())
         {

@@ -184,6 +184,7 @@ public class Purchaser : TW.Utility.DesignPattern.Singleton<Purchaser>
 
     public Product FindProduct(string productId)
     {
+        Debug.Log(productId);
         return GetFetchedProducts()?.FirstOrDefault(product => product.definition.id == productId);
     }
 

@@ -66,6 +66,7 @@ public class BoosterManager : Singleton<BoosterManager>
             case BoosterType.BoosterHammer:
                 SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_BoosterHamerMove);
                 break;
+            case BoosterType.BoosterCart:
             default:
                 return;
         }
@@ -77,6 +78,8 @@ public class BoosterManager : Singleton<BoosterManager>
         {
             case BoosterType.BoosterHammer:
                 SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_BoosterHamerHit);
+                break;
+            case BoosterType.BoosterCart:
                 break;
             case BoosterType.BoosterMagnet:
             case BoosterType.BoosterAddSlot:

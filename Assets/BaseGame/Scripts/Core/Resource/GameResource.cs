@@ -11,11 +11,12 @@ public class GameResource
         None = 0,
         Money = 1,
         Gem = 2,
-        BoosterMagnet = 3,
-        BoosterAddSlot = 4,
-        BoosterHammer = 5,
-        Energy = 6,
-        NoAds = 7,
+        Energy = 3,
+        NoAds = 4,
+        BoosterCart = 5,
+        BoosterMagnet = 6,
+        BoosterAddSlot = 7,
+        BoosterHammer = 8,
     }
     
     [field: HideLabel, HorizontalGroup(nameof(GameResource), 100)]

@@ -22,8 +22,34 @@ public class TutorialManager : Singleton<TutorialManager>
     {
         listIDTutorialDone = TutorialDataSave.Instance.tutorialIDComplete;
         boosterUnlock = TutorialDataSave.Instance.boosterUnlock;
+        if (PlayerResourceManager.Instance.gameBuildType == GameBuildType.Cheat)
+        {
+            CheckToAddAllTutorial();
+        }
     }
-    
+
+    private void CheckToAddAllTutorial()
+    {
+        var e = TutorialGlobalConfig.Instance.listTutorialConfig;
+        for (var i = 0; i < e.Length; i++)
+        {
+            if (!listIDTutorialDone.Contains(e[i].id))
+            {
+                listIDTutorialDone.Add(e[i].id);
+            }
+        }
+
+        var boosterTypes = Enum.GetValues(typeof(BoosterType));
+        for (var i = 0; i < boosterTypes.Length; i++)
+        {
+            var boosterType = (BoosterType)boosterTypes.GetValue(i);
+            if (!boosterUnlock.Contains(boosterType))
+            {
+                boosterUnlock.Add(boosterType);
+            }
+        }
+    }
+
     public bool IsUnLockBooster(BoosterType boosterType)
     {
         TutorialDataSave.Instance.SaveData();
@@ -83,7 +109,7 @@ public class TutorialManager : Singleton<TutorialManager>
 
     public void DoneTutorial()
     {
-        if(listIDTutorialDone.Contains(currentTutorialConfig.id)) return;
+        if (listIDTutorialDone.Contains(currentTutorialConfig.id)) return;
         listIDTutorialDone.Add(currentTutorialConfig.id);
         CheckAddBoosterUnlock(currentTutorialConfig.tutorialType);
         currentTutorialConfig = null;
@@ -153,6 +179,7 @@ public class TutorialHandScratchAction : TutorialHandAction
             actionCallBack?.Invoke();
             return;
         }
+
         var reactive = e.isCallDone;
         reactive.Subscribe(ChangeDone).AddTo(e);
         var pos = e.transform.position;
