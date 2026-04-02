@@ -14,6 +14,7 @@ public class FreeSpaceController : SpaceForSticker
     public GameObject objEffectSpawn;
     public GameObject prefEffectSpawn;
     public CartObjBooster cartBooster;
+
     public bool IsHaveStickerWait()
     {
         return stickerDoneWait.Count > 0;
@@ -87,9 +88,10 @@ public class FreeSpaceController : SpaceForSticker
             objEffectSpawn = Object.Instantiate(prefEffectSpawn);
             objEffectSpawn.transform.position = spaceStickerPitch.transform.position;
         }
+
         objEffectSpawn.SetActive(true);
         //if(!UnitEventManager.Instance.IsHaveEvent())
-            CheckStickerDone();
+        CheckStickerDone();
     }
 
     public override void ResetController()
@@ -168,7 +170,7 @@ public class FreeSpaceController : SpaceForSticker
                 var stickerDone = spaceStickers[i].stickerPos.obj;
                 //RegisterStickerDoneWait(stickerDone);
                 //spaceStickers[i].stickerPos.ResetPos();
-                cartBooster.AddStickerDone(stickerDone);
+                _ = cartBooster.AddStickerDone(stickerDone, i);
             }
         }
     }
@@ -176,5 +178,15 @@ public class FreeSpaceController : SpaceForSticker
     public void RemoveStickerDoneFromCart(StickerDone stickerDone)
     {
         cartBooster.RemoveStickerDoneFromCart(stickerDone);
+    }
+
+    public void ResetPos(StickerPos stickerPos)
+    {
+        for (var i = 0; i < spaceStickers.Count; i++)
+        {
+            if (spaceStickers[i].stickerPos != stickerPos) continue;
+            _ = spaceStickers[i].ResetPos();
+            break;
+        }
     }
 }

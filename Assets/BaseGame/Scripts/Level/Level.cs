@@ -398,18 +398,14 @@ public class Level : Singleton<Level>
         for (var i = 0; i < slotFolders.Length; i++)
         {
             var noteId = slotFolders[i].GetNoteId();
-            if (noteId != -1)
+            if (noteId == -1) continue;
+            for (var j = 0; j < spaceStickers.Count; j++)
             {
-                for (var j = 0; j < spaceStickers.Count; j++)
-                {
-                    var st = spaceStickers[j].stickerPos.obj;
-                    if (st)
-                    {
-                        var isSame = st.IsHaveSticker(noteId);
-                        if (isSame)
-                            return true;
-                    }
-                }
+                var st = spaceStickers[j].stickerPos.obj;
+                if (!st) continue;
+                var isSame = st.IsHaveSticker(noteId);
+                if (isSame)
+                    return true;
             }
         }
 
@@ -424,14 +420,12 @@ public class Level : Singleton<Level>
         {
             var noteId = slotFolders[i].GetNoteId();
 //            Debug.Log($"id check {noteId}");
-            if (noteId != -1)
+            if (noteId == -1) continue;
+            for (var j = 0; j < card.Count; j++)
             {
-                for (var j = 0; j < card.Count; j++)
-                {
-                    if (!card[j].isShowed) continue;
-                    if (card[j].IsHaveSticker(noteId))
-                        return true;
-                }
+                if (!card[j].isShowed) continue;
+                if (card[j].IsHaveSticker(noteId))
+                    return true;
             }
         }
 

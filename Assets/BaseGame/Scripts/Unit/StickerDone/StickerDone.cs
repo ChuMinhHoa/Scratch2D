@@ -7,6 +7,7 @@ using UnityEngine;
 public partial class StickerDone : MonoBehaviour
 {
     public UnitAnimation unitAnim;
+    public UnitAnimation unitAnimMoveToCart;
     public SpriteRenderer sprIcon;
     public Animation stickerDoneAnim;
     public SpriteRenderer stickerGlow;
@@ -45,7 +46,11 @@ public partial class StickerDone : MonoBehaviour
                 Level.Instance.fSpaceController.RemoveStickerDoneFromNoWhere(this);
                 Level.Instance.RemoveStickerDone(this);
                 Level.Instance.fSpaceController.RemoveStickerDoneFromCart(this);
-                stickerPos?.ResetPos();
+                if (stickerPos != null)
+                {
+                    Level.Instance.fSpaceController.ResetPos(stickerPos);
+                }
+                //stickerPos?.ResetPos();
                 stickerPos = e;
                 stateMachine.RequestTransition(StickerDoneMoveToObjHaveStickerState);
                 return;
@@ -80,5 +85,28 @@ public partial class StickerDone : MonoBehaviour
     public void SetActionCallBackOnMoveToNote(Action actionCallBack)
     {
         actionCallBackOnMoveToNote = actionCallBack;
+    }
+
+    public void ClearAnim()
+    {
+        unitAnim.ClearAnim();
+    }
+
+    private async UniTask MoveToPos(Vector3 target)
+    {
+        ClearAnim();
+        await unitAnim.PlayMoveAnim(target);
+    }
+    
+    private async UniTask MoveToPosLocal(Vector3 target)
+    {
+        ClearAnim();
+        await unitAnim.PlayMoveAnimLocal(target);
+    }
+    
+    private async UniTask MoveToCart(Vector3 target)
+    {
+        ClearAnim();
+        await unitAnimMoveToCart.PlayMoveAnim(target);
     }
 }

@@ -124,6 +124,60 @@ public class LevelGenerateFunction : MonoBehaviour
         LevelData.layerCards = layerData.ToArray();
     }
 
+    [Button]
+    public void RandomPosCard()
+    {
+        if (LevelData == null || LevelData.layerCards == null || LevelData.layerCards.Length == 0)
+        {
+            Debug.LogWarning("No level data to randomize positions");
+            return;
+        }
+
+        var rng = new System.Random();
+        float minDistance = 2f; // Minimum distance between cards
+        int maxAttempts = 100; // Maximum attempts to find a valid position
+
+        for (int i = 0; i < LevelData.layerCards.Length; i++)
+        {
+            var layer = LevelData.layerCards[i];
+            if (layer.cards == null || layer.cards.Length == 0) continue;
+
+            var positions = new List<Vector3>();
+
+            foreach (var card in layer.cards)
+            {
+                Vector3 newPos = Vector3.zero;
+                bool validPosition = false;
+            
+                for (int attempt = 0; attempt < maxAttempts; attempt++)
+                {
+                    newPos = new Vector3(
+                        (float)(rng.NextDouble() * 10 - 4),
+                        (float)(rng.NextDouble() * 10 - 4),
+                        0
+                    );
+
+                    validPosition = true;
+                    foreach (var existingPos in positions)
+                    {
+                        if (Vector3.Distance(newPos, existingPos) < minDistance)
+                        {
+                            validPosition = false;
+                            break;
+                        }
+                    }
+
+                    if (validPosition) break;
+                }
+
+                card.position = newPos;
+                positions.Add(newPos);
+            }
+        }
+
+        UnityEditor.EditorUtility.SetDirty(levelGenerateText);
+    }
+
 
     [Button]
     private void CheckLevel()

@@ -29,6 +29,7 @@ public class SlotPackBundle : SlotPack
             return;
         for (var i = 0; i < data.shopRewards.Count; i++)
         {
+            if (i >= rewardSlots.Length) break;
             rewardSlots[i].gameObject.SetActive(true);
             rewardSlots[i].InitData(data.shopRewards[i]);
         }

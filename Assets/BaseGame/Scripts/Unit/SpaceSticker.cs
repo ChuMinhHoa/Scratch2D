@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class SpaceSticker : MonoBehaviour
@@ -23,5 +24,12 @@ public class SpaceSticker : MonoBehaviour
             PoolManager.Instance.DespawnStickerMove(e);
         
         stickerPos.ResetPos();
+    }
+
+    public async UniTask ResetPos()
+    {
+        stickerPos.ResetPos();
+        await UniTask.WaitForSeconds(0.7f);
+        Level.Instance.fSpaceController.CheckStickerDone();
     }
 }

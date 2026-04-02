@@ -79,3 +79,27 @@ MonoBehaviour:
   - level: 21
     difficulty: 0
     levelAsset: {fileID: 4900000, guid: a023b2166f36ebc4abaf6e0fff17e334, type: 3}
+  - level: 22
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 6798f1078ba2a1945a809f1e103f08e5, type: 3}
+  - level: 23
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 723feb46d0d3d8647a58349fb0719d3f, type: 3}
+  - level: 24
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 4436bada9d6493b46bb7368ad140004d, type: 3}
+  - level: 25
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 2faab06f38c1b48438ac1a347b9de5bc, type: 3}
+  - level: 26
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: da23302c558ee534da75b4f66f598bb3, type: 3}
+  - level: 27
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: aaf8c19d65b86ce4f83c12242b71fdd2, type: 3}
+  - level: 28
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 1c8a4246e0d395e478f2c82c437ef948, type: 3}
+  - level: 29
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: ba36b51e70303d54f87d34e28f72fca4, type: 3}

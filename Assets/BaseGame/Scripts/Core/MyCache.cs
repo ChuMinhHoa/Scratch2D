@@ -81,6 +81,7 @@ public static class MyCache
             case GameResource.Type.BoosterAddSlot:
             case GameResource.Type.BoosterHammer:
             case GameResource.Type.BoosterMagnet:
+            case GameResource.Type.BoosterCart:
                 return strMultiple;
             case GameResource.Type.Gem:
             case GameResource.Type.Money:

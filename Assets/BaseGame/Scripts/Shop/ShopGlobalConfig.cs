@@ -42,7 +42,7 @@ public class ShopGlobalConfig : GlobalConfig<ShopGlobalConfig>
             if (!data["ID"].Equals(""))
             {
                 var sprIcon = AssetDatabase.LoadAssetAtPath<Sprite>(
-                    @"Assets\BaseGame\Graphic\Sprites\UI\08_Shop\images\PackIcon\" + data["Name"] + ".png");
+                    @"Assets\BaseGame\Graphic\Sprites\UI\08_Shop\PackIcon\" + data["Name"] + ".png");
                 var des = "";
                 if (data.ContainsKey("Des") && !data["Des"].Equals("")) des = data["Des"];
                 var newShopConfig = new ShopPackageDataConfig
@@ -67,7 +67,7 @@ public class ShopGlobalConfig : GlobalConfig<ShopGlobalConfig>
             Debug.Log(rewardAmount);
             if (isAllBooster)
             {
-                for (var i = 3; i < 6; i++)
+                for (var i = 5; i < 9; i++)
                 {
                     var rewardType = (GameResource.Type)i;
                     var gameResource = new GameResource(rewardType, rewardAmount);

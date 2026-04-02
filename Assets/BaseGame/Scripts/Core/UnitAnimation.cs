@@ -49,6 +49,10 @@ public class UnitAnimation : MonoBehaviour
     public float2 magnitudeX;
     public float2 magnitudeY;
     public float2 magnitudeZ;
+    
+    public bool fixMagnitudeX;
+    public bool fixMagnitudeY;
+    public bool fixMagnitudeZ;
 
     [Button]
     public async UniTask PlayMoveAnim(Vector3 targetPos)
@@ -68,9 +72,9 @@ public class UnitAnimation : MonoBehaviour
         var targetY = targetPos.y;
         var targetZ = targetPos.z;
 
-        var mx = Random.Range(magnitudeX.x, magnitudeX.y) * (Random.Range(0, 2) == 0 ? -1 : 1);
-        var my = Random.Range(magnitudeY.x, magnitudeY.y) * (Random.Range(0, 2) == 0 ? -1 : 1);
-        var mz = Random.Range(magnitudeZ.x, magnitudeZ.y) * (Random.Range(0, 2) == 0 ? -1 : 1);
+        var mx = fixMagnitudeX ? magnitudeX.x : Random.Range(magnitudeX.x, magnitudeX.y) * (Random.Range(0, 2) == 0 ? -1 : 1);
+        var my = fixMagnitudeY ? magnitudeY.x :Random.Range(magnitudeY.x, magnitudeY.y) * (Random.Range(0, 2) == 0 ? -1 : 1);
+        var mz = fixMagnitudeZ ? magnitudeZ.x :Random.Range(magnitudeZ.x, magnitudeZ.y) * (Random.Range(0, 2) == 0 ? -1 : 1);
       
         var currentPos = transform.position;
 
@@ -154,4 +158,17 @@ public class UnitAnimation : MonoBehaviour
 
     #endregion
 
+    public void ClearAnim()
+    {
+        if (motionHandleMoveZ.IsActive())
+        {
+            motionHandleMoveX.TryCancel();
+            motionHandleMoveY.TryCancel();
+            motionHandleMoveZ.TryCancel();
+        }
+        
+        if (motionHandleScale.IsActive())
+            motionHandleScale.TryCancel();
+        
+    }
 }

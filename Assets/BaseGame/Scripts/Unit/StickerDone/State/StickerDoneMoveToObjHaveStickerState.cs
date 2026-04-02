@@ -65,7 +65,7 @@ public partial class StickerDone : StickerDoneMoveToObjHaveStickerState.IHandler
         var currentEulerAngle = transform.eulerAngles;
         LMotion.Create(currentScale, Vector3.one, .25f).Bind(x => transform.localScale = x).AddTo(this);
         LMotion.Create(currentEulerAngle, stickerPos.trsPos.eulerAngles, .25f).Bind(x => transform.eulerAngles = x).AddTo(this);
-        await unitAnim.PlayMoveAnimLocal(Vector3.zero);
+        await MoveToPosLocal(Vector3.zero); // unitAnim.PlayMoveAnimLocal();
         stickerDoneAnim.Play("StickerAdd");
         SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_StickerDoneIn);
         await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);

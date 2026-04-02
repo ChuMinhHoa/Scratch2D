@@ -416,6 +416,8 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 6df8d93b2ab1aa94d96c1670a224bfa5, type: 3}
   - tType: 8
     sprite: {fileID: 21300000, guid: d9dfac042ce87ac4d91f5a535ac4ba5c, type: 3}
+  - tType: 5
+    sprite: {fileID: 21300000, guid: 037a503a4949d1c46b8ece16919e713d, type: 3}
   iconShopRewardConfigs:
   - tType: 1
     sprite: {fileID: 21300000, guid: 56510700e0f9999418a4e2a35b8fbb2f, type: 3}
@@ -429,3 +431,5 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 342609640bea6f643b19cf7e6ccb48ac, type: 3}
   - tType: 4
     sprite: {fileID: 21300000, guid: 059098556b0eb9b458dda0eec3324ac9, type: 3}
+  - tType: 5
+    sprite: {fileID: 21300000, guid: 037a503a4949d1c46b8ece16919e713d, type: 3}

@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using LitMotion;
 using TW.Utility.DesignPattern.UniTaskState;
 using UnityEngine;
 
@@ -48,8 +49,11 @@ public partial class StickerDone : StickerDoneWaitOnCartState.IHandler
         {
             stickerPos.ResetPos();
             stickerPos = null;
-            var targetPos = Level.Instance.fSpaceController.cartBooster.transform.position;
-            await unitAnim.PlayMoveAnim(targetPos);
+            var targetPos = Level.Instance.fSpaceController.cartBooster.GetPosStickerDone();
+            //var currentScale = transform.localScale;
+            //LMotion.Create(currentScale, Vector3.zero, unitAnimMoveToCart.timeMove).Bind(x=> transform.localScale = x).AddTo(this);
+            await MoveToCart(targetPos);
+            transform.localScale = Vector3.zero;
             await UniTask.WaitForSeconds(0.7f);
             Level.Instance.CheckStickerDone();
         }
