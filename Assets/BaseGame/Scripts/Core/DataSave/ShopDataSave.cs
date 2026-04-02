@@ -9,6 +9,8 @@ public class ShopDataSave : IDataSave<ShopDataSave>
     [field: SerializeField] public Reactive<int> iapCount { get; set; } = new(0);
     [field: SerializeField] public Reactive<bool> IsFirstPurchase { get; set; } = new(false);
     [field: SerializeField] public Reactive<bool> NoAds { get; set; } = new(false);
+    [field: SerializeField] public List<PackageName> PackNoneConsumeAbleBought { get; set; }
+    
     public bool IsDirty { get; set; }
 
     public ShopDataSave DefaultData()

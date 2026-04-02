@@ -53,6 +53,21 @@ public class BoosterManager : Singleton<BoosterManager>
         sBo.OnSelect();
     }
 
+    public async UniTask ActiveBooster()
+    {
+        for (var i = 0; i < boosterGraphicControls.Length; i++)
+        {
+            if (boosterGraphicControls[i].bType == currentBoosterType)
+            {
+                GlobalEventManager.OnBoosterDone?.Invoke();
+                SoundControlStart();
+                await boosterGraphicControls[i].MoveBoosterTo(Vector3.zero);
+                SoundControlEnd();
+                return;
+            }
+        }
+    }
+
     private void SoundControlStart()
     {
         switch (currentBoosterType)

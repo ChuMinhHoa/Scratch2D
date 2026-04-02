@@ -1,8 +1,10 @@
 #if UNITY_EDITOR
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class LevelGenerateFunction : MonoBehaviour
 {
@@ -61,6 +63,7 @@ public class LevelGenerateFunction : MonoBehaviour
         LevelData.layerCards = layerCard.ToArray();
     }
 
+    public Percent<CardType> percentCartType = new();
     [Button("Try Add Card", ButtonSizes.Gigantic)]
     private void TryAddCard()
     {
@@ -72,7 +75,7 @@ public class LevelGenerateFunction : MonoBehaviour
         var countForNextLayer = 0;
         for (var i = 0; i < objHaveSticker.Length; i++)
         {
-            var randomCardForSticker = Random.Range(0, 3000);
+            //var randomCardForSticker = Random.Range(0, 3000);
 
             if (countForNextLayer >= layerCost)
             {
@@ -81,11 +84,12 @@ public class LevelGenerateFunction : MonoBehaviour
             }
 
             //var randomLayer = Random.Range(0, layerData.Count);
-            if (randomCardForSticker < 1000)
+            var randomCardType = percentCartType.GetRandomType();
+            if (randomCardType == CardType.Card3)
             {
                 AddCard(CardType.Card3, currentLayer, 1, objHaveSticker[i].stickerId);
             }
-            else if (randomCardForSticker < 2000)
+            else if (randomCardType == CardType.Card2)
             {
                 AddCard(CardType.Card2, currentLayer, 1, objHaveSticker[i].stickerId);
                 AddCard(CardType.Card1, currentLayer, 1, objHaveSticker[i].stickerId);
@@ -274,3 +278,41 @@ public class LevelGenerateFunction : MonoBehaviour
 }
 
 #endif
+
+[Serializable]
+public class Percent<T>
+{
+    [HideLabel]
+    public List<PercentElement<T>> elements;
+
+    public T GetRandomType()
+    {
+        if (elements == null || elements.Count == 0)
+        {
+            Debug.LogWarning("Percent list is empty");
+            return default;
+        }
+
+        var totalPercent = elements.Sum(e => e.percent);
+        var randomValue = Random.Range(0, totalPercent);
+        var cumulativePercent = 0f;
+
+        foreach (var element in elements)
+        {
+            cumulativePercent += element.percent;
+            if (randomValue <= cumulativePercent)
+            {
+                return element.type;
+            }
+        }
+
+        // Fallback in case of rounding errors
+        return elements.Last().type;
+    }
+}
+[Serializable]
+public class PercentElement<T>
+{
+    public T type;
+    public float percent;
+}

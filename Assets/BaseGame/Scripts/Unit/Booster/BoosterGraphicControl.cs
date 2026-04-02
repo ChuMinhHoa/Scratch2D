@@ -18,6 +18,19 @@ public class BoosterGraphicControl : MonoBehaviour
         await PlayAnim();
     }
 
+    public async UniTask  MoveBoosterTo(Vector3 target)
+    {
+        trsBooster.position = target;
+        await PlayAnimActive();
+    }
+
+    private async UniTask PlayAnimActive()
+    {
+        trsBooster.gameObject.SetActive(true);
+        await UniTask.WaitForSeconds(timeAnim);
+        trsBooster.gameObject.SetActive(false);
+    }
+
     private async UniTask PlayAnim()
     {
         skAnimBooster.AnimationState.SetAnimation(0, MyCache.strActive, false);

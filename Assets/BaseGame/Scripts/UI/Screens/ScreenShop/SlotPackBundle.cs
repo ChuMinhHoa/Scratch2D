@@ -11,6 +11,17 @@ public class SlotPackBundle : SlotPack
         imgIcon.sprite = data.mainIcon;
         txtName.SetTextFormat(MyCache.strDefault,  data.packageNameToUI);
         txtDes?.SetTextFormat(MyCache.strDefault,  data.packageDes);
+        
+        var productType = data.packProductType;
+        if (productType == PackProductType.NonConsumable)
+        {
+            var isShow = data.isAvailable && !ShopManager.Instance.IsBuyThisPackage(data.packageName);
+            if (!isShow)
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+        }
 
         if (data.purchaseType == PurchaseType.IAPPay)
         {

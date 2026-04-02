@@ -27,6 +27,7 @@ public class BtnBooster : MonoBehaviour
     [SerializeField] private Button btnUseByPrice;
     [SerializeField] private Button btnUseByAds;
     [SerializeField] private Button btnUseByGameResource;
+    [SerializeField] private Button btnDeActive;
 
     [SerializeField] private GameResource coinResource;
     [SerializeField] private GameObject handTutorial;
@@ -39,16 +40,23 @@ public class BtnBooster : MonoBehaviour
     private void Awake()
     {
         //booster.InitData(UseBooster);
-
-
         btnUseByAds.onClick.AddListener(UseByAds);
         btnUseByPrice.onClick.AddListener(UseByPrice);
         btnUseByGameResource.onClick.AddListener(UseByGameResource);
+        btnDeActive.onClick.AddListener(OnDeActive);
 
         booster.SetUsedCallBack(UsedBooster);
 
 
         GlobalEventManager.OnUnlockBooster += UnLockBooster;
+    }
+
+    private void OnDeActive()
+    {
+        if (!booster.CheckCanUseBooster())
+        {
+            booster.ShowWarning();
+        }
     }
 
     private void UseBoosterAnimSound()
@@ -87,11 +95,7 @@ public class BtnBooster : MonoBehaviour
     private void UseByGameResource()
     {
         UseBoosterAnimSound();
-        if (!booster.CheckCanUseBooster())
-        {
-            booster.ShowWarning();
-            return;
-        }
+
 
         if (gameResource.Amount > 0)
         {
@@ -102,11 +106,6 @@ public class BtnBooster : MonoBehaviour
     private void UseByPrice()
     {
         UseBoosterAnimSound();
-        if (!booster.CheckCanUseBooster())
-        {
-            booster.ShowWarning();
-            return;
-        }
 
         if (!PlayerResourceManager.Instance.IsEnoughResource(GameResource.Type.Money, price))
         {
@@ -119,7 +118,6 @@ public class BtnBooster : MonoBehaviour
 
     private void UseByAds()
     {
-   
         // if (!booster.CheckCanUseBooster())
         // {
         //     booster.ShowWarning();
@@ -177,6 +175,16 @@ public class BtnBooster : MonoBehaviour
     [Button]
     private void ChangeValueBooster(BigNumber valueChange)
     {
+        var e = booster.CheckCanUseBooster();
+        btnDeActive.gameObject.SetActive(!e);
+        if (!e)
+        {
+            objAmount.SetActive(false);
+            objPrice.SetActive(false);
+            objWatchAds.SetActive(false);
+            return;
+        }
+
         var isEnough = valueChange > 0;
         var usedByAds = countUsed > 0;
         objPrice.SetActive(!isEnough && usedByAds);

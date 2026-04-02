@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Core.UI.Activities;
 using Core.UI.Modals;
 using Cysharp.Threading.Tasks;
+using TW.Utility.CustomType;
 using TW.Utility.DesignPattern;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public class ShopManager : Singleton<ShopManager>
     public Reactive<bool> IsFirstPurchase = new(false);
     public Reactive<bool> NoAds = new(false);
     public Reactive<int> iapCount = new(0);
-
+    public List<PackageName> packNoneConsumeAbleBought;
     public void Start()
     {
         LoadData();
@@ -29,6 +30,7 @@ public class ShopManager : Singleton<ShopManager>
 
     private void LoadData()
     {
+        packNoneConsumeAbleBought = ShopDataSave.Instance.PackNoneConsumeAbleBought;
         IsFirstPurchase = ShopDataSave.Instance.IsFirstPurchase;
         iapCount = ShopDataSave.Instance.iapCount;
         NoAds = ShopDataSave.Instance.NoAds;
@@ -39,12 +41,52 @@ public class ShopManager : Singleton<ShopManager>
         return ShopGlobalConfig.Instance.shopPackage.AsSpan();
     }
 
+    public void Purchase(ShopPackageDataConfig packageConfig)
+    {
+        switch (packageConfig.purchaseType)
+        {
+            case PurchaseType.IAPPay:
+                IngameFirebaseAnalystic.Instance.SetPlacementPurchase(PlacementType.ShopInGame);
+                var packageId = MyCache.GetPackageIdByPackageName(packageConfig.packageName);
+                InGamePurchaseManager.Instance.PurchaseIAPProduct(packageId,
+                    () => PurchaseSuccess(packageConfig),
+                    () => PurchaseFailed(packageConfig));
+                break;
+            case PurchaseType.ResourcePay:
+                OnPurchaseBuyResourcePay(packageConfig);
+                break;
+            case PurchaseType.None:
+            case PurchaseType.Free:
+            case PurchaseType.Ads:
+            default:
+                break;
+        }
+    }
+    
+    private void OnPurchaseBuyResourcePay(ShopPackageDataConfig packageConfig)
+    {
+        GameResource.Type resourceType = packageConfig.resourcePrice.ResourceType;
+        BigNumber amount = packageConfig.resourcePrice.Amount;
+        if (PlayerResourceManager.Instance.IsEnoughResource(resourceType, amount))
+        {
+            //_ = UIManager.Instance.OpenModalAsync<ModalConfirmShop>(packageConfig);
+        }
+        else
+        {
+            //_ = UIManager.Instance.OpenModalAsync<ModalPayResourcePremium>(packageConfig);
+        }
+    }
+
     public void PurchaseSuccess(ShopPackageDataConfig packageConfig)
     {
         if (!IsFirstPurchase.Value)
         {
             IsFirstPurchase.Value = true;
-            ShopDataSave.Instance.SaveData();
+        }
+
+        if (packageConfig.packProductType == PackProductType.NonConsumable)
+        {
+            packNoneConsumeAbleBought.Add(packageConfig.packageName);
         }
 
         iapCount.Value++;
@@ -94,8 +136,8 @@ public class ShopManager : Singleton<ShopManager>
     private async UniTask DelayPurChaseFailed()
     {
         await UniTask.Delay(1000);
-        //await UIManager.Instance.CloseActivityAsync<ActivityBlock>();
-        //await UIManager.Instance.OpenModalAsync<ModalPurchaseFail>();
+        await UIManager.Instance.OpenModalAsync<ModalPurchaseFaild>();
+        await UIManager.Instance.CloseActivityAsync<ActivityBlock>();
     }
 
     public bool SetNoAds()
@@ -106,5 +148,10 @@ public class ShopManager : Singleton<ShopManager>
         NoAds.Value = true;
         ShopDataSave.Instance.SaveData();
         return true;
+    }
+
+    public bool IsBuyThisPackage(PackageName packID)
+    {
+        return packNoneConsumeAbleBought.Contains(packID);
     }
 }

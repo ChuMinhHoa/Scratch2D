@@ -4,16 +4,14 @@ using TW.UGUI.MVPPattern;
 using UnityEngine;
 using R3;
 using Sirenix.OdinInspector;
-using TW.UGUI.Core.Screens;
-using TW.Utility.CustomType;
+using TW.UGUI.Core.Modals;
 using UnityEngine.UI;
-using Screen = TW.UGUI.Core.Screens.Screen;
 
-namespace Core.UI.Screens
+namespace Core.UI.Modals
 {
-    public class ScreenShop : Screen
+    public class ModalPurchaseFaild : Modal
     {
-        [field: SerializeField] public ScreenShopContext.UIPresenter UIPresenter { get; private set; }
+        [field: SerializeField] public ModalPurchaseFaildContext.UIPresenter UIPresenter { get; private set; }
 
         protected override void Awake()
         {
@@ -29,13 +27,11 @@ namespace Core.UI.Screens
 
 
     [Serializable]
-    public class ScreenShopContext
+    public class ModalPurchaseFaildContext
     {
         public static class Events
         {
             public static Action SampleEvent { get; set; }
-            
-            //public static Action ActionGoToShop { get; set; }
         }
 
         [HideLabel]
@@ -59,34 +55,17 @@ namespace Core.UI.Screens
             [field: Title(nameof(UIView))]
             [field: SerializeField]
             public CanvasGroup MainView { get; private set; }
-
             [field: SerializeField]
-            public MainContentBase<SlotPack, ShopPackageDataConfig> MainDealContent { get; private set; }
-            
-            [field: SerializeField]
-            public MainContentBase<SlotPack, ShopPackageDataConfig> MainCoinContent { get; private set; }
-
+            public Button BtnClose { get; private set; }
             public UniTask Initialize(Memory<object> args)
             {
                 return UniTask.CompletedTask;
-            }
-
-            public void InitCoinSlot(Action<SlotPack> actionSlotCoinCallBack)
-            {
-                MainCoinContent.SetActionSlotCallBack(actionSlotCoinCallBack);
-                MainCoinContent.SetActionSlotExistCallBack();
-            }
-            
-            public void InitDealSlot(Action<SlotPack> actionSlotCoinCallBack)
-            {
-                MainDealContent.SetActionSlotCallBack(actionSlotCoinCallBack);
-                MainDealContent.SetActionSlotExistCallBack();
             }
         }
 
         [HideLabel]
         [Serializable]
-        public class UIPresenter : IAPresenter, IScreenLifecycleEventSimple
+        public class UIPresenter : IAPresenter, IModalLifecycleEventSimple
         {
             [field: SerializeField] public UIModel Model { get; private set; } = new();
             [field: SerializeField] public UIView View { get; set; } = new();
@@ -95,13 +74,12 @@ namespace Core.UI.Screens
             {
                 await Model.Initialize(args);
                 await View.Initialize(args);
-                View.InitCoinSlot(ActionBuyCallback);
-                View.InitDealSlot(ActionBuyCallback);
+                View.BtnClose.onClick.AddListener(CloseModal);
             }
 
-            private void ActionBuyCallback(SlotPack slotPackCallBack)
+            private void CloseModal()
             {
-                ShopManager.Instance.Purchase(slotPackCallBack.slotData);
+                _ = UIManager.Instance.CloseModalAsync();
             }
         }
     }

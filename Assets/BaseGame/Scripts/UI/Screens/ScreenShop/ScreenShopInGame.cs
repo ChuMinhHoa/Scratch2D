@@ -111,49 +111,7 @@ namespace Core.UI.Screens
 
             private void ActionBuyCallback(SlotPack slotPackCallBack)
             {
-                //Debug.Log(slotPackCallBack.slotData.packageName);
-
-                switch (slotPackCallBack.slotData.purchaseType)
-                {
-                    case PurchaseType.IAPPay:
-                        IngameFirebaseAnalystic.Instance.SetPlacementPurchase(PlacementType.ShopInGame);
-                        var packageId = MyCache.GetPackageIdByPackageName(slotPackCallBack.slotData.packageName);
-                        InGamePurchaseManager.Instance.PurchaseIAPProduct(packageId,
-                            () => OnPurchaseSuccess(slotPackCallBack.slotData),
-                            () => OnPurchaseFailed(slotPackCallBack.slotData));
-                        break;
-                    case PurchaseType.ResourcePay:
-                        OnPurchaseBuyResourcePay(slotPackCallBack.slotData);
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            private void OnPurchaseBuyResourcePay(ShopPackageDataConfig packageConfig)
-            {
-                GameResource.Type resourceType = packageConfig.resourcePrice.ResourceType;
-                BigNumber amount = packageConfig.resourcePrice.Amount;
-                if (PlayerResourceManager.Instance.IsEnoughResource(resourceType, amount))
-                {
-                    //_ = UIManager.Instance.OpenModalAsync<ModalConfirmShop>(packageConfig);
-                }
-                else
-                {
-                    //_ = UIManager.Instance.OpenModalAsync<ModalPayResourcePremium>(packageConfig);
-                }
-            }
-
-            private void OnPurchaseSuccess(ShopPackageDataConfig packageConfig)
-            {
-                Debug.Log("Purchase Success: " + packageConfig.packageName);
-                ShopManager.Instance.PurchaseSuccess(packageConfig);
-            }
-
-            private void OnPurchaseFailed(ShopPackageDataConfig packageConfig)
-            {
-                Debug.Log("Purchase Failed: " + packageConfig.packageName);
-                ShopManager.Instance.PurchaseFailed(packageConfig);
+                ShopManager.Instance.Purchase(slotPackCallBack.slotData);
             }
             
         }

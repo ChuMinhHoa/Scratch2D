@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Text;
 using Cysharp.Threading.Tasks;
 using LitMotion;
+using TMPro;
 using UnityEngine;
 
 public class CartObjBooster : MonoBehaviour
@@ -13,24 +15,33 @@ public class CartObjBooster : MonoBehaviour
     private IBooster booster;
     public List<StickerDone> stickerDone = new();
     [SerializeField] private CartBoosterGraphic cartGraphic;
+    public TextMeshPro txtCountStickerDone;
     
-    public void OnUseCardBooster(IBooster iBooster)
+    public async UniTask OnUseCardBooster(IBooster iBooster)
     {
         booster = iBooster;
-        isActive = true;
-        var currentScale = cartTrs.localScale;
         objProof.gameObject.SetActive(true);
-        //LMotion.Create(currentScale, Vector3.one, 0.15f).Bind(x => cartTrs.localScale = x).AddTo(this);
-        _ = WaitForAnimSpawn();
+        await WaitForAnimSpawn();
     }
     
     private async UniTask WaitForAnimSpawn()
     {
-        cartGraphic.PlayAnimSpawn();
-        await UniTask.WaitForSeconds(0.15f);
-        cartGraphic.PlayAnimOpen();
-        await UniTask.WaitForSeconds(0.5f);
-        Level.Instance.fSpaceController.UseBoosterCart();
+        if (!isActive)
+        {
+            isActive = true;
+            cartGraphic.PlayAnimSpawn();
+            SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_BoosterAddSlot);
+            await UniTask.WaitForSeconds(0.25f);
+            cartGraphic.PlayAnimOpen();
+            Level.Instance.fSpaceController.SetPositionSpaceSticker();
+            await UniTask.WaitForSeconds(0.5f);
+        }
+        else
+        {
+            Level.Instance.fSpaceController.SetPositionSpaceSticker();
+        }
+
+        await Level.Instance.fSpaceController.UseBoosterCart();
     }
 
     public async UniTask AddStickerDone(StickerDone stickerD, int index)
@@ -38,40 +49,63 @@ public class CartObjBooster : MonoBehaviour
         stickerDone.Add(stickerD);
         await UniTask.WaitForSeconds(0.1f * index);
         stickerD.stateMachine.RequestTransition(stickerD.StickerDoneWaitOnCartState);
-        cartGraphic.PlayAnimCollect();
+            cartGraphic.PlayAnimCollect();
+        txtCountStickerDone.SetTextFormat(MyCache.strDefault, stickerDone.Count);
     }
-    
-    public void RemoveStickerDone(StickerDone stickerD)
+
+    public void PlayAnimClose()
     {
-        stickerDone.Remove(stickerD);
+    }
+
+    public void RemoveStickerDoneFromCart(StickerDone sticker)
+    {
+        if (!stickerDone.Contains(sticker)) return;
+        cartGraphic.PlayAnimCollect();
+        SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_StickerDoneFSpace);
+        stickerDone.Remove(sticker);
+        txtCountStickerDone.SetTextFormat(MyCache.strDefault, stickerDone.Count);
     }
 
     public bool IsCanUseBoosterCart()
     {
-        return !isActive;
+        return Level.Instance.fSpaceController.IsCanUseBoosterCart();
     }
 
     public void ResetCart()
     {
         isActive = false;
-        cartTrs.localScale = Vector3.zero;
+        //cartTrs.localScale = Vector3.zero;
+        cartGraphic.PlayAnimIdle();
+        //Level.Instance.fSpaceController.SetPositionSpaceSticker();
     }
 
     public void CheckStickerDone()
     {
-        for (var i = stickerDone.Count - 1; i >=0 ; i--)
+        for (var i = stickerDone.Count - 1; i >= 0 ; i--)
         {
             StickerDoneManager.Instance.AddStickerDone(stickerDone[i]);
         }
     }
-
-    public void RemoveStickerDoneFromCart(StickerDone sticker)
-    {
-        stickerDone.Remove(sticker);
-    }
-
+    
     public Vector3 GetPosStickerDone()
     {
         return pointStickerDone.position;
+    }
+
+    public bool IsActiveBooster() => isActive;
+
+    private MotionHandle moveHandle;
+
+    public void MoveCartObj(Vector3 pos)
+    {
+        if (moveHandle.IsActive())
+            moveHandle.TryCancel();
+        var currentPos = transform.localPosition;
+        moveHandle = LMotion.Create(currentPos, pos, 0.15f).Bind(x => transform.localPosition = x);
+        for (var i = 0; i < stickerDone.Count; i++)
+        {
+            var newPos = transform.parent.TransformPoint(pos);
+            stickerDone[i].MoveToFreeSpaceOnUseBooster(newPos);
+        }
     }
 }

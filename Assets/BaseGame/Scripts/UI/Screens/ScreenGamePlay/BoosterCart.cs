@@ -1,26 +1,38 @@
 using System;
+using Core.UI.Screens;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 [Serializable]
 public class BoosterCart : BoosterBase
 {
-    public int stickerID;
-    
     public override void UseBooster()
     {
         if (GamePlayManager.Instance.gameState != GameState.Playing)
             return;
-        //ScreenGamePlayContext.Events.OnActiveInteractable?.Invoke(false);
+        if (!CheckOnUseCart())
+        {
+            ShowWarning();
+            return;
+        }
+
+        ScreenGamePlayContext.Events.OnActiveInteractable?.Invoke(false);
+        GlobalEventManager.OnBoosterUsing?.Invoke(boosterType, this);
         //GamePlayManager.Instance.SetWhatCanSelectOnBooster(layerCanSelect);
         //_ = UIManager.Instance.OpenActivityAsync<ActivityUsingBooster>();
-        Level.Instance.fSpaceController.cartBooster.OnUseCardBooster(this);
+        _ = WaitForUseBooster();
+    }
+
+    private async UniTask WaitForUseBooster()
+    {
+        await Level.Instance.fSpaceController.cartBooster.OnUseCardBooster(this);
         Debug.Log("Use Booster Cart");
         UsedBooster(null);
     }
-    
+
     public override void ShowWarning()
     {
-        GlobalEventManager.OnShowWarning?.Invoke(MyCache.warningNoteOnMove);
+        GlobalEventManager.OnShowWarning?.Invoke(MyCache.warningNoStickerOnFS);
     }
 
     public override void ActiveBooster(bool active)
@@ -33,6 +45,7 @@ public class BoosterCart : BoosterBase
     {
         base.UsedBooster(data);
         Debug.Log($"Used Booster with data: {data}");
+        ScreenGamePlayContext.Events.OnActiveInteractable?.Invoke(true);
     }
 
     private FolderHaveSticker GetFolderHaveSticker(SelectAbleOnBooster data)
@@ -49,8 +62,14 @@ public class BoosterCart : BoosterBase
     
     public override bool CheckCanUseBooster()
     {
-        var e = Level.Instance.fSpaceController.cartBooster.IsCanUseBoosterCart();
         return true;
+     
+    }
+
+    private bool CheckOnUseCart()
+    {
+        var e = Level.Instance.fSpaceController.cartBooster.IsCanUseBoosterCart();
+        return e;
     }
     
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using LitMotion;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -96,6 +97,7 @@ public class FreeSpaceController : SpaceForSticker
 
     public override void ResetController()
     {
+        cartBooster.ResetCart();
         spaceStickers.Remove(spaceStickerPitch);
         spaceStickerPitch.gameObject.SetActive(false);
         SetPositionSpaceSticker();
@@ -110,23 +112,35 @@ public class FreeSpaceController : SpaceForSticker
         }
 
         stickerDoneWait.Clear();
-        cartBooster.ResetCart();
     }
 
     private float spaceWidth = 1.5f;
+    private float spaceCardWidth = 1.75f;
 
     [Button]
-    private void SetPositionSpaceSticker()
+    public void SetPositionSpaceSticker()
     {
+        var cartActive = cartBooster.IsActiveBooster();
+        var spaceStickerCount = cartActive ? spaceStickers.Count : spaceStickers.Count - 1;
         for (var i = 0; i < spaceStickers.Count; i++)
         {
-            var offset = (i - (spaceStickers.Count - 1) / 2f) * spaceWidth;
-            spaceStickers[i].transform.localPosition = new Vector3(offset, 0, 0);
-            if (spaceStickers[i].stickerPos.obj)
+            var offset = (i - spaceStickerCount / 2f) * spaceWidth;
+            var newPos = new Vector3(offset, 0f, 0f);
+            spaceStickers[i].MoveFreeSpaceSticker(newPos);
+            //spaceStickers[i].transform.localPosition = new Vector3(offset, 0, 0);
+
+            var stickerDone = spaceStickers[i].stickerPos.obj;
+            if (stickerDone)
             {
-                spaceStickers[i].stickerPos.obj.transform.position = spaceStickers[i].stickerPos.trsPos.position;
+                var parents = spaceStickers[i].transform.parent;
+                var worldPos = parents.TransformPoint(newPos);
+                stickerDone.MoveToFreeSpaceOnUseBooster(worldPos);
             }
         }
+
+        var cartOffset = (spaceStickerCount / 2f - 1) * spaceWidth + spaceCardWidth;
+        var newPosCart = new Vector3(cartOffset, 0f, 0f);
+        cartBooster.MoveCartObj(newPosCart);
     }
 
     public bool IsFromNoWhere(StickerDone stickerDone)
@@ -161,18 +175,17 @@ public class FreeSpaceController : SpaceForSticker
         return spaceStickers.Count < 5;
     }
 
-    public void UseBoosterCart()
+    public async UniTask UseBoosterCart()
     {
+        var totalTimeWait = 0f;
         for (var i = 0; i < spaceStickers.Count; i++)
         {
-            if (spaceStickers[i].stickerPos.IsHaveObj())
-            {
-                var stickerDone = spaceStickers[i].stickerPos.obj;
-                //RegisterStickerDoneWait(stickerDone);
-                //spaceStickers[i].stickerPos.ResetPos();
-                _ = cartBooster.AddStickerDone(stickerDone, i);
-            }
+            if (!spaceStickers[i].stickerPos.IsHaveObj()) continue;
+            var stickerDone = spaceStickers[i].stickerPos.obj;
+            _ = cartBooster.AddStickerDone(stickerDone, i);
+            totalTimeWait = 0.1f * i + 0.3f;
         }
+        await UniTask.WaitForSeconds(totalTimeWait);
     }
 
     public void RemoveStickerDoneFromCart(StickerDone stickerDone)
@@ -188,5 +201,18 @@ public class FreeSpaceController : SpaceForSticker
             _ = spaceStickers[i].ResetPos();
             break;
         }
+    }
+
+    public bool IsCanUseBoosterCart()
+    {
+        var countStickerDone = 0;
+        
+        for (var i = 0; i < spaceStickers.Count; i++)
+        {
+            if (spaceStickers[i].stickerPos.IsHaveObj())
+                countStickerDone++;
+        }
+
+        return countStickerDone > 0;
     }
 }

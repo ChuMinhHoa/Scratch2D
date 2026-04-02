@@ -35,11 +35,11 @@ MonoBehaviour:
     - <ResourceType>k__BackingField: 1
       <ReactiveAmount>k__BackingField:
         value:
-          coefficient: 1000
-          exponent: 0
+          coefficient: 1
+          exponent: 1
         EditorValue:
-          coefficient: 0
-          exponent: 0
+          coefficient: 1
+          exponent: 1
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: 56510700e0f9999418a4e2a35b8fbb2f, type: 3}
     packageName: 101
@@ -63,11 +63,11 @@ MonoBehaviour:
     - <ResourceType>k__BackingField: 1
       <ReactiveAmount>k__BackingField:
         value:
-          coefficient: 5000
-          exponent: 0
+          coefficient: 5
+          exponent: 1
         EditorValue:
-          coefficient: 0
-          exponent: 0
+          coefficient: 5
+          exponent: 1
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: e92fe7299fbe0e045a895b0bc3eb39b9, type: 3}
     packageName: 102
@@ -91,11 +91,11 @@ MonoBehaviour:
     - <ResourceType>k__BackingField: 1
       <ReactiveAmount>k__BackingField:
         value:
-          coefficient: 10000
-          exponent: 0
+          coefficient: 10
+          exponent: 1
         EditorValue:
-          coefficient: 0
-          exponent: 0
+          coefficient: 10
+          exponent: 1
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: 105514143bc2fba4db7810319c142146, type: 3}
     packageName: 103
@@ -119,11 +119,11 @@ MonoBehaviour:
     - <ResourceType>k__BackingField: 1
       <ReactiveAmount>k__BackingField:
         value:
-          coefficient: 25000
-          exponent: 0
+          coefficient: 25
+          exponent: 1
         EditorValue:
-          coefficient: 0
-          exponent: 0
+          coefficient: 25
+          exponent: 1
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: d884e6e158f11c84eba15e6460ca7e95, type: 3}
     packageName: 104
@@ -147,11 +147,11 @@ MonoBehaviour:
     - <ResourceType>k__BackingField: 1
       <ReactiveAmount>k__BackingField:
         value:
-          coefficient: 50000
-          exponent: 0
+          coefficient: 50
+          exponent: 1
         EditorValue:
-          coefficient: 0
-          exponent: 0
+          coefficient: 50
+          exponent: 1
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: fd7ebad55fa5a834eaa7cc120c23cd91, type: 3}
     packageName: 105
@@ -175,11 +175,11 @@ MonoBehaviour:
     - <ResourceType>k__BackingField: 1
       <ReactiveAmount>k__BackingField:
         value:
-          coefficient: 100000
-          exponent: 0
+          coefficient: 100
+          exponent: 1
         EditorValue:
-          coefficient: 0
-          exponent: 0
+          coefficient: 100
+          exponent: 1
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: 059098556b0eb9b458dda0eec3324ac9, type: 3}
     packageName: 0
@@ -188,7 +188,7 @@ MonoBehaviour:
     percentSaleOff: 0
     packageDes: 
     purchaseType: 2
-    packProductType: 0
+    packProductType: 1
     price: 7.99
     resourcePrice:
       <ResourceType>k__BackingField: 0
@@ -375,18 +375,18 @@ MonoBehaviour:
     - <ResourceType>k__BackingField: 1
       <ReactiveAmount>k__BackingField:
         value:
-          coefficient: 5000
-          exponent: 0
+          coefficient: 5
+          exponent: 1
         EditorValue:
-          coefficient: 0
-          exponent: 0
+          coefficient: 5
+          exponent: 1
     - <ResourceType>k__BackingField: 3
       <ReactiveAmount>k__BackingField:
         value:
           coefficient: 2
           exponent: 0
         EditorValue:
-          coefficient: 0
+          coefficient: 2
           exponent: 0
     - <ResourceType>k__BackingField: 5
       <ReactiveAmount>k__BackingField:
@@ -394,7 +394,7 @@ MonoBehaviour:
           coefficient: 1
           exponent: 0
         EditorValue:
-          coefficient: 0
+          coefficient: 1
           exponent: 0
     - <ResourceType>k__BackingField: 6
       <ReactiveAmount>k__BackingField:
@@ -402,7 +402,7 @@ MonoBehaviour:
           coefficient: 1
           exponent: 0
         EditorValue:
-          coefficient: 0
+          coefficient: 1
           exponent: 0
     - <ResourceType>k__BackingField: 7
       <ReactiveAmount>k__BackingField:
@@ -410,7 +410,7 @@ MonoBehaviour:
           coefficient: 1
           exponent: 0
         EditorValue:
-          coefficient: 0
+          coefficient: 1
           exponent: 0
     - <ResourceType>k__BackingField: 8
       <ReactiveAmount>k__BackingField:
@@ -418,7 +418,7 @@ MonoBehaviour:
           coefficient: 1
           exponent: 0
         EditorValue:
-          coefficient: 0
+          coefficient: 1
           exponent: 0
     isAvailable: 1
   - mainIcon: {fileID: 21300000, guid: b556f61de852d9244bef59c07a24a53a, type: 3}

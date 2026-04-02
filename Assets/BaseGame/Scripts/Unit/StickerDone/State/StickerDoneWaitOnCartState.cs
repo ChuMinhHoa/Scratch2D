@@ -50,10 +50,9 @@ public partial class StickerDone : StickerDoneWaitOnCartState.IHandler
             stickerPos.ResetPos();
             stickerPos = null;
             var targetPos = Level.Instance.fSpaceController.cartBooster.GetPosStickerDone();
-            //var currentScale = transform.localScale;
-            //LMotion.Create(currentScale, Vector3.zero, unitAnimMoveToCart.timeMove).Bind(x=> transform.localScale = x).AddTo(this);
-            await MoveToCart(targetPos);
-            transform.localScale = Vector3.zero;
+            await MoveToCart(targetPos);   
+            SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_StickerDoneFSpace);
+            transform.localScale = Vector3.one * 0.5f;
             await UniTask.WaitForSeconds(0.7f);
             Level.Instance.CheckStickerDone();
         }

@@ -2511,11 +2511,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3895829235631367523, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: actionCallOnResource
-      value: 5138881499719270508
+      value: 739576657821302957
       objectReference: {fileID: 0}
     - target: {fileID: 3895829235631367523, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: 'managedReferences[-2]'
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3895829235631367523, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
+      propertyPath: 'managedReferences[739576657821302957]'
+      value: Assembly-CSharp ActionCallOnMoneyInGame
       objectReference: {fileID: 0}
     - target: {fileID: 3895829235631367523, guid: 565a089a946eb3e45a8cbcc4e00db881, type: 3}
       propertyPath: 'managedReferences[2849848910885683285]'

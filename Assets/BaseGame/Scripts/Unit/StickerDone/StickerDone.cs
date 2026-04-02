@@ -8,6 +8,7 @@ public partial class StickerDone : MonoBehaviour
 {
     public UnitAnimation unitAnim;
     public UnitAnimation unitAnimMoveToCart;
+    public UnitAnimation unitAnimMoveToFreeSpaceOnBooster;
     public SpriteRenderer sprIcon;
     public Animation stickerDoneAnim;
     public SpriteRenderer stickerGlow;
@@ -87,12 +88,14 @@ public partial class StickerDone : MonoBehaviour
         actionCallBackOnMoveToNote = actionCallBack;
     }
 
-    public void ClearAnim()
+    private void ClearAnim()
     {
         unitAnim.ClearAnim();
+        unitAnimMoveToFreeSpaceOnBooster.ClearAnim();
+        unitAnimMoveToCart.ClearAnim();
     }
 
-    private async UniTask MoveToPos(Vector3 target)
+    public async UniTask MoveToPos(Vector3 target)
     {
         ClearAnim();
         await unitAnim.PlayMoveAnim(target);
@@ -108,5 +111,11 @@ public partial class StickerDone : MonoBehaviour
     {
         ClearAnim();
         await unitAnimMoveToCart.PlayMoveAnim(target);
+    }
+
+    public void MoveToFreeSpaceOnUseBooster(Vector3 newPos)
+    {
+        ClearAnim();
+        _ = unitAnimMoveToFreeSpaceOnBooster.PlayMoveAnim(newPos);
     }
 }
