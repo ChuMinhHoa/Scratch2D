@@ -4,28 +4,31 @@ using UnityEngine;
 public class SlotPackBundle : SlotPack
 {
     [SerializeField] private SlotRewardShop[] rewardSlots;
-    
+
     public override void InitData(ShopPackageDataConfig data)
     {
         base.InitData(data);
         imgIcon.sprite = data.mainIcon;
-        txtName.SetTextFormat(MyCache.strDefault,  data.packageNameToUI);
-        txtDes?.SetTextFormat(MyCache.strDefault,  data.packageDes);
+        txtName.SetTextFormat(MyCache.strDefault, data.packageNameToUI);
+        txtDes?.SetTextFormat(MyCache.strDefault, data.packageDes);
+
+        if(!CheckToShowBundle()) return;
         
-        var productType = data.packProductType;
-        if (productType == PackProductType.NonConsumable)
-        {
-            var isShow = data.isAvailable && !ShopManager.Instance.IsBuyThisPackage(data.packageName);
-            if (!isShow)
-            {
-                gameObject.SetActive(false);
-                return;
-            }
-        }
+        // var productType = data.packProductType;
+        // if (productType == PackProductType.NonConsumable)
+        // {
+        //     var isShow = data.isAvailable && !ShopManager.Instance.IsBuyThisPackage(data.packageName);
+        //     if (!isShow)
+        //     {
+        //         gameObject.SetActive(false);
+        //         return;
+        //     }
+        // }
 
         if (data.purchaseType == PurchaseType.IAPPay)
         {
-            iAPPackage = InGamePurchaseManager.Instance.GetIAPPackageByID(MyCache.GetPackageIdByPackageName(data.packageName));
+            iAPPackage =
+                InGamePurchaseManager.Instance.GetIAPPackageByID(MyCache.GetPackageIdByPackageName(data.packageName));
 //            Debug.Log($"<color=red> {iAPPackage == null}");
             txtPrice.SetTextFormat(MyCache.strDefault, iAPPackage?.GetPrice());
         }
@@ -49,5 +52,16 @@ public class SlotPackBundle : SlotPack
         {
             rewardSlots[i].gameObject.SetActive(false);
         }
+    }
+
+    public bool CheckToShowBundle()
+    {
+        var productType = slotData.packProductType;
+        if (productType != PackProductType.NonConsumable) return true;
+        var isShow = slotData.isAvailable && !ShopManager.Instance.IsBuyThisPackage(slotData.packageName);
+        if (isShow) return true;
+        gameObject.SetActive(false);
+        return false;
+
     }
 }

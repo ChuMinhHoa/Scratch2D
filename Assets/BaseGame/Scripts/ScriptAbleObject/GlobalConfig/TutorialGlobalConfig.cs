@@ -50,4 +50,5 @@ public enum TutorialType
     BoosterAddNote,
     BoosterHammer,
     BoosterMagnet,
+    BoosterCart
 }

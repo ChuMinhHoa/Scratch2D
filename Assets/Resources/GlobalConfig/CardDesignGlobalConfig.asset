@@ -21,15 +21,15 @@ MonoBehaviour:
     cardType: 0
     cardState: 0
     stickers:
-    - stickerID: 40
+    - stickerID: 6
       stickerType: 0
       stickerIndexChain: 0
     position:
-      x: 2.1
-      y: 2.2
+      x: 0.7
+      y: -0.7
       z: 0
     rotation:
       x: 0
       y: 0
-      z: 15
+      z: 0
     totalSUnlock: 0

@@ -275,10 +275,79 @@ public class LevelGenerateFunction : MonoBehaviour
         UnityEditor.EditorUtility.SetDirty(levelGenerateText);
         Debug.Log($"Shuffled {stickerIds.Count} stickers between layers {start} and {end}");
     }
+    public int totalFreezeCardAdd = 10;
+    public int totalLockCardAdd = 10;
+    [Button]
+    private void AddFreezeCard()
+    {
+        if (LevelData == null || LevelData.layerCards == null || LevelData.layerCards.Length == 0)
+        {
+            Debug.LogWarning("No level data to Add Freeze card");
+            return;
+        }
+        
+        var layerData = LevelData.layerCards.ToList();
+        var countPerLayer = (int)((float)totalFreezeCardAdd / layerData.Count);
+        Debug.Log(countPerLayer);
+        for (var i = 0; i < layerData.Count; i++)
+        {
+            for (var j = 0; j < countPerLayer; j++)
+            {
+                var cards = layerData[i].cards.ToList();
+                var randomCard = Random.Range(0, cards.Count);
+                cards[randomCard].cardState = CardState.Freeze;
+                LevelData.layerCards[i].cards[randomCard] = cards[randomCard];
+            }
+        }
+    }
+    
+    [Button]
+    private void AddLockCard()
+    {
+        if (LevelData == null || LevelData.layerCards == null || LevelData.layerCards.Length == 0)
+        {
+            Debug.LogWarning("No level data to Add Lock card");
+            return;
+        }
+        
+        var layerData = LevelData.layerCards.ToList();
+        var countPerLayer = (int)((float)totalLockCardAdd / layerData.Count);
+        Debug.Log(countPerLayer);
+        for (var i = 0; i < layerData.Count; i++)
+        {
+            for (var j = 0; j < countPerLayer; j++)
+            {
+                var cards = layerData[i].cards.ToList();
+                var randomCard = Random.Range(0, cards.Count);
+                cards[randomCard].cardState = CardState.Lock;
+                cards[randomCard].totalSUnlock = 1;
+                LevelData.layerCards[i].cards[randomCard] = cards[randomCard];
+            }
+        }
+    }
+    
+    public int totalBlindStickerAdd = 10;
+
+    [Button]
+    private void AddBlindSticker()
+    {
+        if (LevelData == null || LevelData.layerCards == null || LevelData.layerCards.Length == 0)
+        {
+            Debug.LogWarning("No level data to Add blind sticker");
+            return;
+        }
+        var layerData = LevelData.layerCards.ToList();
+        for (var i = 0; i < layerData.Count; i++)
+        {
+            var cards = layerData[i].cards.ToList();
+            var randomCard = Random.Range(0, cards.Count);
+            var stickerCount = cards[randomCard].stickers.Length;
+            var randomSticker = Random.Range(0, stickerCount);
+            cards[randomCard].stickers[randomSticker].stickerType = StickerType.Mark;
+            LevelData.layerCards[i].cards[randomCard] = cards[randomCard];
+        }
+    }
 }
-
-#endif
-
 [Serializable]
 public class Percent<T>
 {
@@ -316,3 +385,6 @@ public class PercentElement<T>
     public T type;
     public float percent;
 }
+#endif
+
+

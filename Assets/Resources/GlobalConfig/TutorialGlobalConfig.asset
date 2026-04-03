@@ -50,6 +50,15 @@ MonoBehaviour:
     tutorialDes: 
     handAction:
       rid: 5138881567844466801
+  - spriteIcon: {fileID: 21300000, guid: 0bfc2278f2a896a49949eb31baba5a65, type: 3}
+    tutorialType: 6
+    sprSubIcon: []
+    id: 5
+    levelShow: 10
+    tutorialName: Broom
+    tutorialDes: Store all stickers on wait slot
+    handAction:
+      rid: -2
   - spriteIcon: {fileID: 21300000, guid: 0b0a1de5f8134c242ac3490b080e414c, type: 3}
     tutorialType: 4
     sprSubIcon:

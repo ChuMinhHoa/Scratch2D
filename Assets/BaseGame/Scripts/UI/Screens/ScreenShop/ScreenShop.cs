@@ -33,9 +33,8 @@ namespace Core.UI.Screens
     {
         public static class Events
         {
-            public static Action SampleEvent { get; set; }
-            
             //public static Action ActionGoToShop { get; set; }
+            public static Action<PackageName> OnBuyNonConsumeAblePackage { get; set; }
         }
 
         [HideLabel]
@@ -66,6 +65,8 @@ namespace Core.UI.Screens
             [field: SerializeField]
             public MainContentBase<SlotPack, ShopPackageDataConfig> MainCoinContent { get; private set; }
 
+            [field: SerializeField] public RectTransform mainRect;
+
             public UniTask Initialize(Memory<object> args)
             {
                 return UniTask.CompletedTask;
@@ -82,6 +83,19 @@ namespace Core.UI.Screens
                 MainDealContent.SetActionSlotCallBack(actionSlotCoinCallBack);
                 MainDealContent.SetActionSlotExistCallBack();
             }
+
+            public void OnBuyNonConsumeAblePackageCallBack(PackageName packID)
+            {
+                for (var i = 0; i < MainDealContent.slots.Count; i++)
+                {
+                    if (MainDealContent.slots[i].slotData.packageName == packID)
+                    {
+                        (MainDealContent.slots[i] as SlotPackBundle)?.CheckToShowBundle();
+                    }
+                }
+                
+                LayoutRebuilder.ForceRebuildLayoutImmediate(mainRect);
+            }
         }
 
         [HideLabel]
@@ -97,6 +111,12 @@ namespace Core.UI.Screens
                 await View.Initialize(args);
                 View.InitCoinSlot(ActionBuyCallback);
                 View.InitDealSlot(ActionBuyCallback);
+                Events.OnBuyNonConsumeAblePackage += OnBuyNonConsumeAblePackageCallBack;
+            }
+
+            private void OnBuyNonConsumeAblePackageCallBack(PackageName packID)
+            {
+                View.OnBuyNonConsumeAblePackageCallBack(packID);
             }
 
             private void ActionBuyCallback(SlotPack slotPackCallBack)

@@ -68,7 +68,7 @@ public class BoosterCart : BoosterBase
 
     private bool CheckOnUseCart()
     {
-        var e = Level.Instance.fSpaceController.cartBooster.IsCanUseBoosterCart();
+        var e = Level.Instance.CheckCanUsingBooster(boosterType);
         return e;
     }
     

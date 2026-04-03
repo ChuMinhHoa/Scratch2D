@@ -119,12 +119,12 @@ public class ShopPackageDataConfig
 
 public enum PackageName
 {
-    removeAds = 0,
-    removeAdsBundle = 1,
-    limitedBundle = 2,
-    smallBundle = 3,
-    mediumBundle = 4,
-    ultraBundle = 5,
+    removeads = 0,
+    removeadsbundle = 1,
+    limitedbundle = 2,
+    smallbundle = 3,
+    mediumbundle = 4,
+    ultrabundle = 5,
     coin1 = 100,
     coin2 = 101,
     coin3 = 102,

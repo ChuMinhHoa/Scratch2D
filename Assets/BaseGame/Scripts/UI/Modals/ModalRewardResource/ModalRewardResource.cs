@@ -115,6 +115,7 @@ namespace Core.UI.Modals
             public void DidPushEnter(Memory<object> args)
             {
                 _ = View.AnimShow();
+                SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_Win);
             }
 
             private void ClaimReward()

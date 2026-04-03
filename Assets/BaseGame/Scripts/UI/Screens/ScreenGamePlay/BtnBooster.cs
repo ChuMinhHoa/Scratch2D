@@ -23,6 +23,7 @@ public class BtnBooster : MonoBehaviour
     [SerializeField] private GameObject objWatchAds;
     [SerializeField] private TextMeshProUGUI txtAmount;
     [SerializeField] private TextMeshProUGUI txtPrice;
+    [SerializeField] private TextMeshProUGUI txtLevelUnlock;
     [SerializeField] private BigNumber price = new(0);
     [SerializeField] private Button btnUseByPrice;
     [SerializeField] private Button btnUseByAds;
@@ -32,10 +33,13 @@ public class BtnBooster : MonoBehaviour
     [SerializeField] private GameResource coinResource;
     [SerializeField] private GameObject handTutorial;
     [SerializeField] private GameObject objContent;
+    [SerializeField] private GameObject objLock;
 
     private BoosterConfig config;
 
     public int countUsed = 0;
+
+    public bool showTutorialHand;
 
     private void Awake()
     {
@@ -49,6 +53,29 @@ public class BtnBooster : MonoBehaviour
 
 
         GlobalEventManager.OnUnlockBooster += UnLockBooster;
+
+        AddGlobalEvent();
+    }
+
+    private void AddGlobalEvent()
+    {
+        switch (((BoosterBase)booster).boosterType)
+        {
+            case BoosterType.BoosterHammer:
+                GlobalEventManager.OnHaveCardDone += OnCallCheckBooster;
+                break;
+            case BoosterType.BoosterAddSlot:
+            case BoosterType.BoosterMagnet:
+            case BoosterType.BoosterCart:
+            default:
+                return;
+        }
+    }
+
+    private void OnCallCheckBooster()
+    {
+        Debug.Log("check active booster!");
+        ChangeValueBooster(gameResource.Amount);
     }
 
     private void OnDeActive()
@@ -68,12 +95,14 @@ public class BtnBooster : MonoBehaviour
     private void OnDestroy()
     {
         GlobalEventManager.OnUnlockBooster -= UnLockBooster;
+        GlobalEventManager.OnHaveCardDone -= OnCallCheckBooster;
     }
 
     private void ChangeLevel(int levelChange)
     {
         var e = TutorialManager.Instance.IsUnLockBooster(config.boosterType);
         objContent.SetActive(e);
+        objLock.SetActive(!e);
     }
 
     private void UnLockBooster(BoosterType type)
@@ -84,7 +113,11 @@ public class BtnBooster : MonoBehaviour
         var eResourceType = MyCache.ConvertBoosterToResourceType(config.boosterType);
         PlayerResourceManager.Instance.ChangeResource(eResourceType, 1);
         objContent.SetActive(true);
-        ShowHandTutorial();
+        if (showTutorialHand)
+        {
+            ShowHandTutorial();
+        }
+        objLock.SetActive(false);
     }
 
     private void ShowHandTutorial()
@@ -212,6 +245,8 @@ public class BtnBooster : MonoBehaviour
     {
         if (handTutorial.activeSelf)
             handTutorial.SetActive(false);
+        if (GamePlayManager.Instance.gameState != GameState.Playing)
+            return;
         booster.UseBooster();
     }
 
@@ -235,7 +270,7 @@ public class BtnBooster : MonoBehaviour
                 return;
         }
 
-        ChangeValueBooster(gameResource.Amount);
+        OnCallCheckBooster();
         Debug.Log("used booster");
         GlobalEventManager.OnBoosterDone?.Invoke();
     }

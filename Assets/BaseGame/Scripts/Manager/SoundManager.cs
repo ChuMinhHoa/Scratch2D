@@ -18,7 +18,7 @@ public class SoundManager : Singleton<SoundManager>
 {
     private bool isLoadDone;
     public List<SettingData> settingData = new();
-    
+
     private void Start()
     {
         InitAudio();
@@ -29,11 +29,12 @@ public class SoundManager : Singleton<SoundManager>
         {
             CreateDataSetting((e as SettingKey[]).AsSpan());
         }
+
         for (var i = 0; i < settingData.Count; i++)
         {
             settingData[i].ableSetting.Subscribe(ChangeSetting).AddTo(this);
         }
-        
+
         PlayBgSound(AudioKey.Bg_MainMenu);
     }
 
@@ -80,9 +81,10 @@ public class SoundManager : Singleton<SoundManager>
             e.InitData(sfxConfig[i].AudioKey, sfxConfig[i].AudioClip, source, 1, false);
             sfxData.Add(e);
         }
+
         isLoadDone = true;
     }
-    
+
     #region sfx Controller
 
     public List<AudioConfig> sfxConfig;
@@ -119,7 +121,7 @@ public class SoundManager : Singleton<SoundManager>
             sfxData[i].PlayAtTime(time);
         }
     }
-    
+
     [Button]
     public void PlaySoundAtTimeSfx(AudioKey audioKey, float time)
     {
@@ -129,7 +131,7 @@ public class SoundManager : Singleton<SoundManager>
             sfxData[i].PlayAtTime(time);
         }
     }
-    
+
     private void MuteSfx(bool mute)
     {
         for (var i = 0; i < sfxData.Count; i++)
@@ -137,7 +139,7 @@ public class SoundManager : Singleton<SoundManager>
             sfxData[i].SetMute(mute);
         }
     }
-    
+
     #endregion
 
     #region SoundBG
@@ -173,7 +175,7 @@ public class SoundManager : Singleton<SoundManager>
             bgData[i].Stop();
         }
     }
-    
+
     private void MuteBg(bool mute)
     {
         for (var i = 0; i < bgData.Count; i++)
@@ -187,7 +189,7 @@ public class SoundManager : Singleton<SoundManager>
     #region Vibrate
 
     public void PlayVibrate(HapticPatterns.PresetType presetType)
-    {   
+    {
         // find vibrate setting; if not found or disabled, do nothing
         var vibrateSetting = settingData.Find(s => s.settingKey == SettingKey.Vibrate);
         if (vibrateSetting != null && !vibrateSetting.ableSetting.Value) return;
@@ -218,7 +220,7 @@ public class SoundManager : Singleton<SoundManager>
                 break;
             }
         }
-        
+
         SettingDataSave.Instance.SaveData();
     }
 }
@@ -265,11 +267,11 @@ public class SoundData
         {
             realTimeStart = timeStart;
         }
-        
+
         source.Stop();
-        
+
         var startSample = Mathf.Clamp((int)(realTimeStart * frequence), 0, source.clip.samples - 1);
-        
+
         source.timeSamples = startSample;
 
         source.Play();
@@ -282,6 +284,7 @@ public class SoundData
         {
             source.Stop();
         }
+
         source.mute = mute;
     }
 }
@@ -306,12 +309,15 @@ public enum AudioKey
     Sfx_LoadingNormal = 105,
     Sfx_SupperHard = 106,
     Sfx_Pop = 107,
-    Sfx_FireWork  = 108,
+    Sfx_FireWork = 108,
     Sfx_Win = 109,
     Sfx_Lose = 110,
     Sfx_BoosterHamerMove = 111,
     Sfx_BoosterHamerHit = 112,
     Sfx_BoosterAddSlot = 113,
     Sfx_StickerDoneIn = 114,
-    Sfx_StickerDoneFSpace = 115
+    Sfx_StickerDoneFSpace = 115,
+    Sfx_FreezeBreak = 116,
+    Sfx_FreezeEnd = 117,
+    Sfx_LockEnd = 118
 }

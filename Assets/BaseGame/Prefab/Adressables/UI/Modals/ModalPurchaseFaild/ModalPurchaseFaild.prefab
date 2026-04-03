@@ -264,14 +264,14 @@ MonoBehaviour:
   m_text: Purchase failed, try again next time!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 74c5e3044675fc04a97ba44bd60deefd, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: cf6b215f13c6fcf449e0ae7c9a586aba, type: 2}
+  m_sharedMaterial: {fileID: 9114318834683303741, guid: 74c5e3044675fc04a97ba44bd60deefd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4288044856
+  m_fontColor: {r: 0.21960786, g: 0.37254903, b: 0.5882353, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

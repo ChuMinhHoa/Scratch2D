@@ -103,3 +103,33 @@ MonoBehaviour:
   - level: 29
     difficulty: 0
     levelAsset: {fileID: 4900000, guid: ba36b51e70303d54f87d34e28f72fca4, type: 3}
+  - level: 30
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: de685de58761eeb4880327fcf2e2ca8e, type: 3}
+  - level: 31
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: f1102f9db8abcde429f4a0b1dfc23e13, type: 3}
+  - level: 32
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: b52d364a8e9c8c94aa9c444868eb2ed7, type: 3}
+  - level: 33
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 1de399bb619de474aa9f90d11278d9da, type: 3}
+  - level: 34
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: be6a1253c72ee104f8df8599039fc4e2, type: 3}
+  - level: 35
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: b1ed41fa93d8f9d4d964ac4ca36b757c, type: 3}
+  - level: 36
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 3a7fc8a651a10484581478371598edfe, type: 3}
+  - level: 37
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 6425d1fc2277bda4ea0a3e8934078ed7, type: 3}
+  - level: 38
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 7519b1b219c8df245988023d1476c98a, type: 3}
+  - level: 39
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 09ef9b1259e40104a93ab43e301a479f, type: 3}

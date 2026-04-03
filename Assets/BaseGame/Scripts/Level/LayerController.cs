@@ -8,14 +8,17 @@ using Object = UnityEngine.Object;
 public class LayerController
 {
     public Transform trsLayerParents;
+
     public List<Card> cards;
+
     //[field: SerializeField] public Reactive<int> layerActive { get; set; } = new(0);
     public bool loadDone;
     private int totalCards;
+
     public async UniTask LoadData(LayerCardData[] data)
     {
         totalCards = 0;
-        for (var i = data.Length - 1; i >= 0 ; i--)
+        for (var i = data.Length - 1; i >= 0; i--)
         {
             await LoadCardInLayer(i, data[i].cards);
         }
@@ -55,19 +58,19 @@ public class LayerController
         {
             cards[i].ResetCard();
         }
+
         cards.Clear();
     }
 
     public void OnRemoveSticker(int stickerId, int countRemove)
     {
         var count = countRemove;
-        for (var i = 0; i < cards.Count; i++)
+        for (var i = cards.Count - 1; i >= 0; i--)
         {
             count = cards[i].ForceScratchDone(stickerId, count);
 
             if (count == 0)
                 break;
-
         }
     }
 
@@ -76,9 +79,10 @@ public class LayerController
         for (var i = 0; i < cards.Count; i++)
         {
             if (!cards[i].isShowed) continue;
-            if(cards[i].IsCanUsingHammer())
+            if (cards[i].IsCanUsingHammer())
                 return true;
         }
+
         return false;
     }
 
@@ -93,6 +97,7 @@ public class LayerController
                     return cards[i].stickers[j];
             }
         }
+
         return null;
     }
 }

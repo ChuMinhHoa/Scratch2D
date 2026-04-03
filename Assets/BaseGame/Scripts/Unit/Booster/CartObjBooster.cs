@@ -46,6 +46,8 @@ public class CartObjBooster : MonoBehaviour
 
     public async UniTask AddStickerDone(StickerDone stickerD, int index)
     {
+        if (stickerD.stateMachine.IsCurrentState(stickerD.StickerDoneMoveToObjHaveStickerState))
+            return;
         stickerDone.Add(stickerD);
         await UniTask.WaitForSeconds(0.1f * index);
         stickerD.stateMachine.RequestTransition(stickerD.StickerDoneWaitOnCartState);

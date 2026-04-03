@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [Serializable]
 public class BoosterHammer : BoosterBase
 {
-    Dictionary<SelectAbleOnBooster, Card> dataCard = new();
+    //Dictionary<SelectAbleOnBooster, Card> dataCard = new();
     public override void UseBooster()
     {
         base.UseBooster();

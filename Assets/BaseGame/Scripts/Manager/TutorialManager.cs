@@ -133,6 +133,10 @@ public class TutorialManager : Singleton<TutorialManager>
                 GlobalEventManager.OnUnlockBooster?.Invoke(BoosterType.BoosterMagnet);
                 AddBooster(BoosterType.BoosterMagnet);
                 return;
+            case TutorialType.BoosterCart:
+                GlobalEventManager.OnUnlockBooster?.Invoke(BoosterType.BoosterCart);
+                AddBooster(BoosterType.BoosterCart);
+                return;
             case TutorialType.None:
             case TutorialType.Scratch:
             case TutorialType.BoosterAddNote:

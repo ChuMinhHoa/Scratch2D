@@ -110,6 +110,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e02f648c02eeb0d489ebc89f0392384d
+    m_Address: ModalPurchaseFaild
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e0ce35a44095c684688e06df511ef5d3
     m_Address: ModalRefill
     m_ReadOnly: 0

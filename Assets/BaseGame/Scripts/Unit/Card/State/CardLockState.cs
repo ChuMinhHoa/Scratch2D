@@ -61,6 +61,7 @@ public partial class Card : CardLockState.IHandler
         {
             GlobalEventManager.OnNoteDoneCallBack -= OnNoteDoneForLock;
             _ = AnimUnlockNormal();
+            SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_LockEnd);
         }
     }
 

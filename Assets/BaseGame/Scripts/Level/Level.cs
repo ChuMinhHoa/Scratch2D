@@ -64,8 +64,10 @@ public class Level : Singleton<Level>
         objOnUsingBooster.gameObject.SetActive(false);
     }
 
-    private void OnUsingBooster(BoosterType arg1, IBooster arg2)
+    private void OnUsingBooster(BoosterType boosterType, IBooster arg2)
     {
+        if (boosterType == BoosterType.BoosterCart)
+            return;
         objOnUsingBooster.gameObject.SetActive(true);
     }
 
@@ -287,10 +289,7 @@ public class Level : Singleton<Level>
         ResetLevel();
         isEndGame = true;
         levelIndex.Value++;
-#if !UNITY_EDITOR
-        
         IngameFirebaseAnalystic.Instance.SetLevelUserProperty();
-#endif
         if (levelChange.Value != -1)
         {
             levelChange.Value = -1;
@@ -299,9 +298,7 @@ public class Level : Singleton<Level>
 
         PlayerInfoDataSave.Instance.SaveData();
         GamePlayManager.Instance.ChangeGameState(GameState.Normal);
-#if !UNITY_EDITOR
         IngameFirebaseAnalystic.Instance.TrackLevelComplete(); 
-#endif
         UIManager.Instance.OpenActivity<ActivityWinGame>();
     }
 
@@ -545,9 +542,12 @@ public class Level : Singleton<Level>
             BoosterType.BoosterMagnet => CheckCanUsingMagnet(),
             BoosterType.BoosterAddSlot => CheckCanUsingAddSlot(),
             BoosterType.BoosterHammer => CheckCanUsingHammer(),
+            BoosterType.BoosterCart => CheckCanUsingCart(),
             _ => false
         };
     }
+
+    private bool CheckCanUsingCart() => fSpaceController.IsCanUseBoosterCart();
 
     private bool CheckCanUsingHammer() => layerController.CheckCanUsingHammer();
     private bool CheckCanUsingAddSlot() => fSpaceController.IsCanAddSlot();

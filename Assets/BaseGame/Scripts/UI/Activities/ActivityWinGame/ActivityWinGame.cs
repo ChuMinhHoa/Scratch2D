@@ -122,13 +122,13 @@ namespace Core.UI.Activities
 #if UNITY_EDITOR
                 Claim(true);
 #endif
-
+               
 #if !UNITY_EDITOR
                 if (ShopManager.Instance.NoAds.Value) Claim(true);
                 else
                 {
-                    IngameFirebaseAnalystic.Instance.SetAdsRewardInfo(GameResource.Type.Money.ToString(), DefaultGlobalConfig.Instance.defaultCoinWinGame * 2);
-                    AdsManager.Instance.ShowRewardVideo(PlacementType.WinGame.ToString(), "X2_Reward_WinGame", () => Claim(true));
+                    IngameFirebaseAnalystic.Instance.SetAdsRewardInfo(nameof(GameResource.Type.Money), DefaultGlobalConfig.Instance.defaultCoinWinGame * 2);
+                    AdsManager.Instance.ShowRewardVideo(nameof(PlacementType.WinGame), "X2_Reward_WinGame", () => Claim(true));
                 }
 #endif
             }
@@ -160,7 +160,7 @@ namespace Core.UI.Activities
                 await UIManager.Instance.OpenScreenDefaultAsync<ScreenDefault>();
                 await UIManager.Instance.CloseActivityAsync<ActivityWinGame>();
 
-                if (!ShopManager.Instance.NoAds.Value && PlayerInfoManager.Instance.playerLevel.Value >= 9)
+                if (!ShopManager.Instance.NoAds.Value)
                 {
                     AdsManager.Instance.ShowInterstitial();
                 }

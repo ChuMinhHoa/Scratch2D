@@ -123,7 +123,7 @@ namespace Core.UI.Activities
                 await UIManager.Instance.CloseScreenAsync();
                 await UIManager.Instance.OpenScreenDefaultAsync<ScreenDefault>();
                 await UIManager.Instance.CloseActivityAsync<ActivityLoseGame>();
-                if (!ShopManager.Instance.NoAds.Value && PlayerInfoManager.Instance.playerLevel.Value >= 9)
+                if (!ShopManager.Instance.NoAds.Value)
                 {
                     AdsManager.Instance.ShowInterstitial();
                 }

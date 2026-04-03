@@ -60,9 +60,13 @@ public partial class Card : CardFreezeState.IHandler
             GlobalEventManager.OnNoteDoneCallBack -= OnNoteDoneForFreeze;
             ChangeCardState(CardState.Normal);
             _ = WaitForEnableInput();
+            SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_FreezeEnd);
         }
         else
+        {
             cardGraphic.SetSpriteFreeze(countForFreeze);
+            SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_FreezeBreak);
+        }
     }
 
     private async UniTask WaitForEnableInput()

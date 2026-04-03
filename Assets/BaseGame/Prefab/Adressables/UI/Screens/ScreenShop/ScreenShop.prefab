@@ -657,6 +657,7 @@ MonoBehaviour:
         - {fileID: 7216990355531491545}
         currentSlotOnChoose: {fileID: 0}
         totalSlotUsing: 0
+      mainRect: {fileID: 1703284660884364242}
 --- !u!1 &4879911392660015474
 GameObject:
   m_ObjectHideFlags: 0

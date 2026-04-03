@@ -8,10 +8,12 @@ public class ServiceLoadingManager : Singleton<ServiceLoadingManager>
     {
         base.Awake();
         DontDestroyOnLoad(this);
+        _ = LoadService();
     }
 
-    public async UniTask LoadService()
+    private async UniTask LoadService()
     {
+        await DefaultGlobalConfig.Instance.InitRemoteConfig();
         await UniTask.WaitForSeconds(0.1f);
     }
 }

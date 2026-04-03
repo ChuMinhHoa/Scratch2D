@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Core.UI.Activities;
 using Core.UI.Modals;
+using Core.UI.Screens;
 using Cysharp.Threading.Tasks;
 using TW.Utility.CustomType;
 using TW.Utility.DesignPattern;
@@ -12,7 +13,7 @@ public class ShopManager : Singleton<ShopManager>
     public Reactive<bool> IsFirstPurchase = new(false);
     public Reactive<bool> NoAds = new(false);
     public Reactive<int> iapCount = new(0);
-    public List<PackageName> packNoneConsumeAbleBought;
+    public List<PackageName> packNoneConsumeAbleBought = new();
     public void Start()
     {
         LoadData();
@@ -87,6 +88,7 @@ public class ShopManager : Singleton<ShopManager>
         if (packageConfig.packProductType == PackProductType.NonConsumable)
         {
             packNoneConsumeAbleBought.Add(packageConfig.packageName);
+            ScreenShopContext.Events.OnBuyNonConsumeAblePackage?.Invoke(packageConfig.packageName);
         }
 
         iapCount.Value++;

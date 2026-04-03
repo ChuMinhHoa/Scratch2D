@@ -20,7 +20,7 @@ public partial class Card
 {
     public void OnGDActive()
     {
-        Debug.Log($"card active {layerIndex}");
+//        Debug.Log($"card active {layerIndex}");
         var trs = transform.position;
         var target = new Vector3(trs.x, trs.y, -5);
         LMotion.Create(trs, target, 0.25f).Bind(x=>transform.position = x).AddTo(this);

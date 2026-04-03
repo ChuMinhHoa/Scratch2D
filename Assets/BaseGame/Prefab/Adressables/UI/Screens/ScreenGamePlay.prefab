@@ -2560,6 +2560,10 @@ PrefabInstance:
       value: 739576634284966020
       objectReference: {fileID: 0}
     - target: {fileID: 2479380628438869268, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
+      propertyPath: showTutorialHand
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2479380628438869268, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: 'managedReferences[739576634284966020]'
       value: Assembly-CSharp BoosterCart
       objectReference: {fileID: 0}
