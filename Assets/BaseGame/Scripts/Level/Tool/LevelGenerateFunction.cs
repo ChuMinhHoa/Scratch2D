@@ -280,7 +280,7 @@ public class LevelGenerateFunction : MonoBehaviour
     [Button]
     private void AddFreezeCard()
     {
-        if (LevelData == null || LevelData.layerCards == null || LevelData.layerCards.Length == 0)
+        if (LevelData?.layerCards == null || LevelData.layerCards.Length == 0)
         {
             Debug.LogWarning("No level data to Add Freeze card");
             return;
@@ -289,7 +289,7 @@ public class LevelGenerateFunction : MonoBehaviour
         var layerData = LevelData.layerCards.ToList();
         var countPerLayer = (int)((float)totalFreezeCardAdd / layerData.Count);
         Debug.Log(countPerLayer);
-        for (var i = 0; i < layerData.Count; i++)
+        for (var i = 0; i < layerData.Count-1; i++)
         {
             for (var j = 0; j < countPerLayer; j++)
             {
@@ -319,6 +319,7 @@ public class LevelGenerateFunction : MonoBehaviour
             {
                 var cards = layerData[i].cards.ToList();
                 var randomCard = Random.Range(0, cards.Count);
+                if(cards[randomCard].cardState != CardState.Normal) continue;
                 cards[randomCard].cardState = CardState.Lock;
                 cards[randomCard].totalSUnlock = 1;
                 LevelData.layerCards[i].cards[randomCard] = cards[randomCard];

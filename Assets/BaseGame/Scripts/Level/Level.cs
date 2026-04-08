@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Core.UI.Activities;
 using Core.UI.Modals;
 using Core.UI.Screens;
@@ -31,6 +32,8 @@ public class Level : Singleton<Level>
 
     public bool isEndGame;
 
+    public bool isLoadDone;
+
     private void Start()
     {
         InitData().Forget();
@@ -49,6 +52,7 @@ public class Level : Singleton<Level>
 
         GlobalEventManager.OnBoosterUsing += OnUsingBooster;
         GlobalEventManager.OnBoosterDone += OnBoosterDone;
+        isLoadDone = true;
     }
 
     private void OnDestroy()
@@ -83,6 +87,7 @@ public class Level : Singleton<Level>
     public void LoadDataClean()
     {
         //Debug.Log("Clean Data");
+        PoolManager.Instance.DestroyAll();
         var e = FindObjectsByType<ScratchObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         var e1 = FindObjectsByType<Card>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         var e2 = FindObjectsByType<Sticker>(FindObjectsInactive.Include, FindObjectsSortMode.None);
@@ -335,13 +340,13 @@ public class Level : Singleton<Level>
         
         if (UnitEventManager.Instance.IsHaveEvent())
         {
-            Debug.Log("have event, wait to check lose game!");
+            //Debug.Log("have event, wait to check lose game!");
             await UniTask.WaitUntil(() => !UnitEventManager.Instance.IsHaveEvent());
         }
 
         if (isEndGame)
             return;
-        Debug.Log("Check lose game!");
+        //Debug.Log("Check lose game!");
         
         var isFreeSlot = fSpaceController.IsHaveFreeSlot();
         var isHaveNoteMoveIn = oSController.IsHaveNoteMoveIn();
@@ -362,7 +367,7 @@ public class Level : Singleton<Level>
         if (!noteHaveStickerOnListDone && !noteHaveStickerOnSpace && !isFreeSlot && !isHaveNoteMoveIn &&
             noteDontHaveStickerOnMove && !noteHaveStickerDoneOnWait && !noteHaveStickerOnCard)
         {
-            _ = EndGame();
+            await EndGame();
         }
     }
 
@@ -476,7 +481,7 @@ public class Level : Singleton<Level>
                 {
                     if (stickerWait[j].IsHaveSticker(noteId))
                     {
-                        Debug.Log(noteId + $" is have sticker done {stickerWait[j]} {j}");
+                        //Debug.Log(noteId + $" is have sticker done {stickerWait[j]} {j}");
                         return true;
                     }
                 }
@@ -515,10 +520,15 @@ public class Level : Singleton<Level>
         IngameFirebaseAnalystic.Instance.SetNoteFail(GetNoteFail());
         IngameFirebaseAnalystic.Instance.SetLoseType(LoseType.OutSlot);
         IngameFirebaseAnalystic.Instance.TrackLevelFail();
-
+        CheckToCloseAllUI();
         await UIManager.Instance.OpenModalAsync<ModalRevive>();
         //await UIManager.Instance.OpenActivityAsync<ActivityLoseGame>();
     }
+    
+    // public void CancelCheckLoseGame()
+    // {
+    //     checkLoseGameCts?.Cancel();
+    // }
 
     public void RemoveStickerDone(StickerDone stD)
     {

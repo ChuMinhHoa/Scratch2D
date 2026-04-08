@@ -1428,6 +1428,7 @@ MonoBehaviour:
       - {fileID: 2994098829407238968}
       - {fileID: 4662145514303451765}
       - {fileID: 8527132666369043697}
+      - {fileID: 7072050225436349134}
       <ObjDifficult>k__BackingField:
       - {fileID: 2477679234770005820}
       - {fileID: 7134099987125339415}
@@ -1699,10 +1700,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5528894787940117001}
   - {fileID: 2703564013054862148}
-  - {fileID: 1396622186186849728}
+  - {fileID: 5528894787940117001}
   - {fileID: 509823425352303615}
+  - {fileID: 1396622186186849728}
   m_Father: {fileID: 1194374588513652034}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2227,6 +2228,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 836577924963637081}
     m_Modifications:
+    - target: {fileID: 638276237219201394, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
+      propertyPath: objIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2479380628438869268, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: booster
       value: 5138881183801409758
@@ -2555,6 +2560,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 836577924963637081}
     m_Modifications:
+    - target: {fileID: 638276237219201394, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
+      propertyPath: objIndex
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2479380628438869268, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: booster
       value: 739576634284966020
@@ -2766,6 +2775,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &7072050225436349134 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2479380628438869268, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
+  m_PrefabInstance: {fileID: 4633218572386023386}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f62fc6dc8e51844bafde809ac46a0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BtnBooster
 --- !u!1001 &6070555913521662437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2774,6 +2794,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 836577924963637081}
     m_Modifications:
+    - target: {fileID: 638276237219201394, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
+      propertyPath: objIndex
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2479380628438869268, guid: 7e51bdb8374d3e843ac334175152e52f, type: 3}
       propertyPath: booster
       value: 5138881317743624511

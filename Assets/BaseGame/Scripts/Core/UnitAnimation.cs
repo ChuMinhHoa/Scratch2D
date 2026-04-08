@@ -15,17 +15,28 @@ public class UnitAnimation : MonoBehaviour
     public float timeScale = 1f;
     private MotionHandle motionHandleScale;
     
+    public bool IsHaveScaleAnim()
+    {
+        return motionHandleScale.IsPlaying();
+    }
+    
     [Button]
-    public async UniTask PlayScaleAnimation()
+    public async UniTask PlayScaleAnimation(float scaleValue = 1f)
     {
         if (motionHandleScale.IsPlaying())
+        {
             motionHandleScale.TryCancel();
+        }
+        
+        if (!this || !transform)
+            return;
         
         motionHandleScale = LMotion.Create(0f, 1f, timeScale).Bind(x =>
         {
-            var scaleX = curveScaleX.Evaluate(x);
-            var scaleY = curveScaleY.Evaluate(x);
-            var scaleZ = curveScaleZ.Evaluate(x);
+            if (!this || !transform) return;
+            var scaleX = scaleValue * curveScaleX.Evaluate(x);
+            var scaleY = scaleValue * curveScaleY.Evaluate(x);
+            var scaleZ = scaleValue * curveScaleZ.Evaluate(x);
             transform.localScale = new Vector3(scaleX, scaleY, scaleZ);
         }).AddTo(this);
         await motionHandleScale;
@@ -63,6 +74,9 @@ public class UnitAnimation : MonoBehaviour
             motionHandleMoveY.TryCancel();
             motionHandleMoveZ.TryCancel();
         }
+
+        if (!this || !transform)
+            return;
         
         var currentX = transform.position.x;
         var currentY = transform.position.y;
@@ -80,6 +94,7 @@ public class UnitAnimation : MonoBehaviour
 
         motionHandleMoveX = LMotion.Create(0f, 1f, timeMove).WithEase(curveMove).Bind(t =>
         {
+            if (!this || !transform) return;
             var x = Mathf.Lerp(currentX, targetX, t);
             var evaluateX = curveMoveX.Evaluate(t) * mx;
             currentPos.x = x + evaluateX;
@@ -88,6 +103,7 @@ public class UnitAnimation : MonoBehaviour
         
         motionHandleMoveY = LMotion.Create(0f, 1f, timeMove).WithEase(curveMove).Bind(t =>
         {
+            if (!this || !transform) return;
             var y = Mathf.Lerp(currentY, targetY, t);
             var evaluateY = curveMoveY.Evaluate(t) * my;
             currentPos.y = y + evaluateY;
@@ -96,6 +112,7 @@ public class UnitAnimation : MonoBehaviour
       
         motionHandleMoveZ = LMotion.Create(0f, 1f, timeMove).WithEase(curveMove).Bind(t =>
         {
+            if (!this || !transform) return;
             var z = Mathf.Lerp(currentZ, targetZ, t);
             var evaluateZ = curveMoveZ.Evaluate(t) * mz;
             currentPos.z = z + evaluateZ;
@@ -115,6 +132,9 @@ public class UnitAnimation : MonoBehaviour
             motionHandleMoveZ.TryCancel();
         }
         
+        if (!this || !transform)
+            return;
+        
         var currentX = transform.localPosition.x;
         var currentY = transform.localPosition.y;
         var currentZ = transform.localPosition.z;
@@ -131,6 +151,7 @@ public class UnitAnimation : MonoBehaviour
 
         motionHandleMoveX = LMotion.Create(0f, 1f, timeMove).WithEase(curveMove).Bind(t =>
         {
+            if (!this || !transform) return;
             var x = Mathf.Lerp(currentX, targetX, t);
             var evaluateX = curveMoveX.Evaluate(t) * mx;
             currentPos.x = x + evaluateX;
@@ -139,6 +160,7 @@ public class UnitAnimation : MonoBehaviour
         
         motionHandleMoveY = LMotion.Create(0f, 1f, timeMove).WithEase(curveMove).Bind(t =>
         {
+            if (!this || !transform) return;
             var y = Mathf.Lerp(currentY, targetY, t);
             var evaluateY = curveMoveY.Evaluate(t) * my;
             currentPos.y = y + evaluateY;
@@ -147,6 +169,7 @@ public class UnitAnimation : MonoBehaviour
       
         motionHandleMoveZ = LMotion.Create(0f, 1f, timeMove).WithEase(curveMove).Bind(t =>
         {
+            if (!this || !transform) return;
             var z = Mathf.Lerp(currentZ, targetZ, t);
             var evaluateZ = curveMoveZ.Evaluate(t) * mz;
             currentPos.z = z + evaluateZ;

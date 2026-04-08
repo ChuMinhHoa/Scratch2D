@@ -2,6 +2,7 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Sirenix.Utilities;
+using TW.Utility.CustomType;
 using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "SpriteGlobalConfig", menuName = "GlobalConfigs/SpriteGlobalConfig")]
@@ -15,7 +16,7 @@ public class SpriteGlobalConfig : GlobalConfig<SpriteGlobalConfig>
     {
         for (var i = 0; i < iconSpriteConfigs.Length; i++)
         {
-            if(iconSpriteConfigs[i].tType == id)
+            if (iconSpriteConfigs[i].tType == id)
                 return iconSpriteConfigs[i].sprite;
         }
 
@@ -32,7 +33,7 @@ public class SpriteGlobalConfig : GlobalConfig<SpriteGlobalConfig>
     {
         for (var i = 0; i < iconSpriteConfigs.Length; i++)
         {
-            if(iconSpriteConfigs[i].sprite == sprite)
+            if (iconSpriteConfigs[i].sprite == sprite)
                 return iconSpriteConfigs[i].tType;
         }
 
@@ -40,11 +41,12 @@ public class SpriteGlobalConfig : GlobalConfig<SpriteGlobalConfig>
     }
 
     public SpriteConfig<int>[] iconObjHaveStickerConfigs;
+
     public Sprite GetIconObjectHaveSticker(int dataObjID)
     {
         for (var i = 0; i < iconObjHaveStickerConfigs.Length; i++)
         {
-            if(iconObjHaveStickerConfigs[i].tType == dataObjID)
+            if (iconObjHaveStickerConfigs[i].tType == dataObjID)
                 return iconObjHaveStickerConfigs[i].sprite;
         }
 
@@ -52,32 +54,33 @@ public class SpriteGlobalConfig : GlobalConfig<SpriteGlobalConfig>
     }
 
     public SpriteConfig<int>[] iconStickerBgConfigs;
-    
+
     public Sprite GetStickerBg(int id)
     {
         for (var i = 0; i < iconStickerBgConfigs.Length; i++)
         {
-            if(iconStickerBgConfigs[i].tType == id)
+            if (iconStickerBgConfigs[i].tType == id)
                 return iconStickerBgConfigs[i].sprite;
         }
 
         return null;
     }
 
-    
+
     public SpriteConfig<int>[] iconStickerShadowConfigs;
+
     public Sprite GetStickerShaDow(int id)
     {
         for (var i = 0; i < iconStickerShadowConfigs.Length; i++)
         {
-            if(iconStickerShadowConfigs[i].tType == id)
+            if (iconStickerShadowConfigs[i].tType == id)
                 return iconStickerShadowConfigs[i].sprite;
         }
 
         return null;
     }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     [Button]
     private void GetSpriteSticker()
     {
@@ -98,8 +101,9 @@ public class SpriteGlobalConfig : GlobalConfig<SpriteGlobalConfig>
                 });
             }
         }
+
         iconSpriteConfigs = sprites.ToArray();
-        
+
         path = @"Assets\BaseGame\Graphic\Sprites\Icon\stickers\Bg\";
         sprites = iconStickerBgConfigs.ToList();
         guids = UnityEditor.AssetDatabase.FindAssets("t:Sprite", new[] { path });
@@ -117,9 +121,9 @@ public class SpriteGlobalConfig : GlobalConfig<SpriteGlobalConfig>
                 });
             }
         }
-        
+
         iconStickerBgConfigs = sprites.ToArray();
-        
+
         path = @"Assets\BaseGame\Graphic\Sprites\Icon\stickers\Shadow\";
         sprites = iconStickerShadowConfigs.ToList();
         guids = UnityEditor.AssetDatabase.FindAssets("t:Sprite", new[] { path });
@@ -137,19 +141,21 @@ public class SpriteGlobalConfig : GlobalConfig<SpriteGlobalConfig>
                 });
             }
         }
+
         iconStickerShadowConfigs = sprites.ToArray();
-        
-        
+
+
         UnityEditor.EditorUtility.SetDirty(this);
     }
-    #endif
-    
+#endif
+
     public SpriteConfig<CardType>[] iconScratchCardConfigs;
+
     public Sprite GetScratchCardSprite(CardType dataCardType)
     {
         for (var i = 0; i < iconScratchCardConfigs.Length; i++)
         {
-            if(iconScratchCardConfigs[i].tType == dataCardType)
+            if (iconScratchCardConfigs[i].tType == dataCardType)
                 return iconScratchCardConfigs[i].sprite;
         }
 
@@ -157,11 +163,12 @@ public class SpriteGlobalConfig : GlobalConfig<SpriteGlobalConfig>
     }
 
     public SpriteConfig<GameResource.Type>[] iconResourceConfigs;
+
     public Sprite GetResourceIcon(GameResource.Type type)
     {
         for (var i = 0; i < iconResourceConfigs.Length; i++)
         {
-            if(iconResourceConfigs[i].tType == type)
+            if (iconResourceConfigs[i].tType == type)
                 return iconResourceConfigs[i].sprite;
         }
 
@@ -169,11 +176,12 @@ public class SpriteGlobalConfig : GlobalConfig<SpriteGlobalConfig>
     }
 
     public SpriteConfig<GameResource.Type>[] iconResourceRewardConfigs;
+
     public Sprite GetIconReward(GameResource.Type dataResourceType)
     {
         for (var i = 0; i < iconResourceRewardConfigs.Length; i++)
         {
-            if(iconResourceRewardConfigs[i].tType == dataResourceType)
+            if (iconResourceRewardConfigs[i].tType == dataResourceType)
                 return iconResourceRewardConfigs[i].sprite;
         }
 
@@ -181,12 +189,26 @@ public class SpriteGlobalConfig : GlobalConfig<SpriteGlobalConfig>
     }
 
     public SpriteConfig<GameResource.Type>[] iconShopRewardConfigs;
+
     public Sprite GetShopRewardIcon(GameResource.Type dataRewardType)
     {
         for (var i = 0; i < iconShopRewardConfigs.Length; i++)
         {
-            if(iconShopRewardConfigs[i].tType == dataRewardType)
+            if (iconShopRewardConfigs[i].tType == dataRewardType)
                 return iconShopRewardConfigs[i].sprite;
+        }
+
+        return null;
+    }
+
+    public SpriteConfig<int>[] iconCoinInShopConfigs;
+
+    public Sprite GetShopRewardIcon(BigNumber coinReward)
+    {
+        for (var i = iconCoinInShopConfigs.Length - 1; i >= 0; i--)
+        {
+            if (iconCoinInShopConfigs[i].tType <= coinReward)
+                return iconCoinInShopConfigs[i].sprite;
         }
 
         return null;

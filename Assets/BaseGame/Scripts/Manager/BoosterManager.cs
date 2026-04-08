@@ -38,6 +38,7 @@ public class BoosterManager : Singleton<BoosterManager>
         if (!sBo.CheckCondition) return;
        
         var pos = col.transform;
+        TutorialManager.Instance.SetActiveHand(false);
         for (var i = 0; i < boosterGraphicControls.Length; i++)
         {
             if (boosterGraphicControls[i].bType == currentBoosterType)

@@ -97,7 +97,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
 
         var parameters = new Parameter[]
         {
-            new("level", level),
+            new("level", level.ToString()),
             new("retry", retry),
             new("remaining_coins", remainingCoins.ToInt()),
             new("remaining_booster", remainingBooster),
@@ -121,7 +121,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
 
         var parameters = new Parameter[]
         {
-            new("level", level),
+            new("level", level.ToString()),
             new("revive_used", reviveUsed),
             new("retry", retry),
             new("duration_win", timePlayLevelDuration),
@@ -149,7 +149,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
 
         var parameters = new Parameter[]
         {
-            new("level", level),
+            new("level", level.ToString()),
             new("remaining_coins", remainingCoins),
             new("remaining_booster", remainingBooster),
             new("page_fail", noteFail),
@@ -182,13 +182,13 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
         var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
         var parameters = new Parameter[]
         {
-            new("level", level),
+            new("level", level.ToString()),
             new("button_name", buttonName),
             new("reward_name", currentAdsRewardType),
             new("value", adsRewardValue),
             new("placement", placement)
         };
-        FirebaseManager.Instance.LogFirebaseEvent("ads_inter_show", parameters);
+        FirebaseManager.Instance.LogFirebaseEvent("ads_reward_complete", parameters);
     }
 
     public void TrackAdsInterShow(string placement)
@@ -196,7 +196,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
         var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
         var parameters = new Parameter[]
         {
-            new("level", level),
+            new("level", level.ToString()),
             new("placement", placement)
         };
         FirebaseManager.Instance.LogFirebaseEvent("ads_inter_show", parameters);
@@ -218,7 +218,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
         var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
         var parameters = new Parameter[]
         {
-            new("level", level),
+            new("level", level.ToString()),
             new("value", amount),
             new("currency_name", currencyType.ToString()),
             new("placement", currencyPlacement.ToString()),
@@ -232,7 +232,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
         var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
         var parameters = new Parameter[]
         {
-            new("level", level),
+            new("level", level.ToString()),
             new("value", amount),
             new("currency_name", currencyType.ToString()),
             new("spend_type", spendType.ToString()),
@@ -254,7 +254,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
         var isFirstOrder = ShopManager.Instance.IsFirstPurchase.Value;
         var parameters = new Parameter[]
         {
-            new("level", level),
+            new("level", level.ToString()),
             new("pack_id", productID),
             new("placement", placementPurchase.ToString()),
             new("iap_first_order", isFirstOrder.ToString()),
@@ -267,7 +267,7 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
         var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
         var parameters = new Parameter[]
         {
-            new("level", level),
+            new("level", level.ToString()),
             new("placement", placementPurchase.ToString()),
             new("pack_id", productID),
         };
@@ -309,6 +309,38 @@ public class IngameFirebaseAnalystic : Singleton<IngameFirebaseAnalystic>
     }
 
     #endregion
+
+    #region Booster
+    public PlacementType boosterPlacement;
+    public void SetBoosterPlacement(PlacementType placement) => boosterPlacement = placement;
+    
+    public void TrackBoosterEarn(GameResource.Type rewardType, int value)
+    {
+        var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
+        var parameters = new Parameter[]
+        {
+            new("level", level.ToString()),
+            new("source", boosterPlacement.ToString()),
+            new("booster_name", rewardType.ToString()),
+            new("value", value.ToString())
+        };
+        FirebaseManager.Instance.LogFirebaseEvent("booster_earn", parameters);
+    }
+
+    public void TrackBoosterSpend(GameResource.Type boosterType)
+    {
+        var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
+        var parameters = new Parameter[]
+        {
+            new("level", level.ToString()),
+            new("source", boosterPlacement.ToString()),
+            new("booster_name", boosterType.ToString()),
+        };
+        FirebaseManager.Instance.LogFirebaseEvent("booster_spend", parameters);
+    }
+
+    #endregion
+   
 }
 
 public enum PlacementType

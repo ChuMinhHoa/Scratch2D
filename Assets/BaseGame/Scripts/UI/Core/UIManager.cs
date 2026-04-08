@@ -4,6 +4,7 @@ using TW.UGUI.Core.Activities;
 using TW.UGUI.Core.Modals;
 using TW.UGUI.Core.Screens;
 using TW.UGUI.Core.Views;
+using TW.UGUI.Shared;
 using TW.Utility.DesignPattern;
 using UnityEngine;
 
@@ -127,6 +128,11 @@ public class UIManager : Singleton<UIManager>
     public bool IsHaveModalOpen()
     {
         return ModalContainer.Find(ContainerKey.Modals).Modals.Count > 0;
+    }
+
+    public ViewRef<ModalBackdrop> GetModalBackdrop()
+    {
+        return ModalContainer.Find(ContainerKey.Modals).Backdrops[^1];
     }
 
     #endregion

@@ -323,6 +323,8 @@ GameObject:
   - component: {fileID: 4725396491348798289}
   - component: {fileID: 5119109295593173285}
   - component: {fileID: 7218731558924098476}
+  - component: {fileID: 2124479421090452371}
+  - component: {fileID: 638276237219201394}
   m_Layer: 5
   m_Name: imgIcon
   m_TagString: Untagged
@@ -369,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: e3f812204c7513342b95e4a7553f989c, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -387,6 +389,93 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2124479421090452371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2240591945866074051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e89e7398fa77a642a61b5e499c70b50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShineOnImage
+  _renderer: {fileID: 7218731558924098476}
+--- !u!114 &638276237219201394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2240591945866074051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccbff0eecac6d4a41ab86bb59da14431, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimOnBooster
+  delayTime: 3
+  objIndex: 0
+  delayAddTime: 0.1
+  duration: 0.25
+  curvePos:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  curvePosMagnitude:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.032676518
+      outSlope: 0.032676518
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.2914573
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.3015076
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  magnitude: 10
 --- !u!1 &2406053628786172274
 GameObject:
   m_ObjectHideFlags: 0
@@ -1292,6 +1381,7 @@ MonoBehaviour:
   handTutorial: {fileID: 8710664361717565694}
   objContent: {fileID: 1587783526376862853}
   objLock: {fileID: 7763372198200386936}
+  animOnBooster: {fileID: 638276237219201394}
   countUsed: 0
   showTutorialHand: 1
   references:

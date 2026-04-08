@@ -18,15 +18,12 @@ public class BoosterCart : BoosterBase
 
         ScreenGamePlayContext.Events.OnActiveInteractable?.Invoke(false);
         GlobalEventManager.OnBoosterUsing?.Invoke(boosterType, this);
-        //GamePlayManager.Instance.SetWhatCanSelectOnBooster(layerCanSelect);
-        //_ = UIManager.Instance.OpenActivityAsync<ActivityUsingBooster>();
         _ = WaitForUseBooster();
     }
 
     private async UniTask WaitForUseBooster()
     {
         await Level.Instance.fSpaceController.cartBooster.OnUseCardBooster(this);
-        Debug.Log("Use Booster Cart");
         UsedBooster(null);
     }
 

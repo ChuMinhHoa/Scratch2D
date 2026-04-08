@@ -41,15 +41,6 @@ MonoBehaviour:
     tutorialDes: Adds one more <color=#FFD322>Standby Slot</color> to store stickers
     handAction:
       rid: -2
-  - spriteIcon: {fileID: 0}
-    tutorialType: 3
-    sprSubIcon: []
-    id: 3
-    levelShow: 9
-    tutorialName: 
-    tutorialDes: 
-    handAction:
-      rid: 5138881567844466801
   - spriteIcon: {fileID: 21300000, guid: 0bfc2278f2a896a49949eb31baba5a65, type: 3}
     tutorialType: 6
     sprSubIcon: []
@@ -77,15 +68,6 @@ MonoBehaviour:
       type: {class: , ns: , asm: }
     - rid: 2849848982217949319
       type: {class: TutorialHandScratchAction, ns: , asm: Assembly-CSharp}
-      data:
-        trsHand: {fileID: 0}
-        srHand: {fileID: 0}
-        handAnim: {fileID: 0}
-        sprHands:
-        - {fileID: 21300000, guid: 12294f3c9e151d24bb20a5c0d1461347, type: 3}
-        - {fileID: 21300000, guid: 7dad7b6913de957409fe6fc22d695dc4, type: 3}
-    - rid: 5138881567844466801
-      type: {class: TutorialHandAddNote, ns: , asm: Assembly-CSharp}
       data:
         trsHand: {fileID: 0}
         srHand: {fileID: 0}

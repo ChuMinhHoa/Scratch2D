@@ -276,6 +276,7 @@ MonoBehaviour:
   sprIcon: {fileID: 639911378517590228}
   stickerDoneAnim: {fileID: 5540279529551384484}
   stickerGlow: {fileID: 2126693105279994954}
+  objTrail: {fileID: 0}
   stickerId: 0
 --- !u!114 &797801680370361070
 MonoBehaviour:

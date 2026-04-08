@@ -177,6 +177,15 @@ public class FreeSpaceController : SpaceForSticker
 
     public async UniTask UseBoosterCart()
     {
+        //await UniTask.WaitUntil(() => !UnitEventManager.Instance.IsHaveEvent());
+        if (GamePlayManager.Instance.gameState == GameState.LoseGame)
+        {
+            var price = BoosterGlobalConfig.Instance.GetBoosterConfig(BoosterType.BoosterCart).price;
+            PlayerResourceManager.Instance.ChangeResource(GameResource.Type.Money, price);
+            cartBooster.ResetCart();
+            SetPositionSpaceSticker();
+            return;
+        }
         var totalTimeWait = 0f;
         for (var i = 0; i < spaceStickers.Count; i++)
         {

@@ -83,8 +83,24 @@ namespace Core.UI.Screens
                 await LMotion.Create(currentProgress, 100f, 0.5f)
                     .WithEase(Ease.Linear)
                     .Bind(ShowTextProgress).AddTo(MainView);
-                await UIManager.Instance.OpenScreenDefaultAsync<ScreenDefault>();
-                await UIManager.Instance.CloseActivityAsync<ActivityLoading>();
+                await UniTask.WaitUntil(() => Level.Instance.isLoadDone);
+                var isEnoughLevel = Level.Instance.levelIndex.Value >= 5;
+                
+                if (isEnoughLevel)
+                {
+                    await UIManager.Instance.OpenScreenDefaultAsync<ScreenDefault>();
+                    await UIManager.Instance.CloseActivityAsync<ActivityLoading>();
+                }
+                else
+                {
+                    await Level.Instance.LoadData();
+                    await UIManager.Instance.CloseActivityAsync<ActivityLoading>();
+                    await UIManager.Instance.OpenScreenAsync<ScreenGamePlay>();
+                    await Level.Instance.AnimFirstSpawn();
+                }
+
+                
+                
                 // if(SoundManager.Instance)
                 //     SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_LoadingNormal);
             }

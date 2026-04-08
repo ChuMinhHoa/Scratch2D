@@ -14,6 +14,7 @@ public partial class FolderHaveSticker : MonoBehaviour
     public int objId;
     public StickerPos[] trsStickerPos;
     public UnitAnimation unitAnim;
+    public UnitAnimation unitAnimScale;
 
     public MaterialPropertyBlock propertyBlock;
     public GameObject effectDone;
@@ -68,10 +69,12 @@ public partial class FolderHaveSticker : MonoBehaviour
     {
         for (var i = 0; i < trsStickerPos.Length; i++)
         {
-            if (!trsStickerPos[i].moveDone)
+            if (trsStickerPos[i].moveDone) continue;
+            if (stickerMoveDone && !unitAnimScale.IsHaveScaleAnim())
             {
-                return;
+                _ = unitAnimScale.PlayScaleAnimation();
             }
+            return;
         }
 
         Level.Instance.MoveFolderOut(this);
@@ -121,7 +124,11 @@ public partial class FolderHaveSticker : MonoBehaviour
             _renderer.SetPropertyBlock(propertyBlock);
         }).AddTo(this);
         
-        await unitAnim.PlayScaleAnimation();
+        if (!unitAnim.IsHaveScaleAnim() && !unitAnimScale.IsHaveScaleAnim())
+        {
+           await unitAnim.PlayScaleAnimation();
+        }
+        //await unitAnim.PlayScaleAnimation();
 
         await LMotion.Create(currentPos, posOut.position, 0.25f).Bind(x => transform.position = x).AddTo(this);
         UnitEventManager.Instance.RemoveEventId(gameObject);

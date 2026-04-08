@@ -11,6 +11,7 @@ public class BoosterMagnet : BoosterBase
     {
         base.UseBooster();
         Debug.Log("Use Booster Magnet");
+        TutorialManager.Instance.ShowTutorialForBooster(boosterType);
     }
     
     public override void ShowWarning()

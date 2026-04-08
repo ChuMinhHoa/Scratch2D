@@ -3,6 +3,7 @@ using Core.UI.Activities;
 using Core.UI.Modals;
 using Cysharp.Text;
 using Cysharp.Threading.Tasks;
+using LitMotion;
 using TW.UGUI.MVPPattern;
 using UnityEngine;
 using R3;
@@ -41,17 +42,17 @@ namespace Core.UI.Screens
             public static Action<bool> OnActiveInteractable { get; set; }
 
             public static Action<BoosterType> UseBooster { get; set; }
+            public static Action RefreshBooster { get; set; }
         }
 
         [HideLabel]
         [Serializable]
         public class UIModel : IAModel
         {
-            [field: Title(nameof(UIModel))]
-            
-            public Reactive<int> level = new(0);
+            [field: Title(nameof(UIModel))] public Reactive<int> level = new(0);
             public Reactive<int> countDone = new(0);
             public Reactive<int> maxCount = new(0);
+
             public UniTask Initialize(Memory<object> args)
             {
                 level = Level.Instance.levelIndex;
@@ -68,6 +69,7 @@ namespace Core.UI.Screens
             [field: Title(nameof(UIView))]
             [field: SerializeField]
             public CanvasGroup MainView { get; private set; }
+
             [field: SerializeField] public Button BtnSetting { get; private set; }
             [field: SerializeField] public TextMeshProUGUI TxtLevel { get; private set; }
             [field: SerializeField] public TextMeshProUGUI TxtCount { get; private set; }
@@ -97,8 +99,9 @@ namespace Core.UI.Screens
                 }
             }
 
-            public void OnUserBoosterMagnet(BoosterType boosterType)
+            public void OnUserBooster(BoosterType boosterType)
             {
+                //Debug.Log("use booster: " + boosterType);
                 for (var i = 0; i < BtnBoosters.Length; i++)
                 {
                     if (BtnBoosters[i].IsSameBooster(boosterType))
@@ -106,6 +109,22 @@ namespace Core.UI.Screens
                         BtnBoosters[i].UseBooster();
                     }
                 }
+            }
+
+            public void AnimBooster()
+            {
+                LoopAnim().Forget();
+            }
+
+            private async UniTask LoopAnim()
+            {
+                for (var i = 0; i < BtnBoosters.Length; i++)
+                {
+                    BtnBoosters[i].AnimOnBooster();
+                }
+
+                await UniTask.WaitForSeconds(3f, cancellationToken: MainView.GetCancellationTokenOnDestroy());
+                LoopAnim().Forget();
             }
         }
 
@@ -120,7 +139,7 @@ namespace Core.UI.Screens
             {
                 await Model.Initialize(args);
                 await View.Initialize(args);
-                
+
                 View.BtnSetting.onClick.AddListener(OnClickSetting);
                 Model.level.Subscribe(ChangeLevel).AddTo(View.MainView);
                 Model.countDone.Subscribe(ChangeTotalCount).AddTo(View.MainView);
@@ -132,11 +151,17 @@ namespace Core.UI.Screens
                 View.MainView.interactable = false;
                 Events.OnActiveInteractable += CallInteractable;
                 Events.UseBooster += UseBooster;
+                Events.RefreshBooster += View.RefreshBtnBooster;
+            }
+
+            public void DidPushEnter(Memory<object> args)
+            {
+                View.AnimBooster();
             }
 
             private void UseBooster(BoosterType boosterType)
             {
-                View.OnUserBoosterMagnet(boosterType);
+                View.OnUserBooster(boosterType);
             }
 
             private void CallInteractable(bool active)
@@ -148,13 +173,13 @@ namespace Core.UI.Screens
             {
                 Events.OnActiveInteractable = null;
                 Events.UseBooster = null;
+                Events.RefreshBooster = null;
                 return UniTask.CompletedTask;
             }
 
             private async UniTask OpenUI()
             {
                 await UIManager.Instance.OpenActivityInGameAsync<ActivityWarning>();
-                
             }
 
             public void ChangeMaxCount(int maxChange)

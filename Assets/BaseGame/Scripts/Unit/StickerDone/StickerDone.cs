@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using LitMotion;
 using TW.Utility.DesignPattern.UniTaskState;
@@ -16,11 +17,19 @@ public partial class StickerDone : MonoBehaviour
     public int stickerId;
 
     private MotionHandle motionMoveHandle;
+    
+    private CancellationToken destroyToken;
 
     private void Start()
     {
+        destroyToken = this.GetCancellationTokenOnDestroy();
         stateMachine.Run();
         stateMachine.RequestTransition(StickerDoneInitState);
+    }
+
+    private void OnDestroy()
+    {
+        //destroyToken.
     }
 
     private void CheckToAbleStickerAnimAgain()
@@ -34,7 +43,7 @@ public partial class StickerDone : MonoBehaviour
 
     public void ResetStickerDone()
     {
-        stickerGlow.gameObject.SetActive(false);
+        stickerGlow?.gameObject.SetActive(false);
     }
 
     public void CheckMoveToFolder(bool fromNoWhere = false, bool fromFreeSpace = false)
@@ -94,28 +103,35 @@ public partial class StickerDone : MonoBehaviour
         unitAnimMoveToFreeSpaceOnBooster.ClearAnim();
         unitAnimMoveToCart.ClearAnim();
     }
-
     public async UniTask MoveToPos(Vector3 target)
     {
+        if (this == null || destroyToken.IsCancellationRequested)
+            return;
         ClearAnim();
-        await unitAnim.PlayMoveAnim(target);
+        await unitAnim.PlayMoveAnim(target).AttachExternalCancellation(destroyToken);
     }
     
     private async UniTask MoveToPosLocal(Vector3 target)
     {
+        if (this == null || destroyToken.IsCancellationRequested)
+            return;
         ClearAnim();
-        await unitAnim.PlayMoveAnimLocal(target);
+        await unitAnim.PlayMoveAnimLocal(target).AttachExternalCancellation(destroyToken);
     }
     
     private async UniTask MoveToCart(Vector3 target)
     {
+        if (this == null || destroyToken.IsCancellationRequested)
+            return;
         ClearAnim();
-        await unitAnimMoveToCart.PlayMoveAnim(target);
+        await unitAnimMoveToCart.PlayMoveAnim(target).AttachExternalCancellation(destroyToken);
     }
 
     public void MoveToFreeSpaceOnUseBooster(Vector3 newPos)
     {
+        if (this == null || destroyToken.IsCancellationRequested)
+            return;
         ClearAnim();
-        _ = unitAnimMoveToFreeSpaceOnBooster.PlayMoveAnim(newPos);
+        _ = unitAnimMoveToFreeSpaceOnBooster.PlayMoveAnim(newPos).AttachExternalCancellation(destroyToken);
     }
 }

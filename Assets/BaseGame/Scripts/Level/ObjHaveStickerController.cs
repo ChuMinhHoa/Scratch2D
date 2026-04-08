@@ -98,7 +98,7 @@ public class ObjHaveStickerController : SpaceForSticker
         }
         
         var lastNote = Level.Instance.oSController.IsLastNote(folder);
-        Debug.Log($"Last note: {lastNote}");
+        //Debug.Log($"Last note: {lastNote}");
         if (lastNote)
         {
             Level.Instance.oSController.CallCheckEndGame();
@@ -171,5 +171,16 @@ public class ObjHaveStickerController : SpaceForSticker
     public bool IsCanAddNote()
     {
         return SlotFolders[^1].slotFolderType == SlotFolderType.Ads;
+    }
+
+    public Vector3 GetSlotNotePos()
+    {
+        for (var i = 0; i < SlotFolders.Length; i++)
+        {
+            if (SlotFolders[i].IsHaveObject() && SlotFolders[i].folderPos.IsMoveDone())
+                return SlotFolders[i].transform.position;
+        }
+
+        return Vector3.zero;
     }
 }

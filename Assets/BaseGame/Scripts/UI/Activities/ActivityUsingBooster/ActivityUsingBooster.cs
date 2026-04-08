@@ -97,6 +97,7 @@ namespace Core.UI.Activities
 
             private void CloseActivity()
             {
+                TutorialManager.Instance.SetActiveHand(false);
                 _ = UIManager.Instance.CloseActivityAsync<ActivityUsingBooster>();
             }
         }

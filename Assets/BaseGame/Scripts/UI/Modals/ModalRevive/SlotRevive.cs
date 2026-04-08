@@ -9,8 +9,9 @@ using Random = UnityEngine.Random;
 public enum ReviveType
 {
     AddNote,
-    AddSlot,
-    BoosterMagnet
+    //AddSlot,
+    BoosterMagnet,
+    BoosterCart
 }
 public class SlotRevive : SlotBase<ReviveType>
 {
@@ -35,6 +36,7 @@ public class SlotRevive : SlotBase<ReviveType>
         }
         objRevive[(int)slotData].SetActive(true);
         var slotIndex = (int)slotData;
+        Debug.Log("SlotRevive InitData " + slotIndex);
         LMotion.Create(0f, 1f, 1f).WithDelay(Random.Range(0.1f, 0.5f)).WithEase(animCurve).WithLoops(-1, LoopType.Yoyo).Bind(x =>
         {
             trsRevive[slotIndex].transform.localPosition = x * vectorOffset;
@@ -62,8 +64,9 @@ public class SlotRevive : SlotBase<ReviveType>
         return slotData switch
         {
             ReviveType.AddNote => Level.Instance.oSController.IsCanAddNote(),
-            ReviveType.AddSlot => Level.Instance.fSpaceController.IsCanUseBoosterAddSlot(),
+            //ReviveType.AddSlot => Level.Instance.fSpaceController.IsCanUseBoosterAddSlot(),
             ReviveType.BoosterMagnet => true,
+            ReviveType.BoosterCart => true,
             _ => false
         };
     }

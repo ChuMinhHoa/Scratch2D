@@ -88,6 +88,13 @@ public class CardGraphic : MonoBehaviour
 
     #endregion Freeze State
 
+    #region Chain
+    [ShowIf("@cardState == CardState.Chain")]
+    public Transform objChain;
+    [ShowIf("@cardState == CardState.Chain")]
+    public SpriteRenderer sprChain;
+    #endregion
+
     public void InitData(CardState cardStateChange)
     {
         cardState = cardStateChange;
@@ -97,6 +104,9 @@ public class CardGraphic : MonoBehaviour
         
         var isFreeze = cardState == CardState.Freeze;
         objFreeze.SetActive(isFreeze);
+        
+        var isChain = cardState == CardState.Chain;
+        objChain.gameObject.SetActive(isChain);
     }
 
     [Button]
@@ -142,5 +152,15 @@ public class CardGraphic : MonoBehaviour
         {
             sprAnim[i].color = colorStartOpen;
         }
+    }
+
+    public void SetupChainLine(Vector3 point1, Vector3 point2)
+    {
+        objChain.gameObject.SetActive(true);
+        var dir = point2 - point1;
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        objChain.rotation = Quaternion.Euler(0, 0, angle);
+        var distance = Vector3.Distance(point1, point2);
+        sprChain.size = new Vector2(distance, sprChain.size.y);
     }
 }

@@ -34,7 +34,8 @@ public class BtnBooster : MonoBehaviour
     [SerializeField] private GameObject handTutorial;
     [SerializeField] private GameObject objContent;
     [SerializeField] private GameObject objLock;
-
+    [SerializeField] private AnimOnBooster animOnBooster;
+    
     private BoosterConfig config;
 
     public int countUsed = 0;
@@ -74,7 +75,7 @@ public class BtnBooster : MonoBehaviour
 
     private void OnCallCheckBooster()
     {
-        Debug.Log("check active booster!");
+        //Debug.Log("check active booster!");
         ChangeValueBooster(gameResource.Amount);
     }
 
@@ -111,7 +112,7 @@ public class BtnBooster : MonoBehaviour
         var e = TutorialManager.Instance.IsUnLockBooster(config.boosterType);
         if (e) return;
         var eResourceType = MyCache.ConvertBoosterToResourceType(config.boosterType);
-        PlayerResourceManager.Instance.ChangeResource(eResourceType, 1);
+        PlayerResourceManager.Instance.ChangeResource(eResourceType, DefaultGlobalConfig.Instance.boosterUnlockAmount);
         objContent.SetActive(true);
         if (showTutorialHand)
         {
@@ -174,9 +175,8 @@ public class BtnBooster : MonoBehaviour
     private void AddBooster()
     {
         PlayerResourceManager.Instance.ChangeResource(gameResource.ResourceType, 1);
-        // IngameFirebaseAnalystic.Instance.SetClaimCurrencyType(ClaimCurrencyType.AdsReward);
-        // IngameFirebaseAnalystic.Instance.SetCurrencyPlacement(PlacementType.InGame);
-        // IngameFirebaseAnalystic.Instance.TrackCurrencyEarn(gameResource.ResourceType, 1);
+        IngameFirebaseAnalystic.Instance.SetBoosterPlacement(PlacementType.InGame);
+        IngameFirebaseAnalystic.Instance.TrackBoosterEarn(gameResource.ResourceType, 1);
         countUsed++;
         PayByAds();
     }
@@ -271,7 +271,6 @@ public class BtnBooster : MonoBehaviour
         }
 
         OnCallCheckBooster();
-        Debug.Log("used booster");
         GlobalEventManager.OnBoosterDone?.Invoke();
     }
 
@@ -280,7 +279,12 @@ public class BtnBooster : MonoBehaviour
         objWatchAds.SetActive(false);
     }
 
-    private void PayByGameResource() => PlayerResourceManager.Instance.ChangeResource(gameResource.ResourceType, -1);
+    private void PayByGameResource()
+    { 
+        PlayerResourceManager.Instance.ChangeResource(gameResource.ResourceType, -1);
+        IngameFirebaseAnalystic.Instance.SetBoosterPlacement(PlacementType.InGame);
+        IngameFirebaseAnalystic.Instance.TrackBoosterSpend(gameResource.ResourceType);
+    }
 
     private void PayByPrice()
     {
@@ -304,12 +308,15 @@ public class BtnBooster : MonoBehaviour
         objPrice.SetActive(false);
         objAmount.SetActive(false);
         objWatchAds.SetActive(false);
+        ChangeValueBooster(gameResource.Amount);
     }
 
     public bool IsSameBooster(BoosterType boosterType)
     {
         return ((BoosterBase)booster).boosterType == boosterType;
     }
+
+    public void AnimOnBooster() => _ = animOnBooster.AnimLoop();
 }
 
 public enum BoosterUseType

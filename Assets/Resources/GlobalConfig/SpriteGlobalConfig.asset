@@ -433,3 +433,16 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 059098556b0eb9b458dda0eec3324ac9, type: 3}
   - tType: 5
     sprite: {fileID: 21300000, guid: 037a503a4949d1c46b8ece16919e713d, type: 3}
+  iconCoinInShopConfigs:
+  - tType: 500
+    sprite: {fileID: 21300000, guid: f78c95bcc02b9344481d345bd76daa28, type: 3}
+  - tType: 1000
+    sprite: {fileID: 21300000, guid: 56510700e0f9999418a4e2a35b8fbb2f, type: 3}
+  - tType: 3000
+    sprite: {fileID: 21300000, guid: e92fe7299fbe0e045a895b0bc3eb39b9, type: 3}
+  - tType: 5000
+    sprite: {fileID: 21300000, guid: 105514143bc2fba4db7810319c142146, type: 3}
+  - tType: 10000
+    sprite: {fileID: 21300000, guid: d884e6e158f11c84eba15e6460ca7e95, type: 3}
+  - tType: 20000
+    sprite: {fileID: 21300000, guid: fd7ebad55fa5a834eaa7cc120c23cd91, type: 3}

@@ -17,7 +17,9 @@ public class TutorialManager : Singleton<TutorialManager>
     public Animator handAnim;
     public SpriteRenderer sprHand;
     public Sprite[] sprHands;
-
+    
+    [SerializeReference] public TutorialHandAction magnetHandAction;
+    
     private void Start()
     {
         listIDTutorialDone = TutorialDataSave.Instance.tutorialIDComplete;
@@ -92,6 +94,36 @@ public class TutorialManager : Singleton<TutorialManager>
         }
     }
 
+    public void ShowTutorialForBooster(BoosterType boosterType)
+    {
+        switch (boosterType)
+        {
+            case BoosterType.BoosterMagnet:
+                ShowHandTutMagnet();
+                break;
+            case BoosterType.BoosterAddSlot:
+            case BoosterType.BoosterHammer:
+                break;
+            case BoosterType.BoosterCart:
+            default:
+                return;
+        }
+    }
+
+    private void ShowHandTutMagnet()
+    {
+        magnetHandAction.handAnim = handAnim;
+        magnetHandAction.srHand = sprHand;
+        magnetHandAction.trsHand = trsHand;
+        magnetHandAction.sprHands = sprHands;
+        magnetHandAction.TutorialAction();
+    }
+
+    private void ShowHandHammer()
+    {
+        
+    }
+
     private void ShowTutorialModal()
     {
         Debug.Log("Show tutorial modal");
@@ -157,6 +189,14 @@ public class TutorialManager : Singleton<TutorialManager>
 
         return false;
     }
+
+    public void SetActiveHand(bool isActive)
+    {
+        if (trsHand)
+        {
+            trsHand.gameObject.SetActive(isActive);
+        }
+    }
 }
 
 public class TutorialHandAction
@@ -221,5 +261,18 @@ public class TutorialHandAddNote : TutorialHandAction
         if (type != SlotFolderType.Normal) return;
         trsHand.gameObject.SetActive(false);
         actionCallBack?.Invoke();
+    }
+}
+
+[Serializable]
+public class TutorialHandUseBoosterMagnet : TutorialHandAction
+{
+    public override void TutorialAction()
+    {
+        var pos = Level.Instance.oSController.GetSlotNotePos();
+        pos.z = -5.3f;
+        trsHand.transform.position = pos;
+        trsHand.gameObject.SetActive(true);
+        handAnim.Play("Press");
     }
 }

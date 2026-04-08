@@ -99,6 +99,9 @@ namespace Core.UI.Modals
                 View.BtnReplay.onClick.AddListener(() => _ = OnClickBtnReplay());
 
                 Model.energy.Subscribe(ChangeEnergy).AddTo(View.MainView);
+                
+                var e = Level.Instance.levelIndex.Value >= 5;
+                View.BtnHome.gameObject.SetActive(e);
             }
 
             public void ChangeEnergy(BigNumber energyChange)
@@ -115,6 +118,7 @@ namespace Core.UI.Modals
                 }
                 else
                     await UIManager.Instance.OpenActivityAsync<ActivityWarningLoseEnergy>((Func<UniTask>)ConfirmReplay); 
+                ScreenGamePlayContext.Events.RefreshBooster?.Invoke();
             }
             
             private async UniTask ConfirmReplay()

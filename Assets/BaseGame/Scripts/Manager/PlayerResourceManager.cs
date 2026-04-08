@@ -83,7 +83,7 @@ public class PlayerResourceManager : Singleton<PlayerResourceManager>
    [Button]
    public void ChangeResource(GameResource.Type resourceType, BigNumber amount)
    {
-      Debug.Log("CHANGE RESOURCE: " + resourceType + " " + amount);
+      //Debug.Log("CHANGE RESOURCE: " + resourceType + " " + amount);
       var resource = GetGameResource(resourceType);
       if (resource == null) return;
       resource.Amount += amount;

@@ -30,15 +30,11 @@ public class CartObjBooster : MonoBehaviour
         {
             isActive = true;
             cartGraphic.PlayAnimSpawn();
+            Level.Instance.fSpaceController.SetPositionSpaceSticker();
             SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_BoosterAddSlot);
             await UniTask.WaitForSeconds(0.25f);
             cartGraphic.PlayAnimOpen();
-            Level.Instance.fSpaceController.SetPositionSpaceSticker();
             await UniTask.WaitForSeconds(0.5f);
-        }
-        else
-        {
-            Level.Instance.fSpaceController.SetPositionSpaceSticker();
         }
 
         await Level.Instance.fSpaceController.UseBoosterCart();
@@ -46,12 +42,12 @@ public class CartObjBooster : MonoBehaviour
 
     public async UniTask AddStickerDone(StickerDone stickerD, int index)
     {
+        await UniTask.WaitForSeconds(0.1f * index);
         if (stickerD.stateMachine.IsCurrentState(stickerD.StickerDoneMoveToObjHaveStickerState))
             return;
         stickerDone.Add(stickerD);
-        await UniTask.WaitForSeconds(0.1f * index);
         stickerD.stateMachine.RequestTransition(stickerD.StickerDoneWaitOnCartState);
-            cartGraphic.PlayAnimCollect();
+        cartGraphic.PlayAnimCollect();
         txtCountStickerDone.SetTextFormat(MyCache.strDefault, stickerDone.Count);
     }
 

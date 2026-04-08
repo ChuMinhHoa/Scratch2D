@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using SDK;
 using UnityEngine;
 using Sirenix.Utilities;
+using TW.Utility.CustomType;
 
 [CreateAssetMenu(fileName = "DefaultGlobalConfig", menuName = "GlobalConfigs/DefaultGlobalConfig")]
 [GlobalConfig("Assets/Resources/GlobalConfig/")]
@@ -12,6 +13,7 @@ public class DefaultGlobalConfig : GlobalConfig<DefaultGlobalConfig>
     public int defaultCoinWinGame = 10;
     public int priceRevive = 200;
     public int levelShowInter = 9;
+    public int boosterUnlockAmount = 3;
 
     public async UniTask InitRemoteConfig()
     {

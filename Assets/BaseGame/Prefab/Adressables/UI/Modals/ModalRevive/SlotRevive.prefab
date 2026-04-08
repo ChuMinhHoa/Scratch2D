@@ -32,8 +32,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6703784446752499060}
-  - {fileID: 2211848300237775951}
   - {fileID: 1713426850710500821}
+  - {fileID: 2211848300237775951}
   - {fileID: 4678695593679067501}
   - {fileID: 5290059373506468425}
   m_Father: {fileID: 0}
@@ -69,8 +69,8 @@ MonoBehaviour:
   trsContent: {fileID: 0}
   objRevive:
   - {fileID: 3090378828505543881}
-  - {fileID: 4044228403917096457}
   - {fileID: 6566901387370671766}
+  - {fileID: 4044228403917096457}
   trsRevive:
   - {fileID: 6114472279980402190}
   - {fileID: 6606122420644695442}
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: df6f118a41ab33f4c800910d70bcea97, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0bfc2278f2a896a49949eb31baba5a65, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -838,7 +838,7 @@ GameObject:
   - component: {fileID: 2211848300237775951}
   - component: {fileID: 3387578395513283901}
   m_Layer: 5
-  m_Name: ObjAddSlot
+  m_Name: ObjCart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

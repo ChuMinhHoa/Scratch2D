@@ -12,7 +12,7 @@ public class BoosterGlobalConfig : GlobalConfig<BoosterGlobalConfig>
     
     public BoosterConfig GetBoosterConfig(BoosterType boosterType)
     {
-        Debug.Log(boosterType);
+        //Debug.Log(boosterType);
         for (var i = 0; i < boosterConfigs.Length; i++)
         {
             if(boosterConfigs[i].boosterType == boosterType)
@@ -28,9 +28,9 @@ public class BoosterGlobalConfig : GlobalConfig<BoosterGlobalConfig>
         switch (slotData)
         {
            
-            case ReviveType.AddSlot:
-                boosterType = BoosterType.BoosterAddSlot;
-                break;
+            // case ReviveType.AddSlot:
+            //     boosterType = BoosterType.BoosterAddSlot;
+            //     break;
             case ReviveType.BoosterMagnet:
                 boosterType = BoosterType.BoosterMagnet;
                 break;

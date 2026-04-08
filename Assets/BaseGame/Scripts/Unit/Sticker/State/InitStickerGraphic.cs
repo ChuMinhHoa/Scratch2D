@@ -7,8 +7,10 @@ public class InitStickerGraphic
 
 public partial class StickerGraphic
 {
-    [ShowIf("@stickerType == StickerType.Mark")]
-    public Sprite[] sprIconMark;
+    [ShowIf("@stickerType == StickerType.Mark")] [SerializeField]
+    private Color colorMark;
+    
+    // public Sprite[] sprIconMark;
     private void InitStickerNormal()
     {
         var spriteIcon = SpriteGlobalConfig.Instance.GetStickerIcon(stickerId);
@@ -26,10 +28,11 @@ public partial class StickerGraphic
 
     private void InitStickerMark()
     {
-        var spriteIcon = SpriteGlobalConfig.Instance.GetStickerIcon(stickerId);
+        var spriteIcon = SpriteGlobalConfig.Instance.GetStickerBg(stickerId);
         var spriteBg = SpriteGlobalConfig.Instance.GetStickerBg(stickerId);
         var spriteQuestMark = SpriteGlobalConfig.Instance.sprQuestMark;
         sprIcon.sprite = spriteIcon;
+        sprIcon.color = colorMark;
         sprBg.sprite = spriteBg;
         sprGlow.sprite = spriteIcon;
         scratchManager.ChangeSprite(spriteQuestMark);

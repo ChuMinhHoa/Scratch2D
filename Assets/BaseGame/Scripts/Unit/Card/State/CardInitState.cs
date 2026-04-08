@@ -105,6 +105,9 @@ public partial class Card : CardInitState.IHandler
             case CardState.Freeze:
                 stateMachine.RequestTransition(CardFreezeState);
                 break;
+            case CardState.Chain:
+                stateMachine.RequestTransition(CardChainState);
+                break;
             case CardState.Key:
             default:
                 break;

@@ -80,5 +80,6 @@ public enum CardState
     Normal,
     Lock,
     Freeze,
-    Key
+    Key,
+    Chain
 }

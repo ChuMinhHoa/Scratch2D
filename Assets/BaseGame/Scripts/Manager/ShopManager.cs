@@ -116,11 +116,38 @@ public class ShopManager : Singleton<ShopManager>
             }
             else
             {
-                IngameFirebaseAnalystic.Instance.TrackCurrencyEarn(rewardType, amount.ToInt());
+                var isBooster = IsBooster(packageConfig.shopRewards[i].ResourceType);
+                if (!isBooster)
+                    IngameFirebaseAnalystic.Instance.TrackCurrencyEarn(rewardType, amount.ToInt());
+                else
+                {
+                    IngameFirebaseAnalystic.Instance.SetBoosterPlacement(PlacementType.Shop);
+                    IngameFirebaseAnalystic.Instance.TrackBoosterEarn(rewardType, amount.ToInt());
+                }
             }
         }
 
         _ = DelayPurChaseSuccess();
+    }
+
+    private bool IsBooster(GameResource.Type resourceType)  
+    {
+        switch (resourceType)
+        {
+          
+            case GameResource.Type.BoosterCart:
+            case GameResource.Type.BoosterMagnet:
+            case GameResource.Type.BoosterAddSlot:
+            case GameResource.Type.BoosterHammer:
+                return true;
+            case GameResource.Type.None:
+            case GameResource.Type.Money:
+            case GameResource.Type.Gem:
+            case GameResource.Type.Energy:
+            case GameResource.Type.NoAds:
+            default:
+                return false;
+        }
     }
 
     private async UniTask DelayPurChaseSuccess()

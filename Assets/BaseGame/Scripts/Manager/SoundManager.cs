@@ -51,22 +51,23 @@ public class SoundManager : Singleton<SoundManager>
         }
     }
 
-    private void ChangeSetting(bool settingChange)
+    [Button]
+    public void ChangeSetting(bool settingChange)
     {
         for (var i = 0; i < settingData.Count; i++)
         {
             switch (settingData[i].settingKey)
             {
                 case SettingKey.MusicBg:
-                    MuteBg(settingData[i].ableSetting.Value);
+                    MuteBg(!settingData[i].ableSetting.Value);
                     break;
                 case SettingKey.Sound:
-                    MuteSfx(settingData[i].ableSetting.Value);
+                    MuteSfx(!settingData[i].ableSetting.Value);
                     break;
                 case SettingKey.Vibrate:
                 case SettingKey.None:
                 default:
-                    return;
+                    break;
             }
         }
     }
@@ -134,6 +135,7 @@ public class SoundManager : Singleton<SoundManager>
 
     private void MuteSfx(bool mute)
     {
+        //Debug.Log("set mute sfx " + mute);
         for (var i = 0; i < sfxData.Count; i++)
         {
             sfxData[i].SetMute(mute);
@@ -220,7 +222,7 @@ public class SoundManager : Singleton<SoundManager>
                 break;
             }
         }
-
+        ChangeSetting(true);
         SettingDataSave.Instance.SaveData();
     }
 }
@@ -280,10 +282,10 @@ public class SoundData
 
     public void SetMute(bool mute)
     {
-        if (mute)
-        {
-            source.Stop();
-        }
+        // if (!mute)
+        // {
+        //     source.Stop();
+        // }
 
         source.mute = mute;
     }

@@ -11,6 +11,19 @@ public class PoolManager : Singleton<PoolManager>
         poolEraserEffect.SpawnOnInit();
         poolStickerMoveEffect.SpawnOnInit();
     }
+    
+    public void DestroyAll()
+    {
+        poolEraserEffect.DestroyAll();
+        poolStickerMoveEffect.DestroyAll();
+        poolObjHaveSticker.DestroyAll();
+        for (var i = 0; i < poolCardData.Length; i++)
+        {
+            poolCardData[i].DestroyAll();
+        }
+        poolSticker.DestroyAll();
+        poolScratchCard.DestroyAll();
+    }
 
     #region Eraser effect
 
@@ -215,6 +228,16 @@ public class HPool<T> where T : Component
             obj.transform.SetParent(parents);
         obj.gameObject.SetActive(false);
         deActivePool.Add(obj);
+    }
+    
+    public void DestroyAll()
+    {
+        for (var i = deActivePool.Count - 1; i >= 0 ; i--)
+        {
+            if (!deActivePool[i]) continue;
+            Object.Destroy(deActivePool[i].gameObject);
+        }
+        deActivePool.Clear();
     }
 }
 

@@ -116,6 +116,7 @@ namespace Core.UI.Modals
             {
                 _ = View.AnimShow();
                 SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_Win);
+                SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_FireWork);
             }
 
             private void ClaimReward()

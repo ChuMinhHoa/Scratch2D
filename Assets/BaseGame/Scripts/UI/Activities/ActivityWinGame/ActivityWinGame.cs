@@ -111,7 +111,7 @@ namespace Core.UI.Activities
                         EnergyManager.Instance.RefillAddOnEnergy();
                     }
                 }
-
+                AdsManager.Instance.HideMRecAds();
                 return UniTask.CompletedTask;
             }
 
@@ -122,7 +122,6 @@ namespace Core.UI.Activities
 #if UNITY_EDITOR
                 Claim(true);
 #endif
-               
 #if !UNITY_EDITOR
                 if (ShopManager.Instance.NoAds.Value) Claim(true);
                 else
@@ -150,7 +149,14 @@ namespace Core.UI.Activities
                 IngameFirebaseAnalystic.Instance.SetCurrencyPlacement(PlacementType.WinGame);
                 IngameFirebaseAnalystic.Instance.TrackCurrencyEarn(GameResource.Type.Money,
                     DefaultGlobalConfig.Instance.defaultCoinWinGame * (isX2 ? 2 : 1));
-                UIControl().Forget();
+               
+                var e = Level.Instance.levelIndex.Value >= 5;
+                if (e)
+                    UIControl().Forget();
+                else
+                {
+                    _ = UIControlLevelNotEnough();
+                }
             }
 
             private async UniTask UIControl()
@@ -166,11 +172,21 @@ namespace Core.UI.Activities
                 }
             }
 
+            private async UniTask UIControlLevelNotEnough()
+            {
+                Level.Instance.ResetLevel();
+                await UIManager.Instance.CloseScreenAsync();
+                await UIManager.Instance.CloseActivityAsync<ActivityWinGame>();
+                await UIManager.Instance.OpenActivityAsync<ActivityLoadingInGamePlay>((Func<UniTask>)Level.Instance.LoadData, (Func<UniTask>)Level.Instance.AnimFirstSpawn);
+                await UIManager.Instance.OpenScreenAsync<ScreenGamePlay>();
+            }
+
             public void DidEnter(Memory<object> args)
             {
                 _ = View.AnimWrapInfo();
                 SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_Win);
                 SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_FireWork);
+                AdsManager.Instance.ShowMRecAds();
             }
         }
     }

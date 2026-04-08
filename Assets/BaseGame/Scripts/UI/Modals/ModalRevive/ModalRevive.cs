@@ -27,6 +27,16 @@ namespace Core.UI.Modals
         {
             await base.Initialize(args);
         }
+        
+        public void OnHoldToHideUI()
+        {
+            UIPresenter.HoldToHideUI();
+        }
+        
+        public void OnEndHoldToHideUI()
+        {
+            UIPresenter.EndHoldToHideUI();
+        }
     }
 
 
@@ -64,6 +74,7 @@ namespace Core.UI.Modals
             public MainContentBase<SlotRevive, ReviveType> MainContentRevive { get; private set; }
 
             [field: SerializeField] public Button BtnClose { get; private set; }
+            [field: SerializeField] public BtnHoldAction BtnHold { get; private set; }
 
             public UniTask Initialize(Memory<object> args)
             {
@@ -97,7 +108,35 @@ namespace Core.UI.Modals
 
                 View.SetActionCallBack(SlotReviveCallBack);
                 View.InitData();
+                View.BtnClose.gameObject.SetActive(false);
                 View.BtnClose.onClick.AddListener(() => _ = QuitGame());
+                
+                View.BtnHold.SetPointerDownAction(HoldToHideUI);
+                View.BtnHold.SetPointerExitAction(EndHoldToHideUI);
+            }
+
+            public void HoldToHideUI()
+            {
+                View.MainView.alpha = 0f;
+                var e = UIManager.Instance.GetModalBackdrop();
+                e.View.Alpha = 0f;
+            }
+            public void EndHoldToHideUI()
+            {
+                View.MainView.alpha = 1f;
+                var e = UIManager.Instance.GetModalBackdrop();
+                e.View.Alpha = 1f;
+            }
+
+            public void DidPushEnter(Memory<object> args)
+            {
+                WaitToShowBtnClose().Forget();
+            }
+
+            private async UniTask WaitToShowBtnClose()
+            {
+                await UniTask.WaitForSeconds(3f, cancellationToken: View.MainView.GetCancellationTokenOnDestroy());
+                View.BtnClose.gameObject.SetActive(true);
             }
 
             private async UniTask QuitGame()
@@ -118,13 +157,17 @@ namespace Core.UI.Modals
                         IngameFirebaseAnalystic.Instance.SetAdsRewardInfo("ads_reward_slot_folder", 1);
                         actionCallBack = AddNote;
                         break;
-                    case ReviveType.AddSlot:
-                        IngameFirebaseAnalystic.Instance.SetAdsRewardInfo("ads_reward_reviveAddSlot", 1);
-                        actionCallBack = AddSlot;
-                        break;
+                    // case ReviveType.AddSlot:
+                    //     IngameFirebaseAnalystic.Instance.SetAdsRewardInfo("ads_reward_reviveAddSlot", 1);
+                    //     actionCallBack = AddSlot;
+                    //     break;
                     case ReviveType.BoosterMagnet:
                         IngameFirebaseAnalystic.Instance.SetAdsRewardInfo("ads_reward_reviveMagnet", 1);
                         actionCallBack = UseBoosterMagnet;
+                        break;
+                    case ReviveType.BoosterCart:
+                        IngameFirebaseAnalystic.Instance.SetAdsRewardInfo("ads_reward_reviveCart", 1);
+                        actionCallBack = UseBoosterCart;
                         break;
                     default:
                         return;
@@ -156,7 +199,20 @@ namespace Core.UI.Modals
                     }
                     actionCallBack?.Invoke();
                     PlayerResourceManager.Instance.ChangeResource(GameResource.Type.Money, -slotRevive.price);
+                    
+                    IngameFirebaseAnalystic.Instance.SetSpendType(SpendType.Revive);
+                    IngameFirebaseAnalystic.Instance.SetCurrencyPlacement(PlacementType.InGame);
+                    IngameFirebaseAnalystic.Instance.TrackCurrencySpend(GameResource.Type.Money, slotRevive.price.ToInt());
                 }
+            }
+
+            private void UseBoosterCart()
+            {
+                ActionReviveDone();
+                PlayerResourceManager.Instance.ChangeResource(GameResource.Type.BoosterCart, 1);
+                GamePlayManager.Instance.ChangeGameState(GameState.Playing);
+                ScreenGamePlayContext.Events.UseBooster?.Invoke(BoosterType.BoosterCart);
+                CloseModal();
             }
 
             private void UseBoosterMagnet()
@@ -188,9 +244,11 @@ namespace Core.UI.Modals
                 IngameFirebaseAnalystic.Instance.AddUseRevive();
                 GamePlayManager.Instance.ChangeGameState(GameState.Playing);
                 Level.Instance.isEndGame = false;
+                GlobalEventManager.OnHaveCardDone?.Invoke();
             }
 
             private void CloseModal() => _ = UIManager.Instance.CloseModalAsync();
+
         }
     }
 }
