@@ -84,7 +84,7 @@ namespace Core.UI.Screens
                     .WithEase(Ease.Linear)
                     .Bind(ShowTextProgress).AddTo(MainView);
                 await UniTask.WaitUntil(() => Level.Instance.isLoadDone);
-                var isEnoughLevel = Level.Instance.levelIndex.Value >= 5;
+                var isEnoughLevel = Level.Instance.levelIndex.Value >= DefaultGlobalConfig.Instance.levelBackToHome;
                 
                 if (isEnoughLevel)
                 {

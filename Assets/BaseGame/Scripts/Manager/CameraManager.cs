@@ -1,6 +1,7 @@
+using TW.Utility.DesignPattern;
 using UnityEngine;
 
-public class CameraManager : MonoBehaviour
+public class CameraManager : Singleton<CameraManager>
 {
     public BoxCollider2D cameraCollider;
     public Camera mainCamera;
@@ -48,5 +49,10 @@ public class CameraManager : MonoBehaviour
         camPos.x = b.center.x;
         camPos.y = b.center.y;
         mainCamera.transform.position = camPos;
+    }
+    
+    public Vector3 WorldToScreenPoint(Vector3 worldPos)
+    {
+        return mainCamera.WorldToScreenPoint(worldPos);
     }
 }

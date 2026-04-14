@@ -1,12 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 using Core.UI.Activities;
 using Core.UI.Modals;
-using Core.UI.Screens;
 using CoreData;
 using Cysharp.Threading.Tasks;
+using SDK;
 using Sirenix.OdinInspector;
 using TW.Utility.DesignPattern;
 using UnityEditor;
@@ -293,8 +290,9 @@ public class Level : Singleton<Level>
         CheckToCloseAllUI();
         ResetLevel();
         isEndGame = true;
-        levelIndex.Value++;
         IngameFirebaseAnalystic.Instance.SetLevelUserProperty();
+        AppsflyerManager.TrackCompleteLevel(levelIndex.Value);
+        levelIndex.Value++;
         if (levelChange.Value != -1)
         {
             levelChange.Value = -1;

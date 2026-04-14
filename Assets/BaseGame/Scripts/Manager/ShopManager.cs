@@ -112,17 +112,22 @@ public class ShopManager : Singleton<ShopManager>
             IngameFirebaseAnalystic.Instance.SetCurrencyPlacement(PlacementType.Shop);
             if (isNoAds && currentNoAds)
             {
-                IngameFirebaseAnalystic.Instance.TrackCurrencyEarn(GameResource.Type.Money, 5000);
+                var level = PlayerInfoManager.Instance.playerLevel.Value;
+                IngameFirebaseAnalystic.Instance.TrackCurrencyEarn(GameResource.Type.Money, 5000, level);
             }
             else
             {
                 var isBooster = IsBooster(packageConfig.shopRewards[i].ResourceType);
                 if (!isBooster)
-                    IngameFirebaseAnalystic.Instance.TrackCurrencyEarn(rewardType, amount.ToInt());
+                {
+                    var level = PlayerInfoManager.Instance.playerLevel.Value;
+                    IngameFirebaseAnalystic.Instance.TrackCurrencyEarn(rewardType, amount.ToInt(), level);
+                }
                 else
                 {
+                    var level = PlayerInfoManager.Instance.playerLevel.Value;
                     IngameFirebaseAnalystic.Instance.SetBoosterPlacement(PlacementType.Shop);
-                    IngameFirebaseAnalystic.Instance.TrackBoosterEarn(rewardType, amount.ToInt());
+                    IngameFirebaseAnalystic.Instance.TrackBoosterEarn(rewardType, amount.ToInt(), level);
                 }
             }
         }

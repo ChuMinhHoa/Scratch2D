@@ -18,18 +18,24 @@ MonoBehaviour:
   - {fileID: 851542219791232566, guid: f526676fae6a851468a87c47562aa521, type: 3}
   - {fileID: 851542219791232566, guid: 0b1a3bfde1208d94eb2db5f223d2337e, type: 3}
   <CardData>k__BackingField:
-    cardType: 0
+    cardType: 200
     cardState: 0
     stickers:
-    - stickerID: 5
+    - stickerID: 3
+      stickerType: 0
+      stickerIndexChain: 0
+    - stickerID: 3
+      stickerType: 0
+      stickerIndexChain: 0
+    - stickerID: 3
       stickerType: 0
       stickerIndexChain: 0
     position:
-      x: -3.1
-      y: -2.2
+      x: 1.8
+      y: 4.3
       z: 0
     rotation:
       x: 0
       y: 0
-      z: 0
+      z: 90
     totalSUnlock: 0

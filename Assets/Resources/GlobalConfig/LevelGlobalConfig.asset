@@ -142,3 +142,12 @@ MonoBehaviour:
   - level: 42
     difficulty: 0
     levelAsset: {fileID: 4900000, guid: b07be85d22114d343b6baff7d4a4b5e5, type: 3}
+  - level: 43
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 7f2ef43f0e6e1024b8ec856dafaaa0cc, type: 3}
+  - level: 44
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 86d87ec772a4f194b84ec271ea8036b8, type: 3}
+  - level: 45
+    difficulty: 0
+    levelAsset: {fileID: 4900000, guid: 69cf3d84e01ccea429f46c35453d306b, type: 3}

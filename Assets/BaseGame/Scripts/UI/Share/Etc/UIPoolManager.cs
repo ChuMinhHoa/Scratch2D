@@ -58,6 +58,24 @@ public class UIPoolManager : Singleton<UIPoolManager>
     }
 
     #endregion
+    
+    #region Combo Effect
+
+    public UIPool<ComboEffect> comboEffectPool;
+    
+    public ComboEffect SpawnComboEffect(Transform parents)
+    {
+        var s = comboEffectPool.Spawn();
+        s.transform.SetParent(parents);
+        return s == null ? null : s;
+    }
+    
+    public void DeSpawnComboEffect(ComboEffect comboEffect)
+    {
+        comboEffectPool.Despawn(comboEffect);
+    }
+
+    #endregion
 }
 
 [System.Serializable]

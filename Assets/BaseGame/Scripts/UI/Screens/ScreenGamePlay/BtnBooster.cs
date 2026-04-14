@@ -35,7 +35,7 @@ public class BtnBooster : MonoBehaviour
     [SerializeField] private GameObject objContent;
     [SerializeField] private GameObject objLock;
     [SerializeField] private AnimOnBooster animOnBooster;
-    
+
     private BoosterConfig config;
 
     public int countUsed = 0;
@@ -118,6 +118,7 @@ public class BtnBooster : MonoBehaviour
         {
             ShowHandTutorial();
         }
+
         objLock.SetActive(false);
     }
 
@@ -166,8 +167,10 @@ public class BtnBooster : MonoBehaviour
         if (ShopManager.Instance.NoAds.Value) AddBooster();
         else
         {
-            IngameFirebaseAnalystic.Instance.SetAdsRewardInfo(config.boosterType.ToString(), 1);
-            AdsManager.Instance.ShowRewardVideo(PlacementType.InGame.ToString(), config.boosterType.ToString(), AddBooster);
+            var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
+            IngameFirebaseAnalystic.Instance.SetAdsRewardInfo(config.boosterType.ToString(), 1, level);
+            AdsManager.Instance.ShowRewardVideo(PlacementType.InGame.ToString(), config.boosterType.ToString(),
+                AddBooster);
         }
 #endif
     }
@@ -176,7 +179,8 @@ public class BtnBooster : MonoBehaviour
     {
         PlayerResourceManager.Instance.ChangeResource(gameResource.ResourceType, 1);
         IngameFirebaseAnalystic.Instance.SetBoosterPlacement(PlacementType.InGame);
-        IngameFirebaseAnalystic.Instance.TrackBoosterEarn(gameResource.ResourceType, 1);
+        var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
+        IngameFirebaseAnalystic.Instance.TrackBoosterEarn(gameResource.ResourceType, 1, level);
         countUsed++;
         PayByAds();
     }
@@ -280,7 +284,7 @@ public class BtnBooster : MonoBehaviour
     }
 
     private void PayByGameResource()
-    { 
+    {
         PlayerResourceManager.Instance.ChangeResource(gameResource.ResourceType, -1);
         IngameFirebaseAnalystic.Instance.SetBoosterPlacement(PlacementType.InGame);
         IngameFirebaseAnalystic.Instance.TrackBoosterSpend(gameResource.ResourceType);

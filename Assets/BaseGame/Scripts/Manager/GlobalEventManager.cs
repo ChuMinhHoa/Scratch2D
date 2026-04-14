@@ -12,4 +12,5 @@ public static class GlobalEventManager
     public static Action<string> OnShowWarning { get; set; }
     public static Action<BoosterType> OnUnlockBooster { get; set; }
     public static Action HideUI { get; set; }
+    public static Action<Transform> OnShowComboEffect { get; set; }
 }

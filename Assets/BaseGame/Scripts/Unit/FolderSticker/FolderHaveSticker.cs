@@ -124,6 +124,8 @@ public partial class FolderHaveSticker : MonoBehaviour
             _renderer.SetPropertyBlock(propertyBlock);
         }).AddTo(this);
         
+        GlobalEventManager.OnShowComboEffect?.Invoke(transform);
+        
         if (!unitAnim.IsHaveScaleAnim() && !unitAnimScale.IsHaveScaleAnim())
         {
            await unitAnim.PlayScaleAnimation();

@@ -57,7 +57,6 @@ public class Launcher : UnityScreenNavigatorLauncher
 
     private void ShowWarning(string des)
     {
-        Debug.Log(des);
         var e1 = ActivityContainer.Find(ContainerKey.ActivitiesInGame);
         var e = UIPoolManager.Instance.SpawnWarningElement(e1.transform);
         e.SetText(des);

@@ -24,6 +24,7 @@ public static class MyCache
     public static string warningNoteOnMove = "Wait note move!";
     public static string warningNoStickerOnFS = "No sticker wait!";
     public static string warningHammer = "No cards are locked or frozen!";
+    public static string combo = "x{0}!";
 
     public static GameResource.Type ConvertBoosterToResourceType(BoosterType boosterType)
     {

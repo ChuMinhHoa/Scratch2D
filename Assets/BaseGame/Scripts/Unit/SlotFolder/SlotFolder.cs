@@ -32,13 +32,14 @@ public partial class SlotFolder : MonoBehaviour
 #if UNITY_EDITOR
         ChangeFolderType(SlotFolderType.Normal);
 #endif
-        //AdsManager.Instance.ShowRewardVideo(PlacementType.InGame.ToString(), "ads_reward_slot_folder", () => ChangeFolderType(SlotFolderType.Normal));
+       
 #if !UNITY_EDITOR
         if (ShopManager.Instance.NoAds.Value) ChangeFolderType(SlotFolderType.Normal);
         else
         {
             Debug.Log("Show Ads Reward");
-            IngameFirebaseAnalystic.Instance.SetAdsRewardInfo("ads_reward_slot_folder", 1);
+            var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
+            IngameFirebaseAnalystic.Instance.SetAdsRewardInfo("ads_reward_slot_folder", 1, level);
             AdsManager.Instance.ShowRewardVideo(PlacementType.InGame.ToString(), "ads_reward_slot_folder", () => ChangeFolderType(SlotFolderType.Normal));
         }
 #endif

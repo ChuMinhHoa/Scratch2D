@@ -64,6 +64,7 @@ public class LevelGenerateFunction : MonoBehaviour
     }
 
     public Percent<CardType> percentCartType = new();
+
     [Button("Try Add Card", ButtonSizes.Gigantic)]
     private void TryAddCard()
     {
@@ -138,7 +139,7 @@ public class LevelGenerateFunction : MonoBehaviour
         }
 
         var rng = new System.Random();
-        float minDistance = 2f; // Minimum distance between cards
+        float minDistance = 1f; // Minimum distance between cards
         int maxAttempts = 100; // Maximum attempts to find a valid position
 
         for (int i = 0; i < LevelData.layerCards.Length; i++)
@@ -152,12 +153,12 @@ public class LevelGenerateFunction : MonoBehaviour
             {
                 Vector3 newPos = Vector3.zero;
                 bool validPosition = false;
-            
+
                 for (int attempt = 0; attempt < maxAttempts; attempt++)
                 {
                     newPos = new Vector3(
-                        (float)(rng.NextDouble() * 10 - 4),
-                        (float)(rng.NextDouble() * 10 - 4),
+                        (float)(rng.NextDouble() * 10 - 6) * (Random.Range(0, 2) == 1 ? 1 : -1),
+                        (float)(rng.NextDouble() * 10 - 6) * (Random.Range(0, 2) == 1 ? 1 : -1),
                         0
                     );
 
@@ -275,8 +276,10 @@ public class LevelGenerateFunction : MonoBehaviour
         UnityEditor.EditorUtility.SetDirty(levelGenerateText);
         Debug.Log($"Shuffled {stickerIds.Count} stickers between layers {start} and {end}");
     }
+
     public int totalFreezeCardAdd = 10;
     public int totalLockCardAdd = 10;
+
     [Button]
     private void AddFreezeCard()
     {
@@ -285,11 +288,11 @@ public class LevelGenerateFunction : MonoBehaviour
             Debug.LogWarning("No level data to Add Freeze card");
             return;
         }
-        
+
         var layerData = LevelData.layerCards.ToList();
         var countPerLayer = (int)((float)totalFreezeCardAdd / layerData.Count);
         Debug.Log(countPerLayer);
-        for (var i = 0; i < layerData.Count-1; i++)
+        for (var i = 0; i < layerData.Count - 1; i++)
         {
             for (var j = 0; j < countPerLayer; j++)
             {
@@ -300,7 +303,7 @@ public class LevelGenerateFunction : MonoBehaviour
             }
         }
     }
-    
+
     [Button]
     private void AddLockCard()
     {
@@ -309,7 +312,7 @@ public class LevelGenerateFunction : MonoBehaviour
             Debug.LogWarning("No level data to Add Lock card");
             return;
         }
-        
+
         var layerData = LevelData.layerCards.ToList();
         var countPerLayer = (int)((float)totalLockCardAdd / layerData.Count);
         Debug.Log(countPerLayer);
@@ -319,14 +322,14 @@ public class LevelGenerateFunction : MonoBehaviour
             {
                 var cards = layerData[i].cards.ToList();
                 var randomCard = Random.Range(0, cards.Count);
-                if(cards[randomCard].cardState != CardState.Normal) continue;
+                if (cards[randomCard].cardState != CardState.Normal) continue;
                 cards[randomCard].cardState = CardState.Lock;
                 cards[randomCard].totalSUnlock = 1;
                 LevelData.layerCards[i].cards[randomCard] = cards[randomCard];
             }
         }
     }
-    
+
     public int totalBlindStickerAdd = 10;
 
     [Button]
@@ -337,6 +340,7 @@ public class LevelGenerateFunction : MonoBehaviour
             Debug.LogWarning("No level data to Add blind sticker");
             return;
         }
+
         var layerData = LevelData.layerCards.ToList();
         for (var i = 0; i < layerData.Count; i++)
         {
@@ -349,11 +353,11 @@ public class LevelGenerateFunction : MonoBehaviour
         }
     }
 }
+
 [Serializable]
 public class Percent<T>
 {
-    [HideLabel]
-    public List<PercentElement<T>> elements;
+    [HideLabel] public List<PercentElement<T>> elements;
 
     public T GetRandomType()
     {
@@ -380,6 +384,7 @@ public class Percent<T>
         return elements.Last().type;
     }
 }
+
 [Serializable]
 public class PercentElement<T>
 {
@@ -387,5 +392,3 @@ public class PercentElement<T>
     public float percent;
 }
 #endif
-
-

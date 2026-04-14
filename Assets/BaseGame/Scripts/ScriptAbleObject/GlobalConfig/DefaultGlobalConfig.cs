@@ -14,11 +14,13 @@ public class DefaultGlobalConfig : GlobalConfig<DefaultGlobalConfig>
     public int priceRevive = 200;
     public int levelShowInter = 9;
     public int boosterUnlockAmount = 3;
+    public int levelBackToHome = 10;
 
     public async UniTask InitRemoteConfig()
     {
         await UniTask.WaitUntil(() => FirebaseManager.Instance.IsFirebaseRemoteFetchingSuccess);
         levelShowInter = (int)FirebaseManager.Instance.GetConfigDouble(Keys.key_remote_interstitial_level);
         defaultCoinWinGame = (int)FirebaseManager.Instance.GetConfigDouble(Keys.key_remote_coin_win_game);
+        levelBackToHome = (int)FirebaseManager.Instance.GetConfigDouble(Keys.key_level_back_to_home);
     }
 }

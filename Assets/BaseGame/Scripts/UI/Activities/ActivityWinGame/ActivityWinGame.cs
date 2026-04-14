@@ -111,6 +111,7 @@ namespace Core.UI.Activities
                         EnergyManager.Instance.RefillAddOnEnergy();
                     }
                 }
+
                 AdsManager.Instance.HideMRecAds();
                 return UniTask.CompletedTask;
             }
@@ -122,12 +123,16 @@ namespace Core.UI.Activities
 #if UNITY_EDITOR
                 Claim(true);
 #endif
+
 #if !UNITY_EDITOR
                 if (ShopManager.Instance.NoAds.Value) Claim(true);
                 else
                 {
-                    IngameFirebaseAnalystic.Instance.SetAdsRewardInfo(nameof(GameResource.Type.Money), DefaultGlobalConfig.Instance.defaultCoinWinGame * 2);
-                    AdsManager.Instance.ShowRewardVideo(nameof(PlacementType.WinGame), "X2_Reward_WinGame", () => Claim(true));
+                    var level = PlayerInfoManager.Instance.playerLevel.Value;
+                    IngameFirebaseAnalystic.Instance.SetAdsRewardInfo(nameof(GameResource.Type.Money),
+                        DefaultGlobalConfig.Instance.defaultCoinWinGame * 2, level);
+                    AdsManager.Instance.ShowRewardVideo(nameof(PlacementType.WinGame), "X2_Reward_WinGame",
+                        () => Claim(true));
                 }
 #endif
             }
@@ -147,10 +152,11 @@ namespace Core.UI.Activities
                     ? ClaimCurrencyType.AdsReward
                     : ClaimCurrencyType.WinGame);
                 IngameFirebaseAnalystic.Instance.SetCurrencyPlacement(PlacementType.WinGame);
+                var level = PlayerInfoManager.Instance.playerLevel.Value;
                 IngameFirebaseAnalystic.Instance.TrackCurrencyEarn(GameResource.Type.Money,
-                    DefaultGlobalConfig.Instance.defaultCoinWinGame * (isX2 ? 2 : 1));
-               
-                var e = Level.Instance.levelIndex.Value >= 5;
+                    DefaultGlobalConfig.Instance.defaultCoinWinGame * (isX2 ? 2 : 1), level);
+                
+                var e = Level.Instance.levelIndex.Value >= DefaultGlobalConfig.Instance.levelBackToHome;
                 if (e)
                     UIControl().Forget();
                 else
@@ -177,7 +183,8 @@ namespace Core.UI.Activities
                 Level.Instance.ResetLevel();
                 await UIManager.Instance.CloseScreenAsync();
                 await UIManager.Instance.CloseActivityAsync<ActivityWinGame>();
-                await UIManager.Instance.OpenActivityAsync<ActivityLoadingInGamePlay>((Func<UniTask>)Level.Instance.LoadData, (Func<UniTask>)Level.Instance.AnimFirstSpawn);
+                await UIManager.Instance.OpenActivityAsync<ActivityLoadingInGamePlay>(
+                    (Func<UniTask>)Level.Instance.LoadData, (Func<UniTask>)Level.Instance.AnimFirstSpawn);
                 await UIManager.Instance.OpenScreenAsync<ScreenGamePlay>();
             }
 

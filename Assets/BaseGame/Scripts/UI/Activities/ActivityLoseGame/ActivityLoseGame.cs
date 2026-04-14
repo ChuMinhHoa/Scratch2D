@@ -93,6 +93,7 @@ namespace Core.UI.Activities
             public void DidEnter(Memory<object> args)
             {
                 SoundManager.Instance.PlaySoundSfx(AudioKey.Sfx_Lose);
+                AdsManager.Instance.ShowMRecAds();
             }
 
             private void RetryGame()
@@ -103,9 +104,10 @@ namespace Core.UI.Activities
 
             private async UniTask Replay()
             {
-                IngameFirebaseAnalystic.Instance.SetLoseType(LoseType.Replay);
-                IngameFirebaseAnalystic.Instance.SetNoteFail(Level.Instance.GetNoteFail());
-                IngameFirebaseAnalystic.Instance.TrackLevelFail();
+                AdsManager.Instance.HideMRecAds();
+                // IngameFirebaseAnalystic.Instance.SetLoseType(LoseType.Replay);
+                // IngameFirebaseAnalystic.Instance.SetNoteFail(Level.Instance.GetNoteFail());
+                // IngameFirebaseAnalystic.Instance.TrackLevelFail();
                 
                 Level.Instance.ResetLevel();
                 await UIManager.Instance.OpenActivityAsync<ActivityLoadingInGamePlay>((Func<UniTask>)Level.Instance.LoadData, (Func<UniTask>)Level.Instance.AnimFirstSpawn);  
@@ -115,11 +117,13 @@ namespace Core.UI.Activities
             private void CloseActivity()
             {
                 Level.Instance.ResetLevel();
+               
                 CloseActivityAsync().Forget();
             }
 
             private async UniTask CloseActivityAsync()
             {
+                AdsManager.Instance.HideMRecAds();
                 await UIManager.Instance.CloseScreenAsync();
                 await UIManager.Instance.OpenScreenDefaultAsync<ScreenDefault>();
                 await UIManager.Instance.CloseActivityAsync<ActivityLoseGame>();

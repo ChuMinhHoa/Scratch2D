@@ -150,11 +150,11 @@ namespace Core.UI.Modals
             private void SlotReviveCallBack(SlotRevive slotRevive)
             {
                 var useAds = slotRevive.useByAds;
-
+                var level = PlayerInfoManager.Instance.playerLevel.Value + 1;
                 switch (slotRevive.slotData)
                 {
                     case ReviveType.AddNote:
-                        IngameFirebaseAnalystic.Instance.SetAdsRewardInfo("ads_reward_slot_folder", 1);
+                        IngameFirebaseAnalystic.Instance.SetAdsRewardInfo("ads_reward_slot_folder", 1, level);
                         actionCallBack = AddNote;
                         break;
                     // case ReviveType.AddSlot:
@@ -162,11 +162,11 @@ namespace Core.UI.Modals
                     //     actionCallBack = AddSlot;
                     //     break;
                     case ReviveType.BoosterMagnet:
-                        IngameFirebaseAnalystic.Instance.SetAdsRewardInfo("ads_reward_reviveMagnet", 1);
+                        IngameFirebaseAnalystic.Instance.SetAdsRewardInfo("ads_reward_reviveMagnet", 1, level);
                         actionCallBack = UseBoosterMagnet;
                         break;
                     case ReviveType.BoosterCart:
-                        IngameFirebaseAnalystic.Instance.SetAdsRewardInfo("ads_reward_reviveCart", 1);
+                        IngameFirebaseAnalystic.Instance.SetAdsRewardInfo("ads_reward_reviveCart", 1, level);
                         actionCallBack = UseBoosterCart;
                         break;
                     default:

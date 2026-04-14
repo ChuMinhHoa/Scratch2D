@@ -1,16 +1,24 @@
+using Cysharp.Text;
+using Cysharp.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 
 public class ComboEffect : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private TextMeshProUGUI txtCombo;
+    [SerializeField] private TextMeshProUGUI txtComboOutline;
+    
+    public void SetCombo(int combo)
     {
-        
+        txtCombo.SetTextFormat(MyCache.combo, combo);
+        txtComboOutline.SetTextFormat(MyCache.combo, combo);
+
+        _ = AnimCombo();
     }
 
-    // Update is called once per frame
-    void Update()
+    private async UniTask AnimCombo()
     {
-        
+        await UniTask.WaitForSeconds(0.75f);
+        UIPoolManager.Instance.DeSpawnComboEffect(this);
     }
 }
